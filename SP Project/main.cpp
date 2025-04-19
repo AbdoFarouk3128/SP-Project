@@ -7,7 +7,7 @@ using namespace std;
 struct workout {
     int id, set, reps;
 
-    string Name;
+    string name;
 
     float duration;
 
