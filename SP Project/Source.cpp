@@ -39,10 +39,10 @@ struct Client {
     int clientID;
     string username;
     string password;
-    Workout workoutPlans[MAX_WORKOUTS];
     int age;
     string gender;
     string activityLevel;
+    Workout workoutPlans[MAX_WORKOUTS];
     int numWorkouts = 0;
     Measurement measurements[MAX_MEASUREMENTS];
     int numMeasurements = 0;
@@ -115,4 +115,28 @@ string getBMICategory(double bmi) {
     if (bmi < 25) return "Normal";
     if (bmi < 30) return "Overweight";
     return "Obese";
+}
+// ================== CLIENT FEATURES ==================
+
+// ================== TRAINER FEATURES ==================
+
+// ================== AUTHENTICATION ==================
+
+// ================== MAIN SYSTEM ==================
+
+void initializeSampleData() {
+    // Clients
+    clients[clientCount++] = { 1, "alice", "alice123", 21, "female","light" };
+    clients[clientCount++] = { 2, "bob", "bob123",25 };
+
+    // Trainers
+    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+
+    // Assign sample workouts --> Sarah
+
+}
+
+int main() {
+    initializeSampleData();
+    return 0;
 }
