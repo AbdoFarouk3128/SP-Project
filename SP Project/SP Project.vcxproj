@@ -124,16 +124,12 @@
     <ClCompile Include="FristForm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minisystem.cpp" />
-    <ClCompile Include="rawan.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FristForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="rawan.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="sqlite3.h" />
