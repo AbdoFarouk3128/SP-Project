@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="FristForm.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mainsystem.cpp" />
     <ClCompile Include="minisystem.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
