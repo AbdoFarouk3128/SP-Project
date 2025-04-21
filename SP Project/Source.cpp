@@ -52,8 +52,8 @@ struct Trainer {
     int trainerID;
     string username;
     string password;
-    int clients[MAX_CLIENTS];
-    int numClients = 0;
+    //int clients[MAX_CLIENTS];
+    //int numClients = 0;
 };
 
 // ================== GLOBAL DATA ==================
@@ -116,11 +116,20 @@ string getBMICategory(double bmi) {
     if (bmi < 30) return "Overweight";
     return "Obese";
 }
+
+
+// client --> view health summary
 // ================== CLIENT FEATURES ==================
+
+// Rawan
 
 // ================== TRAINER FEATURES ==================
 
+// rahma 
+
 // ================== AUTHENTICATION ==================
+
+// donia/rahma
 
 // ================== MAIN SYSTEM ==================
 
@@ -138,5 +147,6 @@ void initializeSampleData() {
 
 int main() {
     initializeSampleData();
+
     return 0;
 }
