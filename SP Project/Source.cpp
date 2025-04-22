@@ -22,8 +22,8 @@ struct Measurement {
         double protein;
         double carbs;
         double fats;
-    } macros;
-};
+    }macros;
+}w;
 
 struct Workout {
     int workoutID;
@@ -80,17 +80,24 @@ void pressEnter() {
 
 // ================== HEALTH CALCULATIONS ==================
 double calculateBMR(double weight, double height, int age, string gender) {
-    return (gender == "male") ?
-        (10 * weight) + (6.25 * height) - (5 * age) + 5 :
+    if (gender == "male" || gender == "Male")
+        (10 * weight) + (6.25 * height) - (5 * age) + 5;
+    else if (gender == "female" || gender == "Female")
         (10 * weight) + (6.25 * height) - (5 * age) - 161;
+    else
+        cout << "INVALID CHOICE" << endl;
 }
 
 double getActivityMultiplier(string level) {
-    if (level == "sedentary") return 1.2;
-    if (level == "light") return 1.375;
-    if (level == "moderate") return 1.55;
-    if (level == "active") return 1.725;
-    return 1.9;
+    if (level == "sedentary" || level == "Sedentary") return 1.2;
+    else if (level == "light" || level == "Light") return 1.375;
+    else if (level == "moderate"|| level == "Moderate")  return 1.55;
+    else if (level == "active"|| level == "Active")  return 1.725;
+    else if (level == "Very active" || level == "very active")
+        return 1.9;
+    else
+        cout << "Invalid activity level" << endl;
+ 
 }
 
 double calculateTDEE(double bmr, double activityMulti) {
@@ -105,18 +112,51 @@ Measurement::Macros calculateMacros(double tdee) {
     return m;
 }
 
-double calculateBMI(float weight, float height) {
-    float heightM = height / 100;
-    return weight / (heightM * heightM);
+double calculateBMI(float weight, float heightcm) {
+    float heightM = heightcm / 100;
+    return  weight / (heightM * heightM);
 }
 
-string getBMICategory(double bmi) {
+
+    string getBMICategory(double bmi) {
     if (bmi < 18.5) return "Underweight";
-    if (bmi < 25) return "Normal";
-    if (bmi < 30) return "Overweight";
-    return "Obese";
+    else if (bmi < 25) return "Normal";
+    else if (bmi < 30) return "Overweight";
+    else 
+        return "Obese";
 }
 
+void  healthsummary() {
+    double height, weight;int age; string gender, level;
+    cout << "Enter your Height(CM): "; cin >> height;
+    cout << "Enter your Weight(KG): "; cin >> weight;
+    cout << "Enter your Age: "; cin >> age; 
+    cout << "Enter your Gender(Male/Female): "; cin >> gender;
+    cout << "Enter your Activity Level(Sedentary/Light/Moderate/Active/ Very Active): ";
+    cin >> level;
+   double activityMulti = getActivityMultiplier( level);
+    double bmi = calculateBMI (weight, height);
+    string status= getBMICategory (bmi);
+    double bmr = calculateBMR(weight, height, age, gender);
+    double tdee =calculateTDEE( bmr,  activityMulti);
+    calculateMacros(tdee);
+    cout << "Your BMI(Body Mass Index) = " << bmi << "Your Status is " << status << endl;
+    cout << "Your BMR(Basel Metabolic Rate) = " << bmr << endl;
+    cout << "Your TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
+    cout << "---YOUR MACRONUTRIENTS---" << endl;
+    cout << "Percentage of Protein =  " <<w.macros.protein<< endl;
+    cout << "Percentage of Carbocalories =  " <<w.macros.carbs<< endl;
+    cout << "Percentage of Fats =  " <<w.macros.fats<< endl;
+
+    
+
+    
+
+
+
+
+
+}
 
 // client --> view health summary
 // ================== CLIENT FEATURES ==================
@@ -146,7 +186,8 @@ void initializeSampleData() {
 }
 
 int main() {
-    initializeSampleData();
+   // initializeSampleData();
+    healthsummary();
 
     return 0;
 }
