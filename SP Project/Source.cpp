@@ -262,6 +262,87 @@ void loadAllData(sqlite3* db) {
     loadMeasurements(db);
 }
 
+void insertTrainer(sqlite3* db, Trainer t) {
+    const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, t.name.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, t.username.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 3, t.password.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertClient(sqlite3* db, Client c) {
+    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES (?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, c.name.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, c.username.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 3, c.password.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 4, c.age);
+        sqlite3_bind_text(stmt, 5, c.gender.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 6, c.activityLevel.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertWorkout(sqlite3* db, Workout w, int clientId) {
+    const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string exerciseList;
+    for (int i = 0; i < w.numExercises; i++) {
+        exerciseList += w.exercises[i];
+        if (i < w.numExercises - 1) exerciseList += ",";
+    }
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 3, w.numExercises);
+        sqlite3_bind_int(stmt, 4, w.duration);
+        sqlite3_bind_int(stmt, 5, w.sets);
+        sqlite3_bind_int(stmt, 6, w.reps);
+        sqlite3_bind_int(stmt, 7, clientId);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertPredefinedWorkout(sqlite3* db, Workout w) {
+    const char* query = "INSERT INTO PredefinedWorkouts (workoutName, exercises, numExercises, duration, sets, reps) VALUES (?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string exerciseList;
+    for (int i = 0; i < w.numExercises; i++) {
+        exerciseList += w.exercises[i];
+        if (i < w.numExercises - 1) exerciseList += ",";
+    }
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 3, w.numExercises);
+        sqlite3_bind_int(stmt, 4, w.duration);
+        sqlite3_bind_int(stmt, 5, w.sets);
+        sqlite3_bind_int(stmt, 6, w.reps);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
+    const char* query = "INSERT INTO Measurements (clientId, weight, height) VALUES (?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_int(stmt, 1, clientId);
+        sqlite3_bind_double(stmt, 2, m.weight);
+        sqlite3_bind_double(stmt, 3, m.height);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
 
 
 
