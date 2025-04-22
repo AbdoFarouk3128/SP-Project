@@ -15,7 +15,7 @@ const int MAX_EXERCISES = 10;
 const int MAX_LOGS = 20;
 const int MAX_MEASUREMENTS = 20;
 
-void clearScreen() {
+void clearscreen() {
 #ifdef _WIN32
     system("cls");
 #else
@@ -54,6 +54,20 @@ struct Trainer {
     string username;
     string password;
 };
+
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+void pressEnter() {
+    cout << "\nPress Enter to continue...";
+    cin.ignore();
+    cin.get();
+}
 
 Client clients[MAX_CLIENTS];
 int clientCount = 0;
@@ -271,10 +285,10 @@ void trainerMenu(Trainer& trainer) {
     int choice;
     do {
         clearScreen();
-        cout << "\n--- Trainer Menu ---\n";
-        cout << "1. Assign Workout to Client\n";
-        cout << "2. View Client Progress\n";
-        cout << "3. Logout\n";
+        cout << "\n--- Trainer Menu ---\n" ;
+        cout << "1. Assign Workout to Client\n" ;
+        cout << "2. View Client Progress\n" ;
+        cout << "3. Logout\n" ;
         cout << "Enter choice: ";
         cin >> choice;
         clearScreen();
