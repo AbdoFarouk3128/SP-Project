@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include "sqlite3.h"
 using namespace std;
 
 // ================== CONSTANTS ==================
@@ -37,6 +38,7 @@ struct Workout {
 
 struct Client {
     int clientID;
+    string name;
     string username;
     string password;
     int age;
@@ -50,6 +52,7 @@ struct Client {
 
 struct Trainer {
     int trainerID;
+    string name;
     string username;
     string password;
     //int clients[MAX_CLIENTS];
@@ -131,22 +134,43 @@ string getBMICategory(double bmi) {
 
 // donia/rahma
 
-// ================== MAIN SYSTEM ==================
+
+// ================== Database and Data Intry ===================
+
+sqlite3* opendatabase() {
+    sqlite3* db = nullptr;
+    const char* dbPath = "database.db";
+ 
+    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
+        cout << "Database opened successfully: " << dbPath << endl;
+    }
+    else {
+        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
+    }
+ 
+    return db;
+}
+
+sqlite3* db= opendatabase(); // Database pointer
 
 void initializeSampleData() {
     // Clients
-    clients[clientCount++] = { 1, "alice", "alice123", 21, "female","light" };
-    clients[clientCount++] = { 2, "bob", "bob123",25 };
+    clients[clientCount++] = { 1,"alice", "alice", "alice123", 21, "female","light" };
+    clients[clientCount++] = { 2,"Bob", "bob", "bob123",25,"male","active" };
 
     // Trainers
-    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+    trainers[trainerCount++] = { 1,"Sarah Sayed", "sarah", "sarah123" };
 
     // Assign sample workouts --> Sarah
 
 }
 
+
+// ================== MAIN SYSTEM ==================
+
+
 int main() {
     initializeSampleData();
-
+    opendatabase();
     return 0;
 }

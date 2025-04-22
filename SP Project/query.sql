@@ -1,11 +1,10 @@
 
+-- DROP TABLE IF EXISTS Trainers;
 -- CREATE TABLE Trainers (
 --     trainerId INTEGER PRIMARY KEY AUTOINCREMENT,
 --     name TEXT NOT NULL,
 --     username TEXT UNIQUE NOT NULL,
---     password TEXT NOT NULL,
---     experience TEXT NOT NULL,
---     description TEXT NOT NULL
+--     password TEXT NOT NULL
 -- );
 
 -- DROP TABLE IF EXISTS WorkoutBundles;
@@ -17,18 +16,28 @@
 --     FOREIGN KEY (trainerId) REFERENCES Trainers(trainerId)
 -- );
 
+-- DROP TABLE IF EXISTS PredefinedWorkouts;
+-- CREATE TABLE PredefinedWorkouts(
+--     workoutID INTEGER PRIMARY KEY AUTOINCREMENT,
+--     workoutName TEXT,
+--     exercises TEXT,  -- Store delimited string here
+--     numExercises INTEGER,
+--     duration INTEGER,
+--     sets INTEGER,
+--     reps INTEGER
+-- );
+
 -- DROP TABLE IF EXISTS Workouts;
 -- CREATE TABLE Workouts (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     name TEXT NOT NULL,
---     description TEXT,
---     duration_rest INTEGER,
+--     workoutID INTEGER PRIMARY KEY AUTOINCREMENT,
+--     workoutName TEXT,
+--     exercises TEXT,  -- Store delimited string here
+--     numExercises INTEGER,
+--     duration INTEGER,
 --     sets INTEGER,
 --     reps INTEGER,
---     trainerId INTEGER,
---     bundleId INTEGER,
---     FOREIGN KEY (trainerId) REFERENCES Trainers(trainerId),
---     FOREIGN KEY (bundleId) REFERENCES WorkoutBundles(bundleId)
+--     clientId INTEGER,
+--     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 -- );
 
 -- DROP TABLE IF EXISTS Clients;
@@ -38,12 +47,8 @@
 --     username TEXT UNIQUE NOT NULL,
 --     password TEXT NOT NULL,
 --     age INTEGER NOT NULL,
---     gender CHAR(1) NOT NULL,
---     counter_days INTEGER,
---     bundleId INTEGER,
---     trainerId INTEGER, -- Initially NULL by default
---     FOREIGN KEY (bundleId) REFERENCES WorkoutBundles(bundleId),
---     FOREIGN KEY (trainerId) REFERENCES Trainers(trainerId)
+--     gender TEXT NOT NULL,
+--     activityLevel TEXT NOT NULL
 -- );
 
 -- DROP TABLE IF EXISTS Measurements;
@@ -52,49 +57,58 @@
 --     clientId INTEGER,
 --     weight NUMERIC,
 --     height NUMERIC,
---     bodyfat NUMERIC,
---     musclemass NUMERIC,
 --     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 -- );
 
--- INSERT INTO Trainers (name, username, password, experience, description) VALUES
--- ('Abdelrahman Ahmed Farouk', 'abdofarouk', 'abdofarouk@123', '10 years', 
---  'Certified personal trainer specializing in strength training and weight loss. Expert in customized workout plans and nutrition guidance.'),
+-- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
+-- (1, 58.5, 165.0,1),
+-- (2, 74.0, 178.0,2),
+-- (3, 62.0, 160.0,3),
+-- (4, 80.0, 182.0,4),
+-- (5, 55.0, 162.0,5),
+-- (6, 85.5, 176.0,6),
+-- (7, 60.0, 158.0,7),
+-- (8, 77.0, 180.0,8),
+-- (9, 59.5, 164.0,9),
+-- (10, 82.3, 175.0,10);
 
--- ('Sarah Sayed', 'sarahsayed', 'SarahFit@456', '7 years', 
---  'Experienced fitness coach focusing on functional training and HIIT. Passionate about helping clients improve endurance and overall health.'),
+-- INSERT INTO Trainers (name, username, password) VALUES
+-- ('Abdelrahman Ahmed Farouk', 'abdo', 'abdo123'),
 
--- ('Rahma Atef', 'rahmaatef', 'RahmaGym@789', '5 years', 
---  'Certified yoga and Pilates instructor with expertise in flexibility, balance, and core strength. Advocates for a holistic fitness approach.'),
+-- ('Sarah Sayed', 'sarah', 'sarah123'),
 
--- ('Rawan Tarek', 'rawantarek', 'RawanFit@321', '6 years', 
---  'Strength and conditioning specialist with a background in sports performance. Helps athletes and individuals achieve peak fitness levels.'),
+-- ('Rahma Atef', 'rahma', 'rahma123'),
 
--- ('Sahar Mansor', 'saharmansor', 'SaharCoach@654', '8 years', 
---  'Expert in weight training and muscle building. Provides tailored programs for body transformation and injury prevention.'),
+-- ('Rawan Tarek', 'rawan', 'rawan123'),
 
--- ('Salma Ali', 'salmaali', 'SalmaPT@987', '4 years', 
---  'Dedicated fitness trainer specializing in women’s health, weight management, and functional movement training. Promotes a balanced lifestyle.'),
+-- ('Sahar Mansor', 'sahar', 'sahar123'),
 
--- ('Donia Mohamed', 'doniamohamed', 'DoniaFit@159', '6 years', 
---  'Personal trainer and certified nutritionist with a focus on holistic wellness. Helps clients achieve sustainable fitness goals through proper training and diet planning.');
+-- ('Salma Ali', 'salma', 'salma123'),
 
-
-
--- INSERT INTO Clients (name, username, password, age, gender) VALUES
--- ('John Doe', 'johndoe', 'John@1234', 28, 'M'),
--- ('Emma Smith', 'emmasmith', 'Emma#5678', 24, 'F'),
--- ('Michael Johnson', 'michaelj', 'Mike@2023', 35, 'M'),
--- ('Sophia Williams', 'sophiaw', 'Sophia$Pass', 30, 'F'),
--- ('Daniel Brown', 'danielb', 'Daniel@789', 27, 'M'),
--- ('Olivia Davis', 'oliviad', 'Olivia!321', 22, 'F'),
--- ('James Wilson', 'jamesw', 'James@000', 40, 'M'),
--- ('Isabella Martinez', 'isabellam', 'Bella#Pass', 29, 'F'),
--- ('Alexander Taylor', 'alexandert', 'Alex@Pass12', 33, 'M'),
--- ('Charlotte Anderson', 'charlottea', 'Char!5678', 26, 'F');
+-- ('Donia Mohamed', 'donia', 'doniaFit123');
 
 
--- DROP TABLE IF EXISTS Request;
+
+-- INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES
+-- ('Yara Adel', 'yara', 'yara123', 27, 'female', 'light'),
+-- ('Adham Samir', 'adham', 'adham123', 32, 'male', 'moderate'),
+-- ('Noha Karim', 'noha', 'noha123', 28, 'female', 'sedentary'),
+-- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'male', 'active'),
+-- ('Rana Ali', 'rana', 'rana123', 26, 'female', 'moderate'),
+-- ('Emad Essam', 'emad', 'emad123', 33, 'male', 'very active'),
+-- ('Faten Wael', 'faten', 'faten123', 30, 'female', 'light'),
+-- ('Sherif Adel', 'sherif', 'sherif123', 29, 'male', 'light'),
+-- ('Mona Samir', 'mona', 'mona123', 27, 'female', 'moderate'),
+-- ('Hossam Karim', 'hossam', 'hossam123', 32, 'male', 'active'),
+-- ('Dina Mohamed', 'dina', 'dina123', 28, 'female', 'sedentary'),
+-- ('Karim Ali', 'karim', 'karim123', 31, 'male', 'moderate'),
+-- ('Yasmine Essam', 'yasmine', 'yasmine123', 25, 'female', 'light'),
+-- ('Amir Wael', 'amir', 'amir123', 34, 'male', 'active'),
+-- ('Heba Adel', 'heba', 'heba123', 30, 'female', 'moderate');
+
+
+
+-- DROP TABLE IF EXISTS Requests;
 
 -- CREATE TABLE Requests (
 --     requestID INTEGER PRIMARY KEY AUTOINCREMENT,

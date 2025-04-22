@@ -43,19 +43,19 @@
 //
 //
 //
-//sqlite3* opendatabase() {
+// sqlite3* opendatabase() {
 //    sqlite3* db = nullptr;
 //    const char* dbPath = "database.db";
-//
+
 //    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
 //        cout << "Database opened successfully: " << dbPath << endl;
 //    }
 //    else {
 //        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
 //    }
-//
+
 //    return db;
-//}
+// }
 //
 //
 //bool validateLogin(sqlite3* db, string& username, string password, string userType) {
@@ -78,7 +78,7 @@
 //
 //double calculateBMR(double weight, double height, int age, string gender)
 //{
-//    if (gender == "male" || gender == "Male")//ÍÓÇÈ BMR(ãÚÏá ÇáÍÑÞ ÇáÇÓÇÓí)
+//    if (gender == "male" || gender == "Male")//ï¿½ï¿½ï¿½ï¿½ BMR(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 //        return 10 * weight + 6.25 * height - 5 * age + 5;
 //
 //    else
@@ -86,7 +86,7 @@
 //
 //}
 //
-//double  activityMulti(string level)//ÍÓÇÈ ãÚÏá ÇáäÔÇØ
+//double  activityMulti(string level)//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //{
 //    if (level == "sedentary")
 //        return 1.2;
@@ -108,7 +108,7 @@
 //
 //}
 //
-//double calculatetdee(double bmr, double activityMulti)//ÍÓÇÈ ÇáÓÚÑÇÊ ÇáÍÑÇÑíå
+//double calculatetdee(double bmr, double activityMulti)//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //{
 //    return bmr * activityMulti;
 //}
@@ -118,8 +118,8 @@
 //};
 //
 //Macros calcmacros(double tdee) {
-//    //ÍÓÇÈ ÇáÈÑæÊíä 30%ãä tdee 
-//    //ÇáÞÓãå Úáì 4 ÚÔÇä ÊÊÍæá ãä ÓÚÑÇÊ ÍÑÇÑíå áÌÑÇãÇÊ ÈÑæÊíä
+//    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 30%ï¿½ï¿½ tdee 
+//    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 4 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 //    Macros m;
 //    m.protein = (tdee * 0.3) / 4;
