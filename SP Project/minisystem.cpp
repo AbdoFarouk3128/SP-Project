@@ -55,6 +55,20 @@ struct Trainer {
     string password;
 };
 
+void clearScreen() {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+}
+
+void pressEnter() {
+    cout << "\nPress Enter to continue...";
+    cin.ignore();
+    cin.get();
+}
+
 Client clients[MAX_CLIENTS];
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
