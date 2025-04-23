@@ -386,14 +386,15 @@ void registerUser() {
         }
     } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive");
 
-    users[totalClients].id = totalClients + 1;
+    users[totalClients].clientID= totalClients + 1;
     users[totalClients].name = name;
-    users[totalClients].pass = pass;
+    users[totalClients].password = pass;
     users[totalClients].age = age;
     users[totalClients].gender = gender;
-    users[totalClients].activity = level;
+    users[totalClients].activityLevel= level;
 
-    cout << "Account created! Your ID is: " << users[totalClients].id << "\n";
+    users[totalClients].clientID = totalClients + 1;
+    cout << "Account created! Your ID is: " << users[totalClients].clientID<< "\n";
     totalClients++;
 }
 
@@ -659,7 +660,7 @@ int main() {
     client_m.age = 22;
     client_m.gender = "female";
     client_m.activityLevel = "light";
-
+    registerUser();
     client_menue(client_m);
     login();
     return 0;
