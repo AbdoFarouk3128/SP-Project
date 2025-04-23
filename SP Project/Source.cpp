@@ -48,7 +48,7 @@
 //    int numWorkouts = 0;
 //    Measurement measurements[MAX_MEASUREMENTS];
 //    int numMeasurements = 0;
-//}client_menu;
+//};
 //
 //struct Trainer {
 //    int trainerID;
@@ -136,10 +136,10 @@
 //        }
 //    }
 //}
-//void Log_Workout(Client client[]) {
+//void Log_Workout(Client client) {
 //
 //}
-//void client_menue(Client client[]) {
+//void client_menue(Client & client) {
 //    int choice;
 //    do {
 //        clearScreen();
@@ -203,7 +203,7 @@
 //
 //int main() {
 //  initializeSampleData();   
-//    client_menue(clients);
+//  //  client_menue(clients);
 //    return 0;
 
 #include <iostream>
@@ -225,7 +225,11 @@ const int MAX_MEASUREMENTS = 20;
 struct Measurement {
     float weight;
     float height;
-    string date;
+    struct Date {
+        int Day;
+        int Month;
+        int Year;
+    }date;
     float bmi;
     double bmr;
     double tdee;
@@ -260,7 +264,7 @@ struct Client {
     int numLogs = 0;
     Measurement measurements[MAX_MEASUREMENTS];
     int numMeasurements = 0;
-}client_menu;
+};
 
 struct Trainer {
     int trainerID;
@@ -350,16 +354,16 @@ void Veiw_Workout(Client& client) {
     }
     void Log_Workout(Client & client) { 
         if (client.numWorkouts == 0) {
-            cout << "No workouutd assigned Yet....\n";
+            cout << "No workouutd assigned Yet ...\n";
 
         }
         else if (client.numLogs >= MAX_LOGS) {
-            cout << "Log Limit Reached\n";
+            cout << "Log Limit Reached ...\n";
 
         }
         else  {
             string log;
-            cout << "Enter workout name you completed:";
+            cout << "Enter workout name you completed: ";
             cin.ignore();
             getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
             client.progressLogs[client.numLogs++] = log;
@@ -367,10 +371,74 @@ void Veiw_Workout(Client& client) {
 
         }
     }
-    void Log_Measurments() {
-
-         
+    bool LeapYear(int year) {
+        if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+    int days_month = 0;
+    bool invalidDate(int day, int month, int year) {
+        if (year < 1) return 1;
+        else if (month < 1 || month>12) return 1;
+        else if (day < 1) return 1;
+        int days_month = 31;
+        switch (month) {
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            days_month = 30;
+            break;
+        case 2:
+            days_month = LeapYear(year) ? 29 : 28;
+
+            break;
+        default:
+            return 1;
+        }
+        return day > days_month;
+    }
+    void Log_Measurments(Client& client) {
+        if (client.numMeasurements >= MAX_MEASUREMENTS) {
+            cout << "Measurements Limit Reached ...\n";
+        }
+        else {
+            Measurement log_measurement;
+            cout << "Enter weight (kg): ";
+            cin >> log_measurement.weight;
+            cout << "Enter height (kg): ";
+            cin >> log_measurement.height;
+            bool dateValid = 0;
+            while (!dateValid) {
+                cout << "Enter date:\n";
+                cout << "Day: ";
+                cin >> log_measurement.date.Day;
+
+                cout << "Month: ";
+                cin >> log_measurement.date.Month;
+
+                cout << "Year: ";
+                cin >> log_measurement.date.Year;
+
+                if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
+                    cout << "Invalid date.....\n";
+                    cout << "\nPleae try again.";
+                    cin.ignore();
+                    cin.get();
+                    clearScreen();
+                }
+                else dateValid = 1;
+            }
+
+
+            client.measurements[client.numMeasurements++] = log_measurement;
+            cout << "Measurements Added Successfully!\n ";
+        }
+    }
+
 
     void client_menue(Client & client) {
         int choice;
@@ -392,9 +460,9 @@ void Veiw_Workout(Client& client) {
                 Log_Workout(client);  
                 break;
             case 3:
-                //log measurment
+                Log_Measurments(client);
                 break;
-            case 4://health summery
+            case 4://healthsummary(client);
                 break;
             case 5:
                 cout << "Logout....";
