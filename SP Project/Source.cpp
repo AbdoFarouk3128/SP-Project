@@ -67,6 +67,8 @@ struct Trainer {
     //int numClients = 0;
 };
 
+
+
 // ================== GLOBAL DATA ==================
 Client clients[MAX_CLIENTS];
 int clientCount = 0;
@@ -184,11 +186,11 @@ void Veiw_Workout(Client& client) {
     }
 }
 void Log_Workout(Client& client) {
-    if (client.numWorkouts == 0) {
+    if (client.numWorkouts == 0) { //number of workout
         cout << "No workouts assigned Yet ...\n";
 
     }
-    else if (client.numLogs >= MAX_LOGS){
+    else if (client.numLogs >= MAX_LOGS){ // number of completed workout
         cout << "Log Limit Reached ...\n";
 
     }
@@ -282,7 +284,7 @@ void ViewMeasurements(Client& client) {
             << client.measurements[i].date.Month << "/"
             << client.measurements[i].date.Year
             << " | Weight: " << client.measurements[i].weight << "kg"
-            << " | Height: " << client.measurements[i].height << "cm\n";
+            << " | Height: " << client.measurements[i].height << "m\n";
     }
 }
 
@@ -339,8 +341,57 @@ void client_menue(Client& client) {
 //
 
 // ================== TRAINER FEATURES ==================
-
 // rahma 
+void displayClientData( Client & c) {
+    cout << "Full Name: " << c.name << endl;
+    cout << "Age: " << c.age << endl;
+    cout << "Gender: " << c.gender << endl;
+    cout << "Activity Level" << c.activityLevel << endl;
+}
+void  ClientProgress(Client&client) {
+    cout << "--------------Completed Workout---------------\n";
+    for (int i = 0; i < client.numLogs; i++) {
+        cout <<i+1<<"." <<client.progressLogs[i] << endl;
+    }
+    cout << "Weight Trend: "<<client.measurements[client.numMeasurements-1].weight<<endl;
+
+}
+void TrainerMenu() {
+    int choice;
+    do {
+        cout << "\n===Trainer Menu===\n";
+        cout << "1-View Clients Information\n";
+        cout << "2-Assign Workouts to client\n";
+        cout << "3-View Client Progress\n";
+        cout << "5-Logout\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        clearScreen();
+        switch (choice) {
+        case 1:
+            cout << "\n---------Client Information-----------\n";
+            displayClientData(client_m);
+        case 2://assign workout
+            break;
+        case 3:ClientProgress(client_m);
+            break;
+        case 4://add
+            break;
+        case 5: cout << "Logout.....\n";
+            break;
+        default:cout << "Invalid Choice\n";
+        }
+        if (choice != 5) {
+            cout << "\nPress Enter to continue...";
+            cin.ignore();
+            cin.get();
+        }
+    } while (choice != 5);
+
+
+
+}
+
 
 // ================== AUTHENTICATION ==================
 Client users[MAX_CLIENTS];
@@ -431,7 +482,7 @@ void login() {
         {
             usertype = "client";
             cout << "Login successfully,Welcome" << clients[i].username << endl;
-            client_menue(client_m);
+            return;
         }
     }
 
@@ -443,6 +494,7 @@ void login() {
             usertype = "trainer";
             cout << "Login successfully,Welcome" << trainers[i].username << endl;
             return;
+           
         }
     }
     cout << "Invalid username or password." << endl;
@@ -679,5 +731,8 @@ int main() {
 
     initializeSampleData(client_m);
     login();
+    if (usertype == "client") { client_menue(client_m); }
+    else if(usertype == "trainer") { TrainerMenu(); }
+
     return 0;
 }
