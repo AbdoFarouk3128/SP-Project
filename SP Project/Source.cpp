@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 #include "sqlite3.h"
 using namespace std;
 
@@ -90,6 +91,34 @@ void pressEnter() {
     cin.ignore();
     cin.get();
 }
+
+string joinLogs(string logs[], int numLogs) {
+    string result = "";
+    for (int i = 0; i < numLogs; ++i) {
+        result += logs[i];
+        if (i != numLogs - 1)
+            result += "|"; // use | as a separator
+    }
+    return result;
+}
+
+int splitLogs(string logsString, string logs[], int maxLogs) {
+    stringstream ss(logsString);
+    string item;
+    int count = 0;
+    while (getline(ss, item, '|') && count < maxLogs) {
+        logs[count++] = item;
+    }
+    return count;
+}
+
+string formatDate(Measurement::Date d) {
+    char buffer[11];
+    snprintf(buffer, sizeof(buffer), "%02d-%02d-%04d", d.Day, d.Month, d.Year);
+    return string(buffer);
+}
+
+
 // ================== HEALTH CALCULATIONS ==================
 double calculateBMR(Client& a) {
     int index = a.numMeasurements - 1;
@@ -322,7 +351,7 @@ void client_menue(Client& client) {
         case 6:
             cout << "Logout....";
             break;
-            
+
         default:
             cout << "Invalied Choice!\n";
             break;
@@ -405,17 +434,17 @@ void registerUser() {
 
 // donia/rahma
 /// ------------ Log in ------------
-void initializeSampleData(Client &client) {
-    // Clients
-    clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
-    clients[clientCount++] = { 2, "bob","bobi", "bob123",25 };
+// void initializeSampleData(Client &client) {
+//     // Clients
+//     clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
+//     clients[clientCount++] = { 2, "bob","bobi", "bob123",25 };
 
-    // Trainers
-    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+//     // Trainers
+//     trainers[trainerCount++] = { 1, "sarah", "sarah123" };
 
-    // Assign sample workouts --> Sarah
+//     // Assign sample workouts --> Sarah
 
-}
+// }
 void login() {
     string username, password;
     cout << "===LOGIN===" << endl;
@@ -450,21 +479,21 @@ void login() {
 
 // ================== Database and Data Intry ===================
 
-sqlite3* opendatabase() {
-    sqlite3* db = nullptr;
-    const char* dbPath = "database.db";
+// sqlite3* opendatabase() {
+//     sqlite3* db = nullptr;
+//     const char* dbPath = "database.db";
  
-    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
-        cout << "Database opened successfully: " << dbPath << endl;
-    }
-    else {
-        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
-    }
+//     if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
+//         cout << "Database opened successfully: " << dbPath << endl;
+//     }
+//     else {
+//         cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
+//     }
  
-    return db;
-}
+//     return db;
+// }
 
-sqlite3* db= opendatabase(); // Database pointer
+// sqlite3* db= opendatabase(); // Database pointer
 
 void loadTrainers(sqlite3* db) {
     trainerCount = 0;
@@ -497,6 +526,10 @@ void loadClients(sqlite3* db) {
             clients[clientCount].age = sqlite3_column_int(stmt, 4);
             clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
             clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
+            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+            if (logsStr)
+                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
+
             clientCount++;
         }
     }
@@ -557,6 +590,10 @@ void loadMeasurements(sqlite3* db) {
                     Measurement& m = clients[i].measurements[clients[i].numMeasurements];
                     m.weight = sqlite3_column_double(stmt, 2);
                     m.height = sqlite3_column_double(stmt, 3);
+                    const char* dateStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+                    if (dateStr && strlen(dateStr) == 10) {
+                        sscanf(dateStr, "%2d-%2d-%4d", &m.date.Day, &m.date.Month, &m.date.Year);
+                    }
                     // You can calculate bmi, bmr, tdee later
                     clients[i].numMeasurements++;
                     break;
@@ -587,8 +624,10 @@ void insertTrainer(sqlite3* db, Trainer t) {
 }
 
 void insertClient(sqlite3* db, Client c) {
-    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES (?, ?, ?, ?, ?, ?);";
+    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel, progressLogs) VALUES (?, ?, ?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
+    string logsString = joinLogs(c.progressLogs, c.numLogs);
+
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
         sqlite3_bind_text(stmt, 1, c.name.c_str(), -1, SQLITE_STATIC);
         sqlite3_bind_text(stmt, 2, c.username.c_str(), -1, SQLITE_STATIC);
@@ -596,10 +635,12 @@ void insertClient(sqlite3* db, Client c) {
         sqlite3_bind_int(stmt, 4, c.age);
         sqlite3_bind_text(stmt, 5, c.gender.c_str(), -1, SQLITE_STATIC);
         sqlite3_bind_text(stmt, 6, c.activityLevel.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 7, logsString.c_str(), -1, SQLITE_STATIC);
         sqlite3_step(stmt);
     }
     sqlite3_finalize(stmt);
 }
+
 
 void insertWorkout(sqlite3* db, Workout w, int clientId) {
     const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -645,16 +686,20 @@ void insertPredefinedWorkout(sqlite3* db, Workout w) {
 }
 
 void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
-    const char* query = "INSERT INTO Measurements (clientId, weight, height) VALUES (?, ?, ?);";
+    const char* query = "INSERT INTO Measurements (clientId, weight, height, date) VALUES (?, ?, ?, ?);";
     sqlite3_stmt* stmt;
+    string dateStr = formatDate(m.date);
+
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
         sqlite3_bind_int(stmt, 1, clientId);
         sqlite3_bind_double(stmt, 2, m.weight);
         sqlite3_bind_double(stmt, 3, m.height);
+        sqlite3_bind_text(stmt, 4, dateStr.c_str(), -1, SQLITE_STATIC);
         sqlite3_step(stmt);
     }
     sqlite3_finalize(stmt);
 }
+
 
 
 
@@ -669,15 +714,8 @@ int main() {
     else {
         cout << "Failed to open database." << endl;
     }
-    for(int i=0;i<clientCount;i++)
-        cout << clients[i].name << endl;
     //------------------------------------------------------
-    client_m.name = "Nada";
-    client_m.age = 22;
-    client_m.gender = "female";
-    client_m.activityLevel = "light";
 
-    initializeSampleData(client_m);
     login();
     return 0;
 }

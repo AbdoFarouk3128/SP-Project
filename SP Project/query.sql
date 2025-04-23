@@ -50,6 +50,7 @@
 --     gender TEXT NOT NULL,
 --     activityLevel TEXT NOT NULL
 -- );
+-- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 
 -- DROP TABLE IF EXISTS Measurements;
 -- CREATE TABLE Measurements(
@@ -57,6 +58,7 @@
 --     clientId INTEGER,
 --     weight NUMERIC,
 --     height NUMERIC,
+--     date TEXT,  -- now a string
 --     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 -- );
 
