@@ -72,7 +72,7 @@ Client clients[MAX_CLIENTS];
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
-//áãÚÑÝÉ äæÚ ÇáÔÎÕ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 string usertype;     
 
 //// ================== UTILITY FUNCTIONS ==================
@@ -303,20 +303,26 @@ void client_menue(Client& client) {
         switch (choice) {
         case 1: Veiw_Workout(client);
             break;
+        
         case 2:
             Log_Workout(client);
             break;
+
         case 3:
             Log_Measurments(client);
             break;
+
         case 4: healthsummary(client);
             break;
+
         case 5:
             ViewMeasurements(client);
             break;
+
         case 6:
             cout << "Logout....";
             break;
+            
         default:
             cout << "Invalied Choice!\n";
             break;
@@ -418,7 +424,7 @@ void login() {
     cout << "Enter password: ";
     cin >> password;
 
-    // ãÚÑÝÉ ÇáÚãáÇÁ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     for (int i = 0; i < clientCount; i++) {
         if (clients[i].username == username && clients[i].password == password)
@@ -429,7 +435,7 @@ void login() {
         }
     }
 
-    //ãÚÑÝÉ ÇáãÏÑÈ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     for (int i = 0; i < trainerCount; i++) {
         if (trainers[i].username == username && trainers[i].password == password)
