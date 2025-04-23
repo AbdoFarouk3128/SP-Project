@@ -10,7 +10,7 @@ const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;
 const int MAX_MEASUREMENTS = 20;
 
-// ================== STRUCTURES ==================
+//================== STRUCTURES ==================
 struct Measurement {
     float weight;
     float height;
