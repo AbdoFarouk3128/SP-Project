@@ -185,10 +185,10 @@ void Veiw_Workout(Client& client) {
 }
 void Log_Workout(Client& client) {
     if (client.numWorkouts == 0) {
-        cout << "No workouutd assigned Yet ...\n";
+        cout << "No workouts assigned Yet ...\n";
 
     }
-    else if (client.numLogs >= MAX_LOGS) {
+    else if (client.numLogs >= MAX_LOGS){
         cout << "Log Limit Reached ...\n";
 
     }
@@ -256,7 +256,7 @@ void Log_Measurments(Client& client) {
 
             if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
                 cout << "Invalid date.....\n";
-                cout << "\nPleae try again.";
+                cout << "\nPleaese try again.";
                 cin.ignore();
                 cin.get();
                 clearScreen();
@@ -269,18 +269,34 @@ void Log_Measurments(Client& client) {
         cout << "Measurements Added Successfully!\n ";
     }
 }
+void ViewMeasurements(Client& client) {
+    if (client.numMeasurements == 0) {
+        cout << "No measurements recorded yet.\n";
+        return;
+    }
+
+    cout << "======= Measurements History =======\n";
+    for (int i = 0; i < client.numMeasurements; i++) {
+        cout << i + 1 << ". "
+            << "Date: " << client.measurements[i].date.Day << "/"
+            << client.measurements[i].date.Month << "/"
+            << client.measurements[i].date.Year
+            << " | Weight: " << client.measurements[i].weight << "kg"
+            << " | Height: " << client.measurements[i].height << "cm\n";
+    }
+}
 
 
 void client_menue(Client& client) {
     int choice;
     do {
-        clearScreen();
-        cout << "======================= CLIENT MENUE =======================\n"
-            << "1.Veiw Workout\n "
+        cout <<"======================= CLIENT MENUE =======================\n"
+            << "1.Veiw Workout\n"
             << "2.Log Workout\n"
             << "3.Log Measurments\n"
             << "4.Health Summery\n"
-            << "5.Logout\n";
+            <<"5.ViewMeasurements\n"
+            << "6.Logout\n";
         cout << "Enter Choice: ";
         cin >> choice;
         clearScreen();
@@ -296,6 +312,9 @@ void client_menue(Client& client) {
         case 4: healthsummary(client);
             break;
         case 5:
+            ViewMeasurements(client);
+            break;
+        case 6:
             cout << "Logout....";
             break;
         default:
@@ -303,12 +322,12 @@ void client_menue(Client& client) {
             break;
         }
 
-        if (choice != 5) {
+        if (choice != 6) {
             cout << "\nPress Enter to continue...";
             cin.ignore();
             cin.get();
         }
-    } while (choice != 5);
+    } while (choice != 6);
 }
 
 //
