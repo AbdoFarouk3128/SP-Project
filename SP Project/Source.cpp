@@ -341,6 +341,17 @@ void client_menue(Client& client) {
 
 // donia/rahma
 /// ------------ Log in -----------
+//void initializeSampleData(Client &client) {
+//    // Clients
+//    clients[clientCount++] ={ 1, "alice", "alice123", 21, "female","light" };
+//    clients[clientCount++] ={ 2, "bob", "bob123",25 };
+//
+//    // Trainers
+//    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+//
+//    // Assign sample workouts --> Sarah
+//
+//}
 void login() {
     string username, password;
     cout << "===LOGIN===" << endl;
@@ -354,9 +365,9 @@ void login() {
     for (int i = 0; i < clientCount; i++) {
         if (clients[i].username == username && clients[i].password == password)
         {
-            usertype == "client";
+            usertype = "client";
             cout << "Login successfully,Welcome" << clients[i].username << endl;
-            return;
+            client_menue(client_m);
         }
     }
 
@@ -365,7 +376,7 @@ void login() {
     for (int i = 0; i < trainerCount; i++) {
         if (trainers[i].username == username && trainers[i].password == password)
         {
-            usertype == "trainer";
+            usertype = "trainer";
             cout << "Login successfully,Welcome" << trainers[i].username << endl;
             return;
         }
@@ -596,13 +607,15 @@ int main() {
     }
     for(int i=0;i<clientCount;i++)
         cout << clients[i].name << endl;
-    //---------------------------------------------------
+    //------------------------------------------------------
     client_m.name = "Nada";
     client_m.age = 22;
     client_m.gender = "female";
     client_m.activityLevel = "light";
-
-    client_menue(client_m);
+    initializeSampleData(client_m);
     login();
+    if (usertype == "client") { client_menue(client_m); }
+    
+   
     return 0;
 }
