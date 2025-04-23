@@ -135,7 +135,7 @@ string formatDate(Measurement::Date d) {
 // }
 
 // sqlite3* db= opendatabase(); // Database pointer
-
+sqlite3* db;
 void loadTrainers(sqlite3* db) {
     trainerCount = 0;
     const char* query = "SELECT * FROM Trainers;";
@@ -595,8 +595,6 @@ void client_menue(Client& client) {
 // rahma 
 
 // ================== AUTHENTICATION ==================
-Client users[MAX_CLIENTS];
-int totalClients = 0;
 
 void registerUser() {
     string name, pass, gender, level;
@@ -608,8 +606,8 @@ void registerUser() {
         cout << "Enter username: ";
         cin >> name;
 
-        for (int i = 0; i < totalClients; i++) {
-            if (users[i].name == name) {
+        for (int i = 0; i < trainerCount; i++) {
+            if (clients[i].name == name) {
                 cout << "Username already taken. Try another.\n";
                 exists = true;
                 break;
@@ -643,16 +641,17 @@ void registerUser() {
         }
     } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive");
 
-    users[totalClients].clientID= totalClients + 1;
-    users[totalClients].name = name;
-    users[totalClients].password = pass;
-    users[totalClients].age = age;
-    users[totalClients].gender = gender;
-    users[totalClients].activityLevel= level;
+    clients[trainerCount].clientID= trainerCount + 1;
+    clients[trainerCount].name = name;
+    clients[trainerCount].password = pass;
+    clients[trainerCount].age = age;
+    clients[trainerCount].gender = gender;
+    clients[trainerCount].activityLevel= level;
 
-    users[totalClients].clientID = totalClients + 1;
-    cout << "Account created! Your ID is: " << users[totalClients].clientID<< "\n";
-    totalClients++;
+    clients[trainerCount].clientID = trainerCount + 1;
+    cout << "Account created! Your ID is: " << clients[trainerCount].clientID<< "\n";
+    trainerCount++;
+    insertClient(db,clients[trainerCount]);
 }
 
 // donia/rahma
@@ -709,7 +708,7 @@ void login() {
 
 
 int main() {
-    sqlite3* db;
+    
     if (sqlite3_open("database.db", &db) == SQLITE_OK) {
         loadAllData(db);
     }
@@ -733,7 +732,7 @@ int main() {
         }
         else if (mainChoice == 2) {
             clearScreen();
-            
+            registerUser();
         }
         
     } while(mainChoice != 3);
