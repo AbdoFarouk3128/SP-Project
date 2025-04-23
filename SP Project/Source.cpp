@@ -715,7 +715,27 @@ int main() {
         cout << "Failed to open database." << endl;
     }
     //------------------------------------------------------
-
-    login();
+    int mainChoice;
+    
+    do {
+        clearScreen();
+        cout << "=== FITNESS MANAGEMENT SYSTEM ===\n"
+             << "1. Login\n"
+             << "2. Register\n"
+             << "3. Exit\n"
+             << "Choice: ";
+        cin >> mainChoice;
+        
+        if (mainChoice == 1) {
+            login();
+        }
+        else if (mainChoice == 2) {
+            clearScreen();
+            
+        }
+        
+    } while(mainChoice != 3);
+    
+    cout << "Exiting system...\n";
     return 0;
 }
