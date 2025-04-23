@@ -398,7 +398,7 @@ void registerUser() {
 }
 
 // donia/rahma
-/// ------------ Log in -----------
+/// ------------ Log in ------------
 void initializeSampleData(Client &client) {
     // Clients
     clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
