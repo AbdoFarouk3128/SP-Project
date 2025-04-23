@@ -1,210 +1,3 @@
-//#include <iostream>
-//#include <string>
-//#include <cstdlib>
-//using namespace std;
-//
-//
-//
-//// ================== CONSTANTS ==================
-//const int MAX_CLIENTS = 100;
-//const int MAX_TRAINERS = 20;
-//const int MAX_WORKOUTS = 10;
-//const int MAX_EXERCISES = 10;
-//const int MAX_MEASUREMENTS = 20;
-//
-//// ================== STRUCTURES ==================
-//struct Measurement {
-//    float weight;
-//    float height;
-//    string date;
-//    float bmi;
-//    double bmr;
-//    double tdee;
-//    struct Macros {
-//        double protein;
-//        double carbs;
-//        double fats;
-//    } macros;
-//};
-//
-//struct Workout {
-//    int workoutID;
-//    string workoutName;
-//    string exercises[MAX_EXERCISES];
-//    int numExercises;
-//    int duration;
-//    int sets;
-//    int reps;
-//};
-//
-//struct Client {
-//    int clientID;
-//    string username;
-//    string password;
-//    int age;
-//    string gender;
-//    string activityLevel;
-//    Workout workoutPlans[MAX_WORKOUTS];
-//    int numWorkouts = 0;
-//    Measurement measurements[MAX_MEASUREMENTS];
-//    int numMeasurements = 0;
-//};
-//
-//struct Trainer {
-//    int trainerID;
-//    string username;
-//    string password;
-//    //int clients[MAX_CLIENTS];
-//    //int numClients = 0;
-//};
-//
-//// ================== GLOBAL DATA ==================
-//Client clients[MAX_CLIENTS];
-//int clientCount = 0;
-//Trainer trainers[MAX_TRAINERS];
-//int trainerCount = 0;
-//
-//
-//// ================== UTILITY FUNCTIONS ==================
-//void clearScreen() {
-//#ifdef _WIN32
-//    system("cls");
-//#else
-//    system("clear");
-//#endif
-//}
-//
-//void pressEnter() {
-//    cout << "\nPress Enter to continue...";
-//    cin.ignore();
-//    cin.get();
-//}
-//
-//// ================== HEALTH CALCULATIONS ==================
-//double calculateBMR(double weight, double height, int age, string gender) {
-//    return (gender == "male") ?
-//        (10 * weight) + (6.25 * height) - (5 * age) + 5 :
-//        (10 * weight) + (6.25 * height) - (5 * age) - 161;
-//}
-//
-//double getActivityMultiplier(string level) {
-//    if (level == "sedentary") return 1.2;
-//    if (level == "light") return 1.375;
-//    if (level == "moderate") return 1.55;
-//    if (level == "active") return 1.725;
-//    return 1.9;
-//}
-//
-//double calculateTDEE(double bmr, double activityMulti) {
-//    return bmr * activityMulti;
-//}
-//
-//Measurement::Macros calculateMacros(double tdee) {
-//    Measurement::Macros m;
-//    m.protein = (tdee * 0.3) / 4;
-//    m.carbs = (tdee * 0.45) / 4;
-//    m.fats = (tdee * 0.25) / 9;
-//    return m;
-//}
-//
-//double calculateBMI(float weight, float height) {  
-//    float heightM = height / 100;
-//    return weight / (heightM * heightM);
-//}
-//
-//string getBMICategory(double bmi) {
-//    if (bmi < 18.5) return "Underweight";
-//    if (bmi < 25) return "Normal";
-//    if (bmi < 30) return "Overweight";
-//    return "Obese";
-//}
-//
-//
-//// client --> view health summary
-//// ================== CLIENT FEATURES ===================
-///Rawan
-//void Veiw_Workout(Client &client) {
-//    if (client.numWorkouts == 0) {
-//        cout << "No Workouut Assigned Yet....\n";
-//    }
-//    else {
-//        for (int i = 0; i < client.numWorkouts; i++) {
-//            cout << i + 1 << ". " << client.workoutPlans[i].workoutName << "(" << client.workoutPlans[i].duration << "min)\n";
-//            for (int j = 0; j < client.workoutPlans[i].numExercises; j++) {
-//                cout << "- " << client.workoutPlans[i].exercises[j] << endl;
-//            }
-//        }
-//    }
-//}
-//void Log_Workout(Client client) {
-//
-//}
-//void client_menue(Client & client) {
-//    int choice;
-//    do {
-//        clearScreen();
-//        cout <<"======================= CLIENT MENUE =======================\n"
-//            <<"1.Veiw Workout\n "
-//            <<"2.Log Workout\n"
-//            <<"3.Log Measurments\n"
-//            <<"4.Health Summery\n"
-//            <<"5.Logout\n";
-//        cout <<"Enter Choice: ";
-//        cin >> choice;
-//        clearScreen();
-//        switch (choice) {
-//        case 1: Veiw_Workout(client_menu); 
-//            break;
-//        case 2:
-//            Log_Workout(client); 
-//            break;
-//        case 3:
-//            //log measurment
-//            break;
-//        case 4://health summery
-//            break;
-//        case 5:
-//            cout << "Logout....";
-//            break;
-//        default:
-//            cout << "Invalied Choice!\n";
-//            break;
-//        }
-//
-//        if (choice != 5) {
-//            cout << "\nPress Enter to continue...";
-//            cin.ignore(); cin.get();
-//        }
-//    } while (choice != 5);
-//}
-//
-//
-//// ================== TRAINER FEATURES ==================
-//
-//// rahma 
-//
-//// ================== AUTHENTICATION ==================
-//
-//// donia/rahma
-//
-//// ================== MAIN SYSTEM ==================
-//
-//void initializeSampleData() {
-//    // Clients
-//    clients[clientCount++] = { 1, "alice", "alice123", 21, "female","light" };
-//    clients[clientCount++] = { 2, "bob", "bob123",25 };
-//
-//    // Trainers
-//    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
-//
-//    // Assign sample workouts --> Sarah
-//
-//}
-//
-//int main() {
-//  initializeSampleData();   
-//  //  client_menue(clients);
-//    return 0;
 
 #include <iostream>
 #include <string>
@@ -260,11 +53,11 @@ struct Client {
     string activityLevel;
     Workout workoutPlans[MAX_WORKOUTS];
     int numWorkouts = 0;
-    string progressLogs[MAX_LOGS]; 
+    string progressLogs[MAX_LOGS];
     int numLogs = 0;
     Measurement measurements[MAX_MEASUREMENTS];
     int numMeasurements = 0;
-};
+}client_m;
 
 struct Trainer {
     int trainerID;
@@ -282,7 +75,8 @@ Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
 
 
-// ================== UTILITY FUNCTIONS ==================
+//// ================== UTILITY FUNCTIONS ==================
+
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -296,190 +90,228 @@ void pressEnter() {
     cin.ignore();
     cin.get();
 }
-
 // ================== HEALTH CALCULATIONS ==================
-double calculateBMR(double weight, double height, int age, string gender) {
-    return (gender == "male") ?
-        (10 * weight) + (6.25 * height) - (5 * age) + 5 :
-        (10 * weight) + (6.25 * height) - (5 * age) - 161;
+double calculateBMR(Client& a) {
+    int index = a.numMeasurements - 1;
+
+    if (a.gender == "male" || a.gender == "Male")
+        return 10.0 * a.measurements[index].weight + 6.25 * a.measurements[index].height - 5.0 * a.age + 5.0;
+    else if (a.gender == "female" || a.gender == "Female")
+        return  10.0 * a.measurements[index].weight + 6.25 * a.measurements[index].height - 5.0 * a.age - 161.0;
+    else
+    {
+        cout << "INVALID CHOICE" << endl;
+        return 0;
+    }
 }
 
-double getActivityMultiplier(string level) {
-    if (level == "sedentary") return 1.2;
-    if (level == "light") return 1.375;
-    if (level == "moderate") return 1.55;
-    if (level == "active") return 1.725;
-    return 1.9;
+double getActivityMultiplier(Client& a) {//c.activity
+    if (a.activityLevel == "sedentary" || a.activityLevel == "Sedentary") return 1.2;
+    else if (a.activityLevel == "light" || a.activityLevel == "Light") return 1.375;
+    else if (a.activityLevel == "moderate" || a.activityLevel == "Moderate")  return 1.55;
+    else if (a.activityLevel == "active" || a.activityLevel == "Active")  return 1.725;
+    else if (a.activityLevel == "Very active" || a.activityLevel == "very active")
+        return 1.9;
+    else
+    {
+        cout << "Invalid activity level" << endl;
+        return 1.0;
+    }
 }
 
-double calculateTDEE(double bmr, double activityMulti) {
-    return bmr * activityMulti;
+double calculateTDEE(double bmr, double activitylevel) {
+    return (bmr) * (activitylevel);
 }
 
-Measurement::Macros calculateMacros(double tdee) {
-    Measurement::Macros m;
-    m.protein = (tdee * 0.3) / 4;
-    m.carbs = (tdee * 0.45) / 4;
-    m.fats = (tdee * 0.25) / 9;
-    return m;
+void calculateMacros(double tdee, Client& a) {
+
+    a.measurements[a.numMeasurements - 1].macros.protein = (tdee * 0.3) / 4;
+    a.measurements[a.numMeasurements - 1].macros.carbs = (tdee * 0.45) / 4;
+    a.measurements[a.numMeasurements - 1].macros.fats = (tdee * 0.25) / 9;
+    cout << "\n--- YOUR MACRONUTRIENTS ---" << endl;
+    cout << "Protein (grams): " << a.measurements[a.numMeasurements - 1].macros.protein << endl;
+    cout << "Carbohydrates (grams): " << a.measurements[a.numMeasurements - 1].macros.carbs << endl;
+    cout << "Fats (grams): " << a.measurements[a.numMeasurements - 1].macros.fats << endl;
 }
 
-double calculateBMI(float weight, float height) {
-    float heightM = height / 100;
-    return weight / (heightM * heightM);
+
+double calculateBMI(Client& a) {
+
+    a.measurements[a.numMeasurements - 1].height /= 100.0;
+    return  a.measurements[a.numMeasurements - 1].weight / (a.measurements[a.numMeasurements - 1].height * a.measurements[a.numMeasurements - 1].height);
 }
+
 
 string getBMICategory(double bmi) {
     if (bmi < 18.5) return "Underweight";
-    if (bmi < 25) return "Normal";
-    if (bmi < 30) return "Overweight";
-    return "Obese";
+    else if (bmi < 25) return "Normal";
+    else if (bmi < 30) return "Overweight";
+    else
+        return "Obese";
 }
 
 
-// client --> view health summary
+void  healthsummary(Client& client) {
+    if (client.numMeasurements == 0) {
+        cout << "No measurements available to generate health summary." << endl;
+        return;
+    }
+    double activityMulti = getActivityMultiplier(client);
+    double bmr = calculateBMR(client);
+    double tdee = calculateTDEE(bmr, activityMulti);
+    double bmi = calculateBMI(client);
+    string status = getBMICategory(bmi);
+
+    cout << "------HEALTH SUMMARY------" << endl;
+    cout << "Your BMI(Body Mass Index) = " << bmi << "| Your Status is " << status << endl;
+    cout << "Your BMR(Basel Metabolic Rate) = " << bmr << endl;
+    cout << "Your TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
+    calculateMacros(tdee, client);
+}
+
 // ================== CLIENT FEATURES ==================
 void Veiw_Workout(Client& client) {
-        if (client.numWorkouts == 0) {
-            cout << "No workouuts assigned Yet....\n";
-        }
-        else {
-            for (int i = 0; i < client.numWorkouts; i++) {
-                cout << i + 1 << ". " << client.workoutPlans[i].workoutName << "(" << client.workoutPlans[i].duration << "min)\n";
-                for (int j = 0; j < client.workoutPlans[i].numExercises; j++) {
-                    cout << "- " << client.workoutPlans[i].exercises[j] << endl;
-                }
+    if (client.numWorkouts == 0) {
+        cout << "No workouuts assigned Yet....\n";
+    }
+    else {
+        for (int i = 0; i < client.numWorkouts; i++) {
+            cout << i + 1 << ". " << client.workoutPlans[i].workoutName << "(" << client.workoutPlans[i].duration << "min)\n";
+            for (int j = 0; j < client.workoutPlans[i].numExercises; j++) {
+                cout << "- " << client.workoutPlans[i].exercises[j] << endl;
             }
         }
     }
-    void Log_Workout(Client & client) { 
-        if (client.numWorkouts == 0) {
-            cout << "No workouutd assigned Yet ...\n";
+}
+void Log_Workout(Client& client) {
+    if (client.numWorkouts == 0) {
+        cout << "No workouutd assigned Yet ...\n";
 
-        }
-        else if (client.numLogs >= MAX_LOGS) {
-            cout << "Log Limit Reached ...\n";
-
-        }
-        else  {
-            string log;
-            cout << "Enter workout name you completed: ";
-            cin.ignore();
-            getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
-            client.progressLogs[client.numLogs++] = log;
-            cout << "Workout Loged Successfully!\n";
-
-        }
     }
-    bool LeapYear(int year) {
-        if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    else if (client.numLogs >= MAX_LOGS) {
+        cout << "Log Limit Reached ...\n";
+
     }
-    int days_month = 0;
-    bool invalidDate(int day, int month, int year) {
-        if (year < 1) return 1;
-        else if (month < 1 || month>12) return 1;
-        else if (day < 1) return 1;
-        int days_month = 31;
-        switch (month) {
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            days_month = 30;
+    else {
+        string log;
+        cout << "Enter workout name you completed: ";
+        cin.ignore();
+        getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
+        client.progressLogs[client.numLogs++] = log;
+        cout << "Workout Loged Successfully!\n";
+
+    }
+}
+bool LeapYear(int year) {
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+int days_month = 0;
+bool invalidDate(int day, int month, int year) {
+    if (year < 1) return 1;
+    else if (month < 1 || month>12) return 1;
+    else if (day < 1) return 1;
+    int days_month = 31;
+    switch (month) {
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+        days_month = 30;
+        break;
+    case 2:
+        days_month = LeapYear(year) ? 29 : 28;
+
+        break;
+    default:
+        return 1;
+    }
+    return day > days_month;
+}
+void Log_Measurments(Client& client) {
+    if (client.numMeasurements >= MAX_MEASUREMENTS) {
+        cout << "Measurements Limit Reached ...\n";
+    }
+    else {
+        Measurement log_measurement;
+        cout << "Enter weight (kg): ";
+        cin >> log_measurement.weight;
+        cout << "Enter height (kg): ";
+        cin >> log_measurement.height;
+        bool dateValid = 0;
+        while (!dateValid) {
+            cout << "Enter date:\n";
+            cout << "Day: ";
+            cin >> log_measurement.date.Day;
+
+            cout << "Month: ";
+            cin >> log_measurement.date.Month;
+
+            cout << "Year: ";
+            cin >> log_measurement.date.Year;
+
+            if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
+                cout << "Invalid date.....\n";
+                cout << "\nPleae try again.";
+                cin.ignore();
+                cin.get();
+                clearScreen();
+            }
+            else dateValid = 1;
+        }
+
+
+        client.measurements[client.numMeasurements++] = log_measurement;
+        cout << "Measurements Added Successfully!\n ";
+    }
+}
+
+
+void client_menue(Client& client) {
+    int choice;
+    do {
+        clearScreen();
+        cout << "======================= CLIENT MENUE =======================\n"
+            << "1.Veiw Workout\n "
+            << "2.Log Workout\n"
+            << "3.Log Measurments\n"
+            << "4.Health Summery\n"
+            << "5.Logout\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+        clearScreen();
+        switch (choice) {
+        case 1: Veiw_Workout(client);
             break;
         case 2:
-            days_month = LeapYear(year) ? 29 : 28;
-
+            Log_Workout(client);
+            break;
+        case 3:
+            Log_Measurments(client);
+            break;
+        case 4: healthsummary(client);
+            break;
+        case 5:
+            cout << "Logout....";
             break;
         default:
-            return 1;
+            cout << "Invalied Choice!\n";
+            break;
         }
-        return day > days_month;
-    }
-    void Log_Measurments(Client& client) {
-        if (client.numMeasurements >= MAX_MEASUREMENTS) {
-            cout << "Measurements Limit Reached ...\n";
+
+        if (choice != 5) {
+            cout << "\nPress Enter to continue...";
+            cin.ignore();
+            cin.get();
         }
-        else {
-            Measurement log_measurement;
-            cout << "Enter weight (kg): ";
-            cin >> log_measurement.weight;
-            cout << "Enter height (kg): ";
-            cin >> log_measurement.height;
-            bool dateValid = 0;
-            while (!dateValid) {
-                cout << "Enter date:\n";
-                cout << "Day: ";
-                cin >> log_measurement.date.Day;
+    } while (choice != 5);
+}
 
-                cout << "Month: ";
-                cin >> log_measurement.date.Month;
-
-                cout << "Year: ";
-                cin >> log_measurement.date.Year;
-
-                if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
-                    cout << "Invalid date.....\n";
-                    cout << "\nPleae try again.";
-                    cin.ignore();
-                    cin.get();
-                    clearScreen();
-                }
-                else dateValid = 1;
-            }
-
-
-            client.measurements[client.numMeasurements++] = log_measurement;
-            cout << "Measurements Added Successfully!\n ";
-        }
-    }
-
-
-    void client_menue(Client & client) {
-        int choice;
-        do {
-            clearScreen();
-            cout <<"======================= CLIENT MENUE =======================\n"
-                <<"1.Veiw Workout\n "
-                <<"2.Log Workout\n"
-                <<"3.Log Measurments\n"
-                <<"4.Health Summery\n"
-                <<"5.Logout\n";
-            cout <<"Enter Choice: ";
-            cin >> choice;
-            clearScreen();
-            switch (choice) {
-            case 1: Veiw_Workout(client);
-                break;
-            case 2:
-                Log_Workout(client);  
-                break;
-            case 3:
-                Log_Measurments(client);
-                break;
-            case 4://healthsummary(client);
-                break;
-            case 5:
-                cout << "Logout....";
-                break;
-            default:
-                cout << "Invalied Choice!\n";
-                break;
-            }
-    
-            if (choice != 5) {
-                cout << "\nPress Enter to continue...";
-                cin.ignore(); 
-                cin.get();
-            }
-        } while (choice != 5);
-    }
-    //
+//
 
 // ================== TRAINER FEATURES ==================
 
@@ -492,21 +324,21 @@ void Veiw_Workout(Client& client) {
 
 // ================== Database and Data Intry ===================
 
-//sqlite3* opendatabase() {
-//    sqlite3* db = nullptr;
-//    const char* dbPath = "database.db";
-// 
-//    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
-//        cout << "Database opened successfully: " << dbPath << endl;
-//    }
-//    else {
-//        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
-//    }
-// 
-//    return db;
-//}
-//
-//sqlite3* db= opendatabase(); // Database pointer
+sqlite3* opendatabase() {
+    sqlite3* db = nullptr;
+    const char* dbPath = "database.db";
+ 
+    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
+        cout << "Database opened successfully: " << dbPath << endl;
+    }
+    else {
+        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
+    }
+ 
+    return db;
+}
+
+sqlite3* db= opendatabase(); // Database pointer
 
 void loadTrainers(sqlite3* db) {
     trainerCount = 0;
@@ -713,6 +545,12 @@ int main() {
     }
     for(int i=0;i<clientCount;i++)
         cout << clients[i].name << endl;
+    //---------------------------------------------------
+    client_m.name = "Nada";
+    client_m.age = 22;
+    client_m.gender = "female";
+    client_m.activityLevel = "light";
 
+    client_menue(client_m);
     return 0;
 }
