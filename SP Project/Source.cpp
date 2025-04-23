@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 #include "sqlite3.h"
 using namespace std;
 
@@ -92,6 +93,257 @@ void pressEnter() {
     cin.ignore();
     cin.get();
 }
+
+string joinLogs(string logs[], int numLogs) {
+    string result = "";
+    for (int i = 0; i < numLogs; ++i) {
+        result += logs[i];
+        if (i != numLogs - 1)
+            result += "|"; // use | as a separator
+    }
+    return result;
+}
+
+int splitLogs(string logsString, string logs[], int maxLogs) {
+    stringstream ss(logsString);
+    string item;
+    int count = 0;
+    while (getline(ss, item, '|') && count < maxLogs) {
+        logs[count++] = item;
+    }
+    return count;
+}
+
+string formatDate(Measurement::Date d) {
+    char buffer[11];
+    snprintf(buffer, sizeof(buffer), "%02d-%02d-%04d", d.Day, d.Month, d.Year);
+    return string(buffer);
+}
+
+// ================== Database and Data Intry ===================
+
+// sqlite3* opendatabase() {
+//     sqlite3* db = nullptr;
+//     const char* dbPath = "database.db";
+ 
+//     if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
+//         cout << "Database opened successfully: " << dbPath << endl;
+//     }
+//     else {
+//         cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
+//     }
+ 
+//     return db;
+// }
+
+// sqlite3* db= opendatabase(); // Database pointer
+sqlite3* db;
+void loadTrainers(sqlite3* db) {
+    trainerCount = 0;
+    const char* query = "SELECT * FROM Trainers;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW && trainerCount < MAX_TRAINERS) {
+            trainers[trainerCount].trainerID = sqlite3_column_int(stmt, 0);
+            trainers[trainerCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            trainers[trainerCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            trainers[trainerCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+            trainerCount++;
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+
+void loadClients(sqlite3* db) {
+    clientCount = 0;
+    const char* query = "SELECT * FROM Clients;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
+            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
+            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+            clients[clientCount].age = sqlite3_column_int(stmt, 4);
+            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
+            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
+            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+            if (logsStr)
+                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
+
+            clientCount++;
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+
+void loadWorkouts(sqlite3* db) {
+    const char* query = "SELECT * FROM Workouts;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            int clientId = sqlite3_column_int(stmt, 7);
+            for (int i = 0; i < clientCount; ++i) {
+                if (clients[i].clientID == clientId && clients[i].numWorkouts < MAX_WORKOUTS) {
+                    Workout& w = clients[i].workoutPlans[clients[i].numWorkouts];
+                    w.workoutID = sqlite3_column_int(stmt, 0);
+                    w.workoutName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+                    string exercisesStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+                    w.numExercises = sqlite3_column_int(stmt, 3);
+                    w.duration = sqlite3_column_int(stmt, 4);
+                    w.sets = sqlite3_column_int(stmt, 5);
+                    w.reps = sqlite3_column_int(stmt, 6);
+
+                    // Split exercises by comma
+                    string temp;
+                    int exCount = 0;
+                    for (char ch : exercisesStr) {
+                        if (ch == ',') {
+                            w.exercises[exCount++] = temp;
+                            temp.clear();
+                        }
+                        else {
+                            temp += ch;
+                        }
+                    }
+                    if (!temp.empty()) {
+                        w.exercises[exCount++] = temp;
+                    }
+
+                    clients[i].numWorkouts++;
+                    break;
+                }
+            }
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+void loadMeasurements(sqlite3* db) {
+    const char* query = "SELECT * FROM Measurements;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            int clientId = sqlite3_column_int(stmt, 1);
+            for (int i = 0; i < clientCount; ++i) {
+                if (clients[i].clientID == clientId && clients[i].numMeasurements < MAX_MEASUREMENTS) {
+                    Measurement& m = clients[i].measurements[clients[i].numMeasurements];
+                    m.weight = sqlite3_column_double(stmt, 2);
+                    m.height = sqlite3_column_double(stmt, 3);
+                    const char* dateStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+                    if (dateStr && strlen(dateStr) == 10) {
+                        sscanf(dateStr, "%2d-%2d-%4d", &m.date.Day, &m.date.Month, &m.date.Year);
+                    }
+                    // You can calculate bmi, bmr, tdee later
+                    clients[i].numMeasurements++;
+                    break;
+                }
+            }
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+
+void loadAllData(sqlite3* db) {
+    loadTrainers(db);
+    loadClients(db);
+    loadWorkouts(db);
+    loadMeasurements(db);
+}
+
+void insertTrainer(sqlite3* db, Trainer t) {
+    const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
+    sqlite3_stmt* stmt;
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, t.name.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, t.username.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 3, t.password.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertClient(sqlite3* db, Client c) {
+    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel, progressLogs) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string logsString = joinLogs(c.progressLogs, c.numLogs);
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, c.name.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, c.username.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 3, c.password.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 4, c.age);
+        sqlite3_bind_text(stmt, 5, c.gender.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 6, c.activityLevel.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 7, logsString.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+
+void insertWorkout(sqlite3* db, Workout w, int clientId) {
+    const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string exerciseList;
+    for (int i = 0; i < w.numExercises; i++) {
+        exerciseList += w.exercises[i];
+        if (i < w.numExercises - 1) exerciseList += ",";
+    }
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 3, w.numExercises);
+        sqlite3_bind_int(stmt, 4, w.duration);
+        sqlite3_bind_int(stmt, 5, w.sets);
+        sqlite3_bind_int(stmt, 6, w.reps);
+        sqlite3_bind_int(stmt, 7, clientId);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertPredefinedWorkout(sqlite3* db, Workout w) {
+    const char* query = "INSERT INTO PredefinedWorkouts (workoutName, exercises, numExercises, duration, sets, reps) VALUES (?, ?, ?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string exerciseList;
+    for (int i = 0; i < w.numExercises; i++) {
+        exerciseList += w.exercises[i];
+        if (i < w.numExercises - 1) exerciseList += ",";
+    }
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 3, w.numExercises);
+        sqlite3_bind_int(stmt, 4, w.duration);
+        sqlite3_bind_int(stmt, 5, w.sets);
+        sqlite3_bind_int(stmt, 6, w.reps);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
+    const char* query = "INSERT INTO Measurements (clientId, weight, height, date) VALUES (?, ?, ?, ?);";
+    sqlite3_stmt* stmt;
+    string dateStr = formatDate(m.date);
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_int(stmt, 1, clientId);
+        sqlite3_bind_double(stmt, 2, m.weight);
+        sqlite3_bind_double(stmt, 3, m.height);
+        sqlite3_bind_text(stmt, 4, dateStr.c_str(), -1, SQLITE_STATIC);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
+
+
 // ================== HEALTH CALCULATIONS ==================
 double calculateBMR(Client& a) {
     int index = a.numMeasurements - 1;
@@ -324,7 +576,7 @@ void client_menue(Client& client) {
         case 6:
             cout << "Logout....";
             break;
-            
+
         default:
             cout << "Invalied Choice!\n";
             break;
@@ -394,8 +646,6 @@ void TrainerMenu() {
 
 
 // ================== AUTHENTICATION ==================
-Client users[MAX_CLIENTS];
-int totalClients = 0;
 
 void registerUser() {
     string name, pass, gender, level;
@@ -407,8 +657,8 @@ void registerUser() {
         cout << "Enter username: ";
         cin >> name;
 
-        for (int i = 0; i < totalClients; i++) {
-            if (users[i].name == name) {
+        for (int i = 0; i < trainerCount; i++) {
+            if (clients[i].name == name) {
                 cout << "Username already taken. Try another.\n";
                 exists = true;
                 break;
@@ -442,31 +692,32 @@ void registerUser() {
         }
     } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive");
 
-    users[totalClients].clientID= totalClients + 1;
-    users[totalClients].name = name;
-    users[totalClients].password = pass;
-    users[totalClients].age = age;
-    users[totalClients].gender = gender;
-    users[totalClients].activityLevel= level;
+    clients[trainerCount].clientID= trainerCount + 1;
+    clients[trainerCount].name = name;
+    clients[trainerCount].password = pass;
+    clients[trainerCount].age = age;
+    clients[trainerCount].gender = gender;
+    clients[trainerCount].activityLevel= level;
 
-    users[totalClients].clientID = totalClients + 1;
-    cout << "Account created! Your ID is: " << users[totalClients].clientID<< "\n";
-    totalClients++;
+    clients[trainerCount].clientID = trainerCount + 1;
+    cout << "Account created! Your ID is: " << clients[trainerCount].clientID<< "\n";
+    trainerCount++;
+    insertClient(db,clients[trainerCount]);
 }
 
 // donia/rahma
 /// ------------ Log in ------------
-void initializeSampleData(Client &client) {
-    // Clients
-    clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
-    clients[clientCount++] = { 2, "bob","bobi", "bob123",25 };
+// void initializeSampleData(Client &client) {
+//     // Clients
+//     clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
+//     clients[clientCount++] = { 2, "bob","bobi", "bob123",25 };
 
-    // Trainers
-    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+//     // Trainers
+//     trainers[trainerCount++] = { 1, "sarah", "sarah123" };
 
-    // Assign sample workouts --> Sarah
+//     // Assign sample workouts --> Sarah
 
-}
+// }
 void login() {
     string username, password;
     cout << "===LOGIN===" << endl;
@@ -500,213 +751,8 @@ void login() {
     cout << "Invalid username or password." << endl;
 }
 
-// ================== Database and Data Intry ===================
 
-sqlite3* opendatabase() {
-    sqlite3* db = nullptr;
-    const char* dbPath = "database.db";
- 
-    if (sqlite3_open(dbPath, &db) == SQLITE_OK) {
-        cout << "Database opened successfully: " << dbPath << endl;
-    }
-    else {
-        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
-    }
- 
-    return db;
-}
 
-sqlite3* db= opendatabase(); // Database pointer
-
-void loadTrainers(sqlite3* db) {
-    trainerCount = 0;
-    const char* query = "SELECT * FROM Trainers;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW && trainerCount < MAX_TRAINERS) {
-            trainers[trainerCount].trainerID = sqlite3_column_int(stmt, 0);
-            trainers[trainerCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-            trainers[trainerCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-            trainers[trainerCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-            trainerCount++;
-        }
-    }
-    sqlite3_finalize(stmt);
-}
-
-void loadClients(sqlite3* db) {
-    clientCount = 0;
-    const char* query = "SELECT * FROM Clients;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
-            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
-            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-            clients[clientCount].age = sqlite3_column_int(stmt, 4);
-            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
-            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
-            clientCount++;
-        }
-    }
-    sqlite3_finalize(stmt);
-}
-
-void loadWorkouts(sqlite3* db) {
-    const char* query = "SELECT * FROM Workouts;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW) {
-            int clientId = sqlite3_column_int(stmt, 7);
-            for (int i = 0; i < clientCount; ++i) {
-                if (clients[i].clientID == clientId && clients[i].numWorkouts < MAX_WORKOUTS) {
-                    Workout& w = clients[i].workoutPlans[clients[i].numWorkouts];
-                    w.workoutID = sqlite3_column_int(stmt, 0);
-                    w.workoutName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-                    string exercisesStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-                    w.numExercises = sqlite3_column_int(stmt, 3);
-                    w.duration = sqlite3_column_int(stmt, 4);
-                    w.sets = sqlite3_column_int(stmt, 5);
-                    w.reps = sqlite3_column_int(stmt, 6);
-
-                    // Split exercises by comma
-                    string temp;
-                    int exCount = 0;
-                    for (char ch : exercisesStr) {
-                        if (ch == ',') {
-                            w.exercises[exCount++] = temp;
-                            temp.clear();
-                        }
-                        else {
-                            temp += ch;
-                        }
-                    }
-                    if (!temp.empty()) {
-                        w.exercises[exCount++] = temp;
-                    }
-
-                    clients[i].numWorkouts++;
-                    break;
-                }
-            }
-        }
-    }
-    sqlite3_finalize(stmt);
-}
-void loadMeasurements(sqlite3* db) {
-    const char* query = "SELECT * FROM Measurements;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW) {
-            int clientId = sqlite3_column_int(stmt, 1);
-            for (int i = 0; i < clientCount; ++i) {
-                if (clients[i].clientID == clientId && clients[i].numMeasurements < MAX_MEASUREMENTS) {
-                    Measurement& m = clients[i].measurements[clients[i].numMeasurements];
-                    m.weight = sqlite3_column_double(stmt, 2);
-                    m.height = sqlite3_column_double(stmt, 3);
-                    // You can calculate bmi, bmr, tdee later
-                    clients[i].numMeasurements++;
-                    break;
-                }
-            }
-        }
-    }
-    sqlite3_finalize(stmt);
-}
-
-void loadAllData(sqlite3* db) {
-    loadTrainers(db);
-    loadClients(db);
-    loadWorkouts(db);
-    loadMeasurements(db);
-}
-
-void insertTrainer(sqlite3* db, Trainer t) {
-    const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
-    sqlite3_stmt* stmt;
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, t.name.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 2, t.username.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 3, t.password.c_str(), -1, SQLITE_STATIC);
-        sqlite3_step(stmt);
-    }
-    sqlite3_finalize(stmt);
-}
-
-void insertClient(sqlite3* db, Client c) {
-    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES (?, ?, ?, ?, ?, ?);";
-    sqlite3_stmt* stmt;
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, c.name.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 2, c.username.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 3, c.password.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_int(stmt, 4, c.age);
-        sqlite3_bind_text(stmt, 5, c.gender.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 6, c.activityLevel.c_str(), -1, SQLITE_STATIC);
-        sqlite3_step(stmt);
-    }
-    sqlite3_finalize(stmt);
-}
-
-void insertWorkout(sqlite3* db, Workout w, int clientId) {
-    const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
-    sqlite3_stmt* stmt;
-    string exerciseList;
-    for (int i = 0; i < w.numExercises; i++) {
-        exerciseList += w.exercises[i];
-        if (i < w.numExercises - 1) exerciseList += ",";
-    }
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_int(stmt, 3, w.numExercises);
-        sqlite3_bind_int(stmt, 4, w.duration);
-        sqlite3_bind_int(stmt, 5, w.sets);
-        sqlite3_bind_int(stmt, 6, w.reps);
-        sqlite3_bind_int(stmt, 7, clientId);
-        sqlite3_step(stmt);
-    }
-    sqlite3_finalize(stmt);
-}
-
-void insertPredefinedWorkout(sqlite3* db, Workout w) {
-    const char* query = "INSERT INTO PredefinedWorkouts (workoutName, exercises, numExercises, duration, sets, reps) VALUES (?, ?, ?, ?, ?, ?);";
-    sqlite3_stmt* stmt;
-    string exerciseList;
-    for (int i = 0; i < w.numExercises; i++) {
-        exerciseList += w.exercises[i];
-        if (i < w.numExercises - 1) exerciseList += ",";
-    }
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, w.workoutName.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 2, exerciseList.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_int(stmt, 3, w.numExercises);
-        sqlite3_bind_int(stmt, 4, w.duration);
-        sqlite3_bind_int(stmt, 5, w.sets);
-        sqlite3_bind_int(stmt, 6, w.reps);
-        sqlite3_step(stmt);
-    }
-    sqlite3_finalize(stmt);
-}
-
-void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
-    const char* query = "INSERT INTO Measurements (clientId, weight, height) VALUES (?, ?, ?);";
-    sqlite3_stmt* stmt;
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_int(stmt, 1, clientId);
-        sqlite3_bind_double(stmt, 2, m.weight);
-        sqlite3_bind_double(stmt, 3, m.height);
-        sqlite3_step(stmt);
-    }
-    sqlite3_finalize(stmt);
-}
 
 
 
@@ -714,15 +760,13 @@ void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
 
 
 int main() {
-    sqlite3* db;
+    
     if (sqlite3_open("database.db", &db) == SQLITE_OK) {
         loadAllData(db);
     }
     else {
         cout << "Failed to open database." << endl;
     }
-    for(int i=0;i<clientCount;i++)
-        cout << clients[i].name << endl;
     //------------------------------------------------------
     client_m.name = "Nada";
     client_m.age = 22;
@@ -731,8 +775,5 @@ int main() {
 
     initializeSampleData(client_m);
     login();
-    if (usertype == "client") { client_menue(client_m); }
-    else if(usertype == "trainer") { TrainerMenu(); }
-
     return 0;
 }
