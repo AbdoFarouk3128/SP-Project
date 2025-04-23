@@ -73,7 +73,8 @@ Client clients[MAX_CLIENTS];
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
-
+//áãÚÑİÉ äæÚ ÇáÔÎÕ
+string usertype;     
 
 //// ================== UTILITY FUNCTIONS ==================
 
@@ -339,7 +340,38 @@ void client_menue(Client& client) {
 // ================== AUTHENTICATION ==================
 
 // donia/rahma
+/// ------------ Log in -----------
+void login() {
+    string username, password;
+    cout << "===LOGIN===" << endl;
+    cout << "Enter username: ";
+    cin >> username;
+    cout << "Enter password: ";
+    cin >> password;
 
+    // ãÚÑİÉ ÇáÚãáÇÁ
+
+    for (int i = 0; i < clientCount; i++) {
+        if (clients[i].username == username && clients[i].password == password)
+        {
+            usertype == "client";
+            cout << "Login successfully,Welcome" << clients[i].username << endl;
+            return;
+        }
+    }
+
+    //ãÚÑİÉ ÇáãÏÑÈ
+
+    for (int i = 0; i < trainerCount; i++) {
+        if (trainers[i].username == username && trainers[i].password == password)
+        {
+            usertype == "trainer";
+            cout << "Login successfully,Welcome" << trainers[i].username << endl;
+            return;
+        }
+    }
+    cout << "Invalid username or password." << endl;
+}
 
 // ================== Database and Data Intry ===================
 
@@ -571,5 +603,6 @@ int main() {
     client_m.activityLevel = "light";
 
     client_menue(client_m);
+    login();
     return 0;
 }
