@@ -338,6 +338,64 @@ void client_menue(Client& client) {
 // rahma 
 
 // ================== AUTHENTICATION ==================
+Client users[MAX_CLIENTS];
+int totalClients = 0;
+
+void registerUser() {
+    string name, pass, gender, level;
+    int age;
+
+    bool exists;
+    do {
+        exists = false;
+        cout << "Enter username: ";
+        cin >> name;
+
+        for (int i = 0; i < totalClients; i++) {
+            if (users[i].name == name) {
+                cout << "Username already taken. Try another.\n";
+                exists = true;
+                break;
+            }
+        }
+    } while (exists);
+
+    cout << "Enter password: ";
+    cin >> pass;
+
+    cout << "Enter age: ";
+    while (!(cin >> age) || age <= 0) {
+        cout << "Invalid input. Please enter a valid age: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    do {
+        cout << "Enter gender (Male/Female): ";
+        cin >> gender;
+        if (gender != "Male" && gender != "Female") {
+            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
+        }
+    } while (gender != "Male" && gender != "Female");
+
+    do {
+        cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
+        cin >> level;
+        if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive") {
+            cout << "Invalid level. Try again.\n";
+        }
+    } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive");
+
+    users[totalClients].id = totalClients + 1;
+    users[totalClients].name = name;
+    users[totalClients].pass = pass;
+    users[totalClients].age = age;
+    users[totalClients].gender = gender;
+    users[totalClients].activity = level;
+
+    cout << "Account created! Your ID is: " << users[totalClients].id << "\n";
+    totalClients++;
+}
 
 // donia/rahma
 /// ------------ Log in -----------
