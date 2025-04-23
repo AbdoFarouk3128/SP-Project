@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -119,7 +118,7 @@ double getActivityMultiplier(Client& a) {//c.activity
         return 1.0;
     }
 }
-
+  
 double calculateTDEE(double bmr, double activitylevel) {
     return (bmr) * (activitylevel);
 }
@@ -400,17 +399,17 @@ void registerUser() {
 
 // donia/rahma
 /// ------------ Log in -----------
-//void initializeSampleData(Client &client) {
-//    // Clients
-//    clients[clientCount++] ={ 1, "alice", "alice123", 21, "female","light" };
-//    clients[clientCount++] ={ 2, "bob", "bob123",25 };
-//
-//    // Trainers
-//    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
-//
-//    // Assign sample workouts --> Sarah
-//
-//}
+void initializeSampleData(Client &client) {
+    // Clients
+    clients[clientCount++] = { 1, "alice","alice", "alice123", 21, "female","light"};
+    clients[clientCount++] = { 2, "bob","bobi", "bob123",25 };
+
+    // Trainers
+    trainers[trainerCount++] = { 1, "sarah", "sarah123" };
+
+    // Assign sample workouts --> Sarah
+
+}
 void login() {
     string username, password;
     cout << "===LOGIN===" << endl;
@@ -672,7 +671,7 @@ int main() {
     client_m.gender = "female";
     client_m.activityLevel = "light";
 
-    client_menue(client_m);
+    initializeSampleData(client_m);
     login();
     return 0;
 }
