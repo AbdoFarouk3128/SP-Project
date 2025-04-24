@@ -557,7 +557,9 @@ void ViewMeasurements(Client& client) {
 
 void client_menue(Client& client) {
     int choice;
+  
     do {
+        clearScreen(); 
         cout <<"======================= CLIENT MENUE =======================\n"
             << "1.Veiw Workout\n"
             << "2.Log Workout\n"
@@ -786,8 +788,8 @@ int main() {
     client_m.age = 22;
     client_m.gender = "female";
     client_m.activityLevel = "light";
-
-    initializeSampleData(client_m);
     login();
+    if (usertype == "client") { client_menue(client_m); }
+    else if (usertype == "trainer") { TrainerMenu(); }
     return 0;
 }
