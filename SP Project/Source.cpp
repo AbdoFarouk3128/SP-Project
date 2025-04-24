@@ -57,7 +57,7 @@ struct Client {
     int numLogs = 0;
     Measurement measurements[MAX_MEASUREMENTS];
     int numMeasurements = 0;
-}client_m;
+};
 
 struct Trainer {
     int trainerID;
@@ -402,8 +402,8 @@ void calculateMacros(double tdee, Client& a) {
 
 double calculateBMI(Client& a){
 
-    a.measurements[a.numMeasurements - 1].height /= 100.0;
-    return  a.measurements[a.numMeasurements - 1].weight / (a.measurements[a.numMeasurements - 1].height * a.measurements[a.numMeasurements - 1].height);
+    float heightInMeters = a.measurements[a.numMeasurements - 1].height / 100.0;
+    return a.measurements[a.numMeasurements - 1].weight / (heightInMeters * heightInMeters);
 }
 
 
@@ -506,7 +506,7 @@ void Log_Measurments(Client& client) {
         Measurement log_measurement;
         cout << "Enter weight (kg): ";
         cin >> log_measurement.weight;
-        cout << "Enter height (kg): ";
+        cout << "Enter height (cm): ";
         cin >> log_measurement.height;
         bool dateValid = 0;
         while (!dateValid) {
@@ -638,11 +638,11 @@ void TrainerMenu() {
         switch (choice) {
         case 1:
             cout << "\n---------Client Information-----------\n";
-            displayClientData(client_m);
+            //displayClientData(client_m);
         case 2://assign workout
             break;
         case 3:
-            ClientProgress(client_m);
+            //ClientProgress(client_m);
             break;
         case 4://add
             break;
@@ -737,7 +737,7 @@ void registerUser() {
 //     // Assign sample workouts --> Sarah
 
 // }
-void login() {
+int login() {
     string username, password;
     cout << "===LOGIN===" << endl;
     cout << "Enter username: ";
@@ -751,8 +751,8 @@ void login() {
         if (clients[i].username == username && clients[i].password == password)
         {
             usertype = "client";
-            cout << "Login successfully,Welcome" << clients[i].username << endl;
-            return;
+            cout << "Login successfully,Welcome " << clients[i].username << endl;
+            return i;
         }
     }
 
@@ -762,8 +762,8 @@ void login() {
         if (trainers[i].username == username && trainers[i].password == password)
         {
             usertype = "trainer";
-            cout << "Login successfully,Welcome" << trainers[i].username << endl;
-            return;
+            cout << "Login successfully,Welcome " << trainers[i].username << endl;
+            return i;
            
         }
     }
@@ -792,7 +792,7 @@ int main() {
     {
         cout << clients[i].name << endl;
     }cout << clientCount << endl;
-    cout << clients[0].clientID << endl;
+    cout<<clients[0].clientID<<endl;
     do {
         //clearScreen();
         cout << "=== FITNESS MANAGEMENT SYSTEM ===\n"
@@ -801,17 +801,36 @@ int main() {
             << "3. Exit\n"
             << "Choice: ";
         cin >> mainChoice;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input! Please enter a number.\n";
+            continue;
+        }
 
-        if (mainChoice == 1) {
-            //clearScreen();
-            login();
-            if (usertype == "client") { client_menue(client_m); }
-            else if (usertype == "trainer") { TrainerMenu(); }
+        switch (mainChoice)
+        {
+        case 1:
+        {
+            int index = login();
+            if (usertype == "client") {
+                client_menue(clients[index]);
+            }
+            else if (usertype == "trainer") {
+                TrainerMenu();
+            }
+            break;
         }
-        else if (mainChoice == 2) {
-            //clearScreen();
+        case 2:
             registerUser();
+            break;
+        case 3:
+            break;
+        default:
+            cout << "invalid input" << endl;
+            break;
         }
+
 
     } while (mainChoice != 3);
 
