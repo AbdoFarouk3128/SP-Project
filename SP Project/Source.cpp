@@ -267,7 +267,7 @@ void insertTrainer(sqlite3* db, Trainer t) {
 }
 
 void insertClient(sqlite3* db, Client c) {
-    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel, progressLogs) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    const char* query = "INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES (?, ?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
     string logsString = joinLogs(c.progressLogs, c.numLogs);
 
@@ -278,7 +278,7 @@ void insertClient(sqlite3* db, Client c) {
         sqlite3_bind_int(stmt, 4, c.age);
         sqlite3_bind_text(stmt, 5, c.gender.c_str(), -1, SQLITE_STATIC);
         sqlite3_bind_text(stmt, 6, c.activityLevel.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 7, logsString.c_str(), -1, SQLITE_STATIC);
+        // sqlite3_bind_text(stmt, 7, logsString.c_str(), -1, SQLITE_STATIC);
         sqlite3_step(stmt);
     }
     sqlite3_finalize(stmt);
@@ -343,6 +343,17 @@ void insertMeasurement(sqlite3* db, Measurement m, int clientId) {
     sqlite3_finalize(stmt);
 }
 
+void updateClientProgressLogs(sqlite3* db, int clientId, const string& logsStr) {
+    const char* query = "UPDATE Clients SET progressLogs = ? WHERE clientId = ?;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, logsStr.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(stmt, 2, clientId);
+        sqlite3_step(stmt);
+    }
+    sqlite3_finalize(stmt);
+}
 
 // ================== HEALTH CALCULATIONS ==================
 double calculateBMR(Client& a) {
@@ -389,7 +400,7 @@ void calculateMacros(double tdee, Client& a) {
 }
 
 
-double calculateBMI(Client& a) {
+double calculateBMI(Client& a){
 
     a.measurements[a.numMeasurements - 1].height /= 100.0;
     return  a.measurements[a.numMeasurements - 1].weight / (a.measurements[a.numMeasurements - 1].height * a.measurements[a.numMeasurements - 1].height);
@@ -453,6 +464,7 @@ void Log_Workout(Client& client) {
         getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
         client.progressLogs[client.numLogs++] = log;
         cout << "Workout Loged Successfully!\n";
+        updateClientProgressLogs(db,client.clientID,joinLogs(client.progressLogs,client.numLogs));
 
     }
 }
@@ -516,10 +528,12 @@ void Log_Measurments(Client& client) {
                 clearScreen();
             }
             else dateValid = 1;
+            
         }
 
 
         client.measurements[client.numMeasurements++] = log_measurement;
+        insertMeasurement(db,log_measurement,client.clientID);
         cout << "Measurements Added Successfully!\n ";
     }
 }
