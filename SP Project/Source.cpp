@@ -611,10 +611,8 @@ void client_menue(Client& client) {
 // ================== TRAINER FEATURES ==================
 // rahma 
 void displayClientData( Client & c) {
-    cout << "Full Name: " << c.name << endl;
-    cout << "Age: " << c.age << endl;
-    cout << "Gender: " << c.gender << endl;
-    cout << "Activity Level" << c.activityLevel << endl;
+    cout << "Full Name: " << c.name << " , " << "Age: " << c.age << " , " << "Gender: " << c.gender << " , ";
+    cout << "Activity Level: " << c.activityLevel << endl;
 }
 void  ClientProgress(Client&client) {
     cout << "--------------Completed Workout---------------\n";
@@ -638,7 +636,14 @@ void TrainerMenu() {
         switch (choice) {
         case 1:
             cout << "\n---------Client Information-----------\n";
-            //displayClientData(client_m);
+           
+            for (int i = 0; i < clientCount;++i) {
+                cout << i + 1 << "-";
+                    displayClientData(clients[i]);
+                    cout << "-------------------------\n";
+
+            }
+            break;
         case 2://assign workout
             break;
         case 3:
@@ -751,7 +756,7 @@ int login() {
         if (clients[i].username == username && clients[i].password == password)
         {
             usertype = "client";
-            cout << "Login successfully,Welcome " << clients[i].username << endl;
+            cout << "Login successfully as client,Welcome " << clients[i].username << endl;
             return i;
         }
     }
@@ -762,7 +767,7 @@ int login() {
         if (trainers[i].username == username && trainers[i].password == password)
         {
             usertype = "trainer";
-            cout << "Login successfully,Welcome " << trainers[i].username << endl;
+            cout << "Login successfully as trainer,Welcome " << trainers[i].username << endl;
             return i;
            
         }
