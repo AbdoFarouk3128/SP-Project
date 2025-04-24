@@ -607,7 +607,7 @@ void client_menue(Client& client) {
 }
 
 //
-
+     
 // ================== TRAINER FEATURES ==================
 // rahma 
 void displayClientData( Client & c) {
@@ -616,10 +616,16 @@ void displayClientData( Client & c) {
 }
 void  ClientProgress(Client&client) {
     cout << "--------------Completed Workout---------------\n";
-    for (int i = 0; i < client.numLogs; i++) {
-        cout <<i+1<<"." <<client.progressLogs[i] << endl;
+    if (client.numLogs == 0) {
+        cout << "There is no progresslogs for this client!\n";
     }
-    cout << "Weight Trend: "<<client.measurements[client.numMeasurements-1].weight<<endl;
+    else {
+        for (int i = 0; i < client.numLogs; i++) {
+
+            cout << i + 1 << "." << client.progressLogs[i] << endl;
+        }
+    }
+    cout << "Weight Trend: "<<client.measurements[client.numMeasurements-1].weight<<" Kg" << endl;
 
 }
 void TrainerMenu() {
@@ -647,7 +653,19 @@ void TrainerMenu() {
         case 2://assign workout
             break;
         case 3:
-            //ClientProgress(client_m);
+            cout << "\n----------Select a client to view progress---------"<<endl;
+            for (int i = 0; i < clientCount; i++) {
+                cout << i + 1 << "-" << clients[i].name << endl;
+            }
+            int selectedclient;
+            cout << "Enter selected client: ";
+            cin >> selectedclient;
+            if (selectedclient >= 1 && selectedclient <= clientCount) {
+                ClientProgress(clients[selectedclient-1]);
+            }
+            else
+                cout << "Invalid client..." << endl;
+            cout << "---------------------------\n";
             break;
         case 4://add
             break;
@@ -750,7 +768,7 @@ int login() {
     cout << "Enter password: ";
     cin >> password;
 
-    // ����� �������
+    // check client
 
     for (int i = 0; i < clientCount; i++) {
         if (clients[i].username == username && clients[i].password == password)
@@ -761,7 +779,7 @@ int login() {
         }
     }
 
-    //����� ������
+    //check trainer
 
     for (int i = 0; i < trainerCount; i++) {
         if (trainers[i].username == username && trainers[i].password == password)
