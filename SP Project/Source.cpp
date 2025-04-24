@@ -791,6 +791,7 @@ int login() {
         }
     }
     cout << "Invalid username or password." << endl;
+    return -1;
 }
 
 
@@ -818,7 +819,7 @@ int main() {
     cout<<clients[0].clientID<<endl;
     do {
         //clearScreen();
-        cout << "=== FITNESS MANAGEMENT SYSTEM ===\n"
+        cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
             << "1. Login\n"
             << "2. Register\n"
             << "3. Exit\n"
@@ -836,11 +837,13 @@ int main() {
         case 1:
         {
             int index = login();
-            if (usertype == "client") {
-                client_menue(clients[index]);
-            }
-            else if (usertype == "trainer") {
-                TrainerMenu();
+            if (index != -1) {
+                if (usertype == "client") {
+                    client_menue(clients[index]);
+                }
+                else if (usertype == "trainer") {
+                    TrainerMenu();
+                }
             }
             break;
         }
