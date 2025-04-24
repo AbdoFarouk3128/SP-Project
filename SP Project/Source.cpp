@@ -284,7 +284,6 @@ void insertClient(sqlite3* db, Client c) {
     sqlite3_finalize(stmt);
 }
 
-
 void insertWorkout(sqlite3* db, Workout w, int clientId) {
     const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
@@ -458,16 +457,19 @@ void Log_Workout(Client& client) {
 
     }
     else {
-        string log;
+        // viwe all workouts 
+
+        string log; // -> workout.id
         cout << "Enter workout name you completed: ";
         cin.ignore();
         getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
-        client.progressLogs[client.numLogs++] = log;
+        client.progressLogs[client.numLogs++] = log;// workout.name
         cout << "Workout Loged Successfully!\n";
         updateClientProgressLogs(db,client.clientID,joinLogs(client.progressLogs,client.numLogs));
 
     }
 }
+
 bool LeapYear(int year) {
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
         return true;
@@ -476,6 +478,7 @@ bool LeapYear(int year) {
         return false;
     }
 }
+
 int days_month = 0;
 bool invalidDate(int day, int month, int year) {
     if (year < 1) return 1;
@@ -582,7 +585,8 @@ void client_menue(Client& client) {
             Log_Measurments(client);
             break;
 
-        case 4: healthsummary(client);
+        case 4:
+             healthsummary(client);
             break;
 
         case 5:
@@ -651,6 +655,7 @@ void TrainerMenu() {
             }
             break;
         case 2://assign workout
+        // loop client list -> id -> assignworkout(client& c) -> c.workouts[c.numworkout++]=new -> 
             break;
         case 3:
             cout << "\n----------Select a client to view progress---------"<<endl;
