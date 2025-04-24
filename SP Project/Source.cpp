@@ -476,7 +476,6 @@ bool LeapYear(int year) {
         return false;
     }
 }
-int days_month = 0;
 bool invalidDate(int day, int month, int year) {
     if (year < 1) return 1;
     else if (month < 1 || month>12) return 1;
