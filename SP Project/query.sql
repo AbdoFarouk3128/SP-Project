@@ -92,21 +92,21 @@
 
 
 -- INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES
--- ('Yara Adel', 'yara', 'yara123', 27, 'female', 'light'),
--- ('Adham Samir', 'adham', 'adham123', 32, 'male', 'moderate'),
--- ('Noha Karim', 'noha', 'noha123', 28, 'female', 'sedentary'),
--- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'male', 'active'),
--- ('Rana Ali', 'rana', 'rana123', 26, 'female', 'moderate'),
--- ('Emad Essam', 'emad', 'emad123', 33, 'male', 'very active'),
--- ('Faten Wael', 'faten', 'faten123', 30, 'female', 'light'),
--- ('Sherif Adel', 'sherif', 'sherif123', 29, 'male', 'light'),
--- ('Mona Samir', 'mona', 'mona123', 27, 'female', 'moderate'),
--- ('Hossam Karim', 'hossam', 'hossam123', 32, 'male', 'active'),
--- ('Dina Mohamed', 'dina', 'dina123', 28, 'female', 'sedentary'),
--- ('Karim Ali', 'karim', 'karim123', 31, 'male', 'moderate'),
--- ('Yasmine Essam', 'yasmine', 'yasmine123', 25, 'female', 'light'),
--- ('Amir Wael', 'amir', 'amir123', 34, 'male', 'active'),
--- ('Heba Adel', 'heba', 'heba123', 30, 'female', 'moderate');
+-- ('Yara Adel', 'yara', 'yara123', 27, 'Female', 'Light'),
+-- ('Adham Samir', 'adham', 'adham123', 32, 'Male', 'Moderate'),
+-- ('Noha Karim', 'noha', 'noha123', 28, 'Female', 'Sedentary'),
+-- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'Male', 'Active'),
+-- ('Rana Ali', 'rana', 'rana123', 26, 'Female', 'Moderate'),
+-- ('Emad Essam', 'emad', 'emad123', 33, 'Male', 'Very Active'),
+-- ('Faten Wael', 'faten', 'faten123', 30, 'Female', 'Light'),
+-- ('Sherif Adel', 'sherif', 'sherif123', 29, 'Male', 'Light'),
+-- ('Mona Samir', 'mona', 'mona123', 27, 'Female', 'Moderate'),
+-- ('Hossam Karim', 'hossam', 'hossam123', 32, 'Male', 'Active'),
+-- ('Dina Mohamed', 'dina', 'dina123', 28, 'Female', 'Sedentary'),
+-- ('Karim Ali', 'karim', 'karim123', 31, 'Male', 'Moderate'),
+-- ('Yasmine Essam', 'yasmine', 'yasmine123', 25, 'Female', 'Light'),
+-- ('Amir Wael', 'amir', 'amir123', 34, 'Male', 'Active'),
+-- ('Heba Adel', 'heba', 'heba123', 30, 'Female', 'Moderate');
 
 
 

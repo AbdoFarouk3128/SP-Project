@@ -525,7 +525,7 @@ void Log_Measurments(Client& client) {
                 cout << "\nPleaese try again.";
                 cin.ignore();
                 cin.get();
-                clearScreen();
+                //clearScreen();
             }
             else dateValid = 1;
             
@@ -559,7 +559,7 @@ void client_menue(Client& client) {
     int choice;
   
     do {
-        clearScreen(); 
+        //clearScreen(); 
         cout <<"======================= CLIENT MENUE =======================\n"
             << "1.Veiw Workout\n"
             << "2.Log Workout\n"
@@ -569,7 +569,7 @@ void client_menue(Client& client) {
             << "6.Logout\n";
         cout << "Enter Choice: ";
         cin >> choice;
-        clearScreen();
+        //clearScreen();
         switch (choice) {
         case 1: Veiw_Workout(client);
             break;
@@ -634,14 +634,15 @@ void TrainerMenu() {
         cout << "5-Logout\n";
         cout << "Enter your choice: ";
         cin >> choice;
-        clearScreen();
+        //clearScreen();
         switch (choice) {
         case 1:
             cout << "\n---------Client Information-----------\n";
             displayClientData(client_m);
         case 2://assign workout
             break;
-        case 3:ClientProgress(client_m);
+        case 3:
+            ClientProgress(client_m);
             break;
         case 4://add
             break;
@@ -664,17 +665,18 @@ void TrainerMenu() {
 // ================== AUTHENTICATION ==================
 
 void registerUser() {
-    string name, pass, gender, level;
+    string name,username, pass, gender, level;
     int age;
-
+    
+    cout << "Enter Name: ";cin >> name;
     bool exists;
     do {
         exists = false;
         cout << "Enter username: ";
-        cin >> name;
+        cin >> username;
 
         for (int i = 0; i < trainerCount; i++) {
-            if (clients[i].name == name) {
+            if (clients[i].username == username) {
                 cout << "Username already taken. Try another.\n";
                 exists = true;
                 break;
@@ -703,22 +705,23 @@ void registerUser() {
     do {
         cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
         cin >> level;
-        if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive") {
+        if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active") {
             cout << "Invalid level. Try again.\n";
         }
-    } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "VeryActive");
+    } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active");
 
-    clients[trainerCount].clientID= trainerCount + 1;
-    clients[trainerCount].name = name;
-    clients[trainerCount].password = pass;
-    clients[trainerCount].age = age;
-    clients[trainerCount].gender = gender;
-    clients[trainerCount].activityLevel= level;
+    clients[clientCount].clientID= clientCount + 1;
+    clients[clientCount].name = name;
+    clients[clientCount].username = username;
+    clients[clientCount].password = pass;
+    clients[clientCount].age = age;
+    clients[clientCount].gender = gender;
+    clients[clientCount].activityLevel= level;
 
-    clients[trainerCount].clientID = trainerCount + 1;
-    cout << "Account created! Your ID is: " << clients[trainerCount].clientID<< "\n";
-    trainerCount++;
-    insertClient(db,clients[trainerCount]);
+    clients[clientCount].clientID = clientCount + 1;
+    cout << "Account created! Your ID is: " << clients[clientCount].clientID<< "\n";
+    clientCount++;
+    insertClient(db,clients[clientCount-1]);
 }
 
 // donia/rahma
@@ -784,12 +787,34 @@ int main() {
         cout << "Failed to open database." << endl;
     }
     //------------------------------------------------------
-    client_m.name = "Nada";
-    client_m.age = 22;
-    client_m.gender = "female";
-    client_m.activityLevel = "light";
-    login();
-    if (usertype == "client") { client_menue(client_m); }
-    else if (usertype == "trainer") { TrainerMenu(); }
+    int mainChoice;
+    for (int i = 0; i < clientCount; i++)
+    {
+        cout << clients[i].name << endl;
+    }cout << clientCount << endl;
+    cout << clients[0].clientID << endl;
+    do {
+        //clearScreen();
+        cout << "=== FITNESS MANAGEMENT SYSTEM ===\n"
+            << "1. Login\n"
+            << "2. Register\n"
+            << "3. Exit\n"
+            << "Choice: ";
+        cin >> mainChoice;
+
+        if (mainChoice == 1) {
+            //clearScreen();
+            login();
+            if (usertype == "client") { client_menue(client_m); }
+            else if (usertype == "trainer") { TrainerMenu(); }
+        }
+        else if (mainChoice == 2) {
+            //clearScreen();
+            registerUser();
+        }
+
+    } while (mainChoice != 3);
+
+    cout << "Exiting system...\n";
     return 0;
 }
