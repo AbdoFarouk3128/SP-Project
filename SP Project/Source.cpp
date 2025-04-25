@@ -68,7 +68,21 @@ struct Trainer {
     //int numClients = 0;
 };
 
-
+//========sara======
+/*
+ //Workout predefineWorkout[MAX_WORKOUTS];
+ const int MAX_EXERCISES_INWORKOUT = 3;
+Workout trainer_choice;
+int numPredefinedWorkouts=0 ;
+int arr[MAX_WORKOUTS];
+void display();
+void display_workouts ();
+int displayClientsAndSelect(Client clients[], int numClients);
+void assign_workout();
+void createPredefinedWorkout(Workout predefineWorkout[], int& numPredefinedWorkouts)
+Workout createCustomWorkout();
+void display_workouts_to_client();
+*/
 
 // ================== GLOBAL DATA ==================
 Client clients[MAX_CLIENTS];
@@ -246,6 +260,45 @@ void loadMeasurements(sqlite3* db) {
     }
     sqlite3_finalize(stmt);
 }
+/*
+/ void loadPredefinedWorkouts(sqlite3 db) {
+    const char* query = "SELECT * FROM PredefinedWorkouts;";
+    sqlite3_stmt* stmt;
+
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        int count = 0;
+        while (sqlite3_step(stmt) == SQLITE_ROW && count < MAX_PREDEFINED_WORKOUTS) {
+            predefineWorkout[count].workoutID = sqlite3_column_int(stmt, 0);
+            predefineWorkout[count].workoutName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            string exercisesStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            predefineWorkout[count].duration = sqlite3_column_int(stmt, 4);
+            predefineWorkout[count].sets = sqlite3_column_type(stmt, 5) != SQLITE_NULL ? sqlite3_column_int(stmt, 5) : 0;
+            predefineWorkout[count].reps = sqlite3_column_type(stmt, 6) != SQLITE_NULL ? sqlite3_column_int(stmt, 6) : 0;
+
+            // Split exercises
+            string temp;
+            int exCount = 0;
+            for (char ch : exercisesStr) {
+                if (ch == ',') {
+                    predefineWorkout[count].exercises[exCount++] = trim(temp);
+                    temp.clear();
+                }
+                else {
+                    temp += ch;
+                }
+            }
+            if (!temp.empty()) {
+                predefineWorkout[count].exercises[exCount++] = trim(temp);
+            }
+
+            predefineWorkout[count].numExercises = exCount;
+
+            count++;
+        }
+    }
+    sqlite3_finalize(stmt);
+}
+*/
 
 void loadAllData(sqlite3* db) {
     loadTrainers(db);
@@ -283,7 +336,6 @@ void insertClient(sqlite3* db, Client c) {
     }
     sqlite3_finalize(stmt);
 }
-
 
 void insertWorkout(sqlite3* db, Workout w, int clientId) {
     const char* query = "INSERT INTO Workouts (workoutName, exercises, numExercises, duration, sets, reps, clientId) VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -458,16 +510,19 @@ void Log_Workout(Client& client) {
 
     }
     else {
-        string log;
+        // viwe all workouts 
+
+        string log; // -> workout.id
         cout << "Enter workout name you completed: ";
         cin.ignore();
         getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only 
-        client.progressLogs[client.numLogs++] = log;
+        client.progressLogs[client.numLogs++] = log;// workout.name
         cout << "Workout Loged Successfully!\n";
         updateClientProgressLogs(db,client.clientID,joinLogs(client.progressLogs,client.numLogs));
 
     }
 }
+
 bool LeapYear(int year) {
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
         return true;
@@ -476,6 +531,8 @@ bool LeapYear(int year) {
         return false;
     }
 }
+
+int days_month = 0;
 bool invalidDate(int day, int month, int year) {
     if (year < 1) return 1;
     else if (month < 1 || month>12) return 1;
@@ -529,6 +586,50 @@ void Log_Measurments(Client& client) {
             else dateValid = 1;
             
         }
+        //rawan
+        /*
+void Log_Workout(Client& client) {
+    if (client.numWorkouts == 0) { //number of workout
+        cout << "No workouts assigned Yet ...\n";
+
+    }
+    else if (client.numLogs >= MAX_LOGS) { // number of completed workout
+        cout << "Log Limit Reached ...\n";
+
+    }
+    else {
+        string log;
+        cout << "Enter workout name you completed: ";
+        cin.ignore();
+        getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only
+        client.progressLogs[client.numLogs++] = log;
+        cout << "Workout Loged Successfully!\n";
+        updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
+
+    }
+
+}*/
+// log workout ===sara=====
+
+/*
+void Log_Workout(Client& client, sqlite3* db) {
+    if (client.numWorkouts == 0) {
+        cout << "No workouts assigned Yet ...\n";
+    } else if (client.numLogs >= MAX_LOGS) {
+        cout << "Log Limit Reached ...\n";
+    } else {
+        string log;
+        cout << "Enter workout name you completed: ";
+        cin.ignore();
+        getline(cin, log);
+
+        client.progressLogs[client.numLogs++] = log;
+        cout << "Workout Logged Successfully!\n";
+
+        updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
+    }
+}
+*/
 
 
         client.measurements[client.numMeasurements++] = log_measurement;
@@ -581,7 +682,8 @@ void client_menue(Client& client) {
             Log_Measurments(client);
             break;
 
-        case 4: healthsummary(client);
+        case 4:
+             healthsummary(client);
             break;
 
         case 5:
@@ -632,44 +734,70 @@ void TrainerMenu() {
     do {
         cout << "\n===Trainer Menu===\n";
         cout << "1-View Clients Information\n";
-        cout << "2-Assign Workouts to client\n";
+        //cout << "2-Assign Workouts to client\n";
+        cout << "2-workouts\n";
         cout << "3-View Client Progress\n";
-        cout << "5-Logout\n";
+        //cout << "4-Creat special workout for client\n";
+        cout << "4-Logout\n";
         cout << "Enter your choice: ";
         cin >> choice;
         //clearScreen();
         switch (choice) {
         case 1:
             cout << "\n---------Client Information-----------\n";
-           
-            for (int i = 0; i < clientCount;++i) {
-                cout << i + 1 << "-";
-                    displayClientData(clients[i]);
-                    cout << "-------------------------\n";
-
-            }
+            //displayClientData(client_m
             break;
         case 2://assign workout
-            break;
-        case 3:
-            cout << "\n----------Select a client to view progress---------"<<endl;
-            for (int i = 0; i < clientCount; i++) {
-                cout << i + 1 << "-" << clients[i].name << endl;
-            }
-            int selectedclient;
-            cout << "Enter selected client: ";
-            cin >> selectedclient;
-            if (selectedclient >= 1 && selectedclient <= clientCount) {
-                ClientProgress(clients[selectedclient-1]);
-            }
-            else
-                cout << "Invalid client..." << endl;
-            cout << "---------------------------\n";
-            break;
-        case 4://add
+            /*
+                 display();
+                 int choice;
+                 cin >> choice;
+                 while (cin.fail())
+                 {
+                     cout << " Its Invalid . Enter 1 or 2 ,PLease .";
+                     display();
+                     cin >> choice;
+                 }
+                  int clientID = displayClientsAndSelect(clients, numClients);
+
+
+                int clientIndex = -1;
+                for (int i = 0; i < numClients; i++) {
+                    if (clients[i].clientID == clientID) {
+                        clientIndex = i;
+                        break;
+                    }
+                }
+
+
+                if (clientIndex == -1) {
+                    cout << "Client not found!\n";
+                    break;
+                }
+                 Client& selectedClient = clients[clientIndex];
+
+                 if (choice == 1)
+                 {
+                  assign_workout();
+                  }
+                  else if (choice == 2)
+                  {
+                createPredefinedWorkout(predefineWorkout, numPredefinedWorkouts);
+
+
+                  }
+                   else
+                {
+                NEW = createCustomWorkout();
+               }
+               */
 
             break;
-        case 5: cout << "Logout.....\n";
+        case 3:
+            //ClientProgress(client_m);
+            break;
+
+        case 4: cout << "Logout.....\n";
             break;
         default:cout << "Invalid Choice\n";
         }
@@ -683,7 +811,6 @@ void TrainerMenu() {
 
 
 }
-
 
 // ================== AUTHENTICATION ==================
 
@@ -863,3 +990,144 @@ int main() {
     cout << "Exiting system...\n";
     return 0;
 }
+/*
+
+   void display() {
+    cout << "Please,Enter Your Choice 1 or 2 \n";
+    cout << "===========================\n";
+    cout << "Do You Want  1) Predefine Workout\n">>
+   " 2) creat Predefine Workout\n">>
+   "3) creat custom workout \n";
+
+   ============================================================
+
+void display_workouts () {
+    for (int i = 0; i < MAX_WORKOUTS;i++)
+    {
+        cout << i + 1 << predefineWorkout[i].workoutName << endl;
+        for (int j = 0;j < MAX_EXERCISES_INWORKOUT;j++)
+        {
+            cout << predefineWorkout[i].exercises[j];
+        }
+        cout << predefineWorkout[i].numExercises << endl <<
+            predefineWorkout[i].duration << endl <<
+            predefineWorkout[i].sets << endl <<
+            predefineWorkout[i].reps << endl;
+    }
+};
+===================================================================
+    //client list
+    int displayClientsAndSelect(Client clients[], int numClients) {
+    cout << "=== CLIENT LIST ===\n";
+    for (int i = 0; i < numClients; i++) {
+        cout << "ID: " << clients[i].clientID
+             << " | Name: " << clients[i].name
+             << " | Workouts: " << clients[i].numWorkouts << "\n";
+    }
+
+    int selectedID;
+    cout << "\nEnter client ID: ";
+    cin >> selectedID;
+    return selectedID;
+}
+
+
+};
+=================================================================
+     void assign_workout(Client& client)
+     {
+        int num_Of_PredefineWorkout;
+       //display workouts for trainer
+        display_workouts();
+
+       //input of trainer choice
+       cout << "Please , Enter How many predefineWorkout do you want  \n";
+       cin >> num_Of_PredefineWorkout;
+       cout << "Enter the number of each predefined workout you choose  ";
+       for (int i = 0;i < num_Of_PredefineWorkout;i++)
+           cin >> arr[i];
+           cout <<"assignworkout created successfully!\n";
+     }
+     ================================================================
+     void createPredefinedWorkout(Workout predefineWorkout[], int& numPredefinedWorkouts) {
+    if (numPredefinedWorkouts >= MAX_WORKOUTS) {
+        cout << "Workout limit reached! Cannot add more predefined workouts.\n";
+        return;
+    }
+
+    Workout newWorkout;
+
+    cout << "Enter workout name: ";
+    cin.ignore();
+    getline(cin, newWorkout.workoutName);
+
+    cout << "Enter number of exercises (max " << MAX_EXERCISES << "): ";
+    cin >> newWorkout.numExercises;
+    cin.ignore();
+
+    for (int i = 0; i < newWorkout.numExercises && i < MAX_EXERCISES; ++i) {
+        cout << "Enter exercise " << i + 1 << ": ";
+        getline(cin, newWorkout.exercises[i]);
+    }
+
+    cout << "Enter duration (in minutes): ";
+    cin >> newWorkout.duration;
+
+    cout << "Enter number of sets: ";
+    cin >> newWorkout.sets;
+
+    cout << "Enter number of reps: ";
+    cin >> newWorkout.reps;
+
+    newWorkout.workoutID = numPredefinedWorkouts + 1;
+
+    predefineWorkout[numPredefinedWorkouts++] = newWorkout;
+
+    cout << "Predefined workout created successfully!\n";
+}
+=====================================================================
+
+     Workout createCustomWorkout(Client& client) {
+      Workout NEW;
+         cout << "Please ,Enter 1- Workout Name\n"
+             << " 2- num of exercises "
+             << " 3- exercises\n"
+             << " 4- Duration\n"
+             << " 5- sets\n"
+             << " 6- reps\n";
+         cin.ignore();
+      getline(cin, NEW.workoutName);
+      cout << "Enter number of exercises: ";
+     cin>> NEW.numExercises;
+     cin.ignore();
+   for (int i = 0; i < NEW.numExercises; i++) {
+    cout << "Exercise " << i + 1 << ": ";
+    getline(cin, NEW.exercises[i]);
+   }
+         cin >> NEW.duration;
+         cin >> NEW.sets;
+         cin >> NEW.reps;
+
+         return NEW;
+     }
+
+
+
+
+
+     ============================================================
+     void display_workouts_to_client(Client& client) {
+         for (int i = 0;i < num_Of_PredefineWorkout;i++)
+         {
+             cout << i + 1 << predefineWorkout[arr[i] + 1].workoutName << endl;
+             for (int j = 0;j < MAX_EXERCISES_INWORKOUT;j++)
+             {
+                 cout << predefineWorkout[i].exercises[j];
+             }
+             cout << predefineWorkout[arr[i] + 1].numExercises << endl <<
+                 predefineWorkout[arr[i] + 1].duration << endl <<
+                 predefineWorkout[arr[i] + 1].sets << endl <<
+                 predefineWorkout[arr[i] + 1].reps << endl;
+         }
+     };
+     */
