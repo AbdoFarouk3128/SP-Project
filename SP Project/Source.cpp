@@ -522,77 +522,69 @@ void Veiw_Workout(Client& client) {
 //
 //    }
 //}
-
-bool LeapYear(int year) {
-    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-int days_month = 0;
-bool invalidDate(int day, int month, int year) {
-    if (year < 1) return 1;
-    else if (month < 1 || month>12) return 1;
-    else if (day < 1) return 1;
-    int days_month = 31;
-    switch (month) {
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-        days_month = 30;
-        break;
-    case 2:
-        days_month = LeapYear(year) ? 29 : 28;
-
-        break;
-    default:
-        return 1;
-    }
-    return day > days_month;
-}
-void Log_Measurments(Client& client) {
-    if (client.numMeasurements >= MAX_MEASUREMENTS) {
-        cout << "Measurements Limit Reached ...\n";
-    }
-    else {
-        Measurement log_measurement;
-        cout << "Enter weight (kg): ";
-        cin >> log_measurement.weight;
-        cout << "Enter height (cm): ";
-        cin >> log_measurement.height;
-        bool dateValid = 0;
-        while (!dateValid) {
-            cout << "Enter date:\n";
-            cout << "Day: ";
-            cin >> log_measurement.date.Day;
-
-            cout << "Month: ";
-            cin >> log_measurement.date.Month;
-
-            cout << "Year: ";
-            cin >> log_measurement.date.Year;
-
-            if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
-                cout << "Invalid date.....\n";
-                cout << "\nPleaese try again.";
-                cin.ignore();
-                cin.get();
-                //clearScreen();
-            }
-            else dateValid = 1;
-            
-        }
-        client.measurements[client.numMeasurements++] = log_measurement;
-        insertMeasurement(db, log_measurement, client.clientID);
-        cout << "Measurements Added Successfully!\n ";
-    }
-}
-        //rawan
-     
+//void Log_Measurments(Client& client) {
+//    if (client.numMeasurements >= MAX_MEASUREMENTS) {
+//        cout << "Measurements Limit Reached ...\n";
+//    }
+//    else {
+//        Measurement log_measurement;
+//        cout << "Enter weight (kg): ";
+//        cin >> log_measurement.weight;
+//        cout << "Enter height (cm): ";
+//        cin >> log_measurement.height;
+//        bool dateValid = 0;
+//        while (!dateValid) {
+//            cout << "Enter date:\n";
+//            cout << "Day: ";
+//            cin >> log_measurement.date.Day;
+//
+//            cout << "Month: ";
+//            cin >> log_measurement.date.Month;
+//
+//            cout << "Year: ";
+//            cin >> log_measurement.date.Year;
+//
+//            if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
+//                cout << "Invalid date.....\n";
+//                cout << "\nPleaese try again.";
+//                cin.ignore();
+//                cin.get();
+//                //clearScreen();
+//            }
+//            else dateValid = 1;
+//            
+//        }
+//        client.measurements[client.numMeasurements++] = log_measurement;
+//        insertMeasurement(db, log_measurement, client.clientID);
+//        cout << "Measurements Added Successfully!\n ";
+//    }
+//}
+//        //rawan
+//     
+////void Log_Workout(Client& client) {
+////    if (client.numWorkouts == 0) { //number of workout
+////        cout << "No workouts assigned Yet ...\n";
+////
+////    }
+////    else if (client.numLogs >= MAX_LOGS) { // number of completed workout
+////        cout << "Log Limit Reached ...\n";
+////
+////    }
+////    else {
+////        string log;
+////        cout << "Enter workout name you completed: ";
+////        cin.ignore();
+////        getline(cin, log);  //to log more than word such that(chest day) , but cin>> recieve ane word only
+////        client.progressLogs[client.numLogs++] = log;
+////        cout << "Workout Loged Successfully!\n";
+////        updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
+////
+////    }
+////
+////}
+//// log workout ===sara=====
+//
+//
 //void Log_Workout(Client& client) {
 //    if (client.numWorkouts == 0) { //number of workout
 //        cout << "No workouts assigned Yet ...\n";
@@ -610,6 +602,483 @@ void Log_Measurments(Client& client) {
 //        client.progressLogs[client.numLogs++] = log;
 //        cout << "Workout Loged Successfully!\n";
 //        updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
+//    }
+//}
+//
+//
+//void ViewMeasurements(Client& client) {
+//    if (client.numMeasurements == 0) {
+//        cout << "No measurements recorded yet.\n";
+//        return;
+//    }
+//
+//    cout << "======= Measurements History =======\n";
+//    for (int i = 0; i < client.numMeasurements; i++) {
+//        cout << i + 1 << ". "
+//            << "Date: " << client.measurements[i].date.Day << "/"
+//            << client.measurements[i].date.Month << "/"
+//            << client.measurements[i].date.Year
+//            << " | Weight: " << client.measurements[i].weight << "kg"
+//            << " | Height: " << client.measurements[i].height << "cm\n";
+//    }
+//}
+//
+//
+//void client_menue(Client& client) {
+//    int choice;
+//  
+//    do {
+//        //clearScreen(); 
+//        cout <<"======================= CLIENT MENUE =======================\n"
+//            << "1.Veiw Workout\n"
+//            << "2.Log Workout\n"
+//            << "3.Log Measurments\n"
+//            << "4.Health Summery\n"
+//            <<"5.ViewMeasurements\n"
+//            << "6.Logout\n";
+//        cout << "Enter Choice: ";
+//        cin >> choice;
+//        //clearScreen();
+//        switch (choice) {
+//        case 1: Veiw_Workout(client);
+//            break;
+//        
+//        case 2:
+//            Log_Workout(client);
+//            break;
+//
+//        case 3:
+//            Log_Measurments(client);
+//            break;
+//
+//        case 4:
+//             healthsummary(client);
+//            break;
+//
+//        case 5:
+//            ViewMeasurements(client);
+//            break;
+//
+//        case 6:
+//            cout << "Logout....";
+//            break;
+//
+//        default:
+//            cout << "Invalied Choice!\n";
+//            break;
+//        }
+//
+//        if (choice != 6) {
+//            cout << "\nPress Enter to continue...";
+//            cin.ignore();
+//            cin.get();
+//        }
+//    } while (choice != 6);
+//}
+//
+////
+//     
+//// ================== TRAINER FEATURES ==================
+//// rahma 
+//void displayClientData( Client & c) {
+//    cout << "Full Name: " << c.name << " , " << "Age: " << c.age << " , " << "Gender: " << c.gender << " , ";
+//    cout << "Activity Level: " << c.activityLevel << endl;
+//}
+//void  ClientProgress(Client&client) {
+//    cout << "--------------Completed Workout---------------\n";
+//    if (client.numLogs == 0) {
+//        cout << "There is no progresslogs for this client!\n";
+//    }
+//    else {
+//        for (int i = 0; i < client.numLogs; i++) {
+//
+//            cout << i + 1 << "." << client.progressLogs[i] << endl;
+//        }
+//    }
+//    cout << "Weight Trend: "<<client.measurements[client.numMeasurements-1].weight<<" Kg" << endl;
+//
+//}
+//void TrainerMenu() {
+//    int choice;
+//    do {
+//        cout << "\n===Trainer Menu===\n";
+//        cout << "1-View Clients Information\n";
+//        //cout << "2-Assign Workouts to client\n";
+//        cout << "2-workouts\n";
+//        cout << "3-View Client Progress\n";
+//        //cout << "4-Creat special workout for client\n";
+//        cout << "5-Logout\n";
+//        cout << "Enter your choice: ";
+//        cin >> choice;
+//        //clearScreen();
+//        switch (choice) {
+//        case 1:
+//            cout << "\n---------Client Information-----------\n";
+//            
+//            for (int i = 0; i < clientCount; ++i) {
+//                cout << i + 1 << "-";
+//                displayClientData(clients[i]);
+//                cout << "-------------------------\n";
+//
+//            }
+//            break;
+//        case 2://assign workout
+//            
+//                 display();
+//                 int choice;
+//                 cin >> choice;
+//                 while (cin.fail())
+//                 {
+//                     cout << " Its Invalid . Enter 1 or 2 ,PLease .";
+//                     display();
+//                     cin >> choice;
+//                 }
+//                  int clientID = displayClientsAndSelect();
+//
+//
+//                int clientIndex = -1;
+//                for (int i = 0; i < clientCount; i++) {
+//                    if (clients[i].clientID == clientID) {
+//                        clientIndex = i;
+//                        break;
+//                    }
+//                }
+//
+//
+//                if (clientIndex == -1) {
+//                    cout << "Client not found!\n";
+//                    break;
+//                }
+//
+//                Client& selectedClient = clients[clientIndex];
+//
+//                if (choice == 1)
+//                {
+//                    assign_workout();
+//                }
+//                else if (choice == 2)
+//                {
+//                    createPredefinedWorkout(predefineWorkout, numPredefinedWorkouts);
+//                }
+//                else
+//                {
+//                    Workout NEW = createCustomWorkout();
+//                }
+//               
+//
+//                break;
+//
+//        case 3:
+//            cout << "\n----------Select a client to view progress---------" << endl;
+//            for (int i = 0; i < clientCount; i++) {
+//                cout << i + 1 << "-" << clients[i].name << endl;
+//            }
+//            int selectedclient;
+//            cout << "Enter selected client: ";
+//            cin >> selectedclient;
+//            if (selectedclient >= 1 && selectedclient <= clientCount) {
+//                ClientProgress(clients[selectedclient - 1]);
+//            }
+//            else
+//                cout << "Invalid client..." << endl;
+//            cout << "---------------------------\n";
+//
+//            ClientProgress(clients[selectedClient-1]);
+//            break;
+//
+//        case 4://Creat special workout for client
+//            break;
+//
+//        case 5: cout << "Logout.....\n";
+//            break;
+//        default:cout << "Invalid Choice\n";
+//        }
+//        if (choice != 5) {
+//            cout << "\nPress Enter to continbue...";
+//            cin.ignore();
+//            cin.get();
+//        }
+//    } while (choice != 5);
+//
+//
+//
+//}
+//
+//// ================== AUTHENTICATION ==================
+//
+//void registerUser() {
+//    string name,username, pass, gender, level;
+//    int age;
+//    
+//    cout << "Enter Name: ";cin >> name;
+//    bool exists;
+//    do {
+//        exists = false;
+//        cout << "Enter username: ";
+//        cin >> username;
+//
+//        for (int i = 0; i < trainerCount; i++) {
+//            if (clients[i].username == username) {
+//                cout << "Username already taken. Try another.\n";
+//                exists = true;
+//                break;
+//            }
+//        }
+//    } while (exists);
+//
+//    cout << "Enter password: ";
+//    cin >> pass;
+//
+//    cout << "Enter age: ";
+//    while (!(cin >> age) || age <= 0) {
+//        cout << "Invalid input. Please enter a valid age: ";
+//        cin.clear();
+//        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//    }
+//
+//    do {
+//        cout << "Enter gender (Male/Female): ";
+//        cin >> gender;
+//        if (gender != "Male" && gender != "Female") {
+//            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
+//        }
+//    } while (gender != "Male" && gender != "Female");
+//
+//    do {
+//        cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
+//        cin >> level;
+//        if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active") {
+//            cout << "Invalid level. Try again.\n";
+//        }
+//    } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active");
+//
+//    clients[clientCount].clientID= clientCount + 1;
+//    clients[clientCount].name = name;
+//    clients[clientCount].username = username;
+//    clients[clientCount].password = pass;
+//    clients[clientCount].age = age;
+//    clients[clientCount].gender = gender;
+//    clients[clientCount].activityLevel= level;
+//
+//    clients[clientCount].clientID = clientCount + 1;
+//    cout << "Account created! Your ID is: " << clients[clientCount].clientID<< "\n";
+//    clientCount++;
+//    insertClient(db,clients[clientCount-1]);
+//}
+//
+//
+//// ------------ Log in ------------
+//
+//int login() {
+//    string username, password;
+//    cout << "===LOGIN===" << endl;
+//    cout << "Enter username: ";
+//    cin >> username;
+//    cout << "Enter password: ";
+//    cin >> password;
+//
+//    // check client
+//
+//    for (int i = 0; i < clientCount; i++) {
+//        if (clients[i].username == username && clients[i].password == password)
+//        {
+//            usertype = "client";
+//            cout << "Login successfully as client,Welcome " << clients[i].username << endl;
+//            return i;
+//        }
+//    }
+//
+//    //check trainer
+//
+//    for (int i = 0; i < trainerCount; i++) {
+//        if (trainers[i].username == username && trainers[i].password == password)
+//        {
+//            usertype = "trainer";
+//            cout << "Login successfully as trainer,Welcome " << trainers[i].username << endl;
+//            return i;
+//           
+//        }
+//    }
+//    cout << "Invalid username or password." << endl;
+//    return -1;
+//}
+//
+//
+//
+//
+//
+//
+//// ================== MAIN SYSTEM ==================
+//
+//
+//int main() {
+//    
+//    if (sqlite3_open("database.db", &db) == SQLITE_OK) {
+//        loadAllData(db);
+//    }
+//    else {
+//        cout << "Failed to open database." << endl;
+//    }
+//    //------------------------------------------------------
+//    int mainChoice;
+//    for (int i = 0; i < clientCount; i++)
+//    {
+//        cout << clients[i].name << endl;
+//    }cout << clientCount << endl;
+//    cout<<clients[0].clientID<<endl;
+//    do {
+//        //clearScreen();
+//        cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
+//            << "1. Login\n"
+//            << "2. Register\n"
+//            << "3. Exit\n"
+//            << "Choice: ";
+//        cin >> mainChoice;
+//        if (cin.fail()) {
+//            cin.clear();
+//            cin.ignore(10000, '\n');
+//            cout << "Invalid input! Please enter a number.\n";
+//            continue;
+//        }
+//
+//        switch (mainChoice)
+//        {
+//        case 1:
+//        {
+//            int index = login();
+//            if (index != -1) {
+//                if (usertype == "client") {
+//                    client_menue(clients[index]);
+//                }
+//                else if (usertype == "trainer") {
+//                    TrainerMenu();
+//                }
+//            }
+//            break;
+//        }
+//        case 2:
+//            registerUser();
+//            break;
+//        case 3:
+//            break;
+//        default:
+//            cout << "invalid input" << endl;
+//            break;
+//        }
+//
+//
+//    } while (mainChoice != 3);
+//
+//    cout << "Exiting system...\n";
+//    return 0;
+//}
+//
+//
+//void display() {
+//    cout << "Please,Enter Your Choice 1 or 2 \n";
+//    cout << "===========================\n";
+//    cout << "Do You Want  1) Predefine Workout\n" <<
+//        " 2) creat Predefine Workout\n" <<
+//        "3) creat custom workout \n";
+//}
+//   //============================================================
+//
+//void display_workouts () {
+//    for (int i = 0; i < MAX_WORKOUTS;i++)
+//    {
+//        cout << i + 1 << predefineWorkout[i].workoutName << endl;
+//        for (int j = 0;j < MAX_EXERCISES_INWORKOUT;j++)
+//        {
+//            cout << predefineWorkout[i].exercises[j];
+//        }
+//        cout << predefineWorkout[i].numExercises << endl <<
+//            predefineWorkout[i].duration << endl <<
+//            predefineWorkout[i].sets << endl <<
+//            predefineWorkout[i].reps << endl;
+//    }
+//};
+////===================================================================
+//    //client list
+//int displayClientsAndSelect() {
+//    cout << "=== CLIENT LIST ===\n";
+//    for (int i = 0; i < clientCount; i++) {
+//        cout << "ID: " << clients[i].clientID
+//            << " | Name: " << clients[i].name
+//            << " | Workouts: " << clients[i].numWorkouts << "\n";
+//    }
+//
+//    int selectedID;
+//    cout << "\nEnter client ID: ";
+//    cin >> selectedID;
+//    return selectedID;
+//};
+//
+//
+//
+////=================================================================
+//     void assign_workout(Client& client)
+//     {
+//        int num_Of_PredefineWorkout;
+//       //display workouts for trainer
+//        display_workouts();
+//
+//       //input of trainer choice
+//       cout << "Please , Enter How many predefineWorkout do you want  \n";
+//       cin >> num_Of_PredefineWorkout;
+//       cout << "Enter the number of each predefined workout you choose  ";
+//       for (int i = 0;i < num_Of_PredefineWorkout;i++)
+//           cin >> arr[i];
+//           cout <<"assignworkout created successfully!\n";
+//     }
+//     //================================================================
+//     void createPredefinedWorkout(Workout predefineWorkout[], int& numPredefinedWorkouts) {
+//    if (numPredefinedWorkouts >= MAX_WORKOUTS) {
+//        cout << "Workout limit reached! Cannot add more predefined workouts.\n";
+//        return;
+//    }
+//
+//    Workout newWorkout;
+//
+//    cout << "Enter workout name: ";
+//    cin.ignore();
+//    getline(cin, newWorkout.workoutName);
+//
+//    cout << "Enter number of exercises (max " << MAX_EXERCISES << "): ";
+//    cin >> newWorkout.numExercises;
+//    cin.ignore();
+//
+//    for (int i = 0; i < newWorkout.numExercises && i < MAX_EXERCISES; ++i) {
+//        cout << "Enter exercise " << i + 1 << ": ";
+//        getline(cin, newWorkout.exercises[i]);
+//    }
+//
+//    cout << "Enter duration (in minutes): ";
+//    cin >> newWorkout.duration;
+//
+//    cout << "Enter number of sets: ";
+//    cin >> newWorkout.sets;
+//
+//    cout << "Enter number of reps: ";
+//    cin >> newWorkout.reps;
+//
+//    newWorkout.workoutID = numPredefinedWorkouts + 1;
+//
+//    predefineWorkout[numPredefinedWorkouts++] = newWorkout;
+//
+//    cout << "Predefined workout created successfully!\n";
+//}
+////=====================================================================
+//
+//Workout createCustomWorkout(Client& client) {
+//    Workout NEW;
+//    cout << "Please ,Enter 1- Workout Name\n"
+//        << " 2- num of exercises "
+//        << " 3- exercises\n"
+//        << " 4- Duration\n"
+//        << " 5- sets\n"
+//        << " 6- reps\n";
+//    cin.ignore();
+//    getline(cin, NEW.workoutName);
 //
 //    }
 //

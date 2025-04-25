@@ -52,15 +52,17 @@
 -- );
 -- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 
-DROP TABLE IF EXISTS Measurements;
-CREATE TABLE Measurements(
-    measurementId INTEGER PRIMARY KEY AUTOINCREMENT,
-    clientId INTEGER,
-    weight NUMERIC,
-    height NUMERIC,
-    date TEXT,  -- now a string
-    FOREIGN KEY (clientId) REFERENCES Clients(clientId)
-);
+-- DROP TABLE IF EXISTS Measurements;
+-- CREATE TABLE Measurements(
+--     measurementId INTEGER PRIMARY KEY AUTOINCREMENT,
+--     clientId INTEGER,
+--     weight NUMERIC,
+--     height NUMERIC,
+--     date TEXT,  -- now a string
+--     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
+-- );
+
+-- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
 
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),
@@ -97,7 +99,7 @@ CREATE TABLE Measurements(
 -- ('Noha Karim', 'noha', 'noha123', 28, 'Female', 'Sedentary'),
 -- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'Male', 'Active'),
 -- ('Rana Ali', 'rana', 'rana123', 26, 'Female', 'Moderate'),
--- ('Emad Essam', 'emad', 'emad123', 33, 'Male', 'Very Active'),
+-- ('Emad Essam', 'emad', 'emad123', 33, 'Male', 'VeryActive'),
 -- ('Faten Wael', 'faten', 'faten123', 30, 'Female', 'Light'),
 -- ('Sherif Adel', 'sherif', 'sherif123', 29, 'Male', 'Light'),
 -- ('Mona Samir', 'mona', 'mona123', 27, 'Female', 'Moderate'),

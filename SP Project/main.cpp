@@ -5,6 +5,7 @@
 #include <sstream>
 #include <limits>
 #include "sqlite3.h"
+
 using namespace std;
 
 // ================== CONSTANTS ==================
@@ -416,7 +417,7 @@ double getActivityMultiplier(Client& a) {
     else if (a.activityLevel == "light" || a.activityLevel == "Light") return 1.375;
     else if (a.activityLevel == "moderate" || a.activityLevel == "Moderate")  return 1.55;
     else if (a.activityLevel == "active" || a.activityLevel == "Active")  return 1.725;
-    else if (a.activityLevel == "Very active" || a.activityLevel == "very active")
+    else if (a.activityLevel == "Veryactive" || a.activityLevel == "veryactive")
         return 1.9;
     else {
         cout << "Invalid activity level" << endl;
@@ -492,11 +493,33 @@ void Log_Workout(Client& client) {
         cout << "Log Limit Reached ...\n";
     }
     else {
-        string log;
-        cout << "Enter workout name you completed: ";
-        cin.ignore();
-        getline(cin, log);
-        client.progressLogs[client.numLogs++] = log;
+        for (int i = 0; i < client.numWorkouts; i++)
+        {
+            cout << i + 1 << "- " << client.workoutPlans[i].workoutName<<endl;
+        }
+        bool istrue=0;
+        int log;
+        do
+        {
+            cout << "Enter workout name you completed: ";
+            cin >> log;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }
+            if (log<1 && log >client.numWorkouts)
+            {
+                cout << "Ivalid choice.\n";
+                continue;
+            }
+            else
+            {
+                istrue = 1;
+            }
+        } while (!istrue);
+        client.progressLogs[client.numLogs++] = client.workoutPlans[log-1].workoutName;
         cout << "Workout Logged Successfully!\n";
         updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
     }
@@ -521,8 +544,51 @@ void Log_Measurments(Client& client) {
     cin >> log_measurement.height;
     bool dateValid = false;
     while (!dateValid) {
-        cout << "Enter date (DD MM YYYY): ";
-        cin >> log_measurement.date.Day >> log_measurement.date.Month >> log_measurement.date.Year;
+        cout << "Enter date:\n";
+        cout << "Day: ";
+        do {
+            cin >> log_measurement.date.Day;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
+        cout << "Month: ";
+        do {
+            cin >> log_measurement.date.Month;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
+
+        cout << "Year: ";
+        do {
+            cin >> log_measurement.date.Year;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }
+            else
+            {
+                break;
+            }
+        } while (true);
+
         if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
             cout << "Invalid date. Please try again.\n";
         }
@@ -792,6 +858,7 @@ void TrainerMenu() {
             cin >> selectedClient;
             if (selectedClient >= 1 && selectedClient <= clientCount) {
                 ClientProgress(clients[selectedClient - 1]);
+                healthsummary(clients[selectedClient - 1]);
             }
             else {
                 cout << "Invalid client selection.\n";
@@ -839,11 +906,19 @@ void registerUser() {
     do {
         cout << "Enter gender (Male/Female): ";
         cin >> newClient.gender;
-    } while (newClient.gender != "Male" && newClient.gender != "Female");
+        if (newClient.gender != "Male" && newClient.gender != "Female" && newClient.gender != "male" && newClient.gender != "female") {
+            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
+        }
+    } while (newClient.gender != "Male" && newClient.gender != "Female" && newClient.gender != "male" && newClient.gender != "female");
 
     do {
         cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
         cin >> newClient.activityLevel;
+        if (newClient.activityLevel != "Sedentary" && newClient.activityLevel != "Light" &&
+            newClient.activityLevel != "Moderate" && newClient.activityLevel != "Active" &&
+            newClient.activityLevel != "VeryActive") {
+            cout << "Invalid level. Try again.\n";
+        }
     } while (newClient.activityLevel != "Sedentary" && newClient.activityLevel != "Light" &&
         newClient.activityLevel != "Moderate" && newClient.activityLevel != "Active" &&
         newClient.activityLevel != "VeryActive");
