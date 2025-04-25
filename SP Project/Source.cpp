@@ -650,7 +650,7 @@ void ViewMeasurements(Client& client) {
             << client.measurements[i].date.Month << "/"
             << client.measurements[i].date.Year
             << " | Weight: " << client.measurements[i].weight << "kg"
-            << " | Height: " << client.measurements[i].height << "m\n";
+            << " | Height: " << client.measurements[i].height << "cm\n";
     }
 }
 
@@ -738,7 +738,7 @@ void TrainerMenu() {
         cout << "2-workouts\n";
         cout << "3-View Client Progress\n";
         //cout << "4-Creat special workout for client\n";
-        cout << "4-Logout\n";
+        cout << "5-Logout\n";
         cout << "Enter your choice: ";
         cin >> choice;
         //clearScreen();
@@ -746,6 +746,12 @@ void TrainerMenu() {
         case 1:
             cout << "\n---------Client Information-----------\n";
             //displayClientData(client_m
+            for (int i = 0; i < clientCount; ++i) {
+                cout << i + 1 << "-";
+                displayClientData(clients[i]);
+                cout << "-------------------------\n";
+
+            }
             break;
         case 2://assign workout
             /*
@@ -794,15 +800,31 @@ void TrainerMenu() {
 
             break;
         case 3:
+            cout << "\n----------Select a client to view progress---------" << endl;
+            for (int i = 0; i < clientCount; i++) {
+                cout << i + 1 << "-" << clients[i].name << endl;
+            }
+            int selectedclient;
+            cout << "Enter selected client: ";
+            cin >> selectedclient;
+            if (selectedclient >= 1 && selectedclient <= clientCount) {
+                ClientProgress(clients[selectedclient - 1]);
+            }
+            else
+                cout << "Invalid client..." << endl;
+            cout << "---------------------------\n";
+
             //ClientProgress(client_m);
             break;
+        case 4://Creat special workout for client
+            break;
 
-        case 4: cout << "Logout.....\n";
+        case 5: cout << "Logout.....\n";
             break;
         default:cout << "Invalid Choice\n";
         }
         if (choice != 5) {
-            cout << "\nPress Enter to continue...";
+            cout << "\nPress Enter to continbue...";
             cin.ignore();
             cin.get();
         }
