@@ -871,17 +871,17 @@
 //    do {
 //        cout << "Enter gender (Male/Female): ";
 //        cin >> gender;
-//        if (gender != "Male" && gender != "Female") {
-//            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
-//        }
+        /*if (gender != "Male" && gender != "Female") {
+            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
+        }*/
 //    } while (gender != "Male" && gender != "Female");
 //
 //    do {
 //        cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
 //        cin >> level;
-//        if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active") {
-//            cout << "Invalid level. Try again.\n";
-//        }
+        /*if (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active") {
+            cout << "Invalid level. Try again.\n";
+        }*/
 //    } while (level != "Sedentary" && level != "Light" && level != "Moderate" && level != "Active" && level != "Very Active");
 //
 //    clients[clientCount].clientID= clientCount + 1;

@@ -906,11 +906,19 @@ void registerUser() {
     do {
         cout << "Enter gender (Male/Female): ";
         cin >> newClient.gender;
+        if (newClient.gender != "Male" && newClient.gender != "Female" && newClient.gender != "male" && newClient.gender != "female") {
+            cout << "Invalid input. Please enter 'Male' or 'Female'.\n";
+        }
     } while (newClient.gender != "Male" && newClient.gender != "Female" && newClient.gender != "male" && newClient.gender != "female");
 
     do {
         cout << "Enter activity level (Sedentary/Light/Moderate/Active/VeryActive): ";
         cin >> newClient.activityLevel;
+        if (newClient.activityLevel != "Sedentary" && newClient.activityLevel != "Light" &&
+            newClient.activityLevel != "Moderate" && newClient.activityLevel != "Active" &&
+            newClient.activityLevel != "VeryActive") {
+            cout << "Invalid level. Try again.\n";
+        }
     } while (newClient.activityLevel != "Sedentary" && newClient.activityLevel != "Light" &&
         newClient.activityLevel != "Moderate" && newClient.activityLevel != "Active" &&
         newClient.activityLevel != "VeryActive");
