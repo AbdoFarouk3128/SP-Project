@@ -559,31 +559,31 @@
 //        cout << "Measurements Limit Reached ...\n";
 //    }
 //    else {
-//        Measurement log_measurement;
-//        cout << "Enter weight (kg): ";
-//        cin >> log_measurement.weight;
-//        cout << "Enter height (cm): ";
-//        cin >> log_measurement.height;
-//        bool dateValid = 0;
-//        while (!dateValid) {
-//            cout << "Enter date:\n";
-//            cout << "Day: ";
-//            cin >> log_measurement.date.Day;
-//
-//            cout << "Month: ";
-//            cin >> log_measurement.date.Month;
-//
-//            cout << "Year: ";
-//            cin >> log_measurement.date.Year;
-//
-//            if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
-//                cout << "Invalid date.....\n";
-//                cout << "\nPleaese try again.";
-//                cin.ignore();
-//                cin.get();
-//                //clearScreen();
-//            }
-//            else dateValid = 1;
+        //Measurement log_measurement;
+        //cout << "Enter weight (kg): ";
+        //cin >> log_measurement.weight;
+        //cout << "Enter height (cm): ";
+        //cin >> log_measurement.height;
+        //bool dateValid = 0;
+        //while (!dateValid) {
+            //cout << "Enter date:\n";
+            //cout << "Day: ";
+            //cin >> log_measurement.date.Day;
+
+            //cout << "Month: ";
+            //cin >> log_measurement.date.Month;
+
+            //cout << "Year: ";
+            //cin >> log_measurement.date.Year;
+
+        //    if (invalidDate(log_measurement.date.Day, log_measurement.date.Month, log_measurement.date.Year)) {
+        //        cout << "Invalid date.....\n";
+        //        cout << "\nPleaese try again.";
+        //        cin.ignore();
+        //        cin.get();
+        //        //clearScreen();
+        //    }
+        //    else dateValid = 1;
 //            
 //        }
 //        client.measurements[client.numMeasurements++] = log_measurement;
