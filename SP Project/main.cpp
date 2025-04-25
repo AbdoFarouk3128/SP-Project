@@ -417,7 +417,7 @@ double getActivityMultiplier(Client& a) {
     else if (a.activityLevel == "light" || a.activityLevel == "Light") return 1.375;
     else if (a.activityLevel == "moderate" || a.activityLevel == "Moderate")  return 1.55;
     else if (a.activityLevel == "active" || a.activityLevel == "Active")  return 1.725;
-    else if (a.activityLevel == "Very active" || a.activityLevel == "very active")
+    else if (a.activityLevel == "Veryactive" || a.activityLevel == "veryactive")
         return 1.9;
     else {
         cout << "Invalid activity level" << endl;
