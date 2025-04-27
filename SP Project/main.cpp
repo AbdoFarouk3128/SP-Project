@@ -471,16 +471,6 @@ void healthsummary(Client& client) {
 }
 
 // ================== CLIENT FEATURES ==================
-int  chooseTrainer() {
-    for (int i = 0; i < trainerCount; i++) {
-        cout << trainers[i].trainerID << "_" << trainers[i].name << endl;
-    }
-    int id;
-    cout << "Enter Trainer ID";
-    cin >> id;
-    return id;
-  
-}
 void Veiw_Workout(Client& client) {
     if (client.numWorkouts == 0) {
         cout << "No workouts assigned Yet....\n";
