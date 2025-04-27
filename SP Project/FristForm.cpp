@@ -2,11 +2,12 @@
 //using namespace System;
 //using namespace System::Windows::Forms;
 //
-//[STAThread]
-//int main()
+//[STAThreadAttribute]
+//int main(array<String^>^ args)
 //{
 //    Application::EnableVisualStyles();
 //    Application::SetCompatibleTextRenderingDefault(false);
 //    Application::Run(gcnew SPProject::FristForm());
 //    return 0;
 //}
+//

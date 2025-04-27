@@ -45,7 +45,15 @@ struct Workout {
     int reps;
 };
 
+struct Trainer {
+    int trainerID;
+    string name;
+    string username;
+    string password;
+};
+
 struct Client {
+    Trainer  trainer[trainerCount];
     int clientID;
     string name;
     string username;
@@ -61,12 +69,6 @@ struct Client {
     int numMeasurements = 0;
 };
 
-struct Trainer {
-    int trainerID;
-    string name;
-    string username;
-    string password;
-};
 
 // ================== GLOBAL DATA ==================
 Client clients[MAX_CLIENTS];
@@ -470,6 +472,16 @@ void healthsummary(Client& client) {
 }
 
 // ================== CLIENT FEATURES ==================
+int  chooseTrainer() {
+    for (int i = 0; i < trainerCount; i++) {
+        cout << trainers[i].trainerID << "_" << trainers[i].name << endl;
+    }
+    int id;
+    cout << "Enter Trainer ID";
+    cin >> id;
+    return id;
+  
+}
 void Veiw_Workout(Client& client) {
     if (client.numWorkouts == 0) {
         cout << "No workouts assigned Yet....\n";
@@ -618,6 +630,7 @@ void ViewMeasurements(Client& client) {
 
 void client_menue(Client& client) {
     int choice;
+   
     do {
         clearScreen();
         cout << "======================= CLIENT MENU =======================\n"
