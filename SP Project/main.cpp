@@ -53,7 +53,6 @@ struct Trainer {
 };
 
 struct Client {
-    Trainer  trainer[trainerCount];
     int clientID;
     string name;
     string username;
