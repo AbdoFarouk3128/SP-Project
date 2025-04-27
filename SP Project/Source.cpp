@@ -1,8 +1,7 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <cstdlib>
 using namespace std;
-
 // ================== CONSTANTS ==================
 const int MAX_CLIENTS = 100;
 const int MAX_TRAINERS = 20;
@@ -12,8 +11,8 @@ const int MAX_MEASUREMENTS = 20;
 
 // ================== STRUCTURES ==================
 struct Measurement {
-    float weight;
-    float height;
+    double weight;
+    double height;
     string date;
     float bmi;
     double bmr;
@@ -23,7 +22,7 @@ struct Measurement {
         double carbs;
         double fats;
     }macros;
-}w;
+};
 
 struct Workout {
     int workoutID;
@@ -61,8 +60,8 @@ Client clients[MAX_CLIENTS];
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
-
-
+Measurement w = { 75,160,"24-04-23" };
+Client a = { 0,"","",23,"male","light" };
 // ================== UTILITY FUNCTIONS ==================
 void clearScreen() {
 #ifdef _WIN32
@@ -79,82 +78,92 @@ void pressEnter() {
 }
 
 // ================== HEALTH CALCULATIONS ==================
-double calculateBMR(double weight, double height, int age, string gender) {
-    if (gender == "male" || gender == "Male")
-        (10 * weight) + (6.25 * height) - (5 * age) + 5;
-    else if (gender == "female" || gender == "Female")
-        (10 * weight) + (6.25 * height) - (5 * age) - 161;
+double calculateBMR(Client & a ) {
+    a.measurements[a.numMeasurements - 1].height *= 100;
+  
+    if (a.gender == "male" || a.gender == "Male")
+       return (10 * a.measurements[a.numMeasurements - 1].weight) + (6.25 * a.measurements[a.numMeasurements - 1].height) - (5 * a.age) + 5;
+    else if (a.gender == "female" || a.gender == "Female")
+      return  (10 * a.measurements[a.numMeasurements - 1].weight) + (6.25 * a.measurements[a.numMeasurements - 1].height) - (5 * a.age) - 161;
     else
+    {
         cout << "INVALID CHOICE" << endl;
+        return 0;
+    }
 }
 
-double getActivityMultiplier(string level) {
-    if (level == "sedentary" || level == "Sedentary") return 1.2;
-    else if (level == "light" || level == "Light") return 1.375;
-    else if (level == "moderate"|| level == "Moderate")  return 1.55;
-    else if (level == "active"|| level == "Active")  return 1.725;
-    else if (level == "Very active" || level == "very active")
+double getActivityMultiplier(Client & a) {//c.activity
+    if ( a.activityLevel== "sedentary" || a.activityLevel == "Sedentary") return 1.2;
+    else if (a.activityLevel == "light" ||a.activityLevel == "Light") return 1.375;
+    else if (a.activityLevel == "moderate"|| a.activityLevel== "Moderate")  return 1.55;
+    else if (a.activityLevel == "active"||a.activityLevel == "Active")  return 1.725;
+    else if (a.activityLevel== "Very active" || a.activityLevel == "very active")
         return 1.9;
     else
+    {
         cout << "Invalid activity level" << endl;
- 
+        return 1.0;
+    }
 }
 
-double calculateTDEE(double bmr, double activityMulti) {
-    return bmr * activityMulti;
+double calculateTDEE(double bmr,double activitylevel) {
+    return (bmr) * (activitylevel);
 }
 
-Measurement::Macros calculateMacros(double tdee) {
-    Measurement::Macros m;
-    m.protein = (tdee * 0.3) / 4;
-    m.carbs = (tdee * 0.45) / 4;
-    m.fats = (tdee * 0.25) / 9;
-    return m;
+ void calculateMacros( double tdee,Client & a) {
+   
+     a.measurements[a.numMeasurements - 1].macros.protein = (tdee * 0.3) / 4;
+    a.measurements[a.numMeasurements - 1].macros.carbs = (tdee * 0.45) / 4;
+    a.measurements[a.numMeasurements - 1].macros.fats = (tdee * 0.25) / 9;
+    cout << "\n--- YOUR MACRONUTRIENTS ---" << endl;
+    cout << "Protein (grams): " << a.measurements[a.numMeasurements - 1].macros.protein << endl;
+    cout << "Carbohydrates (grams): " << a.measurements[a.numMeasurements - 1].macros.carbs << endl;
+    cout << "Fats (grams): " << a.measurements[a.numMeasurements - 1].macros.fats << endl;
+ }
+
+
+double calculateBMI(Client & a) {
+   
+    a.measurements[a.numMeasurements - 1].height/= 100.0;
+    return  a.measurements[a.numMeasurements - 1].weight / (a.measurements[a.numMeasurements - 1].height * a.measurements[a.numMeasurements - 1].height);
 }
 
-double calculateBMI(float weight, float heightcm) {
-    float heightM = heightcm / 100;
-    return  weight / (heightM * heightM);
-}
 
-
-    string getBMICategory(double bmi) {
+string getBMICategory(double bmi) {
     if (bmi < 18.5) return "Underweight";
     else if (bmi < 25) return "Normal";
     else if (bmi < 30) return "Overweight";
-    else 
+    else
         return "Obese";
 }
 
+
 void  healthsummary() {
-    double height, weight;int age; string gender, level;
-    cout << "Enter your Height(CM): "; cin >> height;
-    cout << "Enter your Weight(KG): "; cin >> weight;
-    cout << "Enter your Age: "; cin >> age; 
-    cout << "Enter your Gender(Male/Female): "; cin >> gender;
-    cout << "Enter your Activity Level(Sedentary/Light/Moderate/Active/ Very Active): ";
-    cin >> level;
-   double activityMulti = getActivityMultiplier( level);
-    double bmi = calculateBMI (weight, height);
-    string status= getBMICategory (bmi);
-    double bmr = calculateBMR(weight, height, age, gender);
-    double tdee =calculateTDEE( bmr,  activityMulti);
-    calculateMacros(tdee);
-    cout << "Your BMI(Body Mass Index) = " << bmi << "Your Status is " << status << endl;
+    if (a.numMeasurements == 0) {
+        cout << "No measurements available to generate health summary." << endl;
+        return;
+    }
+    double activityMulti = getActivityMultiplier(a);
+    double bmi = calculateBMI(a);
+    string status = getBMICategory(bmi);
+    double bmr = calculateBMR(a);
+    double tdee = calculateTDEE(bmr, activityMulti);
+    cout << "------HEALTH SUMMARY------" << endl;
+    cout << "Your BMI(Body Mass Index) = " << bmi << "| Your Status is " << status << endl;
     cout << "Your BMR(Basel Metabolic Rate) = " << bmr << endl;
     cout << "Your TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
-    cout << "---YOUR MACRONUTRIENTS---" << endl;
-    cout << "Percentage of Protein =  " <<w.macros.protein<< endl;
-    cout << "Percentage of Carbocalories =  " <<w.macros.carbs<< endl;
-    cout << "Percentage of Fats =  " <<w.macros.fats<< endl;
-
+    calculateMacros(tdee, a);
+}
+    int main()
+    {
+        a.measurements[0] = w;
+        a.numMeasurements = 1;
+        healthsummary();
     
-
-    
-
+      
 
 
-
+        return 0;
 
 }
 
