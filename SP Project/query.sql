@@ -67,6 +67,8 @@
 -- SELECT * from Clients where trainerId =4;
 -- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
+-- UPDATE Clients set progressLogs = NULL where clientId=51;
+
 -- DELETE FROM Clients WHERE clientID = 101;
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),

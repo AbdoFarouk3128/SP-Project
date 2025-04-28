@@ -75,7 +75,7 @@ struct Trainer {
 };
 
 // ================== GLOBAL DATA ==================
-Client clients[MAX_CLIENTS];
+//Client clients[MAX_CLIENTS];
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
@@ -123,11 +123,13 @@ void client_menue(Client& client);
 void displayClientData(Client& c);
 void ClientProgress(Client& client);
 void TrainerMenu(Trainer& trainer);
+bool checkclientid(Trainer& trainer, int selectedID);
 int chooseTrainer();
 void registerUser();
 void registerTrainer();
 void registerClient();
-int login();
+Trainer* trainerLogin(string username, string password);
+Client* clientLogin(string username, string password);
 void display();
 void display_workouts();
 int displayClientsAndSelect();
@@ -177,8 +179,11 @@ bool isUsernameTaken(const string& username) {
     for (int i = 0; i < trainerCount; i++) {
         if (toLower(trainers[i].username) == lowerUsername) return true;
     }
-    for (int i = 0; i < clientCount; i++) {
-        if (toLower(clients[i].username) == lowerUsername) return true;
+    for (int j = 0; j < trainerCount; j++)
+    {
+        for (int i = 0; i < trainers->numClients; i++) {
+            if (toLower(trainers[j].clients[i].username) == lowerUsername) return true;
+        }
     }
     return false;
 }
@@ -217,28 +222,28 @@ void loadTrainers(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-void loadClients(sqlite3* db) {
-    clientCount = 0;
-    const char* query = "SELECT * FROM Clients;";
-    sqlite3_stmt* stmt;
-
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
-            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
-            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-            clients[clientCount].age = sqlite3_column_int(stmt, 4);
-            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
-            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
-            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
-            if (logsStr)
-                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
-            clientCount++;
-        }
-    }
-    sqlite3_finalize(stmt);
-}
+//void loadClients(sqlite3* db) {
+//    clientCount = 0;
+//    const char* query = "SELECT * FROM Clients;";
+//    sqlite3_stmt* stmt;
+//
+//    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+//        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
+//            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
+//            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+//            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+//            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+//            clients[clientCount].age = sqlite3_column_int(stmt, 4);
+//            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
+//            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
+//            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+//            if (logsStr)
+//                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
+//            clientCount++;
+//        }
+//    }
+//    sqlite3_finalize(stmt);
+//}
 
 void loadWorkouts(sqlite3* db) {
     const char* query = "SELECT * FROM Workouts;";
@@ -247,29 +252,33 @@ void loadWorkouts(sqlite3* db) {
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             int clientId = sqlite3_column_int(stmt, 8);
-            for (int i = 0; i < clientCount; ++i) {
-                if (clients[i].clientID == clientId && clients[i].numWorkouts < MAX_WORKOUTS) {
-                    Workout& w = clients[i].workoutPlans[clients[i].numWorkouts];
-                    w.workoutID = sqlite3_column_int(stmt, 0);
-                    w.workoutName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-                    string exercisesStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-                    w.numExercises = sqlite3_column_int(stmt, 3);
-                    w.duration = sqlite3_column_int(stmt, 4);
-                    w.sets = sqlite3_column_int(stmt, 5);
-                    w.reps = sqlite3_column_int(stmt, 6);
-                    w.istrue = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+            for (int j = 0; j < trainerCount; j++)
+            {
+                for (int i = 0; i < trainers[j].numClients; ++i) {
+                    if (trainers[j].clients[i].clientID == clientId && trainers[j].clients[i].numWorkouts < MAX_WORKOUTS) {
+                        Workout& w = trainers[j].clients[i].workoutPlans[trainers[j].clients[i].numWorkouts];
+                        w.workoutID = sqlite3_column_int(stmt, 0);
+                        w.workoutName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+                        string exercisesStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+                        w.numExercises = sqlite3_column_int(stmt, 3);
+                        w.duration = sqlite3_column_int(stmt, 4);
+                        w.sets = sqlite3_column_int(stmt, 5);
+                        w.reps = sqlite3_column_int(stmt, 6);
+                        w.istrue = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
 
-                    stringstream ss(exercisesStr);
-                    string temp;
-                    int exCount = 0;
-                    while (getline(ss, temp, ',') && exCount < MAX_EXERCISES) {
-                        w.exercises[exCount++] = temp;
+                        stringstream ss(exercisesStr);
+                        string temp;
+                        int exCount = 0;
+                        while (getline(ss, temp, ',') && exCount < MAX_EXERCISES) {
+                            w.exercises[exCount++] = temp;
+                        }
+                        w.numExercises = exCount;
+
+                        trainers[j].clients[i].numWorkouts++;
+                        break;
                     }
-                    w.numExercises = exCount;
-
-                    clients[i].numWorkouts++;
-                    break;
                 }
+
             }
         }
     }
@@ -306,6 +315,7 @@ void loadClientsOfTrainers(sqlite3* db) {
                     break;
                 }
             }
+            clientCount++;
         }
     }
     sqlite3_finalize(stmt);
@@ -318,18 +328,22 @@ void loadMeasurements(sqlite3* db) {
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             int clientId = sqlite3_column_int(stmt, 1);
-            for (int i = 0; i < clientCount; ++i) {
-                if (clients[i].clientID == clientId && clients[i].numMeasurements < MAX_MEASUREMENTS) {
-                    Measurement& m = clients[i].measurements[clients[i].numMeasurements];
-                    m.weight = sqlite3_column_double(stmt, 2);
-                    m.height = sqlite3_column_double(stmt, 3);
-                    const char* dateStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
-                    if (dateStr && strlen(dateStr) == 10) {
-                        sscanf(dateStr, "%02d-%02d-%04d", &m.date.Day, &m.date.Month, &m.date.Year);
+            for (int j = 0; j < trainerCount; j++)
+            {
+                for (int i = 0; i < trainers[j].numClients; ++i) {
+                    if (trainers[j].clients[i].clientID == clientId && trainers[j].clients[i].numMeasurements < MAX_MEASUREMENTS) {
+                        Measurement& m = trainers[j].clients[i].measurements[trainers[j].clients[i].numMeasurements];
+                        m.weight = sqlite3_column_double(stmt, 2);
+                        m.height = sqlite3_column_double(stmt, 3);
+                        const char* dateStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+                        if (dateStr && strlen(dateStr) == 10) {
+                            sscanf(dateStr, "%02d-%02d-%04d", &m.date.Day, &m.date.Month, &m.date.Year);
+                        }
+                        trainers[j].clients[i].numMeasurements++;
+                        break;
                     }
-                    clients[i].numMeasurements++;
-                    break;
                 }
+
             }
         }
     }
@@ -367,11 +381,11 @@ void loadPredefinedWorkouts(sqlite3* db) {
 
 void loadAllData(sqlite3* db) {
     loadTrainers(db);
-    loadClients(db);
+    //loadClients(db);
+    loadClientsOfTrainers(db);
     loadWorkouts(db);
     loadMeasurements(db);
     loadPredefinedWorkouts(db);
-    //loadClientsOfTrainers(db);
 }
 
 void insertTrainer(sqlite3* db, Trainer t) {
@@ -568,7 +582,7 @@ void Veiw_Workout(Client& client) {
             for (int j = 0; j < client.workoutPlans[i].numExercises; j++) {
                 cout << "- " << client.workoutPlans[i].exercises[j] << endl;
             }
-            cout << "Sets: " << client.workoutPlans[i].sets << " | Reps: " << client.workoutPlans[i].reps << "Status: " << client.workoutPlans[i].istrue << "\n\n";
+            cout << "Sets: " << client.workoutPlans[i].sets << " | Reps: " << client.workoutPlans[i].reps << " Status: " << client.workoutPlans[i].istrue << "\n\n";
         }
     }
 }
@@ -584,13 +598,13 @@ void Log_Workout(Client& client) {
         for (int i = 0; i < client.numWorkouts; i++)
         {
 
-            cout << i + 1 << "- " << client.workoutPlans[i].workoutName << client.workoutPlans[i].istrue << endl;
+            cout << i + 1 << "- " << client.workoutPlans[i].workoutName << "Status: " << client.workoutPlans[i].istrue << endl;
         }
         bool istrue = 0;
         int log;
         do
         {
-            cout << "Enter workout name you completed: ";
+            cout << "Enter workout number you completed: ";
             cin >> log;
             if (cin.fail()) {
                 cin.clear();
@@ -598,7 +612,7 @@ void Log_Workout(Client& client) {
                 cout << "Invalid input. Please enter a number.\n";
                 continue;
             }
-            if (log<1 && log >client.numWorkouts)
+            if (log<1 || log >client.numWorkouts)
             {
                 cout << "Ivalid choice.\n";
                 continue;
@@ -616,6 +630,7 @@ void Log_Workout(Client& client) {
         cout << "Workout Logged Successfully!\n";
         updateClientProgressLogs(db, client.clientID, joinLogs(client.progressLogs, client.numLogs));
         updatetheworkoutstatus(db, client.workoutPlans[log - 1].workoutID);
+        client.workoutPlans[log - 1].istrue = "Done";
     }
 }
 
@@ -778,18 +793,24 @@ void ClientProgress(Client& client) {
 
     }
 }
+bool checkclientid(Trainer& trainer,int selectedID) {
+    for (int i = 0; i < trainer.numClients; i++)
+    {
+        if (trainer.clients[i].clientID == selectedID) return true;
+    }
+    return false;
+}
 
 int displayClientsAndSelect(Trainer& trainer) {
     cout << "=== CLIENT LIST ===\n";
-    for (int i = 0; i < clientCount; i++) {
-        if (clients->trainerId == trainer.trainerID)
-            cout << "ID: " << clients[i].clientID
-            << " | Name: " << clients[i].name
-            << " | Workouts: " << clients[i].numWorkouts << "\n";
+    for (int i = 0; i < trainer.numClients; i++) {
+            cout << "ID: " << trainer.clients[i].clientID
+            << " | Name: " << trainer.clients[i].name
+            << " | Workouts: " << trainer.clients[i].numWorkouts << "\n";
     }
     int selectedID;
     cout << "Enter client ID: ";
-    while (!(cin >> selectedID) || (selectedID <= 0 && selectedID > clientCount)) {
+    while (!(cin >> selectedID) || !(checkclientid(trainer,selectedID))) {
         cout << "Invalid input. Enter coorect ID: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -797,7 +818,7 @@ int displayClientsAndSelect(Trainer& trainer) {
     return selectedID;
 }
 
-void display_workouts() {
+void display_predefeined_workouts() {
     if (numPredefinedWorkouts == 0) {
         cout << "No predefined workouts available.\n";
         return;
@@ -813,7 +834,7 @@ void display_workouts() {
 }
 
 void assign_workout(Client& client) {
-    display_workouts();
+    display_predefeined_workouts();
     if (numPredefinedWorkouts == 0) return;
 
     int numToAssign;
@@ -829,6 +850,7 @@ void assign_workout(Client& client) {
         if (choice >= 0 && choice < numPredefinedWorkouts) {
             if (client.numWorkouts < MAX_WORKOUTS) {
                 client.workoutPlans[client.numWorkouts] = predefineWorkout[choice];
+                client.workoutPlans[client.numWorkouts].istrue = "Pending";
                 client.numWorkouts++;
                 insertWorkout(db, predefineWorkout[choice], client.clientID);
                 cout << "Workout '" << predefineWorkout[choice].workoutName << "' assigned successfully!\n";
@@ -918,13 +940,9 @@ void TrainerMenu(Trainer& trainer) {
         switch (choice) {
         case 1: {
             cout << "\n--------- Client Information -----------\n";
-            for (int i = 0; i < clientCount; ++i) {
-                if (trainer.trainerID == clients[i].trainerId)
-                {
+            for (int i = 0; i < trainer.numClients; ++i) {
                     cout << i + 1 << ". ";
-                    displayClientData(clients[i]);
-
-                }
+                    displayClientData(trainer.clients[i]);
             }
             break;
         }
@@ -939,8 +957,8 @@ void TrainerMenu(Trainer& trainer) {
             if (subChoice == 1 || subChoice == 3) {
                 int clientID = displayClientsAndSelect(trainer);
                 int clientIndex = -1;
-                for (int i = 0; i < clientCount; i++) {
-                    if (clients[i].clientID == clientID) {
+                for (int i = 0; i < trainer.numClients; i++) {
+                    if (trainer.clients[i].clientID == clientID) {
                         clientIndex = i;
                         break;
                     }
@@ -949,7 +967,7 @@ void TrainerMenu(Trainer& trainer) {
                     cout << "Client not found!\n";
                     break;
                 }
-                Client& selectedClient = clients[clientIndex];
+                Client& selectedClient = trainer.clients[clientIndex];
                 if (subChoice == 1) {
                     assign_workout(selectedClient);
                 }
@@ -976,9 +994,14 @@ void TrainerMenu(Trainer& trainer) {
         case 3: {
             cout << "\n---------- Select a client to view progress ---------\n";
             int clientID = displayClientsAndSelect(trainer);
-            if (clientID >= 1 && clientID <= clientCount) {
-                ClientProgress(clients[clientID - 1]);
-                // healthsummary(trainer.clients[selectedClient - 1]);
+            if (checkclientid(trainer,clientID)) {
+                for (int i = 0; i < trainer.numClients; i++)
+                {
+                    if (trainer.clients[i].clientID==clientID)
+                    {
+                        ClientProgress(trainer.clients[i]);
+                    }
+                }
             }
             else {
                 cout << "Invalid client selection.\n";
@@ -1056,10 +1079,10 @@ void registerTrainer() {
 }
 
 void registerClient() {
-    if (clientCount >= MAX_CLIENTS) {
+    /*if (clientCount >= MAX_CLIENTS) {
         cout << "Maximum clients reached. Cannot register new client.\n";
         return;
-    }
+    }*/
 
     Client newClient;
     cout << "\nClient Registration\n";
@@ -1124,12 +1147,13 @@ void registerClient() {
 
     newClient.trainerId = chooseTrainer();
 
-    if (clientCount < MAX_CLIENTS) {
+    if (trainers[newClient.trainerId-1].numClients < MAX_CLIENTS) {
         newClient.clientID = clientCount + 1;
-        clients[clientCount] = newClient;
+        trainers[newClient.trainerId-1].clients[trainers[newClient.trainerId-1].numClients] = newClient;
         insertClient(db, newClient);
-        clientCount++;
+        trainers[newClient.trainerId - 1].numClients++;
         cout << "Client account created! Your ID is: " << newClient.clientID << "\n";
+        clientCount++;
     }
     else {
         cout << "Client registration failed. System at capacity.\n";
@@ -1157,29 +1181,26 @@ void registerUser() {
         registerClient();
 }
 
-int login() {
-    string username, password;
-    cout << "Username: ";
-    cin >> username;
-    cout << "Password: ";
-    cin >> password;
-
-    for (int i = 0; i < clientCount; i++) {
-        if (clients[i].username == username && clients[i].password == password) {
-            usertype = "client";
-            return i;
+Client* clientLogin(string username, string password) {
+    for (int j = 0; j < trainerCount; j++)
+    {
+        for (int i = 0; i < trainers->numClients; i++) {
+            if (trainers[j].clients[i].username == username && trainers[j].clients[i].password == password) {
+                return &trainers[j].clients[i];
+            }
         }
-    }
 
+    }
+    return nullptr;
+}
+
+Trainer* trainerLogin(string username, string password) {
     for (int i = 0; i < trainerCount; i++) {
         if (trainers[i].username == username && trainers[i].password == password) {
-            usertype = "trainer";
-            return i;
+            return &trainers[i];
         }
     }
-
-    cout << "Invalid username or password.\n";
-    return -1;
+    return nullptr;
 }
 
 // ================== MAIN FUNCTION ==================
@@ -1189,10 +1210,12 @@ int main() {
         return 1;
     }
     loadAllData(db);
-
     int mainChoice;
     do {
         clearScreen();
+        cout << trainers[0].clients[0].measurements->weight << endl;
+        cout << trainers[3].clients[7].numWorkouts << endl;
+
         cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
             << "1. Login\n"
             << "2. Register\n"
@@ -1210,16 +1233,28 @@ int main() {
         switch (mainChoice) {
         case 1: {
             clearScreen();
-            int userIndex = login();
-            if (userIndex != -1) {
-                if (usertype == "client") {
-                    client_menue(clients[userIndex]);
+            string username, password;
+            cout << "Username: ";
+            cin >> username;
+            cout << "Password: ";
+            cin >> password;
+
+            if (clientLogin(username,password)==nullptr)
+            {
+                if (trainerLogin(username,password)==nullptr)
+                {
+                    cout << "Invalde username or password.\n";
+                    break;
                 }
-                else {
-                    TrainerMenu(trainers[userIndex]);
+                else
+                {
+                    TrainerMenu(*trainerLogin(username, password));
                 }
             }
-            pressEnter();
+            else
+            {
+                client_menue(*clientLogin(username, password));
+            }
             break;
         }
         case 2: {
