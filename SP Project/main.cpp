@@ -619,7 +619,7 @@ void Log_Workout(Client& client) {
             }
             else if (client.workoutPlans[log - 1].istrue == "Done") {
                 cout << "This Workout has been done before choose another one.\n";
-                continue;
+                return;
             }
             else
             {
