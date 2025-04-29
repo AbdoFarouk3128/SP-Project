@@ -17,6 +17,7 @@ const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;
 const int MAX_LOGS = 20;
 const int MAX_MEASUREMENTS = 20;
+const int MAX_USERNAME_ATTEMPTS = 5;
 #pragma endregion
 // ================== STRUCTURES ==================
 #pragma region Structres
@@ -44,9 +45,9 @@ struct Workout {
     string exercises[MAX_EXERCISES];
     int numExercises;
     int duration;
-    int sets;
-    int reps;
-    string istrue;
+    int sets; 
+    int reps;  
+    string istrue; // done / pending
 };
 
 
@@ -61,7 +62,7 @@ struct Client {
     Workout workoutPlans[MAX_WORKOUTS];
     int numWorkouts = 0;
     string progressLogs[MAX_LOGS];
-    int numLogs = 0;
+    int numLogs = 0; // number of workout done
     Measurement measurements[MAX_MEASUREMENTS];
     int numMeasurements = 0;
     int trainerId;
@@ -83,12 +84,11 @@ Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
 Workout predefineWorkout[MAX_WORKOUTS];
 int numPredefinedWorkouts = 0;
-const int MAX_USERNAME_ATTEMPTS = 5;
 sqlite3* db;
 string usertype;
 #pragma endregion
 // ================== FUNCTION DECLARATIONS ==================
-#pragma region Function Declatations
+#pragma region Function Declarations
 void clearScreen();
 void pressEnter();
 void clearInputBuffer();
@@ -133,7 +133,6 @@ void registerTrainer();
 void registerClient();
 Trainer* trainerLogin(string username, string password);
 Client* clientLogin(string username, string password);
-void display();
 void display_workouts();
 int displayClientsAndSelect();
 void assign_workout(Client& client);
@@ -157,7 +156,7 @@ void pressEnter() {
     cin.get();
 }
 
-string joinLogs(string logs[], int numLogs) {
+string joinLogs(string logs[], int numLogs) { // make logs to string to save in the database
     string result;
     for (int i = 0; i < numLogs; ++i) {
         result += logs[i];
@@ -167,18 +166,18 @@ string joinLogs(string logs[], int numLogs) {
     return result;
 }
 
-void clearInputBuffer() {
+void clearInputBuffer() { // error handling to int cin
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-string toLower(const string& str) {
+string toLower(const string& str) { 
     string lowerStr = str;
     transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
     return lowerStr;
 }
 
-bool isUsernameTaken(const string& username) {
+bool isUsernameTaken(const string& username) { 
     string lowerUsername = toLower(username);
     for (int i = 0; i < trainerCount; i++) {
         if (toLower(trainers[i].username) == lowerUsername) return true;
@@ -202,7 +201,7 @@ int splitLogs(string logsString, string logs[], int maxLogs) {
     return count;
 }
 
-string formatDate(Measurement::Date d) {
+string formatDate(Measurement::Date d) { // make to string to put it in database
     char buffer[11];
     snprintf(buffer, sizeof(buffer), "%02d-%02d-%04d", d.Day, d.Month, d.Year);
     return string(buffer);
@@ -210,7 +209,7 @@ string formatDate(Measurement::Date d) {
 #pragma endregion
 // ================== DATABASE FUNCTIONS ==================
 #pragma region Database Functions
-void loadTrainers(sqlite3* db) {
+void loadTrainers(sqlite3* db) { //load trainers in array
     trainerCount = 0;
     const char* query = "SELECT * FROM Trainers;";
     sqlite3_stmt* stmt;
@@ -227,8 +226,7 @@ void loadTrainers(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-
-void loadWorkouts(sqlite3* db) {
+void loadWorkouts(sqlite3* db) { // load workout to clients
     const char* query = "SELECT * FROM Workouts;";
     sqlite3_stmt* stmt;
 
@@ -268,7 +266,7 @@ void loadWorkouts(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-void loadClientsOfTrainers(sqlite3* db) {
+void loadClientsOfTrainers(sqlite3* db) { //load clients for trainers
     const char* query = "SELECT * FROM Clients;";
     sqlite3_stmt* stmt;
 
@@ -304,7 +302,7 @@ void loadClientsOfTrainers(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-void loadMeasurements(sqlite3* db) {
+void loadMeasurements(sqlite3* db) { // load measerments every client
     const char* query = "SELECT * FROM Measurements;";
     sqlite3_stmt* stmt;
 
@@ -333,7 +331,7 @@ void loadMeasurements(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-void loadPredefinedWorkouts(sqlite3* db) {
+void loadPredefinedWorkouts(sqlite3* db) { // load in the array
     const char* query = "SELECT * FROM PredefinedWorkouts;";
     sqlite3_stmt* stmt;
 
@@ -364,7 +362,6 @@ void loadPredefinedWorkouts(sqlite3* db) {
 
 void loadAllData(sqlite3* db) {
     loadTrainers(db);
-    //loadClients(db);
     loadClientsOfTrainers(db);
     loadWorkouts(db);
     loadMeasurements(db);
@@ -471,6 +468,7 @@ void updateClientProgressLogs(sqlite3* db, int clientId, const string& logsStr) 
     }
     sqlite3_finalize(stmt);
 }
+
 void updatetheworkoutstatus(sqlite3* db, int workoutid) {
     const char* query = "UPDATE Workouts SET isdone = ? WHERE workoutID = ?;";
     sqlite3_stmt* stmt;
@@ -482,8 +480,9 @@ void updatetheworkoutstatus(sqlite3* db, int workoutid) {
     }
     sqlite3_finalize(stmt);
 }
-
+#pragma endregion
 // ================== HEALTH CALCULATIONS ==================
+#pragma region Health Calcultaions
 double calculateBMR(Client& a) {
     int index = a.numMeasurements - 1;
 
@@ -556,6 +555,7 @@ void healthsummary(Client& client) {
 #pragma endregion
 // ================== CLIENT FEATURES ==================
 #pragma region Client Features
+
 void Veiw_Workout(Client& client) {
     if (client.numWorkouts == 0) {
         cout << "No workouts assigned Yet....\n";
@@ -582,7 +582,7 @@ void Log_Workout(Client& client) {
         for (int i = 0; i < client.numWorkouts; i++)
         {
 
-            cout << i + 1 << "- " << client.workoutPlans[i].workoutName << "Status: " << client.workoutPlans[i].istrue << endl;
+            cout << i + 1 << "- " << client.workoutPlans[i].workoutName << " Status: " << client.workoutPlans[i].istrue << endl;
         }
         bool istrue = 0;
         int log;
@@ -730,6 +730,12 @@ void client_menue(Client& client) {
             << "6. Logout\n"
             << "Enter Choice: ";
         cin >> choice;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number.\n";
+            continue;
+        }
         clearScreen();
         switch (choice) {
         case 1: Veiw_Workout(client); break;
@@ -778,6 +784,7 @@ void ClientProgress(Client& client) {
 
     }
 }
+
 bool checkclientid(Trainer& trainer,int selectedID) {
     for (int i = 0; i < trainer.numClients; i++)
     {
@@ -830,6 +837,12 @@ void assign_workout(Client& client) {
         int choice;
         cout << "Enter the number of the workout to assign (" << i + 1 << "/" << numToAssign << "): ";
         cin >> choice;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number.\n";
+            continue;
+        }
         choice--;
 
         if (choice >= 0 && choice < numPredefinedWorkouts) {
@@ -878,7 +891,13 @@ void createPredefinedWorkout() {
 
     for (int i = 0; i < newWorkout.numExercises; i++) {
         cout << "Exercise " << i + 1 << ": ";
+        cin.ignore();
         getline(cin, newWorkout.exercises[i]);
+        if (newWorkout.exercises[i].empty())
+        {
+            cout << "Exercise name can't be empty  please try again.\n";
+
+        }
     }
 
     cout << "Duration (minutes): ";
