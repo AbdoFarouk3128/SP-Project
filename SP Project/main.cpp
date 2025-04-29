@@ -388,7 +388,7 @@ void loadAllData(sqlite3* db) {
     loadPredefinedWorkouts(db);
 }
 
-void insertTrainer(sqlite3* db, Trainer t) {
+void insertTrainer(sqlite3* db, Trainer  t ) {
     const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
     sqlite3_stmt* stmt;
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
@@ -535,7 +535,7 @@ void calculateMacros(double tdee, Client& a) {
     a.measurements[a.numMeasurements - 1].macros.protein = (tdee * 0.3) / 4;
     a.measurements[a.numMeasurements - 1].macros.carbs = (tdee * 0.45) / 4;
     a.measurements[a.numMeasurements - 1].macros.fats = (tdee * 0.25) / 9;
-    cout << "\n--- YOUR MACRONUTRIENTS ---" << endl;
+    cout << "\n--- MACRONUTRIENTS ---" << endl;
     cout << "Protein (grams): " << a.measurements[a.numMeasurements - 1].macros.protein << endl;
     cout << "Carbohydrates (grams): " << a.measurements[a.numMeasurements - 1].macros.carbs << endl;
     cout << "Fats (grams): " << a.measurements[a.numMeasurements - 1].macros.fats << endl;
@@ -565,9 +565,9 @@ void healthsummary(Client& client) {
     string status = getBMICategory(bmi);
 
     cout << "------HEALTH SUMMARY------" << endl;
-    cout << "Your BMI(Body Mass Index) = " << bmi << " | Your Status is " << status << endl;
-    cout << "Your BMR(Basal Metabolic Rate) = " << bmr << endl;
-    cout << "Your TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
+    cout << " BMI(Body Mass Index) = " << bmi << " | Status is " << status << endl;
+    cout << " BMR(Basal Metabolic Rate) = " << bmr << endl;
+    cout << " TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
     calculateMacros(tdee, client);
 }
 
@@ -773,7 +773,7 @@ void ClientProgress(Client& client) {
     }
     else {
         for (int i = 0; i < client.numLogs; i++) {
-            cout << i + 1 << ". " << client.progressLogs[i] << endl;
+            cout << i + 1 << ". " << client.progressLogs[i] << "\n\n\n";
         }
     }
     if (client.numMeasurements == 0) {
@@ -787,7 +787,7 @@ void ClientProgress(Client& client) {
                 << client.measurements[i].date.Month << "/"
                 << client.measurements[i].date.Year
                 << " | Weight: " << client.measurements[i].weight << "kg"
-                << " | Height: " << client.measurements[i].height << "cm\n";
+                << " | Height: " << client.measurements[i].height << "cm\n\n\n";
         }
         healthsummary(client);
 
@@ -811,7 +811,7 @@ int displayClientsAndSelect(Trainer& trainer) {
     int selectedID;
     cout << "Enter client ID: ";
     while (!(cin >> selectedID) || !(checkclientid(trainer,selectedID))) {
-        cout << "Invalid input. Enter coorect ID: ";
+        cout << "Invalid input. Enter correct ID: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -873,9 +873,18 @@ void createPredefinedWorkout() {
         return;
     }
     Workout newWorkout;
-    cout << "Enter workout name: ";
-    cin.ignore();
-    getline(cin, newWorkout.workoutName);
+   
+    do {
+        cout << "Enter workout name: ";
+        cin.ignore();
+        getline(cin, newWorkout.workoutName);
+        if (newWorkout.workoutName.empty())
+        {
+            cout << "Workout name can't be empty  please try again.\n";
+        }
+       
+    } while (newWorkout.workoutName.empty());
+ 
 
     do {
         cout << "Enter number of exercises (max " << MAX_EXERCISES << "): ";
@@ -939,12 +948,20 @@ void TrainerMenu(Trainer& trainer) {
         clearScreen();
         switch (choice) {
         case 1: {
-            cout << "\n--------- Client Information -----------\n";
-            for (int i = 0; i < trainer.numClients; ++i) {
+            if (trainer.numClients == 0)
+            {
+                cout << "-----There is no information allowed now -----" << endl;
+                break;
+            }
+            else
+            {
+                cout << "\n--------- Client Information -----------\n";
+                for (int i = 0; i < trainer.numClients; ++i) {
                     cout << i + 1 << ". ";
                     displayClientData(trainer.clients[i]);
+                }
+                break;
             }
-            break;
         }
         case 2: {
             cout << "1. Assign Predefined Workout\n"
@@ -1022,7 +1039,7 @@ int  chooseTrainer() {  //CHOOSING TRAINER
         cout << trainers[i].trainerID << "-" << trainers[i].name << endl;
     }
     int id;
-    cout << "Enter Trainer ID: ";
+    cout << "Enter Trainer Number: ";
     while (!(cin >> id) || (id <= 0 || id > trainerCount)) {
         cout << "Invalid input. Choose Correct ID: ";
         cin.clear();
@@ -1213,9 +1230,7 @@ int main() {
     int mainChoice;
     do {
         clearScreen();
-        cout << trainers[0].clients[0].measurements->weight << endl;
-        cout << trainers[3].clients[7].numWorkouts << endl;
-
+        
         cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
             << "1. Login\n"
             << "2. Register\n"
