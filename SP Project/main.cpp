@@ -1043,12 +1043,16 @@ void registerTrainer() {
 
     // Dynamically allocate the Trainer object
     Trainer* newTrainer = new Trainer();
-
     cout << "\nTrainer Registration\n";
-    cout << "Enter Name: ";
-    cin.ignore();
-    getline(cin, newTrainer->name);
-
+    do {
+        cout << "Enter Name: ";
+        cin.ignore();
+        getline(cin, newTrainer->name);
+        if (newTrainer->name.empty())
+        {
+            cout << "Trainer's  name can't be empty  please try again.\n";
+        }
+    } while (newTrainer->name.empty());
     int attempts = 0;
     bool usernameTaken;
     do {
@@ -1058,8 +1062,18 @@ void registerTrainer() {
             return;
         }
 
-        cout << "Choose a username: ";
-        getline(cin, newTrainer->username);
+        
+      
+        do {
+            cout << "choose username: ";
+           
+            getline(cin, newTrainer->username);
+            if (newTrainer->username.empty())
+            {
+                cout << "Trainer's  username can't be empty  please try again.\n";
+                
+            }
+        } while (newTrainer->username.empty());
 
         usernameTaken = isUsernameTaken(newTrainer->username);
         if (usernameTaken) {
@@ -1067,10 +1081,18 @@ void registerTrainer() {
             attempts++;
         }
     } while (usernameTaken);
-
-    cout << "Choose a password: ";
-    getline(cin, newTrainer->password);
-
+    
+    do {
+        cout << "choose password: ";
+        
+        getline(cin, newTrainer->password);
+        if (newTrainer->password.empty())
+        {
+            cout << "Trainer's  password can't be empty  please try again.\n";
+        }
+    } while (newTrainer->password.empty());
+ 
+  
     newTrainer->trainerID = trainerCount + 1;
     trainers[trainerCount] = *newTrainer;  // Copy to the array
     insertTrainer(db, *newTrainer);
@@ -1089,9 +1111,19 @@ void registerClient() {
 
     Client newClient;
     cout << "\nClient Registration\n";
-    cout << "Enter Name: ";
-    cin.ignore();
-    getline(cin, newClient.name);
+    do {
+        cout << "Enter Name: ";
+        cin.ignore ();
+       
+        getline(cin, newClient.name);
+        if (newClient.name.empty())
+        {
+            cout << "Clients's  Name can't be empty  please try again.\n";
+        }
+    } while (newClient.name.empty());
+
+
+ 
 
     int attempts = 0;
     bool usernameTaken;
@@ -1100,9 +1132,17 @@ void registerClient() {
             cout << "Too many failed attempts. Registration cancelled.\n";
             return;
         }
+        do {
+            cout << "Choose Username: ";
+           
+            getline(cin, newClient.username);
+            if (newClient.username.empty())
+            {
+                cout << "Clients's  Username can't be empty  please try again.\n";
+            }
+        } while (newClient.username.empty());
 
-        cout << "Choose a username: ";
-        getline(cin, newClient.username);
+       
 
         usernameTaken = isUsernameTaken(newClient.username);
         if (usernameTaken) {
@@ -1110,10 +1150,18 @@ void registerClient() {
             attempts++;
         }
     } while (usernameTaken);
+    do {
+        cout << "Choose password: ";
+        
+        getline (cin, newClient.password);
+       
+        if (newClient.password.empty())
+        {
+            cout << "Clients's  password can't be empty  please try again.\n";
+        }
+    } while (newClient.password.empty());
 
-    cout << "Choose a password: ";
-    getline(cin, newClient.password);
-
+   
 
     cout << "Enter age: ";
     while (!(cin >> newClient.age) || newClient.age <= 0) {
