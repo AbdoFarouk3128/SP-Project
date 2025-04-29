@@ -222,28 +222,6 @@ void loadTrainers(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-//void loadClients(sqlite3* db) {
-//    clientCount = 0;
-//    const char* query = "SELECT * FROM Clients;";
-//    sqlite3_stmt* stmt;
-//
-//    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-//        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
-//            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
-//            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-//            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-//            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-//            clients[clientCount].age = sqlite3_column_int(stmt, 4);
-//            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
-//            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
-//            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
-//            if (logsStr)
-//                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
-//            clientCount++;
-//        }
-//    }
-//    sqlite3_finalize(stmt);
-//}
 
 void loadWorkouts(sqlite3* db) {
     const char* query = "SELECT * FROM Workouts;";
@@ -1213,8 +1191,6 @@ int main() {
     int mainChoice;
     do {
         clearScreen();
-        cout << trainers[0].clients[0].measurements->weight << endl;
-        cout << trainers[3].clients[7].numWorkouts << endl;
 
         cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
             << "1. Login\n"
