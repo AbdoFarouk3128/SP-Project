@@ -36,6 +36,7 @@
 --     duration INTEGER,
 --     sets INTEGER,
 --     reps INTEGER,
+--     isdone text,
 --     clientId INTEGER,
 --     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 -- );
@@ -48,9 +49,11 @@
 --     password TEXT NOT NULL,
 --     age INTEGER NOT NULL,
 --     gender TEXT NOT NULL,
---     activityLevel TEXT NOT NULL
+--     activityLevel TEXT NOT NULL,
+--     progressLogs TEXT,
+--     trainerId INTEGER,
+--     FOREIGN KEY (trainerId) REFERENCES Trainers(trainerId)
 -- );
--- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 
 -- DROP TABLE IF EXISTS Measurements;
 -- CREATE TABLE Measurements(
@@ -61,9 +64,12 @@
 --     date TEXT,  -- now a string
 --     FOREIGN KEY (clientId) REFERENCES Clients(clientId)
 -- );
-
+-- SELECT * from Clients where trainerId =4;
+-- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
+-- UPDATE Clients set progressLogs = NULL where clientId=51;
 
+-- DELETE FROM Clients WHERE clientID = 101;
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),
 -- (2, 74.0, 178.0,2),
@@ -93,22 +99,57 @@
 
 
 
--- INSERT INTO Clients (name, username, password, age, gender, activityLevel) VALUES
--- ('Yara Adel', 'yara', 'yara123', 27, 'Female', 'Light'),
--- ('Adham Samir', 'adham', 'adham123', 32, 'Male', 'Moderate'),
--- ('Noha Karim', 'noha', 'noha123', 28, 'Female', 'Sedentary'),
--- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'Male', 'Active'),
--- ('Rana Ali', 'rana', 'rana123', 26, 'Female', 'Moderate'),
--- ('Emad Essam', 'emad', 'emad123', 33, 'Male', 'VeryActive'),
--- ('Faten Wael', 'faten', 'faten123', 30, 'Female', 'Light'),
--- ('Sherif Adel', 'sherif', 'sherif123', 29, 'Male', 'Light'),
--- ('Mona Samir', 'mona', 'mona123', 27, 'Female', 'Moderate'),
--- ('Hossam Karim', 'hossam', 'hossam123', 32, 'Male', 'Active'),
--- ('Dina Mohamed', 'dina', 'dina123', 28, 'Female', 'Sedentary'),
--- ('Karim Ali', 'karim', 'karim123', 31, 'Male', 'Moderate'),
--- ('Yasmine Essam', 'yasmine', 'yasmine123', 25, 'Female', 'Light'),
--- ('Amir Wael', 'amir', 'amir123', 34, 'Male', 'Active'),
--- ('Heba Adel', 'heba', 'heba123', 30, 'Female', 'Moderate');
+-- INSERT OR IGNORE INTO Clients (name, username, password, age, gender, activityLevel, trainerId) VALUES
+-- ('Yara Adel', 'yara', 'yara123', 27, 'Female', 'Light', 1),
+-- ('Adham Samir', 'adham', 'adham123', 32, 'Male', 'Moderate', 2),
+-- ('Noha Karim', 'noha', 'noha123', 28, 'Female', 'Sedentary', 3),
+-- ('Ziad Mohamed', 'ziad', 'ziad123', 31, 'Male', 'Active', 4),
+-- ('Rana Ali', 'rana', 'rana123', 26, 'Female', 'Moderate', 5),
+-- ('Emad Essam', 'emad', 'emad123', 33, 'Male', 'VeryActive', 6),
+-- ('Faten Wael', 'faten', 'faten123', 30, 'Female', 'Light', 7),
+-- ('Sherif Adel', 'sherif', 'sherif123', 29, 'Male', 'Light', 1),
+-- ('Mona Samir', 'mona', 'mona123', 27, 'Female', 'Moderate', 2),
+-- ('Hossam Karim', 'hossam', 'hossam123', 32, 'Male', 'Active', 3),
+-- ('Dina Mohamed', 'dina', 'dina123', 28, 'Female', 'Sedentary', 4),
+-- ('Karim Ali', 'karim', 'karim123', 31, 'Male', 'Moderate', 5),
+-- ('Yasmine Essam', 'yasmine', 'yasmine123', 25, 'Female', 'Light', 6),
+-- ('Amir Wael', 'amir', 'amir123', 34, 'Male', 'Active', 7),
+-- ('Heba Adel', 'heba', 'heba123', 30, 'Female', 'Moderate', 1),
+-- ('Omar Khaled', 'omar', 'omar123', 28, 'Male', 'Active', 2),
+-- ('Layla Mahmoud', 'layla', 'layla123', 26, 'Female', 'Moderate', 3),
+-- ('Tarek Nabil', 'tarek', 'tarek123', 35, 'Male', 'VeryActive', 4),
+-- ('Farida Samy', 'farida', 'farida123', 29, 'Female', 'Light', 5),
+-- ('Waleed Hassan', 'waleed', 'waleed123', 31, 'Male', 'Active', 6),
+-- ('Salma Reda', 'salma', 'salma123', 27, 'Female', 'Moderate', 7),
+-- ('Kareem Fouad', 'kareem', 'kareem123', 33, 'Male', 'Sedentary', 1),
+-- ('Aya Ashraf', 'aya', 'aya123', 24, 'Female', 'Light', 2),
+-- ('Bassem Adel', 'bassem', 'bassem123', 30, 'Male', 'Active', 3),
+-- ('Hanan Tamer', 'hanan', 'hanan123', 28, 'Female', 'Moderate', 4),
+-- ('Khaled Sami', 'khaled', 'khaled123', 36, 'Male', 'VeryActive', 5),
+-- ('Nadia Wael', 'nadia', 'nadia123', 29, 'Female', 'Light', 6),
+-- ('Samir Karam', 'samir', 'samir123', 32, 'Male', 'Active', 7),
+-- ('Dalia Nasser', 'dalia', 'dalia123', 25, 'Female', 'Moderate', 1),
+-- ('Fadi Hani', 'fadi', 'fadi123', 31, 'Male', 'Sedentary', 2),
+-- ('Rania Said', 'rania', 'rania123', 27, 'Female', 'Light', 3),
+-- ('Hisham Kamal', 'hisham', 'hisham123', 34, 'Male', 'Active', 4),
+-- ('Mai Tarek', 'mai', 'mai123', 26, 'Female', 'Moderate', 5),
+-- ('Adel Samy', 'adel', 'adel123', 37, 'Male', 'VeryActive', 6),
+-- ('Soha Gamal', 'soha', 'soha123', 28, 'Female', 'Light', 7),
+-- ('Youssef Fawzy', 'youssef', 'youssef123', 30, 'Male', 'Active', 1),
+-- ('Hala Essam', 'hala', 'hala123', 29, 'Female', 'Moderate', 2),
+-- ('Tamer Adel', 'tamer', 'tamer123', 33, 'Male', 'Sedentary', 3),
+-- ('Nermine Samir', 'nermine', 'nermine123', 27, 'Female', 'Light', 4),
+-- ('Wael Karim', 'wael', 'wael123', 35, 'Male', 'Active', 5),
+-- ('Mona Hani', 'monah', 'monah123', 31, 'Female', 'Moderate', 6),
+-- ('Ashraf Nabil', 'ashraf', 'ashraf123', 32, 'Male', 'VeryActive', 7),
+-- ('Inas Mohamed', 'inas', 'inas123', 28, 'Female', 'Light', 1),
+-- ('Hazem Ali', 'hazem', 'hazem123', 30, 'Male', 'Active', 2),
+-- ('Manal Wael', 'manal', 'manal123', 26, 'Female', 'Moderate', 3),
+-- ('Fares Samy', 'fares', 'fares123', 34, 'Male', 'Sedentary', 4),
+-- ('Yasmin Reda', 'yasmin', 'yasmin123', 29, 'Female', 'Light', 5),
+-- ('Hamdi Karam', 'hamdi', 'hamdi123', 31, 'Male', 'Active', 6),
+-- ('Samar Adel', 'samar', 'samar123', 27, 'Female', 'Moderate', 7),
+-- ('Ramy Farouk', 'ramy', 'ramy123', 29, 'Male', 'Active', 1);
 
 
 

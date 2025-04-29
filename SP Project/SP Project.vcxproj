@@ -142,6 +142,11 @@
     <None Include="database.db" />
     <None Include="query.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FristForm.resx">
+      <DependentUpon>FristForm.h</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
