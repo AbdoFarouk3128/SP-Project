@@ -10,14 +10,16 @@
 using namespace std;
 
 // ================== CONSTANTS ==================
+#pragma region Constants
 const int MAX_CLIENTS = 100;
 const int MAX_TRAINERS = 20;
 const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;
 const int MAX_LOGS = 20;
 const int MAX_MEASUREMENTS = 20;
-
+#pragma endregion
 // ================== STRUCTURES ==================
+#pragma region Structres
 struct Measurement {
     float weight;
     float height;
@@ -73,9 +75,9 @@ struct Trainer {
     Client clients[MAX_CLIENTS];
     int numClients = 0;
 };
-
+#pragma endregion
 // ================== GLOBAL DATA ==================
-//Client clients[MAX_CLIENTS];
+#pragma region Global Data
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
@@ -84,8 +86,9 @@ int numPredefinedWorkouts = 0;
 const int MAX_USERNAME_ATTEMPTS = 5;
 sqlite3* db;
 string usertype;
-
+#pragma endregion
 // ================== FUNCTION DECLARATIONS ==================
+#pragma region Function Declatations
 void clearScreen();
 void pressEnter();
 void clearInputBuffer();
@@ -137,8 +140,9 @@ void assign_workout(Client& client);
 void createPredefinedWorkout();
 Workout createCustomWorkout();
 void display_workouts_to_client();
-
+#pragma endregion
 // ================== UTILITY FUNCTIONS ==================
+#pragma region UTILITY FUNCTIONS
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -203,8 +207,9 @@ string formatDate(Measurement::Date d) {
     snprintf(buffer, sizeof(buffer), "%02d-%02d-%04d", d.Day, d.Month, d.Year);
     return string(buffer);
 }
-
+#pragma endregion
 // ================== DATABASE FUNCTIONS ==================
+#pragma region Database Functions
 void loadTrainers(sqlite3* db) {
     trainerCount = 0;
     const char* query = "SELECT * FROM Trainers;";
@@ -222,28 +227,6 @@ void loadTrainers(sqlite3* db) {
     sqlite3_finalize(stmt);
 }
 
-//void loadClients(sqlite3* db) {
-//    clientCount = 0;
-//    const char* query = "SELECT * FROM Clients;";
-//    sqlite3_stmt* stmt;
-//
-//    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-//        while (sqlite3_step(stmt) == SQLITE_ROW && clientCount < MAX_CLIENTS) {
-//            clients[clientCount].clientID = sqlite3_column_int(stmt, 0);
-//            clients[clientCount].name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-//            clients[clientCount].username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-//            clients[clientCount].password = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
-//            clients[clientCount].age = sqlite3_column_int(stmt, 4);
-//            clients[clientCount].gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
-//            clients[clientCount].activityLevel = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 6));
-//            const char* logsStr = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
-//            if (logsStr)
-//                clients[clientCount].numLogs = splitLogs(logsStr, clients[clientCount].progressLogs, MAX_LOGS);
-//            clientCount++;
-//        }
-//    }
-//    sqlite3_finalize(stmt);
-//}
 
 void loadWorkouts(sqlite3* db) {
     const char* query = "SELECT * FROM Workouts;";
@@ -570,8 +553,9 @@ void healthsummary(Client& client) {
     cout << " TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
     calculateMacros(tdee, client);
 }
-
+#pragma endregion
 // ================== CLIENT FEATURES ==================
+#pragma region Client Features
 void Veiw_Workout(Client& client) {
     if (client.numWorkouts == 0) {
         cout << "No workouts assigned Yet....\n";
@@ -759,8 +743,9 @@ void client_menue(Client& client) {
         if (choice != 6) pressEnter();
     } while (choice != 6);
 }
-
+#pragma endregion
 // ================== TRAINER FEATURES ==================
+#pragma region Trainer Features
 void displayClientData(Client& c) {
     cout << "Full Name: " << c.name << " | Age: " << c.age << " | Gender: " << c.gender
         << " | Activity Level: " << c.activityLevel << " | numbers of workouts: " << c.numWorkouts << endl;
@@ -1031,8 +1016,9 @@ void TrainerMenu(Trainer& trainer) {
         if (choice != 4) pressEnter();
     } while (choice != 4);
 }
-
+#pragma endregion
 // ================== AUTHENTICATION ==================
+#pragma region Authentication 
 int  chooseTrainer() {  //CHOOSING TRAINER
     cout << "Choose your Trainer: " << endl;
     for (int i = 0; i < trainerCount; i++) {
@@ -1219,7 +1205,7 @@ Trainer* trainerLogin(string username, string password) {
     }
     return nullptr;
 }
-
+#pragma endregion
 // ================== MAIN FUNCTION ==================
 int main() {
     if (sqlite3_open("database.db", &db) != SQLITE_OK) {
@@ -1230,7 +1216,6 @@ int main() {
     int mainChoice;
     do {
         clearScreen();
-        
         cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
             << "1. Login\n"
             << "2. Register\n"
