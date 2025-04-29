@@ -10,14 +10,16 @@
 using namespace std;
 
 // ================== CONSTANTS ==================
+#pragma region Constants
 const int MAX_CLIENTS = 100;
 const int MAX_TRAINERS = 20;
 const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;
 const int MAX_LOGS = 20;
 const int MAX_MEASUREMENTS = 20;
-
+#pragma endregion
 // ================== STRUCTURES ==================
+#pragma region Structres
 struct Measurement {
     float weight;
     float height;
@@ -73,9 +75,9 @@ struct Trainer {
     Client clients[MAX_CLIENTS];
     int numClients = 0;
 };
-
+#pragma endregion
 // ================== GLOBAL DATA ==================
-//Client clients[MAX_CLIENTS];
+#pragma region Global Data
 int clientCount = 0;
 Trainer trainers[MAX_TRAINERS];
 int trainerCount = 0;
@@ -84,8 +86,9 @@ int numPredefinedWorkouts = 0;
 const int MAX_USERNAME_ATTEMPTS = 5;
 sqlite3* db;
 string usertype;
-
+#pragma endregion
 // ================== FUNCTION DECLARATIONS ==================
+#pragma region Function Declatations
 void clearScreen();
 void pressEnter();
 void clearInputBuffer();
@@ -137,8 +140,9 @@ void assign_workout(Client& client);
 void createPredefinedWorkout();
 Workout createCustomWorkout();
 void display_workouts_to_client();
-
+#pragma endregion
 // ================== UTILITY FUNCTIONS ==================
+#pragma region UTILITY FUNCTIONS
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
@@ -203,8 +207,9 @@ string formatDate(Measurement::Date d) {
     snprintf(buffer, sizeof(buffer), "%02d-%02d-%04d", d.Day, d.Month, d.Year);
     return string(buffer);
 }
-
+#pragma endregion
 // ================== DATABASE FUNCTIONS ==================
+#pragma region Database Functions
 void loadTrainers(sqlite3* db) {
     trainerCount = 0;
     const char* query = "SELECT * FROM Trainers;";
@@ -548,8 +553,9 @@ void healthsummary(Client& client) {
     cout << "Your TDEE(Total Daily Energy Expenditure) = " << tdee << endl;
     calculateMacros(tdee, client);
 }
-
+#pragma endregion
 // ================== CLIENT FEATURES ==================
+#pragma region Client Features
 void Veiw_Workout(Client& client) {
     if (client.numWorkouts == 0) {
         cout << "No workouts assigned Yet....\n";
@@ -737,8 +743,9 @@ void client_menue(Client& client) {
         if (choice != 6) pressEnter();
     } while (choice != 6);
 }
-
+#pragma endregion
 // ================== TRAINER FEATURES ==================
+#pragma region Trainer Features
 void displayClientData(Client& c) {
     cout << "Full Name: " << c.name << " | Age: " << c.age << " | Gender: " << c.gender
         << " | Activity Level: " << c.activityLevel << " | numbers of workouts: " << c.numWorkouts << endl;
@@ -992,8 +999,9 @@ void TrainerMenu(Trainer& trainer) {
         if (choice != 4) pressEnter();
     } while (choice != 4);
 }
-
+#pragma endregion
 // ================== AUTHENTICATION ==================
+#pragma region Authentication 
 int  chooseTrainer() {  //CHOOSING TRAINER
     cout << "Choose your Trainer: " << endl;
     for (int i = 0; i < trainerCount; i++) {
@@ -1180,7 +1188,7 @@ Trainer* trainerLogin(string username, string password) {
     }
     return nullptr;
 }
-
+#pragma endregion
 // ================== MAIN FUNCTION ==================
 int main() {
     if (sqlite3_open("database.db", &db) != SQLITE_OK) {
