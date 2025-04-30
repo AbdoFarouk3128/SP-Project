@@ -18,27 +18,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FristForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="minisystem.cpp">
+    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="WelcomeForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="loginform1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FristForm.h">
+    <ClInclude Include="sqlite3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sqlite3.h">
+    <ClInclude Include="WelcomeForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="loginform1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

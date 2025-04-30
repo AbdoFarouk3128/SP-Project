@@ -124,14 +124,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="minisystem.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core.h" />
     <ClInclude Include="sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
