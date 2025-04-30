@@ -5,6 +5,7 @@
 #include <sstream>
 #include <limits>
 #include <algorithm>
+#include <thread>
 #include "sqlite3.h"
 
 using namespace std;
@@ -1311,7 +1312,9 @@ int main() {
             {
                 if (trainerLogin(username,password)==nullptr)
                 {
+                   
                     cout << "Invalde username or password.\n";
+                    this_thread::sleep_for(std::chrono::seconds(2));
                     break;
                 }
                 else
