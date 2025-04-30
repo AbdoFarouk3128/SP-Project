@@ -1,3 +1,4 @@
+#include "core.h"
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -6,141 +7,12 @@
 #include <limits>
 #include <algorithm>
 #include "sqlite3.h"
+//#include"LoginForm.h"
+//#include"ClientForm.h"
+//#include"TrainerForm.h"
 
 using namespace std;
 
-
-// ================== CONSTANTS ==================
-#pragma region Constants
-const int MAX_CLIENTS = 100;
-const int MAX_TRAINERS = 20;
-const int MAX_WORKOUTS = 10;
-const int MAX_EXERCISES = 10;
-const int MAX_LOGS = 20;
-const int MAX_MEASUREMENTS = 20;
-const int MAX_USERNAME_ATTEMPTS = 5;
-#pragma endregion
-// ================== STRUCTURES ==================
-#pragma region Structres
-struct Measurement {
-    float weight;
-    float height;
-    struct Date {
-        int Day;
-        int Month;
-        int Year;
-    } date;
-    float bmi;
-    double bmr;
-    double tdee;
-    struct Macros {
-        double protein;
-        double carbs;
-        double fats;
-    } macros;
-};
-
-struct Workout {
-    int workoutID;
-    string workoutName;
-    string exercises[MAX_EXERCISES];
-    int numExercises;
-    int duration;
-    int sets; 
-    int reps;  
-    string istrue; // done / pending
-};
-
-
-struct Client {
-    int clientID;
-    string name;
-    string username;
-    string password;
-    int age;
-    string gender;
-    string activityLevel;
-    Workout workoutPlans[MAX_WORKOUTS];
-    int numWorkouts = 0;
-    string progressLogs[MAX_LOGS];
-    int numLogs = 0; // number of workout done
-    Measurement measurements[MAX_MEASUREMENTS];
-    int numMeasurements = 0;
-    int trainerId;
-};
-
-struct Trainer {
-    int trainerID;
-    string name;
-    string username;
-    string password;
-    Client clients[MAX_CLIENTS];
-    int numClients = 0;
-};
-#pragma endregion
-// ================== GLOBAL DATA ==================
-#pragma region Global Data
-int clientCount = 0;
-Trainer trainers[MAX_TRAINERS];
-int trainerCount = 0;
-Workout predefineWorkout[MAX_WORKOUTS];
-int numPredefinedWorkouts = 0;
-sqlite3* db;
-string usertype;
-#pragma endregion
-// ================== FUNCTION DECLARATIONS ==================
-#pragma region Function Declarations
-void clearScreen();
-void pressEnter();
-void clearInputBuffer();
-string toLower(const string& str);
-string joinLogs(string logs[], int numLogs);
-bool isUsernameTaken(const string& username);
-int splitLogs(string logsString, string logs[], int maxLogs);
-string formatDate(Measurement::Date d);
-void loadTrainers(sqlite3* db);
-void loadClients(sqlite3* db);
-void loadClientsOfTrainers(sqlite3* db);
-void loadWorkouts(sqlite3* db);
-void loadMeasurements(sqlite3* db);
-void loadPredefinedWorkouts(sqlite3* db);
-void loadAllData(sqlite3* db);
-void insertTrainer(sqlite3* db, Trainer t);
-void insertClient(sqlite3* db, Client c);
-void insertWorkout(sqlite3* db, Workout w, int clientId);
-void insertPredefinedWorkout(sqlite3* db, Workout w);
-void insertMeasurement(sqlite3* db, Measurement m, int clientId);
-void updateClientProgressLogs(sqlite3* db, int clientId, const string& logsStr);
-void updatetheworkoutstatus(sqlite3* db, int workoutid);
-double calculateBMR(Client& a);
-double getActivityMultiplier(Client& a);
-double calculateTDEE(double bmr, double activitylevel);
-void calculateMacros(double tdee, Client& a);
-double calculateBMI(Client& a);
-string getBMICategory(double bmi);
-void healthsummary(Client& client);
-void Veiw_Workout(Client& client);
-void Log_Workout(Client& client);
-void Log_Measurments(Client& client);
-void ViewMeasurements(Client& client);
-void client_menue(Client& client);
-void displayClientData(Client& c);
-void ClientProgress(Client& client);
-void TrainerMenu(Trainer& trainer);
-bool checkclientid(Trainer& trainer, int selectedID);
-int chooseTrainer();
-void registerUser();
-void registerTrainer();
-void registerClient();
-Trainer* trainerLogin(string username, string password);
-Client* clientLogin(string username, string password);
-void display_workouts();
-int displayClientsAndSelect();
-void assign_workout(Client& client);
-void createPredefinedWorkout();
-Workout createCustomWorkout();
-void display_workouts_to_client();
-#pragma endregion
 // ================== UTILITY FUNCTIONS ==================
 #pragma region UTILITY FUNCTIONS
 void clearScreen() {
@@ -167,18 +39,18 @@ string joinLogs(string logs[], int numLogs) { // make logs to string to save in 
     return result;
 }
 
-void clearInputBuffer() { // error handling to int cin
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
+//void clearInputBuffer() { // error handling to int cin
+//    cin.clear();
+//    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//}
 
-string toLower(const string& str) { 
+string toLower(const string& str) {
     string lowerStr = str;
     transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
     return lowerStr;
 }
 
-bool isUsernameTaken(const string& username) { 
+bool isUsernameTaken(const string& username) {
     string lowerUsername = toLower(username);
     for (int i = 0; i < trainerCount; i++) {
         if (toLower(trainers[i].username) == lowerUsername) return true;
@@ -369,7 +241,7 @@ void loadAllData(sqlite3* db) {
     loadPredefinedWorkouts(db);
 }
 
-void insertTrainer(sqlite3* db, Trainer  t ) {
+void insertTrainer(sqlite3* db, Trainer  t) {
     const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
     sqlite3_stmt* stmt;
     if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
@@ -593,7 +465,7 @@ void Log_Workout(Client& client) {
             cin >> log;
             if (cin.fail()) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Invalid input. Please enter a number.\n";
                 continue;
             }
@@ -651,7 +523,7 @@ void Log_Measurments(Client& client) {
             cin >> log_measurement.date.Day;
             if (cin.fail()) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Invalid input. Please enter a number.\n";
                 continue;
             }
@@ -665,7 +537,7 @@ void Log_Measurments(Client& client) {
             cin >> log_measurement.date.Month;
             if (cin.fail()) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Invalid input. Please enter a number.\n";
                 continue;
             }
@@ -680,7 +552,7 @@ void Log_Measurments(Client& client) {
             cin >> log_measurement.date.Year;
             if (cin.fail()) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Invalid input. Please enter a number.\n";
                 continue;
             }
@@ -733,7 +605,7 @@ void client_menue(Client& client) {
         cin >> choice;
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            //cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number.\n";
             continue;
         }
@@ -786,7 +658,7 @@ void ClientProgress(Client& client) {
     }
 }
 
-bool checkclientid(Trainer& trainer,int selectedID) {
+bool checkclientid(Trainer& trainer, int selectedID) {
     for (int i = 0; i < trainer.numClients; i++)
     {
         if (trainer.clients[i].clientID == selectedID) return true;
@@ -797,16 +669,16 @@ bool checkclientid(Trainer& trainer,int selectedID) {
 int displayClientsAndSelect(Trainer& trainer) {
     cout << "=== CLIENT LIST ===\n";
     for (int i = 0; i < trainer.numClients; i++) {
-            cout << "ID: " << trainer.clients[i].clientID
+        cout << "ID: " << trainer.clients[i].clientID
             << " | Name: " << trainer.clients[i].name
             << " | Workouts: " << trainer.clients[i].numWorkouts << "\n";
     }
     int selectedID;
     cout << "Enter client ID: ";
-    while (!(cin >> selectedID) || !(checkclientid(trainer,selectedID))) {
+    while (!(cin >> selectedID) || !(checkclientid(trainer, selectedID))) {
         cout << "Invalid input. Enter correct ID: ";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     return selectedID;
 }
@@ -840,7 +712,7 @@ void assign_workout(Client& client) {
         cin >> choice;
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            //cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number.\n";
             continue;
         }
@@ -872,7 +744,7 @@ void createPredefinedWorkout() {
         return;
     }
     Workout newWorkout;
-   
+
     do {
         cout << "Enter workout name: ";
         cin.ignore();
@@ -881,9 +753,9 @@ void createPredefinedWorkout() {
         {
             cout << "Workout name can't be empty  please try again.\n";
         }
-       
+
     } while (newWorkout.workoutName.empty());
- 
+
 
     do {
         cout << "Enter number of exercises (max " << MAX_EXERCISES << "): ";
@@ -1016,10 +888,10 @@ void TrainerMenu(Trainer& trainer) {
         case 3: {
             cout << "\n---------- Select a client to view progress ---------\n";
             int clientID = displayClientsAndSelect(trainer);
-            if (checkclientid(trainer,clientID)) {
+            if (checkclientid(trainer, clientID)) {
                 for (int i = 0; i < trainer.numClients; i++)
                 {
-                    if (trainer.clients[i].clientID==clientID)
+                    if (trainer.clients[i].clientID == clientID)
                     {
                         ClientProgress(trainer.clients[i]);
                     }
@@ -1049,7 +921,7 @@ int  chooseTrainer() {  //CHOOSING TRAINER
     while (!(cin >> id) || (id <= 0 || id > trainerCount)) {
         cout << "Invalid input. Choose Correct ID: ";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
     return id;
 
@@ -1082,16 +954,16 @@ void registerTrainer() {
             return;
         }
 
-        
-      
+
+
         do {
             cout << "choose username: ";
-           
+
             getline(cin, newTrainer->username);
             if (newTrainer->username.empty())
             {
                 cout << "Trainer's  username can't be empty  please try again.\n";
-                
+
             }
         } while (newTrainer->username.empty());
 
@@ -1101,18 +973,18 @@ void registerTrainer() {
             attempts++;
         }
     } while (usernameTaken);
-    
+
     do {
         cout << "choose password: ";
-        
+
         getline(cin, newTrainer->password);
         if (newTrainer->password.empty())
         {
             cout << "Trainer's  password can't be empty  please try again.\n";
         }
     } while (newTrainer->password.empty());
- 
-  
+
+
     newTrainer->trainerID = trainerCount + 1;
     trainers[trainerCount] = *newTrainer;  // Copy to the array
     insertTrainer(db, *newTrainer);
@@ -1133,8 +1005,8 @@ void registerClient() {
     cout << "\nClient Registration\n";
     do {
         cout << "Enter Name: ";
-        cin.ignore ();
-       
+        cin.ignore();
+
         getline(cin, newClient.name);
         if (newClient.name.empty())
         {
@@ -1143,7 +1015,7 @@ void registerClient() {
     } while (newClient.name.empty());
 
 
- 
+
 
     int attempts = 0;
     bool usernameTaken;
@@ -1154,7 +1026,7 @@ void registerClient() {
         }
         do {
             cout << "Choose Username: ";
-           
+
             getline(cin, newClient.username);
             if (newClient.username.empty())
             {
@@ -1162,7 +1034,7 @@ void registerClient() {
             }
         } while (newClient.username.empty());
 
-       
+
 
         usernameTaken = isUsernameTaken(newClient.username);
         if (usernameTaken) {
@@ -1172,22 +1044,22 @@ void registerClient() {
     } while (usernameTaken);
     do {
         cout << "Choose password: ";
-        
-        getline (cin, newClient.password);
-       
+
+        getline(cin, newClient.password);
+
         if (newClient.password.empty())
         {
             cout << "Clients's  password can't be empty  please try again.\n";
         }
     } while (newClient.password.empty());
 
-   
+
 
     cout << "Enter age: ";
     while (!(cin >> newClient.age) || newClient.age <= 0) {
         cout << "Invalid age. Enter a positive number: ";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     do {
@@ -1218,9 +1090,9 @@ void registerClient() {
 
     newClient.trainerId = chooseTrainer();
 
-    if (trainers[newClient.trainerId-1].numClients < MAX_CLIENTS) {
+    if (trainers[newClient.trainerId - 1].numClients < MAX_CLIENTS) {
         newClient.clientID = clientCount + 1;
-        trainers[newClient.trainerId-1].clients[trainers[newClient.trainerId-1].numClients] = newClient;
+        trainers[newClient.trainerId - 1].clients[trainers[newClient.trainerId - 1].numClients] = newClient;
         insertClient(db, newClient);
         trainers[newClient.trainerId - 1].numClients++;
         cout << "Client account created! Your ID is: " << newClient.clientID << "\n";
@@ -1242,7 +1114,7 @@ void registerUser() {
     while (!(cin >> userType) || (userType != 1 && userType != 2)) {
         cout << "Invalid input. Enter 1 for Trainer or 2 for Client: ";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
     if (userType == 1) { // Trainer registration
@@ -1275,67 +1147,4 @@ Trainer* trainerLogin(string username, string password) {
 }
 #pragma endregion
 // ================== MAIN FUNCTION ==================
-int main() {
-    if (sqlite3_open("database.db", &db) != SQLITE_OK) {
-        cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
-        return 1;
-    }
-    loadAllData(db);
-    int mainChoice;
-    do {
-        clearScreen();
-        cout << "\n=== FITNESS MANAGEMENT SYSTEM ===\n"
-            << "1. Login\n"
-            << "2. Register\n"
-            << "3. Exit\n"
-            << "Choice: ";
-        cin >> mainChoice;
 
-        if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input. Please enter a number.\n";
-            continue;
-        }
-
-        switch (mainChoice) {
-        case 1: {
-            clearScreen();
-            string username, password;
-            cout << "Username: ";
-            cin >> username;
-            cout << "Password: ";
-            cin >> password;
-
-            if (clientLogin(username,password)==nullptr)
-            {
-                if (trainerLogin(username,password)==nullptr)
-                {
-                    cout << "Invalde username or password.\n";
-                    break;
-                }
-                else
-                {
-                    TrainerMenu(*trainerLogin(username, password));
-                }
-            }
-            else
-            {
-                client_menue(*clientLogin(username, password));
-            }
-            break;
-        }
-        case 2: {
-            clearScreen();
-            registerUser();
-            pressEnter();
-            break;
-        }
-        case 3: cout << "Exiting...\n"; break;
-        default: cout << "Invalid choice.\n"; break;
-        }
-    } while (mainChoice != 3);
-
-    sqlite3_close(db);
-    return 0;
-}
