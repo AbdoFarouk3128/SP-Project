@@ -1032,7 +1032,15 @@ void TrainerMenu(Trainer& trainer) {
             break;
         }
         case 4: cout << "Logging out...\n"; break;
-        default: cout << "Invalid choice.\n"; break;
+        default:
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }cout << "Invalid choice.\n";
+            this_thread::sleep_for(std::chrono::seconds(3));
+            break;
         }
         if (choice != 4) pressEnter();
     } while (choice != 4);
@@ -1336,6 +1344,7 @@ int main() {
         }
         case 3: cout << "Exiting...\n"; break;
         default: cout << "Invalid choice.\n"; break;
+            this_thread::sleep_for(std::chrono::seconds(4));
         }
     } while (mainChoice != 3);
 
