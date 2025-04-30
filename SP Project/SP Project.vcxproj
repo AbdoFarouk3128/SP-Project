@@ -124,7 +124,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FristForm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minisystem.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -133,19 +132,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FristForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database.db" />
     <None Include="query.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="FristForm.resx">
-      <DependentUpon>FristForm.h</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
