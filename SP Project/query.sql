@@ -69,7 +69,9 @@
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
 -- UPDATE Clients set progressLogs = NULL where clientId=51;
 
--- DELETE FROM PredefinedWorkouts WHERE workoutID = 4;
+-- DELETE FROM Clients WHERE clientId = 54;
+-- DELETE FROM Clients WHERE clientId = 52;
+-- DELETE FROM Clients WHERE clientId = 53;
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),
 -- (2, 74.0, 178.0,2),
