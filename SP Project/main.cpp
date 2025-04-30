@@ -1274,7 +1274,7 @@ Trainer* trainerLogin(string username, string password) {
     return nullptr;
 }
 #pragma endregion
-// ================== MAIN FUNCTION ===========================
+// ================== MAIN FUNCTION ========================
 int main() {
     if (sqlite3_open("database.db", &db) != SQLITE_OK) {
         cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
