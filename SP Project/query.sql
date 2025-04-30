@@ -67,7 +67,7 @@
 -- SELECT * from Clients where trainerId =4;
 -- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
--- UPDATE Clients set progressLogs = NULL where clientId=51;
+UPDATE Clients set username = 'salma111' where clientId=21;
 
 -- DELETE FROM Clients WHERE clientId = 54;
 -- DELETE FROM Clients WHERE clientId = 52;
