@@ -5,6 +5,7 @@
 #include <sstream>
 #include <limits>
 #include <algorithm>
+#include <thread>
 #include "sqlite3.h"
 
 using namespace std;
@@ -1031,7 +1032,15 @@ void TrainerMenu(Trainer& trainer) {
             break;
         }
         case 4: cout << "Logging out...\n"; break;
-        default: cout << "Invalid choice.\n"; break;
+        default:
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a number.\n";
+                continue;
+            }cout << "Invalid choice.\n";
+            this_thread::sleep_for(std::chrono::seconds(3));
+            break;
         }
         if (choice != 4) pressEnter();
     } while (choice != 4);
@@ -1274,7 +1283,7 @@ Trainer* trainerLogin(string username, string password) {
     return nullptr;
 }
 #pragma endregion
-// ================== MAIN FUNCTION ==================
+// ================== MAIN FUNCTION ========================
 int main() {
     if (sqlite3_open("database.db", &db) != SQLITE_OK) {
         cerr << "Error opening database: " << sqlite3_errmsg(db) << endl;
@@ -1311,7 +1320,9 @@ int main() {
             {
                 if (trainerLogin(username,password)==nullptr)
                 {
+                   
                     cout << "Invalde username or password.\n";
+                    this_thread::sleep_for(std::chrono::seconds(2));
                     break;
                 }
                 else
@@ -1333,6 +1344,7 @@ int main() {
         }
         case 3: cout << "Exiting...\n"; break;
         default: cout << "Invalid choice.\n"; break;
+            this_thread::sleep_for(std::chrono::seconds(4));
         }
     } while (mainChoice != 3);
 
