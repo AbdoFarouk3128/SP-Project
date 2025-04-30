@@ -85,7 +85,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -124,6 +124,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClientMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minisystem.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -132,11 +133,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="sqlite3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database.db" />
     <None Include="query.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClientMenu.resx">
+      <DependentUpon>ClientMenu.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
