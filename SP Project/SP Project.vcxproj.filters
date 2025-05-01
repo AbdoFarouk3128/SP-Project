@@ -45,6 +45,9 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SIGNUPTRAINER.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sqlite3.h">
@@ -59,13 +62,16 @@
     <ClInclude Include="WelcomeForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoginForm.h">
+    <ClInclude Include="SIGN UP TRAINER.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="clientmenupage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SIGNUPTRAINER.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
