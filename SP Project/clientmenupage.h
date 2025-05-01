@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "core.h"
 #include <msclr/marshal_cppstd.h>
 namespace SPProject {
@@ -15,6 +15,7 @@ namespace SPProject {
 	/// </summary>
 	public ref class clientmenupage : public System::Windows::Forms::Form
 	{
+
 	public:
 		Client* client;
 	public:
@@ -27,6 +28,43 @@ namespace SPProject {
 			//
 		}
 
+	//public:
+	//	// هنا نضع الدالة المعدلة
+	//	void ViewMeasurements(Client & client, DataGridView^ dataGridView) {
+	//		dataGridView->Rows->Clear();
+
+	//		if (client.numMeasurements == 0) {
+	//			MessageBox::Show("No measurements recorded yet.", "Information",
+	//				MessageBoxButtons::OK, MessageBoxIcon::Information);
+	//			return;
+	//		}
+
+	//		// إضافة الأعمدة إذا لم تكن موجودة
+	//		if (dataGridView->Columns->Count == 0) {
+	//			dataGridView->Columns->Add("colNumber", "#");
+	//			dataGridView->Columns->Add("colDate", "Date");
+	//			dataGridView->Columns->Add("colWeight", "Weight (kg)");
+	//			dataGridView->Columns->Add("colHeight", "Height (cm)");
+	//		}
+
+	//		// تعبئة البيانات
+	//		for (int i = 0; i < client.numMeasurements; i++) {
+	//			String^ dateStr = String::Format("{0}/{1}/{2}",
+	//				client.measurements[i].date.Day,
+	//				client.measurements[i].date.Month,
+	//				client.measurements[i].date.Year);
+
+	//			dataGridView->Rows->Add(
+	//				(i + 1).ToString(),
+	//				dateStr,
+	//				client.measurements[i].weight.ToString(),
+	//				client.measurements[i].height.ToString()
+	//			);
+	//		}
+	//	}
+
+		
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -38,6 +76,7 @@ namespace SPProject {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Panel^ panel1;
 	protected:
 	private: System::Windows::Forms::Panel^ panel2;
@@ -65,13 +104,19 @@ namespace SPProject {
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::Button^ button6;
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Panel^ VIEWworkout;
-	private: System::Windows::Forms::Panel^ LOGworkout;
-	private: System::Windows::Forms::Panel^ LOGmeasurment;
-	private: System::Windows::Forms::Panel^ HEALTHsummry;
 	private: System::Windows::Forms::Panel^ VIEWmeasurment;
-	private: System::Windows::Forms::Panel^ LOGO;
-	private: System::Windows::Forms::PictureBox^ pictureBox6;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -113,15 +158,11 @@ namespace SPProject {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->mainpage = (gcnew System::Windows::Forms::Panel());
-			this->VIEWworkout = (gcnew System::Windows::Forms::Panel());
-			this->LOGworkout = (gcnew System::Windows::Forms::Panel());
-			this->LOGmeasurment = (gcnew System::Windows::Forms::Panel());
-			this->HEALTHsummry = (gcnew System::Windows::Forms::Panel());
 			this->VIEWmeasurment = (gcnew System::Windows::Forms::Panel());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->LOGO = (gcnew System::Windows::Forms::Panel());
-			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->panel10->SuspendLayout();
@@ -135,9 +176,9 @@ namespace SPProject {
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->mainpage->SuspendLayout();
+			this->VIEWmeasurment->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->panel3->SuspendLayout();
-			this->LOGO->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -200,7 +241,6 @@ namespace SPProject {
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"Log Completed Workout";
 			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &clientmenupage::button3_Click);
 			// 
 			// pictureBox3
 			// 
@@ -233,7 +273,6 @@ namespace SPProject {
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"Log Measurments";
 			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &clientmenupage::button4_Click);
 			// 
 			// pictureBox2
 			// 
@@ -265,7 +304,6 @@ namespace SPProject {
 			this->button5->TabIndex = 4;
 			this->button5->Text = L"Health Summary";
 			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &clientmenupage::button5_Click);
 			// 
 			// pictureBox4
 			// 
@@ -329,7 +367,6 @@ namespace SPProject {
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"View Workouts";
 			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &clientmenupage::button2_Click);
 			// 
 			// pictureBox1
 			// 
@@ -345,11 +382,6 @@ namespace SPProject {
 			// 
 			this->mainpage->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->mainpage->Controls->Add(this->LOGO);
-			this->mainpage->Controls->Add(this->VIEWworkout);
-			this->mainpage->Controls->Add(this->LOGworkout);
-			this->mainpage->Controls->Add(this->LOGmeasurment);
-			this->mainpage->Controls->Add(this->HEALTHsummry);
 			this->mainpage->Controls->Add(this->VIEWmeasurment);
 			this->mainpage->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->mainpage->Location = System::Drawing::Point(336, 100);
@@ -357,52 +389,45 @@ namespace SPProject {
 			this->mainpage->Size = System::Drawing::Size(546, 553);
 			this->mainpage->TabIndex = 2;
 			// 
-			// VIEWworkout
-			// 
-			this->VIEWworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->VIEWworkout->Location = System::Drawing::Point(0, 0);
-			this->VIEWworkout->Name = L"VIEWworkout";
-			this->VIEWworkout->Size = System::Drawing::Size(546, 553);
-			this->VIEWworkout->TabIndex = 7;
-			// 
-			// LOGworkout
-			// 
-			this->LOGworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->LOGworkout->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGworkout->Location = System::Drawing::Point(0, 0);
-			this->LOGworkout->Name = L"LOGworkout";
-			this->LOGworkout->Size = System::Drawing::Size(546, 553);
-			this->LOGworkout->TabIndex = 6;
-			// 
-			// LOGmeasurment
-			// 
-			this->LOGmeasurment->BackColor = System::Drawing::Color::Olive;
-			this->LOGmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGmeasurment->Location = System::Drawing::Point(0, 0);
-			this->LOGmeasurment->Name = L"LOGmeasurment";
-			this->LOGmeasurment->Size = System::Drawing::Size(546, 553);
-			this->LOGmeasurment->TabIndex = 5;
-			// 
-			// HEALTHsummry
-			// 
-			this->HEALTHsummry->BackColor = System::Drawing::Color::Maroon;
-			this->HEALTHsummry->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->HEALTHsummry->Location = System::Drawing::Point(0, 0);
-			this->HEALTHsummry->Name = L"HEALTHsummry";
-			this->HEALTHsummry->Size = System::Drawing::Size(546, 553);
-			this->HEALTHsummry->TabIndex = 4;
-			// 
 			// VIEWmeasurment
 			// 
-			this->VIEWmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->VIEWmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->VIEWmeasurment->Controls->Add(this->dataGridView1);
+			this->VIEWmeasurment->Controls->Add(this->label2);
 			this->VIEWmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->VIEWmeasurment->Location = System::Drawing::Point(0, 0);
 			this->VIEWmeasurment->Name = L"VIEWmeasurment";
 			this->VIEWmeasurment->Size = System::Drawing::Size(546, 553);
 			this->VIEWmeasurment->TabIndex = 3;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Location = System::Drawing::Point(153, 167);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->RowHeadersWidth = 51;
+			this->dataGridView1->RowTemplate->Height = 24;
+			this->dataGridView1->Size = System::Drawing::Size(219, 107);
+			this->dataGridView1->TabIndex = 2;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &clientmenupage::dataGridView1_CellContentClick);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->ForeColor = System::Drawing::Color::White;
+			this->label2->Location = System::Drawing::Point(188, 9);
+			this->label2->Margin = System::Windows::Forms::Padding(3);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(173, 50);
+			this->label2->TabIndex = 1;
+			this->label2->Text = L"Client Menu";
+			this->label2->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
 			// 
 			// panel3
 			// 
@@ -432,28 +457,6 @@ namespace SPProject {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &clientmenupage::button1_Click);
 			// 
-			// LOGO
-			// 
-			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->LOGO->Controls->Add(this->pictureBox6);
-			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGO->Location = System::Drawing::Point(0, 0);
-			this->LOGO->Name = L"LOGO";
-			this->LOGO->Size = System::Drawing::Size(546, 553);
-			this->LOGO->TabIndex = 8;
-			// 
-			// pictureBox6
-			// 
-			this->pictureBox6->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
-			this->pictureBox6->Location = System::Drawing::Point(0, 0);
-			this->pictureBox6->Name = L"pictureBox6";
-			this->pictureBox6->Size = System::Drawing::Size(546, 553);
-			this->pictureBox6->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-			this->pictureBox6->TabIndex = 0;
-			this->pictureBox6->TabStop = false;
-			// 
 			// clientmenupage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -479,33 +482,39 @@ namespace SPProject {
 			this->panel4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->mainpage->ResumeLayout(false);
+			this->VIEWmeasurment->ResumeLayout(false);
+			this->VIEWmeasurment->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->panel3->ResumeLayout(false);
-			this->LOGO->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void panel11_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	VIEWworkout->BringToFront();
-}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	LOGworkout->BringToFront();
-}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	LOGmeasurment->BringToFront();
-}
-
-private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-	HEALTHsummry->BringToFront();
-}
+//private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+//	VIEWworkout->BringToFront();
+//}
+//private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+//	LOGworkout->BringToFront();
+//}
+//private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+//	LOGmeasurment->BringToFront();
+//}
+//
+//private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+//	HEALTHsummry->BringToFront();
+//}
 private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 	VIEWmeasurment->BringToFront();
+	//ViewMeasurements(client, dataGridView1);
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 };
 }
