@@ -175,6 +175,7 @@ namespace SPProject {
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"LoginForm";
 			this->Text = L"LoginForm";
+			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -212,5 +213,7 @@ namespace SPProject {
 
 		lblStatus->Text = "Invalid username or password.";
 	}
+private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

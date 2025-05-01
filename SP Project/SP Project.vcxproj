@@ -142,7 +142,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="core.h" />
-    <ClInclude Include="SIGN UP TRAINER.h">
+    <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm.h">
@@ -167,8 +167,8 @@
     <EmbeddedResource Include="clientmenupage.resx">
       <DependentUpon>clientmenupage.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SIGN UP TRAINER.resx">
-      <DependentUpon>SIGN UP TRAINER.h</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
