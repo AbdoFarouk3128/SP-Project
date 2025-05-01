@@ -124,6 +124,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="minisystem.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="traiermenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="traiermenu.h">
       <FileType>CppForm</FileType>
