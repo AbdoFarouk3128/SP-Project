@@ -66,6 +66,12 @@ namespace SPProject {
 	private: System::Windows::Forms::Panel^ LOGmeasurment;
 	private: System::Windows::Forms::Panel^ HEALTHsummry;
 	private: System::Windows::Forms::Panel^ VIEWmeasurment;
+	private: System::Windows::Forms::Panel^ LOGO;
+	private: System::Windows::Forms::PictureBox^ pictureBox6;
+
+
+
+
 
 
 	protected:
@@ -110,6 +116,8 @@ namespace SPProject {
 			this->VIEWmeasurment = (gcnew System::Windows::Forms::Panel());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->LOGO = (gcnew System::Windows::Forms::Panel());
+			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->panel10->SuspendLayout();
@@ -124,6 +132,8 @@ namespace SPProject {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->mainpage->SuspendLayout();
 			this->panel3->SuspendLayout();
+			this->LOGO->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -331,6 +341,7 @@ namespace SPProject {
 			// 
 			this->mainpage->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
+			this->mainpage->Controls->Add(this->LOGO);
 			this->mainpage->Controls->Add(this->VIEWworkout);
 			this->mainpage->Controls->Add(this->LOGworkout);
 			this->mainpage->Controls->Add(this->LOGmeasurment);
@@ -346,7 +357,6 @@ namespace SPProject {
 			// 
 			this->VIEWworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->VIEWworkout->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->VIEWworkout->Location = System::Drawing::Point(0, 0);
 			this->VIEWworkout->Name = L"VIEWworkout";
 			this->VIEWworkout->Size = System::Drawing::Size(546, 553);
@@ -418,6 +428,28 @@ namespace SPProject {
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &clientmenupage::button1_Click);
 			// 
+			// LOGO
+			// 
+			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->LOGO->Controls->Add(this->pictureBox6);
+			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGO->Location = System::Drawing::Point(0, 0);
+			this->LOGO->Name = L"LOGO";
+			this->LOGO->Size = System::Drawing::Size(546, 553);
+			this->LOGO->TabIndex = 8;
+			// 
+			// pictureBox6
+			// 
+			this->pictureBox6->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
+			this->pictureBox6->Location = System::Drawing::Point(0, 0);
+			this->pictureBox6->Name = L"pictureBox6";
+			this->pictureBox6->Size = System::Drawing::Size(546, 553);
+			this->pictureBox6->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox6->TabIndex = 0;
+			this->pictureBox6->TabStop = false;
+			// 
 			// clientmenupage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -444,6 +476,8 @@ namespace SPProject {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->mainpage->ResumeLayout(false);
 			this->panel3->ResumeLayout(false);
+			this->LOGO->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
 			this->ResumeLayout(false);
 
 		}
