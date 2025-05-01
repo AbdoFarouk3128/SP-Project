@@ -17,40 +17,40 @@ namespace SPProject {
 	{
 	public:
 		Trainer *trainer;
-	public:
-		// åäÇ äÖÚ ÇáÏÇáÉ ÇáãÚÏáÉ
-		void ViewMeasurements(Trainer* trainer, DataGridView^ dataGridView) {
-			dataGridView->Rows->Clear();
+	//public:
+	//	// åäÇ äÖÚ ÇáÏÇáÉ ÇáãÚÏáÉ
+	//	void ViewMeasurements(Trainer* trainer, DataGridView^ dataGridView) {
+	//		dataGridView->Rows->Clear();
 
-			if (trainer->numMeasurements == 0) {
-				MessageBox::Show("No measurements recorded yet.", "Information",
-					MessageBoxButtons::OK, MessageBoxIcon::Information);
-				return;
-			}
+	//		if (trainer->numMeasurements == 0) {
+	//			MessageBox::Show("No measurements recorded yet.", "Information",
+	//				MessageBoxButtons::OK, MessageBoxIcon::Information);
+	//			return;
+	//		}
 
-			// ÅÖÇİÉ ÇáÃÚãÏÉ ÅĞÇ áã Êßä ãæÌæÏÉ
-			if (dataGridView->Columns->Count == 0) {
-				dataGridView->Columns->Add("colNumber", "#");
-				dataGridView->Columns->Add("colDate", "Date");
-				dataGridView->Columns->Add("colWeight", "Weight (kg)");
-				dataGridView->Columns->Add("colHeight", "Height (cm)");
-			}
+	//		// ÅÖÇİÉ ÇáÃÚãÏÉ ÅĞÇ áã Êßä ãæÌæÏÉ
+	//		if (dataGridView->Columns->Count == 0) {
+	//			dataGridView->Columns->Add("colNumber", "#");
+	//			dataGridView->Columns->Add("colDate", "Date");
+	//			dataGridView->Columns->Add("colWeight", "Weight (kg)");
+	//			dataGridView->Columns->Add("colHeight", "Height (cm)");
+	//		}
 
-			// ÊÚÈÆÉ ÇáÈíÇäÇÊ
-			for (int i = 0; i < trainer->numMeasurements; i++) {
-				String^ dateStr = String::Format("{0}/{1}/{2}",
-					trainer->measurements[i].date.Day,
-					trainer->measurements[i].date.Month,
-					trainer->measurements[i].date.Year);
+	//		// ÊÚÈÆÉ ÇáÈíÇäÇÊ
+	//		for (int i = 0; i < trainer->numMeasurements; i++) {
+	//			String^ dateStr = String::Format("{0}/{1}/{2}",
+	//				trainer->measurements[i].date.Day,
+	//				trainer->measurements[i].date.Month,
+	//				trainer->measurements[i].date.Year);
 
-				dataGridView->Rows->Add(
-					(i + 1).ToString(),
-					dateStr,
-					trainer->measurements[i].weight.ToString(),
-					trainer->measurements[i].height.ToString()
-				);
-			}
-		}
+	//			dataGridView->Rows->Add(
+	//				(i + 1).ToString(),
+	//				dateStr,
+	//				trainer->measurements[i].weight.ToString(),
+	//				trainer->measurements[i].height.ToString()
+	//			);
+	//		}
+	//	}
 	public:
 		traiermenu(Trainer* t)
 		{
