@@ -215,7 +215,7 @@ namespace SPProject {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(50, 34);
+			this->pictureBox1->Location = System::Drawing::Point(39, 36);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(100, 50);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -275,7 +275,7 @@ namespace SPProject {
 			this->button4->AutoSize = true;
 			this->button4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(577, 487);
+			this->button4->Location = System::Drawing::Point(577, 453);
 			this->button4->Margin = System::Windows::Forms::Padding(200);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(93, 53);
