@@ -403,12 +403,14 @@ namespace SPProject {
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Location = System::Drawing::Point(153, 167);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(219, 107);
+			this->dataGridView1->Size = System::Drawing::Size(338, 241);
 			this->dataGridView1->TabIndex = 2;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &clientmenupage::dataGridView1_CellContentClick);
 			// 
@@ -421,12 +423,12 @@ namespace SPProject {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(188, 9);
+			this->label2->Location = System::Drawing::Point(153, 9);
 			this->label2->Margin = System::Windows::Forms::Padding(3);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(173, 50);
+			this->label2->Size = System::Drawing::Size(254, 50);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Client Menu";
+			this->label2->Text = L"View Measurments";
 			this->label2->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
 			// 
 			// panel3
