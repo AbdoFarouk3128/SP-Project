@@ -1,5 +1,6 @@
 #pragma once
-
+#include "core.h"
+#include <msclr/marshal_cppstd.h>
 namespace SPProject {
 
 	using namespace System;
@@ -15,13 +16,18 @@ namespace SPProject {
 	public ref class traiermenu : public System::Windows::Forms::Form
 	{
 	public:
-		traiermenu(void)
+		Trainer* trainer;
+	public:
+		traiermenu(Trainer* t)
 		{
+			trainer = t;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
 		}
+		
+
 
 	protected:
 		/// <summary>
