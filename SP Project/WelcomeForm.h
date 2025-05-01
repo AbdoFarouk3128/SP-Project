@@ -1,6 +1,7 @@
 #pragma once
 #include "core.h"
 #include "LoginForm.h"
+#include "MyForm.h"
 namespace SPProject {
 
 	using namespace System;
@@ -108,6 +109,7 @@ namespace SPProject {
 			this->btnSignup->TabIndex = 2;
 			this->btnSignup->Text = L"Sign up";
 			this->btnSignup->UseVisualStyleBackColor = true;
+			this->btnSignup->Click += gcnew System::EventHandler(this, &WelcomeForm::btnSignup_Click);
 			// 
 			// WelcomeForm
 			// 
@@ -133,5 +135,12 @@ namespace SPProject {
 		this->Show();
 		return;
 	}
+private: System::Void btnSignup_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	MyForm^ sp = gcnew MyForm();
+	sp->ShowDialog();
+	this->Show();
+	return;
+}
 };
 }
