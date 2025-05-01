@@ -129,6 +129,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="SIGNUPTRAINER.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
@@ -141,10 +142,13 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="core.h" />
-    <ClInclude Include="LoginForm.h">
+    <ClInclude Include="SIGN UP TRAINER.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SIGNUPTRAINER.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="sqlite3.h" />
@@ -163,11 +167,14 @@
     <EmbeddedResource Include="clientmenupage.resx">
       <DependentUpon>clientmenupage.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.h</DependentUpon>
+    <EmbeddedResource Include="SIGN UP TRAINER.resx">
+      <DependentUpon>SIGN UP TRAINER.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SIGNUPTRAINER.resx">
+      <DependentUpon>SIGNUPTRAINER.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="traiermenu.resx">
       <DependentUpon>traiermenu.h</DependentUpon>
