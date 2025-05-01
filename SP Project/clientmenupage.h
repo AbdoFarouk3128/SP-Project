@@ -28,40 +28,40 @@ namespace SPProject {
 			//
 		}
 
-	//public:
-	//	// هنا نضع الدالة المعدلة
-	//	void ViewMeasurements(Client & client, DataGridView^ dataGridView) {
-	//		dataGridView->Rows->Clear();
+	public:
+		// هنا نضع الدالة المعدلة
+		void ViewMeasurements(Client * client, DataGridView^ dataGridView) {
+			dataGridView->Rows->Clear();
 
-	//		if (client.numMeasurements == 0) {
-	//			MessageBox::Show("No measurements recorded yet.", "Information",
-	//				MessageBoxButtons::OK, MessageBoxIcon::Information);
-	//			return;
-	//		}
+			if (client->numMeasurements == 0) {
+				MessageBox::Show("No measurements recorded yet.", "Information",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
 
-	//		// إضافة الأعمدة إذا لم تكن موجودة
-	//		if (dataGridView->Columns->Count == 0) {
-	//			dataGridView->Columns->Add("colNumber", "#");
-	//			dataGridView->Columns->Add("colDate", "Date");
-	//			dataGridView->Columns->Add("colWeight", "Weight (kg)");
-	//			dataGridView->Columns->Add("colHeight", "Height (cm)");
-	//		}
+			// إضافة الأعمدة إذا لم تكن موجودة
+			if (dataGridView->Columns->Count == 0) {
+				dataGridView->Columns->Add("colNumber", "#");
+				dataGridView->Columns->Add("colDate", "Date");
+				dataGridView->Columns->Add("colWeight", "Weight (kg)");
+				dataGridView->Columns->Add("colHeight", "Height (cm)");
+			}
 
-	//		// تعبئة البيانات
-	//		for (int i = 0; i < client.numMeasurements; i++) {
-	//			String^ dateStr = String::Format("{0}/{1}/{2}",
-	//				client.measurements[i].date.Day,
-	//				client.measurements[i].date.Month,
-	//				client.measurements[i].date.Year);
+			// تعبئة البيانات
+			for (int i = 0; i < client->numMeasurements; i++) {
+				String^ dateStr = String::Format("{0}/{1}/{2}",
+					client->measurements[i].date.Day,
+					client->measurements[i].date.Month,
+					client->measurements[i].date.Year);
 
-	//			dataGridView->Rows->Add(
-	//				(i + 1).ToString(),
-	//				dateStr,
-	//				client.measurements[i].weight.ToString(),
-	//				client.measurements[i].height.ToString()
-	//			);
-	//		}
-	//	}
+				dataGridView->Rows->Add(
+					(i + 1).ToString(),
+					dateStr,
+					client->measurements[i].weight.ToString(),
+					client->measurements[i].height.ToString()
+				);
+			}
+		}
 
 		
 
@@ -188,8 +188,9 @@ namespace SPProject {
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(882, 100);
+			this->panel1->Size = System::Drawing::Size(884, 81);
 			this->panel1->TabIndex = 0;
 			// 
 			// label1
@@ -199,10 +200,10 @@ namespace SPProject {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(305, 23);
-			this->label1->Margin = System::Windows::Forms::Padding(3);
+			this->label1->Location = System::Drawing::Point(229, 19);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(269, 54);
+			this->label1->Size = System::Drawing::Size(217, 44);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Client Menu";
 			// 
@@ -216,9 +217,10 @@ namespace SPProject {
 			this->panel2->Controls->Add(this->panel13);
 			this->panel2->Controls->Add(this->panel4);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Left;
-			this->panel2->Location = System::Drawing::Point(0, 100);
+			this->panel2->Location = System::Drawing::Point(0, 81);
+			this->panel2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(336, 553);
+			this->panel2->Size = System::Drawing::Size(252, 580);
 			this->panel2->TabIndex = 1;
 			// 
 			// panel10
@@ -226,18 +228,20 @@ namespace SPProject {
 			this->panel10->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->panel10->Controls->Add(this->button3);
 			this->panel10->Controls->Add(this->pictureBox3);
-			this->panel10->Location = System::Drawing::Point(3, 119);
+			this->panel10->Location = System::Drawing::Point(2, 97);
+			this->panel10->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel10->Name = L"panel10";
-			this->panel10->Size = System::Drawing::Size(327, 104);
+			this->panel10->Size = System::Drawing::Size(246, 85);
 			this->panel10->TabIndex = 1;
 			// 
 			// button3
 			// 
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(126, 3);
+			this->button3->Location = System::Drawing::Point(94, 2);
+			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(187, 94);
+			this->button3->Size = System::Drawing::Size(140, 76);
 			this->button3->TabIndex = 2;
 			this->button3->Text = L"Log Completed Workout";
 			this->button3->UseVisualStyleBackColor = true;
@@ -245,9 +249,10 @@ namespace SPProject {
 			// pictureBox3
 			// 
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(3, 3);
+			this->pictureBox3->Location = System::Drawing::Point(2, 2);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(100, 98);
+			this->pictureBox3->Size = System::Drawing::Size(75, 80);
 			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox3->TabIndex = 2;
 			this->pictureBox3->TabStop = false;
@@ -257,9 +262,10 @@ namespace SPProject {
 			this->panel11->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->panel11->Controls->Add(this->button4);
 			this->panel11->Controls->Add(this->pictureBox2);
-			this->panel11->Location = System::Drawing::Point(3, 227);
+			this->panel11->Location = System::Drawing::Point(2, 184);
+			this->panel11->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel11->Name = L"panel11";
-			this->panel11->Size = System::Drawing::Size(327, 101);
+			this->panel11->Size = System::Drawing::Size(246, 83);
 			this->panel11->TabIndex = 1;
 			this->panel11->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel11_Paint);
 			// 
@@ -267,9 +273,10 @@ namespace SPProject {
 			// 
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(126, 3);
+			this->button4->Location = System::Drawing::Point(94, 2);
+			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(187, 95);
+			this->button4->Size = System::Drawing::Size(140, 77);
 			this->button4->TabIndex = 3;
 			this->button4->Text = L"Log Measurments";
 			this->button4->UseVisualStyleBackColor = true;
@@ -277,9 +284,10 @@ namespace SPProject {
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(3, 0);
+			this->pictureBox2->Location = System::Drawing::Point(2, 0);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(100, 98);
+			this->pictureBox2->Size = System::Drawing::Size(75, 80);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox2->TabIndex = 1;
 			this->pictureBox2->TabStop = false;
@@ -289,18 +297,20 @@ namespace SPProject {
 			this->panel12->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->panel12->Controls->Add(this->button5);
 			this->panel12->Controls->Add(this->pictureBox4);
-			this->panel12->Location = System::Drawing::Point(3, 334);
+			this->panel12->Location = System::Drawing::Point(2, 271);
+			this->panel12->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel12->Name = L"panel12";
-			this->panel12->Size = System::Drawing::Size(327, 110);
+			this->panel12->Size = System::Drawing::Size(246, 90);
 			this->panel12->TabIndex = 1;
 			// 
 			// button5
 			// 
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(126, 3);
+			this->button5->Location = System::Drawing::Point(94, 2);
+			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(187, 104);
+			this->button5->Size = System::Drawing::Size(140, 84);
 			this->button5->TabIndex = 4;
 			this->button5->Text = L"Health Summary";
 			this->button5->UseVisualStyleBackColor = true;
@@ -308,9 +318,10 @@ namespace SPProject {
 			// pictureBox4
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(3, 3);
+			this->pictureBox4->Location = System::Drawing::Point(2, 2);
+			this->pictureBox4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(100, 104);
+			this->pictureBox4->Size = System::Drawing::Size(75, 84);
 			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox4->TabIndex = 2;
 			this->pictureBox4->TabStop = false;
@@ -320,18 +331,20 @@ namespace SPProject {
 			this->panel13->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->panel13->Controls->Add(this->button6);
 			this->panel13->Controls->Add(this->pictureBox5);
-			this->panel13->Location = System::Drawing::Point(3, 450);
+			this->panel13->Location = System::Drawing::Point(2, 366);
+			this->panel13->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel13->Name = L"panel13";
-			this->panel13->Size = System::Drawing::Size(327, 100);
+			this->panel13->Size = System::Drawing::Size(246, 82);
 			this->panel13->TabIndex = 1;
 			// 
 			// button6
 			// 
 			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->Location = System::Drawing::Point(126, 5);
+			this->button6->Location = System::Drawing::Point(94, 4);
+			this->button6->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(187, 92);
+			this->button6->Size = System::Drawing::Size(140, 75);
 			this->button6->TabIndex = 5;
 			this->button6->Text = L"View Measurments";
 			this->button6->UseVisualStyleBackColor = true;
@@ -340,9 +353,10 @@ namespace SPProject {
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(3, 5);
+			this->pictureBox5->Location = System::Drawing::Point(2, 4);
+			this->pictureBox5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox5->Name = L"pictureBox5";
-			this->pictureBox5->Size = System::Drawing::Size(100, 98);
+			this->pictureBox5->Size = System::Drawing::Size(75, 80);
 			this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox5->TabIndex = 2;
 			this->pictureBox5->TabStop = false;
@@ -352,18 +366,20 @@ namespace SPProject {
 			this->panel4->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->panel4->Controls->Add(this->button2);
 			this->panel4->Controls->Add(this->pictureBox1);
-			this->panel4->Location = System::Drawing::Point(3, 4);
+			this->panel4->Location = System::Drawing::Point(2, 3);
+			this->panel4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(327, 109);
+			this->panel4->Size = System::Drawing::Size(246, 89);
 			this->panel4->TabIndex = 0;
 			// 
 			// button2
 			// 
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(126, 3);
+			this->button2->Location = System::Drawing::Point(94, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(187, 103);
+			this->button2->Size = System::Drawing::Size(140, 84);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"View Workouts";
 			this->button2->UseVisualStyleBackColor = true;
@@ -371,9 +387,10 @@ namespace SPProject {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(3, 3);
+			this->pictureBox1->Location = System::Drawing::Point(2, 2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(100, 103);
+			this->pictureBox1->Size = System::Drawing::Size(75, 84);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
@@ -384,9 +401,10 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
 			this->mainpage->Controls->Add(this->VIEWmeasurment);
 			this->mainpage->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->mainpage->Location = System::Drawing::Point(336, 100);
+			this->mainpage->Location = System::Drawing::Point(252, 81);
+			this->mainpage->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->mainpage->Name = L"mainpage";
-			this->mainpage->Size = System::Drawing::Size(546, 553);
+			this->mainpage->Size = System::Drawing::Size(632, 580);
 			this->mainpage->TabIndex = 2;
 			// 
 			// VIEWmeasurment
@@ -397,18 +415,20 @@ namespace SPProject {
 			this->VIEWmeasurment->Controls->Add(this->label2);
 			this->VIEWmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->VIEWmeasurment->Location = System::Drawing::Point(0, 0);
+			this->VIEWmeasurment->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->VIEWmeasurment->Name = L"VIEWmeasurment";
-			this->VIEWmeasurment->Size = System::Drawing::Size(546, 553);
+			this->VIEWmeasurment->Size = System::Drawing::Size(632, 580);
 			this->VIEWmeasurment->TabIndex = 3;
 			// 
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(153, 167);
+			this->dataGridView1->Location = System::Drawing::Point(19, 51);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(219, 107);
+			this->dataGridView1->Size = System::Drawing::Size(592, 430);
 			this->dataGridView1->TabIndex = 2;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &clientmenupage::dataGridView1_CellContentClick);
 			// 
@@ -421,10 +441,10 @@ namespace SPProject {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(188, 9);
-			this->label2->Margin = System::Windows::Forms::Padding(3);
+			this->label2->Location = System::Drawing::Point(141, 7);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(173, 50);
+			this->label2->Size = System::Drawing::Size(142, 40);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Client Menu";
 			this->label2->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
@@ -435,9 +455,10 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->panel3->Controls->Add(this->button1);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->panel3->Location = System::Drawing::Point(336, 553);
+			this->panel3->Location = System::Drawing::Point(252, 580);
+			this->panel3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(546, 100);
+			this->panel3->Size = System::Drawing::Size(632, 81);
 			this->panel3->TabIndex = 3;
 			// 
 			// button1
@@ -448,10 +469,10 @@ namespace SPProject {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(399, 24);
+			this->button1->Location = System::Drawing::Point(521, 20);
 			this->button1->Margin = System::Windows::Forms::Padding(0);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(120, 60);
+			this->button1->Size = System::Drawing::Size(90, 49);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Logout";
 			this->button1->UseVisualStyleBackColor = false;
@@ -459,13 +480,14 @@ namespace SPProject {
 			// 
 			// clientmenupage
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(882, 653);
+			this->ClientSize = System::Drawing::Size(884, 661);
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->mainpage);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"clientmenupage";
 			this->Text = L"clientmenupage";
 			this->panel1->ResumeLayout(false);
@@ -507,7 +529,7 @@ namespace SPProject {
 //}
 private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 	VIEWmeasurment->BringToFront();
-	//ViewMeasurements(client, dataGridView1);
+	ViewMeasurements(client, dataGridView1);
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	Application::Exit();
