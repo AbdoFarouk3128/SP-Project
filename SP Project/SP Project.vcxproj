@@ -85,7 +85,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -130,13 +130,22 @@
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="traiermenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="traiermenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="database.db" />
     <None Include="query.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="traiermenu.resx">
+      <DependentUpon>traiermenu.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
