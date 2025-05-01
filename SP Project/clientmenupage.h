@@ -1,5 +1,6 @@
 #pragma once
-
+#include "core.h"
+#include <msclr/marshal_cppstd.h>
 namespace SPProject {
 
 	using namespace System;
@@ -15,8 +16,11 @@ namespace SPProject {
 	public ref class clientmenupage : public System::Windows::Forms::Form
 	{
 	public:
-		clientmenupage(void)
+		Client* client;
+	public:
+		clientmenupage(Client * c)
 		{
+			client = c;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
