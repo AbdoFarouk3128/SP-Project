@@ -129,6 +129,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="SIGNTRAINER.cpp" />
     <ClCompile Include="SIGNUPTRAINER.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite3.c">
@@ -146,6 +147,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MyForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="SIGNTRAINER.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SIGNUPTRAINER.h">
@@ -172,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SIGNTRAINER.resx">
+      <DependentUpon>SIGNTRAINER.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SIGNUPTRAINER.resx">
       <DependentUpon>SIGNUPTRAINER.h</DependentUpon>
