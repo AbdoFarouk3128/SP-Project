@@ -2,6 +2,7 @@
 #include "core.h"
 #include <msclr/marshal_cppstd.h>
 #include "traiermenu.h"
+#include "clientmenupage.h"
 namespace SPProject {
 
 	using namespace System;
@@ -126,7 +127,7 @@ namespace SPProject {
 			this->lblStatus->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblStatus->ForeColor = System::Drawing::Color::Red;
-			this->lblStatus->Location = System::Drawing::Point(401, 435);
+			this->lblStatus->Location = System::Drawing::Point(274, 437);
 			this->lblStatus->Name = L"lblStatus";
 			this->lblStatus->Size = System::Drawing::Size(0, 26);
 			this->lblStatus->TabIndex = 4;
@@ -174,7 +175,6 @@ namespace SPProject {
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"LoginForm";
 			this->Text = L"LoginForm";
-			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -188,16 +188,16 @@ namespace SPProject {
 		std::string stdUser = msclr::interop::marshal_as<std::string>(user);
 		std::string stdPass = msclr::interop::marshal_as<std::string>(pass);
 
-		//Client* c = clientLogin(stdUser, stdPass);
-		//if (c != nullptr)
-		//{
-		//	lblStatus->Text = "Client login successful!";
-		//	this->Hide();
-		//	ClientForm^ cf = gcnew ClientForm(c); // åäãÑÑ ÇáÜ pointer ááÝæÑã
-		//	cf->ShowDialog();
-		//	this->Show();
-		//	return;
-		//}
+		Client* c = clientLogin(stdUser, stdPass);
+		if (c != nullptr)
+		{
+			lblStatus->Text = "Client login successful!";
+			this->Hide();
+			clientmenupage^ cf = gcnew clientmenupage(c);
+			cf->ShowDialog();
+			this->Show();
+			return;
+		}
 
 		Trainer* t = trainerLogin(stdUser, stdPass);
 		if (t != nullptr)
@@ -212,7 +212,5 @@ namespace SPProject {
 
 		lblStatus->Text = "Invalid username or password.";
 	}
-private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
 };
 }

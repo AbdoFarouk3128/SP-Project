@@ -1124,7 +1124,7 @@ void registerUser() {
         registerClient();
 }
 
-Client* clientLogin(string username, string password) {
+Client* clientLogin(string &username, string &password) {
     for (int j = 0; j < trainerCount; j++)
     {
         for (int i = 0; i < trainers->numClients; i++) {
@@ -1137,7 +1137,7 @@ Client* clientLogin(string username, string password) {
     return nullptr;
 }
 
-Trainer* trainerLogin(string username, string password) {
+Trainer* trainerLogin(string &username, string &password) {
     for (int i = 0; i < trainerCount; i++) {
         if (trainers[i].username == username && trainers[i].password == password) {
             return &trainers[i];

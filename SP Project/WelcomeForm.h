@@ -1,6 +1,7 @@
 #pragma once
 #include "core.h"
 #include "LoginForm.h"
+#include "MyForm.h"
 namespace SPProject {
 
 	using namespace System;
@@ -62,6 +63,9 @@ namespace SPProject {
 			// 
 			// pictureBox1
 			// 
+			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(230, 47);
 			this->pictureBox1->Name = L"pictureBox1";
@@ -71,6 +75,9 @@ namespace SPProject {
 			// 
 			// btnLogin
 			// 
+			this->btnLogin->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->btnLogin->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnLogin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnLogin->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -87,6 +94,9 @@ namespace SPProject {
 			// 
 			// btnSignup
 			// 
+			this->btnSignup->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->btnSignup->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnSignup->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnSignup->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -99,6 +109,7 @@ namespace SPProject {
 			this->btnSignup->TabIndex = 2;
 			this->btnSignup->Text = L"Sign up";
 			this->btnSignup->UseVisualStyleBackColor = true;
+			this->btnSignup->Click += gcnew System::EventHandler(this, &WelcomeForm::btnSignup_Click);
 			// 
 			// WelcomeForm
 			// 
@@ -112,7 +123,6 @@ namespace SPProject {
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"WelcomeForm";
 			this->Text = L"WelcomeForm";
-			this->Load += gcnew System::EventHandler(this, &WelcomeForm::WelcomeForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 
@@ -125,7 +135,12 @@ namespace SPProject {
 		this->Show();
 		return;
 	}
-private: System::Void WelcomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void btnSignup_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	MyForm^ sp = gcnew MyForm();
+	sp->ShowDialog();
+	this->Show();
+	return;
 }
 };
 }
