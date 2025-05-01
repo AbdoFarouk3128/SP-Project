@@ -124,6 +124,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="clientmenupage.cpp" />
     <ClCompile Include="core.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="main.cpp" />
@@ -135,6 +136,9 @@
     <ClCompile Include="WelcomeForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clientmenupage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="core.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
@@ -152,6 +156,9 @@
     <None Include="query.sql" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="clientmenupage.resx">
+      <DependentUpon>clientmenupage.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
