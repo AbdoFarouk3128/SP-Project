@@ -1,13 +1,6 @@
 #include "WelcomeForm.h"
 #include "core.h"
 #include "LoginForm.h"
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <cstring>
-#include <sstream>
-#include <limits>
-#include <algorithm>
 #include "sqlite3.h"
 
 using namespace System;
