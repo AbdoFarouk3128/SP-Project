@@ -98,7 +98,7 @@ namespace SPProject {
 			this->label1->Location = System::Drawing::Point(128, 164);
 			this->label1->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(67, 22);
+			this->label1->Size = System::Drawing::Size(97, 32);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"NAME";
 			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
@@ -113,7 +113,7 @@ namespace SPProject {
 			this->label2->Location = System::Drawing::Point(128, 225);
 			this->label2->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(124, 22);
+			this->label2->Size = System::Drawing::Size(180, 32);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"PASSWORD";
 			// 
@@ -127,7 +127,7 @@ namespace SPProject {
 			this->label3->Location = System::Drawing::Point(128, 295);
 			this->label3->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(93, 22);
+			this->label3->Size = System::Drawing::Size(136, 32);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"GENDER";
 			// 
@@ -141,7 +141,7 @@ namespace SPProject {
 			this->label4->Location = System::Drawing::Point(140, 366);
 			this->label4->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(52, 22);
+			this->label4->Size = System::Drawing::Size(75, 32);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"AGE";
 			// 
@@ -155,7 +155,7 @@ namespace SPProject {
 			this->label5->Location = System::Drawing::Point(128, 442);
 			this->label5->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(71, 22);
+			this->label5->Size = System::Drawing::Size(105, 32);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"LEVEL";
 			// 
@@ -169,7 +169,7 @@ namespace SPProject {
 			this->label6->Location = System::Drawing::Point(128, 512);
 			this->label6->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(157, 22);
+			this->label6->Size = System::Drawing::Size(229, 32);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"YOUR TRAINER";
 			// 
@@ -184,7 +184,7 @@ namespace SPProject {
 			this->label7->Location = System::Drawing::Point(281, 40);
 			this->label7->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(294, 37);
+			this->label7->Size = System::Drawing::Size(443, 55);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"FITNESS CENTER";
 			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -198,7 +198,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->textBox1->Location = System::Drawing::Point(392, 164);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(484, 26);
+			this->textBox1->Size = System::Drawing::Size(484, 35);
 			this->textBox1->TabIndex = 7;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
@@ -211,7 +211,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->textBox2->Location = System::Drawing::Point(392, 222);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(484, 26);
+			this->textBox2->Size = System::Drawing::Size(484, 35);
 			this->textBox2->TabIndex = 8;
 			// 
 			// textBox3
@@ -223,7 +223,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->textBox3->Location = System::Drawing::Point(392, 366);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(484, 26);
+			this->textBox3->Size = System::Drawing::Size(484, 35);
 			this->textBox3->TabIndex = 9;
 			// 
 			// comboBox1
@@ -238,7 +238,7 @@ namespace SPProject {
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
 			this->comboBox1->Location = System::Drawing::Point(392, 295);
 			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(484, 26);
+			this->comboBox1->Size = System::Drawing::Size(484, 36);
 			this->comboBox1->TabIndex = 10;
 			// 
 			// comboBox2
@@ -256,7 +256,7 @@ namespace SPProject {
 			});
 			this->comboBox2->Location = System::Drawing::Point(392, 438);
 			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(484, 26);
+			this->comboBox2->Size = System::Drawing::Size(484, 36);
 			this->comboBox2->TabIndex = 11;
 			// 
 			// comboBox3
@@ -274,7 +274,7 @@ namespace SPProject {
 			});
 			this->comboBox3->Location = System::Drawing::Point(392, 512);
 			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(484, 26);
+			this->comboBox3->Size = System::Drawing::Size(484, 36);
 			this->comboBox3->TabIndex = 12;
 			// 
 			// REGISTER
@@ -294,7 +294,7 @@ namespace SPProject {
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
+			this->AutoScaleDimensions = System::Drawing::SizeF(15, 28);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
@@ -318,6 +318,7 @@ namespace SPProject {
 			this->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -329,5 +330,7 @@ namespace SPProject {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
