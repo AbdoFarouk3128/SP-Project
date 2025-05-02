@@ -574,7 +574,8 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->SuspendLayout();
 			// 
 			// Title
-			// 
+			//  
+
 			this->Title->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->Title->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
