@@ -844,6 +844,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			// 
 			this->PAGEtitle_viewworkouts->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->PAGEtitle_viewworkouts->AutoSize = true;
 			this->PAGEtitle_viewworkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->PAGEtitle_viewworkouts->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
@@ -853,9 +854,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->PAGEtitle_viewworkouts->Location = System::Drawing::Point(315, 19);
 			this->PAGEtitle_viewworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PAGEtitle_viewworkouts->Name = L"PAGEtitle_viewworkouts";
-			this->PAGEtitle_viewworkouts->Size = System::Drawing::Size(211, 50);
+			this->PAGEtitle_viewworkouts->Size = System::Drawing::Size(211, 60);
 			this->PAGEtitle_viewworkouts->TabIndex = 1;
-			this->PAGEtitle_viewworkouts->Text = L"Your Workouts";
+			this->PAGEtitle_viewworkouts->Text =L"Your Workouts";
 			// 
 			// LOGcomworkout
 			// 
