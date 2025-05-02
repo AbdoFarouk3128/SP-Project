@@ -26,8 +26,84 @@ namespace SPProject {
 			//
 			//TODO: Add the constructor code here
 			//
+
 		}
 
+		//void healthsummary(Client* client,
+		//	Label^ lbBMI, Label^ lbStatus,
+		//	Label^ lbBMR, Label^ lbTDEE,
+		//	Label^ lbProtein, Label^ lbCarbs, Label^ lbFats)
+		//{
+		//	if (client->numMeasurements == 0) {
+		//		MessageBox::Show("No measurements available to generate health summary.",
+		//			"Information",
+		//			MessageBoxButtons::OK,
+		//			MessageBoxIcon::Information);
+		//		return;
+		//	}
+
+		//	double activityMulti = getActivityMultiplier(*client);
+		//	double bmr = calculateBMR(*client);
+		//	double tdee = calculateTDEE(bmr, activityMulti);
+		//	double bmi = calculateBMI(*client);
+		//	String status = getBMICategory(bmi);
+
+		//	// حساب الماكروز (البروتين، الكاربوهيدرات، الدهون)
+		//	array<double>* macros = calculateMacros(tdee, *client);
+
+		//	// عرض النتائج في الـ Labels
+		//	lbBMI->Text = String::Format("BMI: {0:F2}", bmi);
+		//	lbStatus->Text = String::Format("Status: {0}", status);
+		//	lbBMR->Text = String::Format("BMR: {0:F2} calories", bmr);
+		//	lbTDEE->Text = String::Format("TDEE: {0:F2} calories", tdee);
+
+		//	// عرض الماكروز
+		//	lbProtein->Text = String::Format("Protein: {0:F2}g", macros[0]);
+		//	lbCarbs->Text = String::Format("Carbs: {0:F2}g", macros[1]);
+		//	lbFats->Text = String::Format("Fats: {0:F2}g", macros[2]);
+		// lblStatus->ForeColor = GetStatusColor(status); // دالة مساعدة تعيد لون حسب الحالة
+
+//// دالة مساعدة لتحديد اللون
+//		Color GetStatusColor(String^ status) {
+//			if (status->ToLower()->Contains("underweight")) return Color::Blue;
+//			if (status->ToLower()->Contains("normal")) return Color::Green;
+//			if (status->ToLower()->Contains("overweight")) return Color::Orange;
+//			return Color::Red;
+//		}
+		//}
+	//public:
+	//	void ViewWorkouts(Client* client, ListBox^ listBoxWorkouts) {
+	//		listBoxWorkouts->Items->Clear(); // مسح المحتوى القديم
+
+	//		if (client->numWorkouts == 0) {
+	//			listBoxWorkouts->Items->Add("No workouts assigned yet...");
+	//			return;
+	//		}
+
+	//		for (int i = 0; i < client->numWorkouts; i++) {
+	//			// إضافة اسم التمرين والمدة
+	//			String^ workoutInfo = String::Format("{0}. {1} ({2} min)",
+	//				i + 1,
+	//				client->workoutPlans[i]->workoutName,
+	//				client->workoutPlans[i]->duration);
+
+	//			listBoxWorkouts->Items->Add(workoutInfo);
+
+	//			// إضافة التمارين الفرعية
+	//			for (int j = 0; j < client->workoutPlans[i]->numExercises; j++) {
+	//				listBoxWorkouts->Items->Add("   - " + client->workoutPlans[i]->exercises[j]);
+	//			}
+
+	//			// إضافة التفاصيل (المجموعات، التكرارات، الحالة)
+	//			String^ details = String::Format("   Sets: {0} | Reps: {1} | Status: {2}",
+	//				client->workoutPlans[i]->sets,
+	//				client->workoutPlans[i]->reps,
+	//				client->workoutPlans[i]->istrue);
+
+	//			listBoxWorkouts->Items->Add(details);
+	//			listBoxWorkouts->Items->Add(""); // سطر فارغ لفصل بين التمارين
+	//		}
+	//	}
 	public:
 		// هنا نضع الدالة المعدلة
 		void ViewMeasurements(Client* client, DataGridView^ dataGridView) {
@@ -63,8 +139,195 @@ namespace SPProject {
 			}
 		}
 
+	private:
+		void LogMeasurement() {
+			// التحقق من عدم تجاوز الحد الأقصى للقياسات
+			if (client->numMeasurements >= MAX_MEASUREMENTS) {
+				MessageBox::Show("Measurements limit reached!", "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// التحقق من صحة الوزن المدخل
+			double weight;
+			if (!Double::TryParse(tB_weight->Text, weight) || weight <= 0) {
+				MessageBox::Show("Please enter a valid weight!", "Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// التحقق من صحة الطول المدخل (إذا كان أول قياس)
+			double height;
+			if (client->numMeasurements == 0) {
+				if (!Double::TryParse(tB_height->Text, height) || height <= 0) {
+					MessageBox::Show("Please enter a valid height!", "Error",
+						MessageBoxButtons::OK, MessageBoxIcon::Error);
+					return;
+				}
+			}
+			else {
+				height = client->measurements[client->numMeasurements - 1].height;
+			}
+
+			// إنشاء قياس جديد
+			Measurement newMeasure;
+			newMeasure.weight = weight;
+			newMeasure.height = height;
+			newMeasure.date.Day = Date->Value.Day;
+			newMeasure.date.Month = Date->Value.Month;
+			newMeasure.date.Year = Date->Value.Year;
+
+			// إضافة القياس إلى العميل
+			client->measurements[client->numMeasurements++] = newMeasure;
+
+			// إدراج القياس في قاعدة البيانات
+			insertMeasurement(db, newMeasure, client->clientID);
+
+			// عرض رسالة نجاح
+			MessageBox::Show("Measurements added successfully!", "Success",
+				MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+			// مسح الحقول
+			tB_weight->Text = "";
+			if (client->numMeasurements == 1) {
+				tB_height->Text = "";
+			}
+		}
+	
+		// ... باقي الكود ...
+	private:
+		void ValidateWeightInput(System::Object^ sender, System::EventArgs^ e) {
+			double result;
+			if (!Double::TryParse(tB_weight->Text, result) || result <= 0) {
+				tB_weight->ForeColor = Color::Red;
+			}
+			else {
+				tB_weight->ForeColor = Color::Black;
+			}
+		}
+
+	
 
 
+		//private:
+		//	void Log_Workout() {
+		//		listViewWorkouts->Items->Clear();
+
+		//		if (client->numWorkouts == 0) {
+		//			MessageBox::Show("No workouts assigned Yet...", "Information",
+		//				MessageBoxButtons::OK, MessageBoxIcon::Information);
+		//			return;
+		//		}
+
+		//		if (client->numLogs >= MAX_LOGS) {
+		//			MessageBox::Show("Log Limit Reached...", "Warning",
+		//				MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		//			return;
+		//		}
+
+		//		for (int i = 0; i < client->numWorkouts; i++) {
+		//			ListViewItem^ item = gcnew ListViewItem((i + 1).ToString());
+		//			item->SubItems->Add(gcnew String(client->workoutPlans[i].workoutName.c_str()));
+		//			item->SubItems->Add(gcnew String(client->workoutPlans[i].istrue.c_str()));
+		//			item->Tag = i; // حفظ الفهرس للوصول لاحقاً
+		//			listViewWorkouts->Items->Add(item);
+		//		}
+		//	}
+			
+//		void LogWorkout(Client*client,
+//			ListBox^ lstWorkouts,
+//			Label^ lblStatus,
+//			TextBox^ txtWorkoutNumber,
+//			Button^ btnLogWorkout,
+//			DataGridView^ dgvProgressLogs)
+//		{
+//			// التحقق من وجود تمارين
+//			if (client->numWorkouts == 0) {
+//				MessageBox::Show("No workouts assigned yet.", "Information",
+//					MessageBoxButtons::OK, MessageBoxIcon::Information);
+//				return;
+//			}
+//
+//			// التحقق من الوصول للحد الأقصى للسجلات
+//			if (client->numLogs >= MAX_LOGS) {
+//				MessageBox::Show("Log limit reached.", "Warning",
+//					MessageBoxButtons::OK, MessageBoxIcon::Warning);
+//				return;
+//			}
+//
+//			// تعبئة ListBox بالتمارين
+//			lstWorkouts->Items->Clear();
+//			for (int i = 0; i < client->numWorkouts; i++) {
+//				String^ workoutInfo = String::Format("{0}- {1} | Status: {2}",
+//					i + 1,
+//					client->workoutPlans[i].workoutName,
+//					client->workoutPlans[i].istrue);
+//				lstWorkouts->Items->Add(workoutInfo);
+//			}
+//
+//			// تمكين عناصر التحكم
+//			txtWorkoutNumber->Enabled = true;
+//			btnLogWorkout->Enabled = true;
+//			lblStatus->Text = "Select workout number and click Log";
+//		}
+//
+//		// دالة مساعدة لمعالجة تسجيل التمرين
+//private: System::Void btnLogWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
+//	int log;
+//
+//	// التحقق من صحة الإدخال
+//	if (!Int32::TryParse(txtWorkoutNumber->Text, log)) {
+//		MessageBox::Show("Please enter a valid number.", "Error",
+//			MessageBoxButtons::OK, MessageBoxIcon::Error);
+//		return;
+//	}
+//
+//	// التحقق من نطاق الرقم
+//	if (log < 1 || log > client->numWorkouts) {
+//		MessageBox::Show("Invalid workout number.", "Error",
+//			MessageBoxButtons::OK, MessageBoxIcon::Error);
+//		return;
+//	}
+//
+//	// التحقق إذا كان التمرين مسجل مسبقاً
+//	if (client->workoutPlans[log - 1].istrue == "Done") {
+//		MessageBox::Show("This workout has been done before. Choose another one.",
+//			"Information",
+//			MessageBoxButtons::OK, MessageBoxIcon::Information);
+//		return;
+//	}
+//
+//	// تسجيل التمرين
+//	client->progressLogs[client->numLogs++] = client->workoutPlans[log - 1].workoutName;
+//	client->workoutPlans[log - 1].istrue = "Done";
+//
+//	// تحديث واجهة المستخدم
+//	UpdateProgressLogsDisplay(dgvProgressLogs, client);
+//	MessageBox::Show("Workout logged successfully!", "Success",
+//		MessageBoxButtons::OK, MessageBoxIcon::Information);
+//
+//	// تحديث قاعدة البيانات
+//	UpdateClientProgressLogs(db, client->clientID, JoinLogs(client->progressLogs, client->numLogs));
+//	UpdateWorkoutStatus(db, client->workoutPlans[log - 1]->workoutID);
+//
+//	// تعطيل عناصر التحكم بعد التسجيل
+//	txtWorkoutNumber->Text = "";
+//	txtWorkoutNumber->Enabled = false;
+//	btnLogWorkout->Enabled = false;
+//}
+//
+//	   // دالة مساعدة لتحديث عرض سجلات التقدم
+//	   void UpdateProgressLogsDisplay(DataGridView^ dgv, Client* client) {
+//		   dgv->Rows->Clear();
+//		   for (int i = 0; i < client->numLogs; i++) {
+//			   dgv->Rows->Add(client->progressLogs[i]);
+//		   }
+//	   }
+//
+//	   // دالة مساعدة لدمج السجلات (إذا كنت بحاجتها)
+//	   String^ JoinLogs(array<String^>^ logs, int count) {
+//		   return String::Join(", ", logs);
+//	   }
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -92,21 +355,98 @@ namespace SPProject {
 	private: System::Windows::Forms::Panel^ panel12;
 	private: System::Windows::Forms::Panel^ mainpage;
 	private: System::Windows::Forms::Panel^ panel3;
-	private: System::Windows::Forms::Button^ button1;
+private: System::Windows::Forms::Button^ Logout;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::PictureBox^ pictureBox4;
 	private: System::Windows::Forms::PictureBox^ pictureBox5;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ button2;
+private: System::Windows::Forms::Label^ CLIENTM;
+
+	private: System::Windows::Forms::Button^ bLogCompletedWorkout;
+
+	private: System::Windows::Forms::Button^ bLog_Measurments;
+
+	private: System::Windows::Forms::Button^ bHealth_Summary;
+
+	private: System::Windows::Forms::Button^ bView_Measurments;
+	private: System::Windows::Forms::Button^ bViewWorkouts;
+
+
 	private: System::Windows::Forms::Panel^ VIEWmeasurment;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Label^ PAGEtitle_viewmeasurment;
+
+	private: System::Windows::Forms::DataGridView^ dgv_ViewMeasurment;
+	private: System::Windows::Forms::Panel^ HEALTHsummary;
+	private: System::Windows::Forms::Label^ PAGEtitle_health;
+
+	private: System::Windows::Forms::Label^ lblBMRValue;
+	private: System::Windows::Forms::Label^ lblBMIValue;
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::Label^ lblProteinValue;
+
+private: System::Windows::Forms::Label^ lblStatusValue;
+private: System::Windows::Forms::Label^ lblFatsValue;
+
+private: System::Windows::Forms::Label^ lblCarbsValue;
+private: System::Windows::Forms::Label^ lbFatsValue;
+
+private: System::Windows::Forms::Label^ lbCarbsValue;
+
+private: System::Windows::Forms::Label^ lbProteinValue;
+
+private: System::Windows::Forms::Label^ lbBMRValue;
+private: System::Windows::Forms::Label^ lbTDEEValue;
+
+private: System::Windows::Forms::Label^ lbStatusValue;
+private: System::Windows::Forms::Label^ lbBMIValue;
+private: System::Windows::Forms::Panel^ LOGmeasurment;
+
+private: System::Windows::Forms::Label^ lbl_weight;
+
+
+
+private: System::Windows::Forms::Label^ PAGEtitle_logm;
+private: System::Windows::Forms::DateTimePicker^ Date;
+
+private: System::Windows::Forms::TextBox^ tB_height;
+private: System::Windows::Forms::TextBox^ tB_weight;
+private: System::Windows::Forms::Label^ lbl_height;
+private: System::Windows::Forms::Label^ lbl_date;
+private: System::Windows::Forms::Button^ LOGm;
+private: System::Windows::Forms::Panel^ LOGcomworkout;
+private: System::Windows::Forms::Label^ lblStatus;
+private: System::Windows::Forms::TextBox^ txtWorkoutNumber;
+
+
+private: System::Windows::Forms::ListBox^ WOKOUTS;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::Button^ bt_Logw;
+
+private: System::Windows::Forms::DataGridView^ dgvProgressLogs;
+private: System::Windows::Forms::Label^ lbl_progresslogs;
+private: System::Windows::Forms::Panel^ VIEWworkouts;
+private: System::Windows::Forms::ListBox^ listBoxWorkouts;
+
+private: System::Windows::Forms::Label^ PAGEtitle_viewworkouts;
+private: System::Windows::Forms::Panel^ LOGO;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,32 +477,69 @@ namespace SPProject {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		void InitializeComponent(void)
-		{
+		{   
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(clientmenupage::typeid));
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->CLIENTM = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->panel10 = (gcnew System::Windows::Forms::Panel());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->bLogCompletedWorkout = (gcnew System::Windows::Forms::Button());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel11 = (gcnew System::Windows::Forms::Panel());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->bLog_Measurments = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel12 = (gcnew System::Windows::Forms::Panel());
-			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->bHealth_Summary = (gcnew System::Windows::Forms::Button());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel13 = (gcnew System::Windows::Forms::Panel());
-			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->bView_Measurments = (gcnew System::Windows::Forms::Button());
 			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
 			this->panel4 = (gcnew System::Windows::Forms::Panel());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->bViewWorkouts = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->mainpage = (gcnew System::Windows::Forms::Panel());
-			this->VIEWmeasurment = (gcnew System::Windows::Forms::Panel());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->LOGO = (gcnew System::Windows::Forms::Panel());
+			this->VIEWworkouts = (gcnew System::Windows::Forms::Panel());
+			this->listBoxWorkouts = (gcnew System::Windows::Forms::ListBox());
+			this->PAGEtitle_viewworkouts = (gcnew System::Windows::Forms::Label());
+			this->LOGcomworkout = (gcnew System::Windows::Forms::Panel());
+			this->lbl_progresslogs = (gcnew System::Windows::Forms::Label());
+			this->bt_Logw = (gcnew System::Windows::Forms::Button());
+			this->dgvProgressLogs = (gcnew System::Windows::Forms::DataGridView());
+			this->lblStatus = (gcnew System::Windows::Forms::Label());
+			this->txtWorkoutNumber = (gcnew System::Windows::Forms::TextBox());
+			this->WOKOUTS = (gcnew System::Windows::Forms::ListBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->LOGmeasurment = (gcnew System::Windows::Forms::Panel());
+			this->LOGm = (gcnew System::Windows::Forms::Button());
+			this->Date = (gcnew System::Windows::Forms::DateTimePicker());
+			this->tB_height = (gcnew System::Windows::Forms::TextBox());
+			this->tB_weight = (gcnew System::Windows::Forms::TextBox());
+			this->lbl_height = (gcnew System::Windows::Forms::Label());
+			this->lbl_date = (gcnew System::Windows::Forms::Label());
+			this->lbl_weight = (gcnew System::Windows::Forms::Label());
+			this->PAGEtitle_logm = (gcnew System::Windows::Forms::Label());
+			this->HEALTHsummary = (gcnew System::Windows::Forms::Panel());
+			this->lbFatsValue = (gcnew System::Windows::Forms::Label());
+			this->lbCarbsValue = (gcnew System::Windows::Forms::Label());
+			this->lbProteinValue = (gcnew System::Windows::Forms::Label());
+			this->lbBMRValue = (gcnew System::Windows::Forms::Label());
+			this->lbTDEEValue = (gcnew System::Windows::Forms::Label());
+			this->lbStatusValue = (gcnew System::Windows::Forms::Label());
+			this->lbBMIValue = (gcnew System::Windows::Forms::Label());
+			this->lblFatsValue = (gcnew System::Windows::Forms::Label());
+			this->lblCarbsValue = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->lblProteinValue = (gcnew System::Windows::Forms::Label());
+			this->lblStatusValue = (gcnew System::Windows::Forms::Label());
+			this->lblBMRValue = (gcnew System::Windows::Forms::Label());
+			this->lblBMIValue = (gcnew System::Windows::Forms::Label());
+			this->PAGEtitle_health = (gcnew System::Windows::Forms::Label());
+			this->VIEWmeasurment = (gcnew System::Windows::Forms::Panel());
+			this->dgv_ViewMeasurment = (gcnew System::Windows::Forms::DataGridView());
+			this->PAGEtitle_viewmeasurment = (gcnew System::Windows::Forms::Label());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->Logout = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
 			this->panel10->SuspendLayout();
@@ -176,8 +553,13 @@ namespace SPProject {
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->mainpage->SuspendLayout();
+			this->VIEWworkouts->SuspendLayout();
+			this->LOGcomworkout->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProgressLogs))->BeginInit();
+			this->LOGmeasurment->SuspendLayout();
+			this->HEALTHsummary->SuspendLayout();
 			this->VIEWmeasurment->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->BeginInit();
 			this->panel3->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -185,27 +567,30 @@ namespace SPProject {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->panel1->Controls->Add(this->label1);
+			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->panel1->Controls->Add(this->CLIENTM);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
-			this->panel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panel1->Margin = System::Windows::Forms::Padding(5);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1179, 100);
 			this->panel1->TabIndex = 0;
 			// 
-			// label1
+			// CLIENTM
 			// 
-			this->label1->AutoSize = true;
-			this->label1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->CLIENTM->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->CLIENTM->AutoSize = true;
+			this->CLIENTM->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->CLIENTM->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->ForeColor = System::Drawing::Color::White;
-			this->label1->Location = System::Drawing::Point(305, 23);
-			this->label1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(269, 54);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Client Menu";
+			this->CLIENTM->ForeColor = System::Drawing::Color::White;
+			this->CLIENTM->Location = System::Drawing::Point(460, 20);
+			this->CLIENTM->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->CLIENTM->Name = L"CLIENTM";
+			this->CLIENTM->Size = System::Drawing::Size(269, 54);
+			this->CLIENTM->TabIndex = 0;
+			this->CLIENTM->Text = L"Client Menu";
 			// 
 			// panel2
 			// 
@@ -220,36 +605,37 @@ namespace SPProject {
 			this->panel2->Location = System::Drawing::Point(0, 100);
 			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(336, 714);
+			this->panel2->Size = System::Drawing::Size(336, 713);
 			this->panel2->TabIndex = 1;
 			// 
 			// panel10
 			// 
 			this->panel10->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel10->Controls->Add(this->button3);
+			this->panel10->Controls->Add(this->bLogCompletedWorkout);
 			this->panel10->Controls->Add(this->pictureBox3);
-			this->panel10->Location = System::Drawing::Point(3, 119);
+			this->panel10->Location = System::Drawing::Point(3, 148);
 			this->panel10->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel10->Name = L"panel10";
-			this->panel10->Size = System::Drawing::Size(327, 104);
+			this->panel10->Size = System::Drawing::Size(327, 134);
 			this->panel10->TabIndex = 1;
 			// 
-			// button3
+			// bLogCompletedWorkout
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bLogCompletedWorkout->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(125, 2);
-			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(187, 94);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Log Completed Workout";
-			this->button3->UseVisualStyleBackColor = true;
+			this->bLogCompletedWorkout->Location = System::Drawing::Point(125, 16);
+			this->bLogCompletedWorkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bLogCompletedWorkout->Name = L"bLogCompletedWorkout";
+			this->bLogCompletedWorkout->Size = System::Drawing::Size(187, 94);
+			this->bLogCompletedWorkout->TabIndex = 2;
+			this->bLogCompletedWorkout->Text = L"Log Completed Workout";
+			this->bLogCompletedWorkout->UseVisualStyleBackColor = true;
+			this->bLogCompletedWorkout->Click += gcnew System::EventHandler(this, &clientmenupage::bLogCompletedWorkout_Click);
 			// 
 			// pictureBox3
 			// 
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(3, 2);
+			this->pictureBox3->Location = System::Drawing::Point(10, 13);
 			this->pictureBox3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(100, 98);
@@ -260,31 +646,32 @@ namespace SPProject {
 			// panel11
 			// 
 			this->panel11->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel11->Controls->Add(this->button4);
+			this->panel11->Controls->Add(this->bLog_Measurments);
 			this->panel11->Controls->Add(this->pictureBox2);
-			this->panel11->Location = System::Drawing::Point(3, 226);
+			this->panel11->Location = System::Drawing::Point(3, 286);
 			this->panel11->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel11->Name = L"panel11";
-			this->panel11->Size = System::Drawing::Size(327, 101);
+			this->panel11->Size = System::Drawing::Size(327, 143);
 			this->panel11->TabIndex = 1;
 			this->panel11->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel11_Paint);
 			// 
-			// button4
+			// bLog_Measurments
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bLog_Measurments->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(125, 2);
-			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(187, 95);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"Log Measurments";
-			this->button4->UseVisualStyleBackColor = true;
+			this->bLog_Measurments->Location = System::Drawing::Point(125, 21);
+			this->bLog_Measurments->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bLog_Measurments->Name = L"bLog_Measurments";
+			this->bLog_Measurments->Size = System::Drawing::Size(187, 95);
+			this->bLog_Measurments->TabIndex = 3;
+			this->bLog_Measurments->Text = L"Log Measurments";
+			this->bLog_Measurments->UseVisualStyleBackColor = true;
+			this->bLog_Measurments->Click += gcnew System::EventHandler(this, &clientmenupage::bLog_Measurments_Click);
 			// 
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(3, 0);
+			this->pictureBox2->Location = System::Drawing::Point(10, 21);
 			this->pictureBox2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(100, 98);
@@ -295,30 +682,31 @@ namespace SPProject {
 			// panel12
 			// 
 			this->panel12->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel12->Controls->Add(this->button5);
+			this->panel12->Controls->Add(this->bHealth_Summary);
 			this->panel12->Controls->Add(this->pictureBox4);
-			this->panel12->Location = System::Drawing::Point(3, 334);
+			this->panel12->Location = System::Drawing::Point(3, 433);
 			this->panel12->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel12->Name = L"panel12";
-			this->panel12->Size = System::Drawing::Size(327, 110);
+			this->panel12->Size = System::Drawing::Size(327, 142);
 			this->panel12->TabIndex = 1;
 			// 
-			// button5
+			// bHealth_Summary
 			// 
-			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bHealth_Summary->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(125, 2);
-			this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(187, 103);
-			this->button5->TabIndex = 4;
-			this->button5->Text = L"Health Summary";
-			this->button5->UseVisualStyleBackColor = true;
+			this->bHealth_Summary->Location = System::Drawing::Point(125, 15);
+			this->bHealth_Summary->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bHealth_Summary->Name = L"bHealth_Summary";
+			this->bHealth_Summary->Size = System::Drawing::Size(187, 103);
+			this->bHealth_Summary->TabIndex = 4;
+			this->bHealth_Summary->Text = L"Health Summary";
+			this->bHealth_Summary->UseVisualStyleBackColor = true;
+			this->bHealth_Summary->Click += gcnew System::EventHandler(this, &clientmenupage::bHealth_Summary_Click);
 			// 
 			// pictureBox4
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(3, 2);
+			this->pictureBox4->Location = System::Drawing::Point(10, 15);
 			this->pictureBox4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox4->Name = L"pictureBox4";
 			this->pictureBox4->Size = System::Drawing::Size(100, 103);
@@ -329,31 +717,31 @@ namespace SPProject {
 			// panel13
 			// 
 			this->panel13->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel13->Controls->Add(this->button6);
+			this->panel13->Controls->Add(this->bView_Measurments);
 			this->panel13->Controls->Add(this->pictureBox5);
-			this->panel13->Location = System::Drawing::Point(3, 450);
+			this->panel13->Location = System::Drawing::Point(3, 584);
 			this->panel13->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel13->Name = L"panel13";
-			this->panel13->Size = System::Drawing::Size(327, 100);
+			this->panel13->Size = System::Drawing::Size(327, 127);
 			this->panel13->TabIndex = 1;
 			// 
-			// button6
+			// bView_Measurments
 			// 
-			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bView_Measurments->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button6->Location = System::Drawing::Point(125, 5);
-			this->button6->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(187, 92);
-			this->button6->TabIndex = 5;
-			this->button6->Text = L"View Measurments";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &clientmenupage::button6_Click);
+			this->bView_Measurments->Location = System::Drawing::Point(125, 20);
+			this->bView_Measurments->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bView_Measurments->Name = L"bView_Measurments";
+			this->bView_Measurments->Size = System::Drawing::Size(187, 92);
+			this->bView_Measurments->TabIndex = 5;
+			this->bView_Measurments->Text = L"View Measurments";
+			this->bView_Measurments->UseVisualStyleBackColor = true;
+			this->bView_Measurments->Click += gcnew System::EventHandler(this, &clientmenupage::button6_Click);
 			// 
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(3, 5);
+			this->pictureBox5->Location = System::Drawing::Point(10, 14);
 			this->pictureBox5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox5->Name = L"pictureBox5";
 			this->pictureBox5->Size = System::Drawing::Size(100, 98);
@@ -364,30 +752,31 @@ namespace SPProject {
 			// panel4
 			// 
 			this->panel4->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel4->Controls->Add(this->button2);
+			this->panel4->Controls->Add(this->bViewWorkouts);
 			this->panel4->Controls->Add(this->pictureBox1);
 			this->panel4->Location = System::Drawing::Point(3, 4);
 			this->panel4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(327, 109);
+			this->panel4->Size = System::Drawing::Size(327, 144);
 			this->panel4->TabIndex = 0;
 			// 
-			// button2
+			// bViewWorkouts
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bViewWorkouts->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(125, 2);
-			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(187, 103);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"View Workouts";
-			this->button2->UseVisualStyleBackColor = true;
+			this->bViewWorkouts->Location = System::Drawing::Point(125, 13);
+			this->bViewWorkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bViewWorkouts->Name = L"bViewWorkouts";
+			this->bViewWorkouts->Size = System::Drawing::Size(187, 103);
+			this->bViewWorkouts->TabIndex = 1;
+			this->bViewWorkouts->Text = L"View Workouts";
+			this->bViewWorkouts->UseVisualStyleBackColor = true;
+			this->bViewWorkouts->Click += gcnew System::EventHandler(this, &clientmenupage::bViewWorkouts_Click);
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(3, 2);
+			this->pictureBox1->Location = System::Drawing::Point(10, 13);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(100, 103);
@@ -399,41 +788,166 @@ namespace SPProject {
 			// 
 			this->mainpage->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
+			this->mainpage->Controls->Add(this->LOGO);
+			this->mainpage->Controls->Add(this->VIEWworkouts);
+			this->mainpage->Controls->Add(this->LOGcomworkout);
+			this->mainpage->Controls->Add(this->LOGmeasurment);
+			this->mainpage->Controls->Add(this->HEALTHsummary);
 			this->mainpage->Controls->Add(this->VIEWmeasurment);
 			this->mainpage->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->mainpage->Location = System::Drawing::Point(336, 100);
 			this->mainpage->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->mainpage->Name = L"mainpage";
-			this->mainpage->Size = System::Drawing::Size(843, 714);
+			this->mainpage->Size = System::Drawing::Size(843, 713);
 			this->mainpage->TabIndex = 2;
 			// 
-			// VIEWmeasurment
+			// LOGO
 			// 
-			this->VIEWmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->LOGO->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LOGO.BackgroundImage")));
+			this->LOGO->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGO->Location = System::Drawing::Point(0, 0);
+			this->LOGO->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGO->Name = L"LOGO";
+			this->LOGO->Size = System::Drawing::Size(843, 713);
+			this->LOGO->TabIndex = 8;
+			// 
+			// VIEWworkouts
+			// 
+			this->VIEWworkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->VIEWmeasurment->Controls->Add(this->dataGridView1);
-			this->VIEWmeasurment->Controls->Add(this->label2);
-			this->VIEWmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->VIEWmeasurment->Location = System::Drawing::Point(0, 0);
-			this->VIEWmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->VIEWmeasurment->Name = L"VIEWmeasurment";
-			this->VIEWmeasurment->Size = System::Drawing::Size(843, 714);
-			this->VIEWmeasurment->TabIndex = 3;
+			this->VIEWworkouts->Controls->Add(this->listBoxWorkouts);
+			this->VIEWworkouts->Controls->Add(this->PAGEtitle_viewworkouts);
+			this->VIEWworkouts->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->VIEWworkouts->Location = System::Drawing::Point(0, 0);
+			this->VIEWworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->VIEWworkouts->Name = L"VIEWworkouts";
+			this->VIEWworkouts->Size = System::Drawing::Size(843, 713);
+			this->VIEWworkouts->TabIndex = 7;
 			// 
-			// dataGridView1
+			// listBoxWorkouts
 			// 
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(17, 81);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->RowHeadersWidth = 51;
-			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(789, 529);
-			this->dataGridView1->TabIndex = 2;
-			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &clientmenupage::dataGridView1_CellContentClick);
+			this->listBoxWorkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->listBoxWorkouts->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->listBoxWorkouts->FormattingEnabled = true;
+			this->listBoxWorkouts->ItemHeight = 34;
+			this->listBoxWorkouts->Location = System::Drawing::Point(78, 134);
+			this->listBoxWorkouts->Name = L"listBoxWorkouts";
+			this->listBoxWorkouts->Size = System::Drawing::Size(674, 344);
+			this->listBoxWorkouts->TabIndex = 2;
+			// 
+			// PAGEtitle_viewworkouts
+			// 
+			this->PAGEtitle_viewworkouts->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->PAGEtitle_viewworkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->PAGEtitle_viewworkouts->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->PAGEtitle_viewworkouts->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->PAGEtitle_viewworkouts->ForeColor = System::Drawing::Color::White;
+			this->PAGEtitle_viewworkouts->Location = System::Drawing::Point(315, 19);
+			this->PAGEtitle_viewworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PAGEtitle_viewworkouts->Name = L"PAGEtitle_viewworkouts";
+			this->PAGEtitle_viewworkouts->Size = System::Drawing::Size(211, 50);
+			this->PAGEtitle_viewworkouts->TabIndex = 1;
+			this->PAGEtitle_viewworkouts->Text = L"Your Workouts";
+			// 
+			// LOGcomworkout
+			// 
+			this->LOGcomworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->LOGcomworkout->Controls->Add(this->lbl_progresslogs);
+			this->LOGcomworkout->Controls->Add(this->bt_Logw);
+			this->LOGcomworkout->Controls->Add(this->dgvProgressLogs);
+			this->LOGcomworkout->Controls->Add(this->lblStatus);
+			this->LOGcomworkout->Controls->Add(this->txtWorkoutNumber);
+			this->LOGcomworkout->Controls->Add(this->WOKOUTS);
+			this->LOGcomworkout->Controls->Add(this->label2);
+			this->LOGcomworkout->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGcomworkout->Location = System::Drawing::Point(0, 0);
+			this->LOGcomworkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGcomworkout->Name = L"LOGcomworkout";
+			this->LOGcomworkout->Size = System::Drawing::Size(843, 713);
+			this->LOGcomworkout->TabIndex = 6;
+			// 
+			// lbl_progresslogs
+			// 
+			this->lbl_progresslogs->AutoSize = true;
+			this->lbl_progresslogs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->lbl_progresslogs->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_progresslogs->ForeColor = System::Drawing::Color::White;
+			this->lbl_progresslogs->Location = System::Drawing::Point(148, 471);
+			this->lbl_progresslogs->Name = L"lbl_progresslogs";
+			this->lbl_progresslogs->Size = System::Drawing::Size(152, 39);
+			this->lbl_progresslogs->TabIndex = 7;
+			this->lbl_progresslogs->Text = L"Progress Logs";
+			// 
+			// bt_Logw
+			// 
+			this->bt_Logw->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->bt_Logw->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->bt_Logw->ForeColor = System::Drawing::Color::White;
+			this->bt_Logw->Location = System::Drawing::Point(102, 362);
+			this->bt_Logw->Name = L"bt_Logw";
+			this->bt_Logw->Size = System::Drawing::Size(171, 33);
+			this->bt_Logw->TabIndex = 6;
+			this->bt_Logw->Text = L"Log";
+			this->bt_Logw->UseVisualStyleBackColor = false;
+			// 
+			// dgvProgressLogs
+			// 
+			this->dgvProgressLogs->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->dgvProgressLogs->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgvProgressLogs->Location = System::Drawing::Point(390, 425);
+			this->dgvProgressLogs->Name = L"dgvProgressLogs";
+			this->dgvProgressLogs->RowHeadersWidth = 51;
+			this->dgvProgressLogs->RowTemplate->Height = 24;
+			this->dgvProgressLogs->Size = System::Drawing::Size(362, 150);
+			this->dgvProgressLogs->TabIndex = 5;
+			// 
+			// lblStatus
+			// 
+			this->lblStatus->AutoSize = true;
+			this->lblStatus->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblStatus->Location = System::Drawing::Point(6, 311);
+			this->lblStatus->Name = L"lblStatus";
+			this->lblStatus->Size = System::Drawing::Size(387, 37);
+			this->lblStatus->TabIndex = 4;
+			this->lblStatus->Text = L"Enter number of workout you completed :";
+			// 
+			// txtWorkoutNumber
+			// 
+			this->txtWorkoutNumber->Location = System::Drawing::Point(406, 319);
+			this->txtWorkoutNumber->Name = L"txtWorkoutNumber";
+			this->txtWorkoutNumber->Size = System::Drawing::Size(82, 22);
+			this->txtWorkoutNumber->TabIndex = 3;
+			// 
+			// WOKOUTS
+			// 
+			this->WOKOUTS->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->WOKOUTS->FormattingEnabled = true;
+			this->WOKOUTS->ItemHeight = 34;
+			this->WOKOUTS->Location = System::Drawing::Point(67, 119);
+			this->WOKOUTS->Name = L"WOKOUTS";
+			this->WOKOUTS->Size = System::Drawing::Size(441, 174);
+			this->WOKOUTS->TabIndex = 2;
 			// 
 			// label2
 			// 
+			this->label2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
@@ -441,48 +955,447 @@ namespace SPProject {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->ForeColor = System::Drawing::Color::White;
-			this->label2->Location = System::Drawing::Point(188, 9);
+			this->label2->Location = System::Drawing::Point(239, 19);
 			this->label2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(173, 50);
+			this->label2->Size = System::Drawing::Size(334, 50);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Client Menu";
-			this->label2->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
+			this->label2->Text = L"Log Completed Workouts";
+			// 
+			// LOGmeasurment
+			// 
+			this->LOGmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->LOGmeasurment->Controls->Add(this->LOGm);
+			this->LOGmeasurment->Controls->Add(this->Date);
+			this->LOGmeasurment->Controls->Add(this->tB_height);
+			this->LOGmeasurment->Controls->Add(this->tB_weight);
+			this->LOGmeasurment->Controls->Add(this->lbl_height);
+			this->LOGmeasurment->Controls->Add(this->lbl_date);
+			this->LOGmeasurment->Controls->Add(this->lbl_weight);
+			this->LOGmeasurment->Controls->Add(this->PAGEtitle_logm);
+			this->LOGmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGmeasurment->Location = System::Drawing::Point(0, 0);
+			this->LOGmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGmeasurment->Name = L"LOGmeasurment";
+			this->LOGmeasurment->Size = System::Drawing::Size(843, 713);
+			this->LOGmeasurment->TabIndex = 5;
+			// 
+			// LOGm
+			// 
+			this->LOGm->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->LOGm->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->LOGm->ForeColor = System::Drawing::Color::White;
+			this->LOGm->Location = System::Drawing::Point(652, 440);
+			this->LOGm->Name = L"LOGm";
+			this->LOGm->Size = System::Drawing::Size(100, 50);
+			this->LOGm->TabIndex = 8;
+			this->LOGm->Text = L"Log";
+			this->LOGm->UseVisualStyleBackColor = false;
+			this->LOGm->Click += gcnew System::EventHandler(this, &clientmenupage::button2_Click);
+			// 
+			// Date
+			// 
+			this->Date->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Date->Location = System::Drawing::Point(28, 389);
+			this->Date->Name = L"Date";
+			this->Date->Size = System::Drawing::Size(306, 24);
+			this->Date->TabIndex = 7;
+			// 
+			// tB_height
+			// 
+			this->tB_height->Location = System::Drawing::Point(28, 285);
+			this->tB_height->Name = L"tB_height";
+			this->tB_height->Size = System::Drawing::Size(341, 22);
+			this->tB_height->TabIndex = 6;
+			// 
+			// tB_weight
+			// 
+			this->tB_weight->Location = System::Drawing::Point(28, 173);
+			this->tB_weight->Name = L"tB_weight";
+			this->tB_weight->Size = System::Drawing::Size(341, 22);
+			this->tB_weight->TabIndex = 5;
+			// 
+			// lbl_height
+			// 
+			this->lbl_height->AutoSize = true;
+			this->lbl_height->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_height->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_height->Location = System::Drawing::Point(7, 224);
+			this->lbl_height->Name = L"lbl_height";
+			this->lbl_height->Size = System::Drawing::Size(192, 39);
+			this->lbl_height->TabIndex = 4;
+			this->lbl_height->Text = L"Enter Your Height :";
+			// 
+			// lbl_date
+			// 
+			this->lbl_date->AutoSize = true;
+			this->lbl_date->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_date->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_date->Location = System::Drawing::Point(6, 332);
+			this->lbl_date->Name = L"lbl_date";
+			this->lbl_date->Size = System::Drawing::Size(123, 39);
+			this->lbl_date->TabIndex = 3;
+			this->lbl_date->Text = L"Enter Date :";
+			// 
+			// lbl_weight
+			// 
+			this->lbl_weight->AutoSize = true;
+			this->lbl_weight->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_weight->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_weight->Location = System::Drawing::Point(6, 109);
+			this->lbl_weight->Name = L"lbl_weight";
+			this->lbl_weight->Size = System::Drawing::Size(196, 39);
+			this->lbl_weight->TabIndex = 2;
+			this->lbl_weight->Text = L"Enter Your Weight :";
+			// 
+			// PAGEtitle_logm
+			// 
+			this->PAGEtitle_logm->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->PAGEtitle_logm->AutoSize = true;
+			this->PAGEtitle_logm->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->PAGEtitle_logm->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->PAGEtitle_logm->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->PAGEtitle_logm->ForeColor = System::Drawing::Color::White;
+			this->PAGEtitle_logm->Location = System::Drawing::Point(282, 19);
+			this->PAGEtitle_logm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PAGEtitle_logm->Name = L"PAGEtitle_logm";
+			this->PAGEtitle_logm->Size = System::Drawing::Size(244, 50);
+			this->PAGEtitle_logm->TabIndex = 1;
+			this->PAGEtitle_logm->Text = L"Log  Measurments";
+			// 
+			// HEALTHsummary
+			// 
+			this->HEALTHsummary->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->HEALTHsummary->Controls->Add(this->lbFatsValue);
+			this->HEALTHsummary->Controls->Add(this->lbCarbsValue);
+			this->HEALTHsummary->Controls->Add(this->lbProteinValue);
+			this->HEALTHsummary->Controls->Add(this->lbBMRValue);
+			this->HEALTHsummary->Controls->Add(this->lbTDEEValue);
+			this->HEALTHsummary->Controls->Add(this->lbStatusValue);
+			this->HEALTHsummary->Controls->Add(this->lbBMIValue);
+			this->HEALTHsummary->Controls->Add(this->lblFatsValue);
+			this->HEALTHsummary->Controls->Add(this->lblCarbsValue);
+			this->HEALTHsummary->Controls->Add(this->label7);
+			this->HEALTHsummary->Controls->Add(this->lblProteinValue);
+			this->HEALTHsummary->Controls->Add(this->lblStatusValue);
+			this->HEALTHsummary->Controls->Add(this->lblBMRValue);
+			this->HEALTHsummary->Controls->Add(this->lblBMIValue);
+			this->HEALTHsummary->Controls->Add(this->PAGEtitle_health);
+			this->HEALTHsummary->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->HEALTHsummary->Location = System::Drawing::Point(0, 0);
+			this->HEALTHsummary->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->HEALTHsummary->Name = L"HEALTHsummary";
+			this->HEALTHsummary->Size = System::Drawing::Size(843, 713);
+			this->HEALTHsummary->TabIndex = 4;
+			// 
+			// lbFatsValue
+			// 
+			this->lbFatsValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbFatsValue->AutoSize = true;
+			this->lbFatsValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbFatsValue->Location = System::Drawing::Point(312, 461);
+			this->lbFatsValue->Name = L"lbFatsValue";
+			this->lbFatsValue->Size = System::Drawing::Size(58, 16);
+			this->lbFatsValue->TabIndex = 17;
+			this->lbFatsValue->Text = L"label10";
+			// 
+			// lbCarbsValue
+			// 
+			this->lbCarbsValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbCarbsValue->AutoSize = true;
+			this->lbCarbsValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbCarbsValue->Location = System::Drawing::Point(319, 400);
+			this->lbCarbsValue->Name = L"lbCarbsValue";
+			this->lbCarbsValue->Size = System::Drawing::Size(50, 16);
+			this->lbCarbsValue->TabIndex = 16;
+			this->lbCarbsValue->Text = L"label9";
+			// 
+			// lbProteinValue
+			// 
+			this->lbProteinValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbProteinValue->AutoSize = true;
+			this->lbProteinValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbProteinValue->Location = System::Drawing::Point(319, 348);
+			this->lbProteinValue->Name = L"lbProteinValue";
+			this->lbProteinValue->Size = System::Drawing::Size(50, 16);
+			this->lbProteinValue->TabIndex = 15;
+			this->lbProteinValue->Text = L"label8";
+			// 
+			// lbBMRValue
+			// 
+			this->lbBMRValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbBMRValue->AutoSize = true;
+			this->lbBMRValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbBMRValue->Location = System::Drawing::Point(194, 237);
+			this->lbBMRValue->Name = L"lbBMRValue";
+			this->lbBMRValue->Size = System::Drawing::Size(50, 16);
+			this->lbBMRValue->TabIndex = 14;
+			this->lbBMRValue->Text = L"label6";
+			// 
+			// lbTDEEValue
+			// 
+			this->lbTDEEValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbTDEEValue->AutoSize = true;
+			this->lbTDEEValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbTDEEValue->Location = System::Drawing::Point(483, 237);
+			this->lbTDEEValue->Name = L"lbTDEEValue";
+			this->lbTDEEValue->Size = System::Drawing::Size(50, 16);
+			this->lbTDEEValue->TabIndex = 13;
+			this->lbTDEEValue->Text = L"label5";
+			// 
+			// lbStatusValue
+			// 
+			this->lbStatusValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbStatusValue->AutoSize = true;
+			this->lbStatusValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbStatusValue->Location = System::Drawing::Point(483, 134);
+			this->lbStatusValue->Name = L"lbStatusValue";
+			this->lbStatusValue->Size = System::Drawing::Size(50, 16);
+			this->lbStatusValue->TabIndex = 12;
+			this->lbStatusValue->Text = L"label4";
+			// 
+			// lbBMIValue
+			// 
+			this->lbBMIValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lbBMIValue->AutoSize = true;
+			this->lbBMIValue->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbBMIValue->Location = System::Drawing::Point(193, 134);
+			this->lbBMIValue->Name = L"lbBMIValue";
+			this->lbBMIValue->Size = System::Drawing::Size(50, 16);
+			this->lbBMIValue->TabIndex = 11;
+			this->lbBMIValue->Text = L"label3";
+			// 
+			// lblFatsValue
+			// 
+			this->lblFatsValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblFatsValue->AutoSize = true;
+			this->lblFatsValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblFatsValue->Location = System::Drawing::Point(214, 450);
+			this->lblFatsValue->Name = L"lblFatsValue";
+			this->lblFatsValue->Size = System::Drawing::Size(59, 37);
+			this->lblFatsValue->TabIndex = 10;
+			this->lblFatsValue->Text = L"Fats:";
+			// 
+			// lblCarbsValue
+			// 
+			this->lblCarbsValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblCarbsValue->AutoSize = true;
+			this->lblCarbsValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblCarbsValue->Location = System::Drawing::Point(214, 389);
+			this->lblCarbsValue->Name = L"lblCarbsValue";
+			this->lblCarbsValue->Size = System::Drawing::Size(74, 37);
+			this->lblCarbsValue->TabIndex = 9;
+			this->lblCarbsValue->Text = L"Carbs:";
+			// 
+			// label7
+			// 
+			this->label7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label7->Location = System::Drawing::Point(399, 226);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(78, 37);
+			this->label7->TabIndex = 8;
+			this->label7->Text = L"TDEE:";
+			// 
+			// lblProteinValue
+			// 
+			this->lblProteinValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblProteinValue->AutoSize = true;
+			this->lblProteinValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblProteinValue->ImageAlign = System::Drawing::ContentAlignment::TopLeft;
+			this->lblProteinValue->Location = System::Drawing::Point(214, 334);
+			this->lblProteinValue->Name = L"lblProteinValue";
+			this->lblProteinValue->Size = System::Drawing::Size(88, 37);
+			this->lblProteinValue->TabIndex = 7;
+			this->lblProteinValue->Text = L"Protein:";
+			// 
+			// lblStatusValue
+			// 
+			this->lblStatusValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblStatusValue->AutoSize = true;
+			this->lblStatusValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblStatusValue->Location = System::Drawing::Point(399, 123);
+			this->lblStatusValue->Name = L"lblStatusValue";
+			this->lblStatusValue->Size = System::Drawing::Size(77, 37);
+			this->lblStatusValue->TabIndex = 6;
+			this->lblStatusValue->Text = L"Status:";
+			// 
+			// lblBMRValue
+			// 
+			this->lblBMRValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblBMRValue->AutoSize = true;
+			this->lblBMRValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblBMRValue->Location = System::Drawing::Point(108, 226);
+			this->lblBMRValue->Name = L"lblBMRValue";
+			this->lblBMRValue->Size = System::Drawing::Size(70, 37);
+			this->lblBMRValue->TabIndex = 5;
+			this->lblBMRValue->Text = L"BMR:";
+			// 
+			// lblBMIValue
+			// 
+			this->lblBMIValue->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->lblBMIValue->AutoSize = true;
+			this->lblBMIValue->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblBMIValue->Location = System::Drawing::Point(104, 123);
+			this->lblBMIValue->Name = L"lblBMIValue";
+			this->lblBMIValue->Size = System::Drawing::Size(63, 37);
+			this->lblBMIValue->TabIndex = 4;
+			this->lblBMIValue->Text = L"BMI:";
+			// 
+			// PAGEtitle_health
+			// 
+			this->PAGEtitle_health->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->PAGEtitle_health->AutoSize = true;
+			this->PAGEtitle_health->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->PAGEtitle_health->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->PAGEtitle_health->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->PAGEtitle_health->ForeColor = System::Drawing::Color::White;
+			this->PAGEtitle_health->Location = System::Drawing::Point(282, 19);
+			this->PAGEtitle_health->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PAGEtitle_health->Name = L"PAGEtitle_health";
+			this->PAGEtitle_health->Size = System::Drawing::Size(226, 50);
+			this->PAGEtitle_health->TabIndex = 1;
+			this->PAGEtitle_health->Text = L"Health Summary";
+			// 
+			// VIEWmeasurment
+			// 
+			this->VIEWmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->VIEWmeasurment->Controls->Add(this->dgv_ViewMeasurment);
+			this->VIEWmeasurment->Controls->Add(this->PAGEtitle_viewmeasurment);
+			this->VIEWmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->VIEWmeasurment->Location = System::Drawing::Point(0, 0);
+			this->VIEWmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->VIEWmeasurment->Name = L"VIEWmeasurment";
+			this->VIEWmeasurment->Size = System::Drawing::Size(843, 713);
+			this->VIEWmeasurment->TabIndex = 3;
+			this->VIEWmeasurment->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::VIEWmeasurment_Paint);
+			// 
+			// dgv_ViewMeasurment
+			// 
+			this->dgv_ViewMeasurment->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dgv_ViewMeasurment->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->dgv_ViewMeasurment->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dgv_ViewMeasurment->Location = System::Drawing::Point(78, 148);
+			this->dgv_ViewMeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->dgv_ViewMeasurment->Name = L"dgv_ViewMeasurment";
+			this->dgv_ViewMeasurment->RowHeadersWidth = 51;
+			this->dgv_ViewMeasurment->RowTemplate->Height = 24;
+			this->dgv_ViewMeasurment->Size = System::Drawing::Size(696, 448);
+			this->dgv_ViewMeasurment->TabIndex = 2;
+			this->dgv_ViewMeasurment->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &clientmenupage::dataGridView1_CellContentClick);
+			// 
+			// PAGEtitle_viewmeasurment
+			// 
+			this->PAGEtitle_viewmeasurment->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->PAGEtitle_viewmeasurment->AutoSize = true;
+			this->PAGEtitle_viewmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->PAGEtitle_viewmeasurment->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->PAGEtitle_viewmeasurment->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->PAGEtitle_viewmeasurment->ForeColor = System::Drawing::Color::White;
+			this->PAGEtitle_viewmeasurment->Location = System::Drawing::Point(282, 19);
+			this->PAGEtitle_viewmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PAGEtitle_viewmeasurment->Name = L"PAGEtitle_viewmeasurment";
+			this->PAGEtitle_viewmeasurment->Size = System::Drawing::Size(254, 50);
+			this->PAGEtitle_viewmeasurment->TabIndex = 1;
+			this->PAGEtitle_viewmeasurment->Text = L"View Measurments";
+			this->PAGEtitle_viewmeasurment->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
 			// 
 			// panel3
 			// 
 			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->panel3->Controls->Add(this->button1);
+			this->panel3->Controls->Add(this->Logout);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->panel3->Location = System::Drawing::Point(336, 714);
+			this->panel3->Location = System::Drawing::Point(336, 713);
 			this->panel3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(843, 100);
 			this->panel3->TabIndex = 3;
 			// 
-			// button1
+			// Logout
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+			this->Logout->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->Logout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->Logout->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Location = System::Drawing::Point(695, 25);
-			this->button1->Margin = System::Windows::Forms::Padding(0);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(120, 60);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Logout";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &clientmenupage::button1_Click);
+			this->Logout->ForeColor = System::Drawing::Color::White;
+			this->Logout->Location = System::Drawing::Point(695, 25);
+			this->Logout->Margin = System::Windows::Forms::Padding(0);
+			this->Logout->Name = L"Logout";
+			this->Logout->Size = System::Drawing::Size(120, 60);
+			this->Logout->TabIndex = 0;
+			this->Logout->Text = L"Logout";
+			this->Logout->UseVisualStyleBackColor = false;
+			this->Logout->Click += gcnew System::EventHandler(this, &clientmenupage::Logout_Click);
 			// 
 			// clientmenupage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1179, 814);
+			this->ClientSize = System::Drawing::Size(1179, 813);
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->mainpage);
 			this->Controls->Add(this->panel2);
@@ -504,9 +1417,17 @@ namespace SPProject {
 			this->panel4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->mainpage->ResumeLayout(false);
+			this->VIEWworkouts->ResumeLayout(false);
+			this->LOGcomworkout->ResumeLayout(false);
+			this->LOGcomworkout->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProgressLogs))->EndInit();
+			this->LOGmeasurment->ResumeLayout(false);
+			this->LOGmeasurment->PerformLayout();
+			this->HEALTHsummary->ResumeLayout(false);
+			this->HEALTHsummary->PerformLayout();
 			this->VIEWmeasurment->ResumeLayout(false);
 			this->VIEWmeasurment->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->EndInit();
 			this->panel3->ResumeLayout(false);
 			this->ResumeLayout(false);
 
@@ -529,14 +1450,57 @@ namespace SPProject {
 		   //}
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		VIEWmeasurment->BringToFront();
-		ViewMeasurements(client, dataGridView1);
+		ViewMeasurements(client, dgv_ViewMeasurment);
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
+	private: System::Void Logout_Click(System::Object^ sender, System::EventArgs^ e) {
+		Application::ExitThread();
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	}
-	};
+	private: System::Void VIEWmeasurment_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void bHealth_Summary_Click(System::Object^ sender, System::EventArgs^ e) {
+		HEALTHsummary->BringToFront();
+		/*healthsummary(client,
+			lbBMIValue,
+			lbStatusValue,
+			lbBMRValue,
+			lbTDEEValue,
+			lbProteinValue,
+			lbCarbsValue,
+			lblFatsValue);
+	*/
+	}
+private: System::Void bLog_Measurments_Click(System::Object^ sender, System::EventArgs^ e) {
+	LOGmeasurment->BringToFront();
+	if (client->numMeasurements > 0) {
+		tB_height->Visible = false;
+		lbl_height->Visible = false;
+	}
+	else {
+		tB_height->Visible = true;
+		lbl_height->Visible = true;
+	}
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	LogMeasurement(); 
+
+}
+private: System::Void bLogCompletedWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
+	LOGcomworkout->BringToFront();
+	/*LogWorkout(client,
+		WOKOUTS,
+		lblStatus,
+		txtWorkoutNumber,
+		dgvProgressLogs);*/
+
+}
+	// تسجيل ا
+private: System::Void bViewWorkouts_Click(System::Object^ sender, System::EventArgs^ e) {
+	VIEWworkouts->BringToFront();
+	//ViewWorkouts(client, listBoxWorkouts);
+}
+};
 }
