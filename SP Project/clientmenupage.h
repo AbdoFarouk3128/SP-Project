@@ -339,22 +339,32 @@ namespace SPProject {
 				delete components;
 			}
 		}
+private: System::Windows::Forms::Panel^ Title;
+protected:
 
-	private: System::Windows::Forms::Panel^ panel1;
+
 	protected:
 	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Panel^ panel13;
-	private: System::Windows::Forms::Panel^ panel4;
+private: System::Windows::Forms::Panel^ p_measurment;
+private: System::Windows::Forms::Panel^ p_workout;
+private: System::Windows::Forms::Panel^ p_logworkouts;
+
+
+
+private: System::Windows::Forms::Panel^ p_logmeasurments;
+
+private: System::Windows::Forms::Panel^ p_health;
 
 
 
 
 
-	private: System::Windows::Forms::Panel^ panel10;
-	private: System::Windows::Forms::Panel^ panel11;
-	private: System::Windows::Forms::Panel^ panel12;
+
+
+
 	private: System::Windows::Forms::Panel^ mainpage;
-	private: System::Windows::Forms::Panel^ panel3;
+private: System::Windows::Forms::Panel^ logoutp;
+
 private: System::Windows::Forms::Button^ Logout;
 
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
@@ -479,22 +489,22 @@ private: System::Windows::Forms::Panel^ LOGO;
 		void InitializeComponent(void)
 		{   
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(clientmenupage::typeid));
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->Title = (gcnew System::Windows::Forms::Panel());
 			this->CLIENTM = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
-			this->panel10 = (gcnew System::Windows::Forms::Panel());
+			this->p_logworkouts = (gcnew System::Windows::Forms::Panel());
 			this->bLogCompletedWorkout = (gcnew System::Windows::Forms::Button());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel11 = (gcnew System::Windows::Forms::Panel());
+			this->p_logmeasurments = (gcnew System::Windows::Forms::Panel());
 			this->bLog_Measurments = (gcnew System::Windows::Forms::Button());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel12 = (gcnew System::Windows::Forms::Panel());
+			this->p_health = (gcnew System::Windows::Forms::Panel());
 			this->bHealth_Summary = (gcnew System::Windows::Forms::Button());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel13 = (gcnew System::Windows::Forms::Panel());
+			this->p_measurment = (gcnew System::Windows::Forms::Panel());
 			this->bView_Measurments = (gcnew System::Windows::Forms::Button());
 			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
-			this->panel4 = (gcnew System::Windows::Forms::Panel());
+			this->p_workout = (gcnew System::Windows::Forms::Panel());
 			this->bViewWorkouts = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->mainpage = (gcnew System::Windows::Forms::Panel());
@@ -538,19 +548,19 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->VIEWmeasurment = (gcnew System::Windows::Forms::Panel());
 			this->dgv_ViewMeasurment = (gcnew System::Windows::Forms::DataGridView());
 			this->PAGEtitle_viewmeasurment = (gcnew System::Windows::Forms::Label());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->logoutp = (gcnew System::Windows::Forms::Panel());
 			this->Logout = (gcnew System::Windows::Forms::Button());
-			this->panel1->SuspendLayout();
+			this->Title->SuspendLayout();
 			this->panel2->SuspendLayout();
-			this->panel10->SuspendLayout();
+			this->p_logworkouts->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
-			this->panel11->SuspendLayout();
+			this->p_logmeasurments->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
-			this->panel12->SuspendLayout();
+			this->p_health->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
-			this->panel13->SuspendLayout();
+			this->p_measurment->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->BeginInit();
-			this->panel4->SuspendLayout();
+			this->p_workout->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->mainpage->SuspendLayout();
 			this->VIEWworkouts->SuspendLayout();
@@ -560,21 +570,21 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->HEALTHsummary->SuspendLayout();
 			this->VIEWmeasurment->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->BeginInit();
-			this->panel3->SuspendLayout();
+			this->logoutp->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// panel1
+			// Title
 			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+			this->Title->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->panel1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->panel1->Controls->Add(this->CLIENTM);
-			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panel1->Location = System::Drawing::Point(0, 0);
-			this->panel1->Margin = System::Windows::Forms::Padding(5);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(1179, 100);
-			this->panel1->TabIndex = 0;
+			this->Title->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->Title->Controls->Add(this->CLIENTM);
+			this->Title->Dock = System::Windows::Forms::DockStyle::Top;
+			this->Title->Location = System::Drawing::Point(0, 0);
+			this->Title->Margin = System::Windows::Forms::Padding(5);
+			this->Title->Name = L"Title";
+			this->Title->Size = System::Drawing::Size(1179, 100);
+			this->Title->TabIndex = 0;
 			// 
 			// CLIENTM
 			// 
@@ -596,11 +606,11 @@ private: System::Windows::Forms::Panel^ LOGO;
 			// 
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->panel2->Controls->Add(this->panel10);
-			this->panel2->Controls->Add(this->panel11);
-			this->panel2->Controls->Add(this->panel12);
-			this->panel2->Controls->Add(this->panel13);
-			this->panel2->Controls->Add(this->panel4);
+			this->panel2->Controls->Add(this->p_logworkouts);
+			this->panel2->Controls->Add(this->p_logmeasurments);
+			this->panel2->Controls->Add(this->p_health);
+			this->panel2->Controls->Add(this->p_measurment);
+			this->panel2->Controls->Add(this->p_workout);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Left;
 			this->panel2->Location = System::Drawing::Point(0, 100);
 			this->panel2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -608,16 +618,16 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel2->Size = System::Drawing::Size(336, 713);
 			this->panel2->TabIndex = 1;
 			// 
-			// panel10
+			// p_logworkouts
 			// 
-			this->panel10->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel10->Controls->Add(this->bLogCompletedWorkout);
-			this->panel10->Controls->Add(this->pictureBox3);
-			this->panel10->Location = System::Drawing::Point(3, 148);
-			this->panel10->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel10->Name = L"panel10";
-			this->panel10->Size = System::Drawing::Size(327, 134);
-			this->panel10->TabIndex = 1;
+			this->p_logworkouts->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->p_logworkouts->Controls->Add(this->bLogCompletedWorkout);
+			this->p_logworkouts->Controls->Add(this->pictureBox3);
+			this->p_logworkouts->Location = System::Drawing::Point(3, 148);
+			this->p_logworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->p_logworkouts->Name = L"p_logworkouts";
+			this->p_logworkouts->Size = System::Drawing::Size(327, 134);
+			this->p_logworkouts->TabIndex = 1;
 			// 
 			// bLogCompletedWorkout
 			// 
@@ -643,17 +653,17 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->pictureBox3->TabIndex = 2;
 			this->pictureBox3->TabStop = false;
 			// 
-			// panel11
+			// p_logmeasurments
 			// 
-			this->panel11->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel11->Controls->Add(this->bLog_Measurments);
-			this->panel11->Controls->Add(this->pictureBox2);
-			this->panel11->Location = System::Drawing::Point(3, 286);
-			this->panel11->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel11->Name = L"panel11";
-			this->panel11->Size = System::Drawing::Size(327, 143);
-			this->panel11->TabIndex = 1;
-			this->panel11->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel11_Paint);
+			this->p_logmeasurments->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->p_logmeasurments->Controls->Add(this->bLog_Measurments);
+			this->p_logmeasurments->Controls->Add(this->pictureBox2);
+			this->p_logmeasurments->Location = System::Drawing::Point(3, 286);
+			this->p_logmeasurments->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->p_logmeasurments->Name = L"p_logmeasurments";
+			this->p_logmeasurments->Size = System::Drawing::Size(327, 143);
+			this->p_logmeasurments->TabIndex = 1;
+			this->p_logmeasurments->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel11_Paint);
 			// 
 			// bLog_Measurments
 			// 
@@ -679,16 +689,16 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->pictureBox2->TabIndex = 1;
 			this->pictureBox2->TabStop = false;
 			// 
-			// panel12
+			// p_health
 			// 
-			this->panel12->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel12->Controls->Add(this->bHealth_Summary);
-			this->panel12->Controls->Add(this->pictureBox4);
-			this->panel12->Location = System::Drawing::Point(3, 433);
-			this->panel12->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel12->Name = L"panel12";
-			this->panel12->Size = System::Drawing::Size(327, 142);
-			this->panel12->TabIndex = 1;
+			this->p_health->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->p_health->Controls->Add(this->bHealth_Summary);
+			this->p_health->Controls->Add(this->pictureBox4);
+			this->p_health->Location = System::Drawing::Point(3, 433);
+			this->p_health->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->p_health->Name = L"p_health";
+			this->p_health->Size = System::Drawing::Size(327, 142);
+			this->p_health->TabIndex = 1;
 			// 
 			// bHealth_Summary
 			// 
@@ -714,16 +724,16 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->pictureBox4->TabIndex = 2;
 			this->pictureBox4->TabStop = false;
 			// 
-			// panel13
+			// p_measurment
 			// 
-			this->panel13->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel13->Controls->Add(this->bView_Measurments);
-			this->panel13->Controls->Add(this->pictureBox5);
-			this->panel13->Location = System::Drawing::Point(3, 584);
-			this->panel13->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel13->Name = L"panel13";
-			this->panel13->Size = System::Drawing::Size(327, 127);
-			this->panel13->TabIndex = 1;
+			this->p_measurment->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->p_measurment->Controls->Add(this->bView_Measurments);
+			this->p_measurment->Controls->Add(this->pictureBox5);
+			this->p_measurment->Location = System::Drawing::Point(3, 584);
+			this->p_measurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->p_measurment->Name = L"p_measurment";
+			this->p_measurment->Size = System::Drawing::Size(327, 127);
+			this->p_measurment->TabIndex = 1;
 			// 
 			// bView_Measurments
 			// 
@@ -749,16 +759,16 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->pictureBox5->TabIndex = 2;
 			this->pictureBox5->TabStop = false;
 			// 
-			// panel4
+			// p_workout
 			// 
-			this->panel4->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panel4->Controls->Add(this->bViewWorkouts);
-			this->panel4->Controls->Add(this->pictureBox1);
-			this->panel4->Location = System::Drawing::Point(3, 4);
-			this->panel4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel4->Name = L"panel4";
-			this->panel4->Size = System::Drawing::Size(327, 144);
-			this->panel4->TabIndex = 0;
+			this->p_workout->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->p_workout->Controls->Add(this->bViewWorkouts);
+			this->p_workout->Controls->Add(this->pictureBox1);
+			this->p_workout->Location = System::Drawing::Point(3, 4);
+			this->p_workout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->p_workout->Name = L"p_workout";
+			this->p_workout->Size = System::Drawing::Size(327, 144);
+			this->p_workout->TabIndex = 0;
 			// 
 			// bViewWorkouts
 			// 
@@ -854,9 +864,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->PAGEtitle_viewworkouts->Location = System::Drawing::Point(315, 19);
 			this->PAGEtitle_viewworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PAGEtitle_viewworkouts->Name = L"PAGEtitle_viewworkouts";
-			this->PAGEtitle_viewworkouts->Size = System::Drawing::Size(211, 60);
+			this->PAGEtitle_viewworkouts->Size = System::Drawing::Size(210, 50);
 			this->PAGEtitle_viewworkouts->TabIndex = 1;
-			this->PAGEtitle_viewworkouts->Text =L"Your Workouts";
+			this->PAGEtitle_viewworkouts->Text = L"Your Workouts";
 			// 
 			// LOGcomworkout
 			// 
@@ -1363,17 +1373,17 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->PAGEtitle_viewmeasurment->Text = L"View Measurments";
 			this->PAGEtitle_viewmeasurment->Click += gcnew System::EventHandler(this, &clientmenupage::label2_Click);
 			// 
-			// panel3
+			// logoutp
 			// 
-			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+			this->logoutp->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->panel3->Controls->Add(this->Logout);
-			this->panel3->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->panel3->Location = System::Drawing::Point(336, 713);
-			this->panel3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(843, 100);
-			this->panel3->TabIndex = 3;
+			this->logoutp->Controls->Add(this->Logout);
+			this->logoutp->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->logoutp->Location = System::Drawing::Point(336, 713);
+			this->logoutp->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->logoutp->Name = L"logoutp";
+			this->logoutp->Size = System::Drawing::Size(843, 100);
+			this->logoutp->TabIndex = 3;
 			// 
 			// Logout
 			// 
@@ -1397,28 +1407,29 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1179, 813);
-			this->Controls->Add(this->panel3);
+			this->Controls->Add(this->logoutp);
 			this->Controls->Add(this->mainpage);
 			this->Controls->Add(this->panel2);
-			this->Controls->Add(this->panel1);
+			this->Controls->Add(this->Title);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"clientmenupage";
 			this->Text = L"clientmenupage";
-			this->panel1->ResumeLayout(false);
-			this->panel1->PerformLayout();
+			this->Title->ResumeLayout(false);
+			this->Title->PerformLayout();
 			this->panel2->ResumeLayout(false);
-			this->panel10->ResumeLayout(false);
+			this->p_logworkouts->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			this->panel11->ResumeLayout(false);
+			this->p_logmeasurments->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
-			this->panel12->ResumeLayout(false);
+			this->p_health->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
-			this->panel13->ResumeLayout(false);
+			this->p_measurment->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox5))->EndInit();
-			this->panel4->ResumeLayout(false);
+			this->p_workout->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->mainpage->ResumeLayout(false);
 			this->VIEWworkouts->ResumeLayout(false);
+			this->VIEWworkouts->PerformLayout();
 			this->LOGcomworkout->ResumeLayout(false);
 			this->LOGcomworkout->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgvProgressLogs))->EndInit();
@@ -1429,7 +1440,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->VIEWmeasurment->ResumeLayout(false);
 			this->VIEWmeasurment->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->EndInit();
-			this->panel3->ResumeLayout(false);
+			this->logoutp->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
