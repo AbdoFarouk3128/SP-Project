@@ -119,7 +119,7 @@ void updatetheworkoutstatus(sqlite3* db, int workoutid);
 double calculateBMR(Client& a);
 double getActivityMultiplier(Client& a);
 double calculateTDEE(double bmr, double activitylevel);
-void calculateMacros(double tdee, Client& a);
+Measurement::Macros calculateMacros(double tdee, Client& a);
 double calculateBMI(Client& a);
 string getBMICategory(double bmi);
 void healthsummary(Client& client);

@@ -386,14 +386,15 @@ double calculateTDEE(double bmr, double activitylevel) {
     return bmr * activitylevel;
 }
 
-void calculateMacros(double tdee, Client& a) {
+Measurement::Macros calculateMacros(double tdee, Client& a) {
+    Measurement::Macros mac;
     a.measurements[a.numMeasurements - 1].macros.protein = (tdee * 0.3) / 4;
+     mac.protein=a.measurements[a.numMeasurements - 1].macros.protein ;
     a.measurements[a.numMeasurements - 1].macros.carbs = (tdee * 0.45) / 4;
+    mac.carbs= a.measurements[a.numMeasurements - 1].macros.carbs;
     a.measurements[a.numMeasurements - 1].macros.fats = (tdee * 0.25) / 9;
-    cout << "\n--- MACRONUTRIENTS ---" << endl;
-    cout << "Protein (grams): " << a.measurements[a.numMeasurements - 1].macros.protein << endl;
-    cout << "Carbohydrates (grams): " << a.measurements[a.numMeasurements - 1].macros.carbs << endl;
-    cout << "Fats (grams): " << a.measurements[a.numMeasurements - 1].macros.fats << endl;
+    mac.fats=a.measurements[a.numMeasurements - 1].macros.fats;
+    return mac;
 }
 
 double calculateBMI(Client& a) {
