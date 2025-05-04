@@ -73,9 +73,11 @@ namespace SPProject {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(234, 12);
+			this->pictureBox1->Location = System::Drawing::Point(312, 15);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(395, 325);
+			this->pictureBox1->Size = System::Drawing::Size(527, 400);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -87,9 +89,10 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->btnLogin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->btnLogin->Location = System::Drawing::Point(320, 475);
+			this->btnLogin->Location = System::Drawing::Point(427, 585);
+			this->btnLogin->Margin = System::Windows::Forms::Padding(4);
 			this->btnLogin->Name = L"btnLogin";
-			this->btnLogin->Size = System::Drawing::Size(236, 55);
+			this->btnLogin->Size = System::Drawing::Size(315, 68);
 			this->btnLogin->TabIndex = 1;
 			this->btnLogin->Text = L"Login";
 			this->btnLogin->UseVisualStyleBackColor = true;
@@ -102,9 +105,10 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->lblusername->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->lblusername->Location = System::Drawing::Point(175, 351);
+			this->lblusername->Location = System::Drawing::Point(233, 432);
+			this->lblusername->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblusername->Name = L"lblusername";
-			this->lblusername->Size = System::Drawing::Size(132, 31);
+			this->lblusername->Size = System::Drawing::Size(165, 38);
 			this->lblusername->TabIndex = 2;
 			this->lblusername->Text = L"Username";
 			// 
@@ -115,9 +119,10 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->lblPassword->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->lblPassword->Location = System::Drawing::Point(175, 391);
+			this->lblPassword->Location = System::Drawing::Point(233, 481);
+			this->lblPassword->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblPassword->Name = L"lblPassword";
-			this->lblPassword->Size = System::Drawing::Size(127, 31);
+			this->lblPassword->Size = System::Drawing::Size(156, 38);
 			this->lblPassword->TabIndex = 3;
 			this->lblPassword->Text = L"Password";
 			// 
@@ -127,9 +132,10 @@ namespace SPProject {
 			this->lblStatus->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lblStatus->ForeColor = System::Drawing::Color::Red;
-			this->lblStatus->Location = System::Drawing::Point(274, 437);
+			this->lblStatus->Location = System::Drawing::Point(365, 538);
+			this->lblStatus->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lblStatus->Name = L"lblStatus";
-			this->lblStatus->Size = System::Drawing::Size(0, 26);
+			this->lblStatus->Size = System::Drawing::Size(0, 35);
 			this->lblStatus->TabIndex = 4;
 			// 
 			// txtUsername
@@ -138,10 +144,11 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
 			this->txtUsername->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtUsername->Location = System::Drawing::Point(353, 361);
+			this->txtUsername->Location = System::Drawing::Point(471, 444);
+			this->txtUsername->Margin = System::Windows::Forms::Padding(4);
 			this->txtUsername->MaxLength = 20;
 			this->txtUsername->Name = L"txtUsername";
-			this->txtUsername->Size = System::Drawing::Size(176, 26);
+			this->txtUsername->Size = System::Drawing::Size(233, 30);
 			this->txtUsername->TabIndex = 5;
 			this->txtUsername->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
@@ -151,21 +158,21 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
 			this->txtPassword->Font = (gcnew System::Drawing::Font(L"Traditional Arabic", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtPassword->Location = System::Drawing::Point(353, 392);
+			this->txtPassword->Location = System::Drawing::Point(471, 482);
 			this->txtPassword->Margin = System::Windows::Forms::Padding(1);
 			this->txtPassword->MaxLength = 20;
 			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(176, 32);
+			this->txtPassword->Size = System::Drawing::Size(233, 38);
 			this->txtPassword->TabIndex = 6;
 			this->txtPassword->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// LoginForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->ClientSize = System::Drawing::Size(884, 661);
+			this->ClientSize = System::Drawing::Size(1179, 814);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
 			this->Controls->Add(this->lblStatus);
@@ -173,7 +180,13 @@ namespace SPProject {
 			this->Controls->Add(this->lblusername);
 			this->Controls->Add(this->btnLogin);
 			this->Controls->Add(this->pictureBox1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->Margin = System::Windows::Forms::Padding(4);
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"LoginForm";
+			this->ShowIcon = false;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LoginForm";
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
