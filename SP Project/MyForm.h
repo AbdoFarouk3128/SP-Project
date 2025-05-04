@@ -82,7 +82,7 @@ namespace SPProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -372,68 +372,68 @@ namespace SPProject {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
-	System::String^ name = txtClientName->Text;
-	System::String^ username = txtUsername->Text;
-	System::String^ password = txtPassword->Text;
-	System::String^ gender = cmbGender->Text;
-	System::String^ activityLevel = cmbActivityLevel->Text;
-	System::String^ ageText = txtAge->Text;
-	System::String^ trainerName = cmbTrainer->Text;
-
-	std::string nameStd = msclr::interop::marshal_as<std::string>(name);
-	std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
-	std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
-	std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
-	std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
-	std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
-
-	if (nameStd.empty() || usernameStd.empty() || passwordStd.empty() || ageText->Length == 0) {
-		MessageBox::Show("Please fill all fields.");
-		return;
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-
-	int age;
-	if (!Int32::TryParse(ageText, age) || age <= 0) {
-		MessageBox::Show("Please enter a valid positive age.");
-		return;
+	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	if (isUsernameTaken(usernameStd)) {
-		MessageBox::Show("This Username is taken.Please choose another.");
-		return;
-	}
+	private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::String^ name = txtClientName->Text;
+		System::String^ username = txtUsername->Text;
+		System::String^ password = txtPassword->Text;
+		System::String^ gender = cmbGender->Text;
+		System::String^ activityLevel = cmbActivityLevel->Text;
+		System::String^ ageText = txtAge->Text;
+		System::String^ trainerName = cmbTrainer->Text;
 
-	Client newClient;
-	newClient.name = nameStd;
-	newClient.username = usernameStd;
-	newClient.password = passwordStd;
-	newClient.gender = genderStd;
-	newClient.activityLevel = activityStd;
-	newClient.age = age;
+		std::string nameStd = msclr::interop::marshal_as<std::string>(name);
+		std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
+		std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
+		std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
+		std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
+		std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
 
-	Trainer* selectedtrainer;
-	for (int i = 0; i < trainerCount; i++)
-	{
-		if (trainerNameStd == trainers[i].name) {
-			selectedtrainer = &trainers[i];
+		if (nameStd.empty() || usernameStd.empty() || passwordStd.empty() || ageText->Length == 0) {
+			MessageBox::Show("Please fill all fields.");
+			return;
+		}
+
+		int age;
+		if (!Int32::TryParse(ageText, age) || age <= 0) {
+			MessageBox::Show("Please enter a valid positive age.");
+			return;
+		}
+		if (isUsernameTaken(usernameStd)) {
+			MessageBox::Show("This Username is taken.Please choose another.");
+			return;
+		}
+
+		Client newClient;
+		newClient.name = nameStd;
+		newClient.username = usernameStd;
+		newClient.password = passwordStd;
+		newClient.gender = genderStd;
+		newClient.activityLevel = activityStd;
+		newClient.age = age;
+
+		Trainer* selectedtrainer;
+		for (int i = 0; i < trainerCount; i++)
+		{
+			if (trainerNameStd == trainers[i].name) {
+				selectedtrainer = &trainers[i];
+			}
+		}
+		newClient.trainerId = selectedtrainer->trainerID;
+		if (selectedtrainer->numClients < MAX_CLIENTS) {
+			newClient.clientID = clientCount + 1;
+			selectedtrainer->clients[selectedtrainer->numClients] = newClient;
+			insertClient(db, newClient);
+			selectedtrainer->numClients++;
+			clientCount++;
+			MessageBox::Show("Client registered successfully!");
+		}
+		else {
+			MessageBox::Show("Selected trainer is at full capacity.");
 		}
 	}
-	newClient.trainerId = selectedtrainer->trainerID;
-	if (selectedtrainer->numClients < MAX_CLIENTS) {
-		newClient.clientID = clientCount + 1;
-		selectedtrainer->clients[selectedtrainer->numClients] = newClient;
-		insertClient(db, newClient);
-		selectedtrainer->numClients++;
-		clientCount++;
-		MessageBox::Show("Client registered successfully!");
-	}
-	else {
-		MessageBox::Show("Selected trainer is at full capacity.");
-	}
-}
-};
+	};
 }

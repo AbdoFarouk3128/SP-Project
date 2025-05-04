@@ -50,7 +50,7 @@ namespace SPProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -162,21 +162,21 @@ namespace SPProject {
 		this->Show();
 		return;
 	}
-private: System::Void btnSignup_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	MyForm^ sp = gcnew MyForm();
-	sp->ShowDialog();
-	this->Show();
-	return;
-}
-private: System::Void WelcomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void btnSignupTrainer_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	MyForm1^ tp = gcnew MyForm1();
-	tp->ShowDialog();
-	this->Show();
-	return;
-}
-};
+	private: System::Void btnSignup_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		MyForm^ sp = gcnew MyForm();
+		sp->ShowDialog();
+		this->Show();
+		return;
+	}
+	private: System::Void WelcomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void btnSignupTrainer_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		MyForm1^ tp = gcnew MyForm1();
+		tp->ShowDialog();
+		this->Show();
+		return;
+	}
+	};
 }

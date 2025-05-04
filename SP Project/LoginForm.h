@@ -50,7 +50,7 @@ namespace SPProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -234,7 +234,7 @@ namespace SPProject {
 
 		lblStatus->Text = "Invalid username or password.";
 	}
-private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }
