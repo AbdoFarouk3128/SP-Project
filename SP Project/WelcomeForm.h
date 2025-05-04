@@ -2,6 +2,7 @@
 #include "core.h"
 #include "LoginForm.h"
 #include "MyForm.h"
+#include "MyForm1.h"
 namespace SPProject {
 
 	using namespace System;
@@ -39,7 +40,11 @@ namespace SPProject {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
 	private: System::Windows::Forms::Button^ btnLogin;
-	private: System::Windows::Forms::Button^ btnSignup;
+	private: System::Windows::Forms::Button^ btnSignupuser;
+	private: System::Windows::Forms::Button^ btnSignupTrainer;
+
+
+
 
 	private:
 		/// <summary>
@@ -57,7 +62,8 @@ namespace SPProject {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(WelcomeForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->btnLogin = (gcnew System::Windows::Forms::Button());
-			this->btnSignup = (gcnew System::Windows::Forms::Button());
+			this->btnSignupuser = (gcnew System::Windows::Forms::Button());
+			this->btnSignupTrainer = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -67,11 +73,17 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+<<<<<<< HEAD
 			this->pictureBox1->Location = System::Drawing::Point(307, 58);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(546, 414);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+=======
+			this->pictureBox1->Location = System::Drawing::Point(230, 47);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(409, 336);
+>>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -86,26 +98,33 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->btnLogin->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
+<<<<<<< HEAD
 			this->btnLogin->Location = System::Drawing::Point(288, 502);
 			this->btnLogin->Margin = System::Windows::Forms::Padding(4);
 			this->btnLogin->Name = L"btnLogin";
 			this->btnLogin->Size = System::Drawing::Size(270, 74);
+=======
+			this->btnLogin->Location = System::Drawing::Point(333, 485);
+			this->btnLogin->Name = L"btnLogin";
+			this->btnLogin->Size = System::Drawing::Size(203, 60);
+>>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->btnLogin->TabIndex = 1;
 			this->btnLogin->Text = L"Login";
 			this->btnLogin->UseVisualStyleBackColor = true;
 			this->btnLogin->Click += gcnew System::EventHandler(this, &WelcomeForm::btnLogin_Click);
 			// 
-			// btnSignup
+			// btnSignupuser
 			// 
-			this->btnSignup->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->btnSignupuser->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->btnSignup->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->btnSignup->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnSignup->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->btnSignupuser->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnSignupuser->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSignupuser->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnSignup->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
+			this->btnSignupuser->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
+<<<<<<< HEAD
 			this->btnSignup->Location = System::Drawing::Point(596, 502);
 			this->btnSignup->Margin = System::Windows::Forms::Padding(4);
 			this->btnSignup->Name = L"btnSignup";
@@ -129,6 +148,46 @@ namespace SPProject {
 			this->Margin = System::Windows::Forms::Padding(4);
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
+=======
+			this->btnSignupuser->Location = System::Drawing::Point(447, 408);
+			this->btnSignupuser->Name = L"btnSignupuser";
+			this->btnSignupuser->Size = System::Drawing::Size(203, 60);
+			this->btnSignupuser->TabIndex = 2;
+			this->btnSignupuser->Text = L" Sign up Client";
+			this->btnSignupuser->UseVisualStyleBackColor = true;
+			this->btnSignupuser->Click += gcnew System::EventHandler(this, &WelcomeForm::btnSignup_Click);
+			// 
+			// btnSignupTrainer
+			// 
+			this->btnSignupTrainer->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->btnSignupTrainer->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnSignupTrainer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnSignupTrainer->Font = (gcnew System::Drawing::Font(L"Times New Roman", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSignupTrainer->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)), static_cast<System::Int32>(static_cast<System::Byte>(241)));
+			this->btnSignupTrainer->Location = System::Drawing::Point(216, 408);
+			this->btnSignupTrainer->Name = L"btnSignupTrainer";
+			this->btnSignupTrainer->Size = System::Drawing::Size(203, 60);
+			this->btnSignupTrainer->TabIndex = 4;
+			this->btnSignupTrainer->Text = L"Sign up Trainer";
+			this->btnSignupTrainer->UseVisualStyleBackColor = true;
+			this->btnSignupTrainer->Click += gcnew System::EventHandler(this, &WelcomeForm::btnSignupTrainer_Click);
+			// 
+			// WelcomeForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->ClientSize = System::Drawing::Size(884, 661);
+			this->Controls->Add(this->btnSignupTrainer);
+			this->Controls->Add(this->btnSignupuser);
+			this->Controls->Add(this->btnLogin);
+			this->Controls->Add(this->pictureBox1);
+>>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->Name = L"WelcomeForm";
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -154,6 +213,13 @@ private: System::Void btnSignup_Click(System::Object^ sender, System::EventArgs^
 	return;
 }
 private: System::Void WelcomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnSignupTrainer_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
+	MyForm1^ tp = gcnew MyForm1();
+	tp->ShowDialog();
+	this->Show();
+	return;
 }
 };
 }

@@ -16,7 +16,7 @@ using namespace std;
 
 // ================== CONSTANTS ==================
 #pragma region Constants
-const int MAX_CLIENTS = 100;
+const int MAX_CLIENTS = 50;
 const int MAX_TRAINERS = 20;
 const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;

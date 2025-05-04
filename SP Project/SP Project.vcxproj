@@ -129,7 +129,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="SIGNTRAINER.cpp" />
+    <ClCompile Include="MyForm1.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
@@ -148,7 +148,7 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="SIGNTRAINER.h">
+    <ClInclude Include="MyForm1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="sqlite3.h" />
@@ -173,8 +173,8 @@
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SIGNTRAINER.resx">
-      <DependentUpon>SIGNTRAINER.h</DependentUpon>
+    <EmbeddedResource Include="MyForm1.resx">
+      <DependentUpon>MyForm1.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="traiermenu.resx">
       <DependentUpon>traiermenu.h</DependentUpon>
