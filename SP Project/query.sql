@@ -67,11 +67,13 @@
 -- SELECT * from Clients where trainerId =4;
 -- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
-UPDATE Clients set username = 'salma111' where clientId=21;
-
--- DELETE FROM Clients WHERE clientId = 54;
--- DELETE FROM Clients WHERE clientId = 52;
--- DELETE FROM Clients WHERE clientId = 53;
+-- UPDATE Clients set trainerid = 4 where clientId=55;
+-- DELETE From Trainers where trainerId = 11;
+-- SELECT * from clients where trainerId=6;
+DELETE FROM Clients WHERE clientId = 59;
+DELETE FROM Clients WHERE clientId = 60;
+DELETE FROM Clients WHERE clientId = 61;
+DELETE FROM Clients WHERE clientId = 62;
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),
 -- (2, 74.0, 178.0,2),
