@@ -82,7 +82,7 @@ namespace SPProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -119,11 +119,7 @@ namespace SPProject {
 			this->label1->Location = System::Drawing::Point(128, 114);
 			this->label1->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label1->Name = L"label1";
-<<<<<<< HEAD
-			this->label1->Size = System::Drawing::Size(83, 28);
-=======
 			this->label1->Size = System::Drawing::Size(67, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"NAME";
 			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
@@ -138,11 +134,7 @@ namespace SPProject {
 			this->label2->Location = System::Drawing::Point(128, 234);
 			this->label2->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label2->Name = L"label2";
-<<<<<<< HEAD
-			this->label2->Size = System::Drawing::Size(154, 28);
-=======
 			this->label2->Size = System::Drawing::Size(124, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"PASSWORD";
 			// 
@@ -156,11 +148,7 @@ namespace SPProject {
 			this->label3->Location = System::Drawing::Point(128, 295);
 			this->label3->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label3->Name = L"label3";
-<<<<<<< HEAD
-			this->label3->Size = System::Drawing::Size(116, 28);
-=======
 			this->label3->Size = System::Drawing::Size(93, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"GENDER";
 			// 
@@ -174,11 +162,7 @@ namespace SPProject {
 			this->label4->Location = System::Drawing::Point(128, 366);
 			this->label4->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label4->Name = L"label4";
-<<<<<<< HEAD
-			this->label4->Size = System::Drawing::Size(64, 28);
-=======
 			this->label4->Size = System::Drawing::Size(52, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"AGE";
 			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
@@ -193,11 +177,7 @@ namespace SPProject {
 			this->label5->Location = System::Drawing::Point(129, 442);
 			this->label5->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label5->Name = L"label5";
-<<<<<<< HEAD
-			this->label5->Size = System::Drawing::Size(89, 28);
-=======
 			this->label5->Size = System::Drawing::Size(126, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"\tActivity level";
 			// 
@@ -211,11 +191,7 @@ namespace SPProject {
 			this->label6->Location = System::Drawing::Point(128, 512);
 			this->label6->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label6->Name = L"label6";
-<<<<<<< HEAD
-			this->label6->Size = System::Drawing::Size(195, 28);
-=======
 			this->label6->Size = System::Drawing::Size(157, 22);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"YOUR TRAINER";
 			// 
@@ -230,11 +206,7 @@ namespace SPProject {
 			this->label7->Location = System::Drawing::Point(281, 40);
 			this->label7->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label7->Name = L"label7";
-<<<<<<< HEAD
-			this->label7->Size = System::Drawing::Size(371, 46);
-=======
 			this->label7->Size = System::Drawing::Size(294, 37);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"FITNESS CENTER";
 			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -246,19 +218,11 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtClientName->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-<<<<<<< HEAD
-			this->textBox1->Location = System::Drawing::Point(392, 164);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(484, 31);
-			this->textBox1->TabIndex = 7;
-			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
-=======
 			this->txtClientName->Location = System::Drawing::Point(392, 114);
 			this->txtClientName->Name = L"txtClientName";
 			this->txtClientName->Size = System::Drawing::Size(484, 26);
 			this->txtClientName->TabIndex = 7;
 			this->txtClientName->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// txtPassword
 			// 
@@ -267,17 +231,10 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtPassword->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-<<<<<<< HEAD
-			this->textBox2->Location = System::Drawing::Point(392, 222);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(484, 31);
-			this->textBox2->TabIndex = 8;
-=======
 			this->txtPassword->Location = System::Drawing::Point(392, 231);
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->Size = System::Drawing::Size(484, 26);
 			this->txtPassword->TabIndex = 8;
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// txtAge
 			// 
@@ -286,17 +243,10 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->txtAge->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-<<<<<<< HEAD
-			this->textBox3->Location = System::Drawing::Point(392, 366);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(484, 31);
-			this->textBox3->TabIndex = 9;
-=======
 			this->txtAge->Location = System::Drawing::Point(392, 366);
 			this->txtAge->Name = L"txtAge";
 			this->txtAge->Size = System::Drawing::Size(484, 26);
 			this->txtAge->TabIndex = 9;
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// cmbGender
 			// 
@@ -305,15 +255,6 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->cmbGender->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-<<<<<<< HEAD
-			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
-			this->comboBox1->Location = System::Drawing::Point(392, 295);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(484, 31);
-			this->comboBox1->TabIndex = 10;
-=======
 			this->cmbGender->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cmbGender->FormattingEnabled = true;
 			this->cmbGender->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
@@ -321,7 +262,6 @@ namespace SPProject {
 			this->cmbGender->Name = L"cmbGender";
 			this->cmbGender->Size = System::Drawing::Size(484, 26);
 			this->cmbGender->TabIndex = 10;
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// cmbActivityLevel
 			// 
@@ -336,17 +276,10 @@ namespace SPProject {
 				L"Moderate", L"Light", L"Sedentary", L"Active",
 					L"VeryActive"
 			});
-<<<<<<< HEAD
-			this->comboBox2->Location = System::Drawing::Point(392, 438);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(484, 31);
-			this->comboBox2->TabIndex = 11;
-=======
 			this->cmbActivityLevel->Location = System::Drawing::Point(392, 438);
 			this->cmbActivityLevel->Name = L"cmbActivityLevel";
 			this->cmbActivityLevel->Size = System::Drawing::Size(484, 26);
 			this->cmbActivityLevel->TabIndex = 11;
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// cmbTrainer
 			// 
@@ -355,25 +288,12 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->cmbTrainer->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-<<<<<<< HEAD
-			this->comboBox3->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-				L"Donia Mohamed", L"Sarah Sayed", L"Rahma Atef",
-					L"Rawan Tarek", L"Sahar Mansor", L"Abdelrahman Ahmed Farouk", L"Salma Ali"
-			});
-			this->comboBox3->Location = System::Drawing::Point(392, 512);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(484, 31);
-			this->comboBox3->TabIndex = 12;
-=======
 			this->cmbTrainer->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->cmbTrainer->FormattingEnabled = true;
 			this->cmbTrainer->Location = System::Drawing::Point(392, 512);
 			this->cmbTrainer->Name = L"cmbTrainer";
 			this->cmbTrainer->Size = System::Drawing::Size(484, 26);
 			this->cmbTrainer->TabIndex = 12;
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			// 
 			// btnRegisterClient
 			// 
@@ -414,11 +334,7 @@ namespace SPProject {
 			// 
 			// MyForm
 			// 
-<<<<<<< HEAD
-			this->AutoScaleDimensions = System::Drawing::SizeF(12, 23);
-=======
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
->>>>>>> f7b8aa7f2346af5acc4c6ac1ed4c2f011fb80f88
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
@@ -441,13 +357,8 @@ namespace SPProject {
 			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 			this->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
-			this->MaximizeBox = false;
-			this->MinimizeBox = false;
 			this->Name = L"MyForm";
-			this->ShowIcon = false;
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
@@ -461,68 +372,68 @@ namespace SPProject {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
-	System::String^ name = txtClientName->Text;
-	System::String^ username = txtUsername->Text;
-	System::String^ password = txtPassword->Text;
-	System::String^ gender = cmbGender->Text;
-	System::String^ activityLevel = cmbActivityLevel->Text;
-	System::String^ ageText = txtAge->Text;
-	System::String^ trainerName = cmbTrainer->Text;
-
-	std::string nameStd = msclr::interop::marshal_as<std::string>(name);
-	std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
-	std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
-	std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
-	std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
-	std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
-
-	if (nameStd.empty() || usernameStd.empty() || passwordStd.empty() || ageText->Length == 0) {
-		MessageBox::Show("Please fill all fields.");
-		return;
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-
-	int age;
-	if (!Int32::TryParse(ageText, age) || age <= 0) {
-		MessageBox::Show("Please enter a valid positive age.");
-		return;
+	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	if (isUsernameTaken(usernameStd)) {
-		MessageBox::Show("This Username is taken.Please choose another.");
-		return;
-	}
+	private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
+		System::String^ name = txtClientName->Text;
+		System::String^ username = txtUsername->Text;
+		System::String^ password = txtPassword->Text;
+		System::String^ gender = cmbGender->Text;
+		System::String^ activityLevel = cmbActivityLevel->Text;
+		System::String^ ageText = txtAge->Text;
+		System::String^ trainerName = cmbTrainer->Text;
 
-	Client newClient;
-	newClient.name = nameStd;
-	newClient.username = usernameStd;
-	newClient.password = passwordStd;
-	newClient.gender = genderStd;
-	newClient.activityLevel = activityStd;
-	newClient.age = age;
+		std::string nameStd = msclr::interop::marshal_as<std::string>(name);
+		std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
+		std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
+		std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
+		std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
+		std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
 
-	Trainer* selectedtrainer;
-	for (int i = 0; i < trainerCount; i++)
-	{
-		if (trainerNameStd == trainers[i].name) {
-			selectedtrainer = &trainers[i];
+		if (nameStd.empty() || usernameStd.empty() || passwordStd.empty() || ageText->Length == 0) {
+			MessageBox::Show("Please fill all fields.");
+			return;
+		}
+
+		int age;
+		if (!Int32::TryParse(ageText, age) || age <= 0) {
+			MessageBox::Show("Please enter a valid positive age.");
+			return;
+		}
+		if (isUsernameTaken(usernameStd)) {
+			MessageBox::Show("This Username is taken.Please choose another.");
+			return;
+		}
+
+		Client newClient;
+		newClient.name = nameStd;
+		newClient.username = usernameStd;
+		newClient.password = passwordStd;
+		newClient.gender = genderStd;
+		newClient.activityLevel = activityStd;
+		newClient.age = age;
+
+		Trainer* selectedtrainer;
+		for (int i = 0; i < trainerCount; i++)
+		{
+			if (trainerNameStd == trainers[i].name) {
+				selectedtrainer = &trainers[i];
+			}
+		}
+		newClient.trainerId = selectedtrainer->trainerID;
+		if (selectedtrainer->numClients < MAX_CLIENTS) {
+			newClient.clientID = clientCount + 1;
+			selectedtrainer->clients[selectedtrainer->numClients] = newClient;
+			insertClient(db, newClient);
+			selectedtrainer->numClients++;
+			clientCount++;
+			MessageBox::Show("Client registered successfully!");
+		}
+		else {
+			MessageBox::Show("Selected trainer is at full capacity.");
 		}
 	}
-	newClient.trainerId = selectedtrainer->trainerID;
-	if (selectedtrainer->numClients < MAX_CLIENTS) {
-		newClient.clientID = clientCount + 1;
-		selectedtrainer->clients[selectedtrainer->numClients] = newClient;
-		insertClient(db, newClient);
-		selectedtrainer->numClients++;
-		clientCount++;
-		MessageBox::Show("Client registered successfully!");
-	}
-	else {
-		MessageBox::Show("Selected trainer is at full capacity.");
-	}
-}
-};
+	};
 }
