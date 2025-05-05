@@ -82,9 +82,10 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(236, 27);
+			this->pictureBox1->Location = System::Drawing::Point(315, 33);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(409, 336);
+			this->pictureBox1->Size = System::Drawing::Size(545, 414);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -95,10 +96,9 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->label4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label4->Location = System::Drawing::Point(175, 468);
-			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label4->Location = System::Drawing::Point(233, 576);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(154, 28);
+			this->label4->Size = System::Drawing::Size(193, 34);
 			this->label4->TabIndex = 7;
 			this->label4->Text = L"PASSWORD";
 			// 
@@ -109,10 +109,9 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->label5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label5->Location = System::Drawing::Point(175, 427);
-			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label5->Location = System::Drawing::Point(233, 526);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(150, 28);
+			this->label5->Size = System::Drawing::Size(190, 34);
 			this->label5->TabIndex = 6;
 			this->label5->Text = L"USERNAME";
 			// 
@@ -123,10 +122,9 @@ namespace SPProject {
 				static_cast<System::Byte>(0)));
 			this->label6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label6->Location = System::Drawing::Point(175, 387);
-			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label6->Location = System::Drawing::Point(233, 476);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(79, 28);
+			this->label6->Size = System::Drawing::Size(101, 34);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Name";
 			// 
@@ -136,9 +134,10 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtTrainerName->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtTrainerName->Location = System::Drawing::Point(392, 384);
+			this->txtTrainerName->Location = System::Drawing::Point(523, 473);
+			this->txtTrainerName->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtTrainerName->Name = L"txtTrainerName";
-			this->txtTrainerName->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerName->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerName->TabIndex = 8;
 			// 
 			// txtTrainerUsername
@@ -147,9 +146,10 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtTrainerUsername->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtTrainerUsername->Location = System::Drawing::Point(392, 427);
+			this->txtTrainerUsername->Location = System::Drawing::Point(523, 526);
+			this->txtTrainerUsername->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtTrainerUsername->Name = L"txtTrainerUsername";
-			this->txtTrainerUsername->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerUsername->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerUsername->TabIndex = 9;
 			// 
 			// txtTrainerPassword
@@ -158,9 +158,10 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtTrainerPassword->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->txtTrainerPassword->Location = System::Drawing::Point(392, 471);
+			this->txtTrainerPassword->Location = System::Drawing::Point(523, 580);
+			this->txtTrainerPassword->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtTrainerPassword->Name = L"txtTrainerPassword";
-			this->txtTrainerPassword->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerPassword->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerPassword->TabIndex = 10;
 			// 
 			// button1
@@ -168,9 +169,10 @@ namespace SPProject {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 14));
 			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->button1->Location = System::Drawing::Point(290, 514);
+			this->button1->Location = System::Drawing::Point(387, 633);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(249, 45);
+			this->button1->Size = System::Drawing::Size(332, 55);
 			this->button1->TabIndex = 11;
 			this->button1->Text = L"REGISTER";
 			this->button1->UseVisualStyleBackColor = true;
@@ -178,11 +180,11 @@ namespace SPProject {
 			// 
 			// MyForm1
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->ClientSize = System::Drawing::Size(884, 661);
+			this->ClientSize = System::Drawing::Size(1179, 814);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtTrainerPassword);
 			this->Controls->Add(this->txtTrainerUsername);
@@ -191,7 +193,11 @@ namespace SPProject {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->pictureBox1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"MyForm1";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm1";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);

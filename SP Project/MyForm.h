@@ -119,7 +119,7 @@ namespace SPProject {
 			this->label1->Location = System::Drawing::Point(128, 114);
 			this->label1->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(67, 22);
+			this->label1->Size = System::Drawing::Size(83, 28);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"NAME";
 			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
@@ -134,7 +134,7 @@ namespace SPProject {
 			this->label2->Location = System::Drawing::Point(128, 234);
 			this->label2->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(124, 22);
+			this->label2->Size = System::Drawing::Size(154, 28);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"PASSWORD";
 			// 
@@ -148,7 +148,7 @@ namespace SPProject {
 			this->label3->Location = System::Drawing::Point(128, 295);
 			this->label3->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(93, 22);
+			this->label3->Size = System::Drawing::Size(116, 28);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"GENDER";
 			// 
@@ -162,7 +162,7 @@ namespace SPProject {
 			this->label4->Location = System::Drawing::Point(128, 366);
 			this->label4->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(52, 22);
+			this->label4->Size = System::Drawing::Size(64, 28);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"AGE";
 			this->label4->Click += gcnew System::EventHandler(this, &MyForm::label4_Click);
@@ -177,7 +177,7 @@ namespace SPProject {
 			this->label5->Location = System::Drawing::Point(129, 442);
 			this->label5->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(126, 22);
+			this->label5->Size = System::Drawing::Size(160, 28);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"\tActivity level";
 			// 
@@ -191,7 +191,7 @@ namespace SPProject {
 			this->label6->Location = System::Drawing::Point(128, 512);
 			this->label6->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(157, 22);
+			this->label6->Size = System::Drawing::Size(195, 28);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"YOUR TRAINER";
 			// 
@@ -206,7 +206,7 @@ namespace SPProject {
 			this->label7->Location = System::Drawing::Point(281, 40);
 			this->label7->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(294, 37);
+			this->label7->Size = System::Drawing::Size(371, 46);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"FITNESS CENTER";
 			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -220,7 +220,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtClientName->Location = System::Drawing::Point(392, 114);
 			this->txtClientName->Name = L"txtClientName";
-			this->txtClientName->Size = System::Drawing::Size(484, 26);
+			this->txtClientName->Size = System::Drawing::Size(484, 31);
 			this->txtClientName->TabIndex = 7;
 			this->txtClientName->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
 			// 
@@ -233,7 +233,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtPassword->Location = System::Drawing::Point(392, 231);
 			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(484, 26);
+			this->txtPassword->Size = System::Drawing::Size(484, 31);
 			this->txtPassword->TabIndex = 8;
 			// 
 			// txtAge
@@ -245,7 +245,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtAge->Location = System::Drawing::Point(392, 366);
 			this->txtAge->Name = L"txtAge";
-			this->txtAge->Size = System::Drawing::Size(484, 26);
+			this->txtAge->Size = System::Drawing::Size(484, 31);
 			this->txtAge->TabIndex = 9;
 			// 
 			// cmbGender
@@ -260,7 +260,7 @@ namespace SPProject {
 			this->cmbGender->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Male", L"Female" });
 			this->cmbGender->Location = System::Drawing::Point(392, 295);
 			this->cmbGender->Name = L"cmbGender";
-			this->cmbGender->Size = System::Drawing::Size(484, 26);
+			this->cmbGender->Size = System::Drawing::Size(484, 31);
 			this->cmbGender->TabIndex = 10;
 			// 
 			// cmbActivityLevel
@@ -278,7 +278,7 @@ namespace SPProject {
 			});
 			this->cmbActivityLevel->Location = System::Drawing::Point(392, 438);
 			this->cmbActivityLevel->Name = L"cmbActivityLevel";
-			this->cmbActivityLevel->Size = System::Drawing::Size(484, 26);
+			this->cmbActivityLevel->Size = System::Drawing::Size(484, 31);
 			this->cmbActivityLevel->TabIndex = 11;
 			// 
 			// cmbTrainer
@@ -292,7 +292,7 @@ namespace SPProject {
 			this->cmbTrainer->FormattingEnabled = true;
 			this->cmbTrainer->Location = System::Drawing::Point(392, 512);
 			this->cmbTrainer->Name = L"cmbTrainer";
-			this->cmbTrainer->Size = System::Drawing::Size(484, 26);
+			this->cmbTrainer->Size = System::Drawing::Size(484, 31);
 			this->cmbTrainer->TabIndex = 12;
 			// 
 			// btnRegisterClient
@@ -319,7 +319,7 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->label8->Location = System::Drawing::Point(129, 172);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(103, 22);
+			this->label8->Size = System::Drawing::Size(131, 28);
 			this->label8->TabIndex = 14;
 			this->label8->Text = L"Username";
 			// 
@@ -329,12 +329,12 @@ namespace SPProject {
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->txtUsername->Location = System::Drawing::Point(392, 169);
 			this->txtUsername->Name = L"txtUsername";
-			this->txtUsername->Size = System::Drawing::Size(484, 26);
+			this->txtUsername->Size = System::Drawing::Size(484, 31);
 			this->txtUsername->TabIndex = 15;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 23);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
@@ -358,7 +358,10 @@ namespace SPProject {
 			this->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(5, 4, 5, 4);
+			this->MaximizeBox = false;
+			this->MinimizeBox = false;
 			this->Name = L"MyForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
