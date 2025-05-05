@@ -70,10 +70,10 @@
 -- UPDATE Clients set trainerid = 4 where clientId=55;
 -- DELETE From Trainers where trainerId = 11;
 -- SELECT * from clients where trainerId=6;
-DELETE FROM Clients WHERE clientId = 59;
-DELETE FROM Clients WHERE clientId = 60;
-DELETE FROM Clients WHERE clientId = 61;
-DELETE FROM Clients WHERE clientId = 62;
+-- DELETE FROM Clients WHERE clientId = 59;
+-- DELETE FROM Clients WHERE clientId = 60;
+-- DELETE FROM Clients WHERE clientId = 61;
+-- DELETE FROM Clients WHERE clientId = 62;
 -- INSERT INTO Measurements (clientId, weight, height,clientId) VALUES
 -- (1, 58.5, 165.0,1),
 -- (2, 74.0, 178.0,2),

@@ -197,7 +197,6 @@ void loadMeasurements(sqlite3* db) { // load measerments every client
                         break;
                     }
                 }
-
             }
         }
     }
