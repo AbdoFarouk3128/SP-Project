@@ -1,6 +1,6 @@
 # Fitness Training Management System
 
-This is a C++ project developed as a SP (Software Project) course assignment. The system is designed to manage fitness clients, trainers, workouts, and progress logs.
+This is a C++ project developed as a SP course assignment. The system is designed to manage fitness clients, trainers, workouts, and progress logs.
 
 The project supports **two modes**:
 - A **console-based application**
