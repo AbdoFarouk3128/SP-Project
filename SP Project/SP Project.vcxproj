@@ -124,17 +124,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="clientmenupage.cpp" />
     <ClCompile Include="core.cpp" />
-    <ClCompile Include="LoginForm.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Console app.cpp" />
     <ClCompile Include="sqlite3.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="traiermenu.cpp" />
-    <ClCompile Include="WelcomeForm.cpp" />
+    <ClCompile Include="Gui app.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clientmenupage.h">
