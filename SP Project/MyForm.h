@@ -380,7 +380,7 @@ namespace SPProject {
 	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
-		try {
+
 			// Get and trim all input values
 			System::String^ name = txtClientName->Text->Trim();
 			System::String^ username = txtUsername->Text->Trim();
@@ -479,15 +479,6 @@ namespace SPProject {
 
 			MessageBox::Show("Client registered successfully!", "Success",
 				MessageBoxButtons::OK, MessageBoxIcon::Information);
-		}
-		catch (const std::exception& ex) {
-			MessageBox::Show("Database Error: " + gcnew String(ex.what()), "Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
-		catch (...) {
-			MessageBox::Show("An unexpected error occurred.", "Error",
-				MessageBoxButtons::OK, MessageBoxIcon::Error);
-		}
 	}
 	};
 }

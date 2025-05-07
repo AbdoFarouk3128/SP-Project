@@ -1619,8 +1619,9 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			return;
 		}
 
-		for (const Workout& workout : selectedWorkouts) {
+		for (Workout& workout : selectedWorkouts) {
 			if (client->numWorkouts < MAX_WORKOUTS) {
+				workout.istrue = "Pending";
 				client->workoutPlans[client->numWorkouts] = workout;
 				client->numWorkouts++;
 				insertWorkout(db, workout, client->clientID);
@@ -1631,6 +1632,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 				break;
 			}
 		}
+
 
 		if (selectedWorkouts.size() == 1) {
 			MessageBox::Show(String::Format("Successfully assigned workout '{0}' to client {1}",

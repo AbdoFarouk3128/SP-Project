@@ -68,6 +68,7 @@
 -- ALTER TABLE Clients ADD COLUMN progressLogs TEXT DEFAULT '';
 -- UPDATE Trainers SET password = 'donia123' WHERE trainerId = 7;
 -- UPDATE Clients set trainerid = 4 where clientId=55;
+-- UPDATE clients SET username ='salma123' where clientId=21;
 -- DELETE From Trainers where trainerId = 11;
 -- SELECT * from clients where trainerId=6;
 -- DELETE FROM Clients WHERE clientId = 59;
@@ -99,8 +100,10 @@
 
 -- ('Salma Ali', 'salma', 'salma123'),
 
--- ('Donia Mohamed', 'donia', 'doniaFit123');
+-- ('Donia Mohamed', 'donia', 'donia123');
 
+-- DELETE from Workouts where clientId=51;
+-- DELETE from Workouts where clientId=53;
 
 
 -- INSERT OR IGNORE INTO Clients (name, username, password, age, gender, activityLevel, trainerId) VALUES
