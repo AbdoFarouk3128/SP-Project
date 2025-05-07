@@ -1664,6 +1664,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 private: System::Void newwork_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 private: System::Void viewcompletedworkout_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
 	// Clear previous content
 	pnlcompletedworkout->Controls->Clear();
 
@@ -1681,6 +1682,11 @@ private: System::Void viewcompletedworkout_Click_1(System::Object^ sender, Syste
 	scrollPanel->Controls->Add(outputLabel);
 	pnlcompletedworkout->Controls->Add(scrollPanel);
 
+	if (String::IsNullOrWhiteSpace(textBox1->Text)) {
+		MessageBox::Show("Please enter a client ID", "Error",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
 	int clientID;
 	if (!Int32::TryParse(textBox1->Text, clientID)) {
 		outputLabel->Text = "Please enter a valid client ID.";

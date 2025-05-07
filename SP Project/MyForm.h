@@ -423,6 +423,14 @@ namespace SPProject {
 			if (isUsernameTaken(usernameStd)) {
 				MessageBox::Show("This username is already taken. Please choose another.",
 					"Username Taken", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				// Clear form
+				txtClientName->Text = "";
+				txtUsername->Text = "";
+				txtPassword->Text = "";
+				txtAge->Text = "";
+				cmbGender->SelectedIndex = -1;
+				cmbActivityLevel->SelectedIndex = -1;
+				cmbTrainer->SelectedIndex = -1;
 				return;
 			}
 
@@ -439,6 +447,14 @@ namespace SPProject {
 			if (selectedTrainer->numClients >= MAX_CLIENTS) {
 				MessageBox::Show("Selected trainer is at full capacity.", "Capacity Reached",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
+				// Clear form
+				txtClientName->Text = "";
+				txtUsername->Text = "";
+				txtPassword->Text = "";
+				txtAge->Text = "";
+				cmbGender->SelectedIndex = -1;
+				cmbActivityLevel->SelectedIndex = -1;
+				cmbTrainer->SelectedIndex = -1;
 				return;
 			}
 
@@ -475,6 +491,7 @@ namespace SPProject {
 				MessageBox::Show("Client registered successfully!", "Success",
 					MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
+			
 	}
 	};
 }
