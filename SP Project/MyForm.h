@@ -435,12 +435,6 @@ namespace SPProject {
 				}
 			}
 
-			if (selectedTrainer == nullptr) {
-				MessageBox::Show("Selected trainer not found.", "Trainer Error",
-					MessageBoxButtons::OK, MessageBoxIcon::Error);
-				return;
-			}
-
 			// Check trainer capacity
 			if (selectedTrainer->numClients >= MAX_CLIENTS) {
 				MessageBox::Show("Selected trainer is at full capacity.", "Capacity Reached",
@@ -449,36 +443,38 @@ namespace SPProject {
 			}
 
 			// Create new client
-			Client newClient;
-			newClient.name = nameStd;
-			newClient.username = usernameStd;
-			newClient.password = passwordStd;
-			newClient.gender = genderStd;
-			newClient.activityLevel = activityStd;
-			newClient.age = age;
-			newClient.trainerId = selectedTrainer->trainerID;
-			newClient.clientID = clientCount + 1;
+			else {
+				Client newClient;
+				newClient.name = nameStd;
+				newClient.username = usernameStd;
+				newClient.password = passwordStd;
+				newClient.gender = genderStd;
+				newClient.activityLevel = activityStd;
+				newClient.age = age;
+				newClient.trainerId = selectedTrainer->trainerID;
+				newClient.clientID = clientCount + 1;
 
-			// Add to database
-			insertClient(db, newClient);
+				// Add to database
+				insertClient(db, newClient);
 
 
-			// Update in-memory data if DB operation succeeded
-			selectedTrainer->clients[selectedTrainer->numClients] = newClient;
-			selectedTrainer->numClients++;
-			clientCount++;
+				// Update in-memory data if DB operation succeeded
+				selectedTrainer->clients[selectedTrainer->numClients] = newClient;
+				selectedTrainer->numClients++;
+				clientCount++;
 
-			// Clear form
-			txtClientName->Text = "";
-			txtUsername->Text = "";
-			txtPassword->Text = "";
-			txtAge->Text = "";
-			cmbGender->SelectedIndex = -1;
-			cmbActivityLevel->SelectedIndex = -1;
-			cmbTrainer->SelectedIndex = -1;
+				// Clear form
+				txtClientName->Text = "";
+				txtUsername->Text = "";
+				txtPassword->Text = "";
+				txtAge->Text = "";
+				cmbGender->SelectedIndex = -1;
+				cmbActivityLevel->SelectedIndex = -1;
+				cmbTrainer->SelectedIndex = -1;
 
-			MessageBox::Show("Client registered successfully!", "Success",
-				MessageBoxButtons::OK, MessageBoxIcon::Information);
+				MessageBox::Show("Client registered successfully!", "Success",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
 	}
 	};
 }

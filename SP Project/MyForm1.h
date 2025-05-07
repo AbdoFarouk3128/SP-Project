@@ -229,9 +229,6 @@ namespace SPProject {
 
 		if (isUsernameTaken(usernameStd)) {
 			MessageBox::Show("Username is already taken. Please choose another.");
-
-
-
 		}
 
 		else {

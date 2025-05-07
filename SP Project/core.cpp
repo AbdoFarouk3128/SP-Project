@@ -57,7 +57,7 @@ bool isUsernameTaken(const string& username) {
     }
     for (int j = 0; j < trainerCount; j++)
     {
-        for (int i = 0; i < trainers->numClients; i++) {
+        for (int i = 0; i < trainers[j].numClients; i++) {
             if (toLower(trainers[j].clients[i].username) == lowerUsername) return true;
         }
     }
@@ -1127,7 +1127,7 @@ void registerUser() {
 Client* clientLogin(string &username, string &password) {
     for (int j = 0; j < trainerCount; j++)
     {
-        for (int i = 0; i < trainers->numClients; i++) {
+        for (int i = 0; i < trainers[j].numClients; i++) {
             if (trainers[j].clients[i].username == username && trainers[j].clients[i].password == password) {
                 return &trainers[j].clients[i];
             }
