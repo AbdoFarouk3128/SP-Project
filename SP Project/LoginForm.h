@@ -222,6 +222,11 @@ namespace SPProject {
 		std::string stdUser = msclr::interop::marshal_as<std::string>(user);
 		std::string stdPass = msclr::interop::marshal_as<std::string>(pass);
 
+		if (stdUser.empty() || stdPass.empty()) {
+			MessageBox::Show("Please fill all fields.");
+			return;
+		}
+
 		Client* c = clientLogin(stdUser, stdPass);
 		if (c != nullptr)
 		{

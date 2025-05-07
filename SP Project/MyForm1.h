@@ -83,9 +83,10 @@ namespace SPProject {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(315, 33);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(545, 414);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -135,7 +136,7 @@ namespace SPProject {
 			this->txtTrainerName->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txtTrainerName->Location = System::Drawing::Point(523, 473);
-			this->txtTrainerName->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtTrainerName->Margin = System::Windows::Forms::Padding(4);
 			this->txtTrainerName->Name = L"txtTrainerName";
 			this->txtTrainerName->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerName->TabIndex = 8;
@@ -147,7 +148,7 @@ namespace SPProject {
 			this->txtTrainerUsername->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txtTrainerUsername->Location = System::Drawing::Point(523, 526);
-			this->txtTrainerUsername->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtTrainerUsername->Margin = System::Windows::Forms::Padding(4);
 			this->txtTrainerUsername->Name = L"txtTrainerUsername";
 			this->txtTrainerUsername->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerUsername->TabIndex = 9;
@@ -159,7 +160,7 @@ namespace SPProject {
 			this->txtTrainerPassword->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->txtTrainerPassword->Location = System::Drawing::Point(523, 580);
-			this->txtTrainerPassword->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtTrainerPassword->Margin = System::Windows::Forms::Padding(4);
 			this->txtTrainerPassword->Name = L"txtTrainerPassword";
 			this->txtTrainerPassword->Size = System::Drawing::Size(316, 32);
 			this->txtTrainerPassword->TabIndex = 10;
@@ -170,7 +171,7 @@ namespace SPProject {
 			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->button1->Location = System::Drawing::Point(387, 633);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(332, 55);
 			this->button1->TabIndex = 11;
@@ -193,7 +194,7 @@ namespace SPProject {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->pictureBox1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"MyForm1";
@@ -210,7 +211,7 @@ namespace SPProject {
 		System::String^ username = txtTrainerUsername->Text;
 		System::String^ password = txtTrainerPassword->Text;
 
-		
+
 
 		std::string nameStd = msclr::interop::marshal_as<std::string>(name);
 		std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
@@ -229,26 +230,36 @@ namespace SPProject {
 		if (isUsernameTaken(usernameStd)) {
 			MessageBox::Show("Username is already taken. Please choose another.");
 
+
+
 		}
 
-		Trainer newTrainer;
-		newTrainer.name = nameStd;
-		newTrainer.username = usernameStd;
-		newTrainer.password = passwordStd;
-		newTrainer.trainerID = trainerCount + 1;
+		else {
 
-		trainers[trainerCount] = newTrainer;
-		try {
-			insertTrainer(db, newTrainer);
+			Trainer newTrainer;
+			newTrainer.name = nameStd;
+			newTrainer.username = usernameStd;
+			newTrainer.password = passwordStd;
+			newTrainer.trainerID = trainerCount + 1;
+
+			trainers[trainerCount] = newTrainer;
+			try {
+				insertTrainer(db, newTrainer);
+			}
+			catch (const std::exception& ex) {
+				MessageBox::Show("DB Error: " + gcnew String(ex.what()));
+				return;
+			}
+
+			trainerCount++;
+
+			MessageBox::Show("Trainer account created!");
 		}
-		catch (const std::exception& ex) {
-			MessageBox::Show("DB Error: " + gcnew String(ex.what()));
-			return;
-		}
 
-		trainerCount++;
-
-		MessageBox::Show("Trainer account created!");
+		txtTrainerName->Text = "";
+		txtTrainerUsername->Text = "";
+		txtTrainerPassword->Text = "";
+		txtTrainerName->Focus();
 	}
 };
 }

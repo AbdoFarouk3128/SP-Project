@@ -396,6 +396,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 		void InitializeComponent(void)
 		{   
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(clientmenupage::typeid));
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->Title = (gcnew System::Windows::Forms::Panel());
@@ -874,9 +875,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbFatsValue->Location = System::Drawing::Point(305, 455);
 			this->lbFatsValue->Name = L"lbFatsValue";
-			this->lbFatsValue->Size = System::Drawing::Size(64, 24);
+			this->lbFatsValue->Size = System::Drawing::Size(35, 24);
 			this->lbFatsValue->TabIndex = 17;
-			this->lbFatsValue->Text = L"label10";
+			this->lbFatsValue->Text = L"-----";
 			this->lbFatsValue->Click += gcnew System::EventHandler(this, &clientmenupage::lbFatsValue_Click);
 			// 
 			// lbCarbsValue
@@ -889,9 +890,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbCarbsValue->Location = System::Drawing::Point(319, 390);
 			this->lbCarbsValue->Name = L"lbCarbsValue";
-			this->lbCarbsValue->Size = System::Drawing::Size(55, 24);
+			this->lbCarbsValue->Size = System::Drawing::Size(35, 24);
 			this->lbCarbsValue->TabIndex = 16;
-			this->lbCarbsValue->Text = L"label9";
+			this->lbCarbsValue->Text = L"-----";
 			// 
 			// lbProteinValue
 			// 
@@ -903,9 +904,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbProteinValue->Location = System::Drawing::Point(339, 339);
 			this->lbProteinValue->Name = L"lbProteinValue";
-			this->lbProteinValue->Size = System::Drawing::Size(55, 24);
+			this->lbProteinValue->Size = System::Drawing::Size(35, 24);
 			this->lbProteinValue->TabIndex = 15;
-			this->lbProteinValue->Text = L"label8";
+			this->lbProteinValue->Text = L"-----";
 			// 
 			// lbBMRValue
 			// 
@@ -917,9 +918,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbBMRValue->Location = System::Drawing::Point(209, 226);
 			this->lbBMRValue->Name = L"lbBMRValue";
-			this->lbBMRValue->Size = System::Drawing::Size(55, 24);
+			this->lbBMRValue->Size = System::Drawing::Size(35, 24);
 			this->lbBMRValue->TabIndex = 14;
-			this->lbBMRValue->Text = L"label6";
+			this->lbBMRValue->Text = L"-----";
 			// 
 			// lbTDEEValue
 			// 
@@ -930,9 +931,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbTDEEValue->Location = System::Drawing::Point(502, 231);
 			this->lbTDEEValue->Name = L"lbTDEEValue";
-			this->lbTDEEValue->Size = System::Drawing::Size(55, 24);
+			this->lbTDEEValue->Size = System::Drawing::Size(35, 24);
 			this->lbTDEEValue->TabIndex = 13;
-			this->lbTDEEValue->Text = L"label5";
+			this->lbTDEEValue->Text = L"-----";
 			// 
 			// lbStatusValue
 			// 
@@ -944,9 +945,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbStatusValue->Location = System::Drawing::Point(502, 125);
 			this->lbStatusValue->Name = L"lbStatusValue";
-			this->lbStatusValue->Size = System::Drawing::Size(55, 24);
+			this->lbStatusValue->Size = System::Drawing::Size(35, 24);
 			this->lbStatusValue->TabIndex = 12;
-			this->lbStatusValue->Text = L"label4";
+			this->lbStatusValue->Text = L"-----";
 			// 
 			// lbBMIValue
 			// 
@@ -958,9 +959,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->lbBMIValue->Location = System::Drawing::Point(209, 128);
 			this->lbBMIValue->Name = L"lbBMIValue";
-			this->lbBMIValue->Size = System::Drawing::Size(55, 24);
+			this->lbBMIValue->Size = System::Drawing::Size(35, 24);
 			this->lbBMIValue->TabIndex = 11;
-			this->lbBMIValue->Text = L"label3";
+			this->lbBMIValue->Text = L"-----";
 			// 
 			// lblFatsValue
 			// 
@@ -1140,6 +1141,17 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->dgv_ViewMeasurment->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->dgv_ViewMeasurment->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Raised;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Consolas", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle4->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgv_ViewMeasurment->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this->dgv_ViewMeasurment->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgv_ViewMeasurment->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
@@ -1153,9 +1165,9 @@ private: System::Windows::Forms::Panel^ LOGO;
 			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Century", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			dataGridViewCellStyle5->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-				static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::ButtonShadow;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
 			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
 			this->dgv_ViewMeasurment->RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this->dgv_ViewMeasurment->RowHeadersWidth = 70;
@@ -1447,7 +1459,14 @@ private: System::Void bLog_Measurments_Click(System::Object^ sender, System::Eve
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	LogMeasurement(); 
-
+	if (client->numMeasurements > 0) {
+		tB_height->Visible = false;
+		lbl_height->Visible = false;
+	}
+	else {
+		tB_height->Visible = true;
+		lbl_height->Visible = true;
+	}
 }
 private: System::Void bLogCompletedWorkout_Click(System::Object^ sender, System::EventArgs^ e) {
 	LOGcomworkout->BringToFront();

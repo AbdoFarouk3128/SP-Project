@@ -380,62 +380,113 @@ namespace SPProject {
 	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void REGISTER_Click(System::Object^ sender, System::EventArgs^ e) {
-		System::String^ name = txtClientName->Text;
-		System::String^ username = txtUsername->Text;
-		System::String^ password = txtPassword->Text;
-		System::String^ gender = cmbGender->Text;
-		System::String^ activityLevel = cmbActivityLevel->Text;
-		System::String^ ageText = txtAge->Text;
-		System::String^ trainerName = cmbTrainer->Text;
+		try {
+			// Get and trim all input values
+			System::String^ name = txtClientName->Text->Trim();
+			System::String^ username = txtUsername->Text->Trim();
+			System::String^ password = txtPassword->Text->Trim();
+			System::String^ gender = cmbGender->Text->Trim();
+			System::String^ activityLevel = cmbActivityLevel->Text->Trim();
+			System::String^ ageText = txtAge->Text->Trim();
+			System::String^ trainerName = cmbTrainer->Text->Trim();
 
-		std::string nameStd = msclr::interop::marshal_as<std::string>(name);
-		std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
-		std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
-		std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
-		std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
-		std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
-
-		if (nameStd.empty() || usernameStd.empty() || passwordStd.empty() || ageText->Length == 0) {
-			MessageBox::Show("Please fill all fields.");
-			return;
-		}
-
-		int age;
-		if (!Int32::TryParse(ageText, age) || age <= 0) {
-			MessageBox::Show("Please enter a valid positive age.");
-			return;
-		}
-		if (isUsernameTaken(usernameStd)) {
-			MessageBox::Show("This Username is taken.Please choose another.");
-			return;
-		}
-
-		Client newClient;
-		newClient.name = nameStd;
-		newClient.username = usernameStd;
-		newClient.password = passwordStd;
-		newClient.gender = genderStd;
-		newClient.activityLevel = activityStd;
-		newClient.age = age;
-
-		Trainer* selectedtrainer;
-		for (int i = 0; i < trainerCount; i++)
-		{
-			if (trainerNameStd == trainers[i].name) {
-				selectedtrainer = &trainers[i];
+			// Validate required fields
+			if (String::IsNullOrEmpty(name) ||
+				String::IsNullOrEmpty(username) ||
+				String::IsNullOrEmpty(password) ||
+				String::IsNullOrEmpty(gender) ||
+				String::IsNullOrEmpty(activityLevel) ||
+				String::IsNullOrEmpty(ageText) ||
+				String::IsNullOrEmpty(trainerName)) {
+				MessageBox::Show("Please fill all fields.", "Validation Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
 			}
-		}
-		newClient.trainerId = selectedtrainer->trainerID;
-		if (selectedtrainer->numClients < MAX_CLIENTS) {
+
+			// Validate age
+			int age;
+			if (!Int32::TryParse(ageText, age) || age <= 0 || age > 120) {
+				MessageBox::Show("Please enter a valid age between 1 and 120.", "Invalid Age",
+					MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			// Convert to std::string
+			std::string nameStd = msclr::interop::marshal_as<std::string>(name);
+			std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
+			std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
+			std::string genderStd = msclr::interop::marshal_as<std::string>(gender);
+			std::string activityStd = msclr::interop::marshal_as<std::string>(activityLevel);
+			std::string trainerNameStd = msclr::interop::marshal_as<std::string>(trainerName);
+
+			// Check if username exists
+			if (isUsernameTaken(usernameStd)) {
+				MessageBox::Show("This username is already taken. Please choose another.",
+					"Username Taken", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+
+			// Find selected trainer
+			Trainer* selectedTrainer = nullptr;
+			for (int i = 0; i < trainerCount; i++) {
+				if (trainerNameStd == trainers[i].name) {
+					selectedTrainer = &trainers[i];
+					break;
+				}
+			}
+
+			if (selectedTrainer == nullptr) {
+				MessageBox::Show("Selected trainer not found.", "Trainer Error",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
+
+			// Check trainer capacity
+			if (selectedTrainer->numClients >= MAX_CLIENTS) {
+				MessageBox::Show("Selected trainer is at full capacity.", "Capacity Reached",
+					MessageBoxButtons::OK, MessageBoxIcon::Information);
+				return;
+			}
+
+			// Create new client
+			Client newClient;
+			newClient.name = nameStd;
+			newClient.username = usernameStd;
+			newClient.password = passwordStd;
+			newClient.gender = genderStd;
+			newClient.activityLevel = activityStd;
+			newClient.age = age;
+			newClient.trainerId = selectedTrainer->trainerID;
 			newClient.clientID = clientCount + 1;
-			selectedtrainer->clients[selectedtrainer->numClients] = newClient;
+
+			// Add to database
 			insertClient(db, newClient);
-			selectedtrainer->numClients++;
+
+
+			// Update in-memory data if DB operation succeeded
+			selectedTrainer->clients[selectedTrainer->numClients] = newClient;
+			selectedTrainer->numClients++;
 			clientCount++;
-			MessageBox::Show("Client registered successfully!");
+
+			// Clear form
+			txtClientName->Text = "";
+			txtUsername->Text = "";
+			txtPassword->Text = "";
+			txtAge->Text = "";
+			cmbGender->SelectedIndex = -1;
+			cmbActivityLevel->SelectedIndex = -1;
+			cmbTrainer->SelectedIndex = -1;
+
+			MessageBox::Show("Client registered successfully!", "Success",
+				MessageBoxButtons::OK, MessageBoxIcon::Information);
 		}
-		else {
-			MessageBox::Show("Selected trainer is at full capacity.");
+		catch (const std::exception& ex) {
+			MessageBox::Show("Database Error: " + gcnew String(ex.what()), "Error",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		catch (...) {
+			MessageBox::Show("An unexpected error occurred.", "Error",
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 	}
 	};
