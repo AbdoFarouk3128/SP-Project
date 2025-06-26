@@ -1,4 +1,3 @@
-#include "WelcomeForm.h"
 #include "core.h"
 #include "LoginForm.h"
 #include "sqlite3.h"
