@@ -1,7 +1,6 @@
 #pragma once
 #include "core.h"
 #include <msclr/marshal_cppstd.h>
-#include "WelcomeForm.h"
 namespace SPProject {
 
 	using namespace System;

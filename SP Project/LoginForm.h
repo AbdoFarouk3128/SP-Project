@@ -32,7 +32,16 @@ namespace SPProject {
 				// Add to ComboBox
 				cmbTrainer->Items->Add(trainerName);
 			}
+			originalImage = gcnew Bitmap(pictureBox1->Image);
+			fadeAlpha = 0;
+			pictureBox1->Image = gcnew Bitmap(originalImage->Width, originalImage->Height);
+			fadeTimer->Start();
+
+
 		}
+	private:
+		Bitmap^ originalImage = nullptr;
+		int fadeAlpha = 0; // 0 = transparent, 255 = fully visible
 
 	protected:
 		/// <summary>
@@ -45,6 +54,7 @@ namespace SPProject {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Panel^ panelSignup;
 
@@ -90,6 +100,8 @@ namespace SPProject {
 	private: System::Windows::Forms::Button^ btnTrainerSignUp;
 	private: System::Windows::Forms::Button^ btnBackToLogin;
 	private: System::Windows::Forms::Button^ btnCreateTrainer;
+	private: System::Windows::Forms::Timer^ fadeTimer;
+	private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -105,7 +117,7 @@ namespace SPProject {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -114,19 +126,12 @@ namespace SPProject {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LoginForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->panelSignup = (gcnew System::Windows::Forms::Panel());
 			this->btnTrainerSignUp = (gcnew System::Windows::Forms::Button());
 			this->btnClientSignUp = (gcnew System::Windows::Forms::Button());
-			this->panelSignUpTrainer = (gcnew System::Windows::Forms::Panel());
-			this->btnCreateTrainer = (gcnew System::Windows::Forms::Button());
-			this->txtTrainerPassword = (gcnew System::Windows::Forms::TextBox());
-			this->txtTrainerUsername = (gcnew System::Windows::Forms::TextBox());
-			this->txtTrainerName = (gcnew System::Windows::Forms::TextBox());
-			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->label12 = (gcnew System::Windows::Forms::Label());
-			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->panelSignupClient = (gcnew System::Windows::Forms::Panel());
 			this->btnRegisterClient = (gcnew System::Windows::Forms::Button());
 			this->cmbTrainer = (gcnew System::Windows::Forms::ComboBox());
@@ -143,6 +148,14 @@ namespace SPProject {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->txtClientName = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->panelSignUpTrainer = (gcnew System::Windows::Forms::Panel());
+			this->btnCreateTrainer = (gcnew System::Windows::Forms::Button());
+			this->txtTrainerPassword = (gcnew System::Windows::Forms::TextBox());
+			this->txtTrainerUsername = (gcnew System::Windows::Forms::TextBox());
+			this->txtTrainerName = (gcnew System::Windows::Forms::TextBox());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->panelLogin = (gcnew System::Windows::Forms::Panel());
 			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -152,10 +165,11 @@ namespace SPProject {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->btnDoLogin = (gcnew System::Windows::Forms::Button());
 			this->btnBackToLogin = (gcnew System::Windows::Forms::Button());
+			this->fadeTimer = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panelSignup->SuspendLayout();
-			this->panelSignUpTrainer->SuspendLayout();
 			this->panelSignupClient->SuspendLayout();
+			this->panelSignUpTrainer->SuspendLayout();
 			this->panelLogin->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -207,109 +221,6 @@ namespace SPProject {
 			this->btnClientSignUp->Text = L"Sign Up Client";
 			this->btnClientSignUp->UseVisualStyleBackColor = true;
 			this->btnClientSignUp->Click += gcnew System::EventHandler(this, &LoginForm::btnClientSignUp_Click);
-			// 
-			// panelSignUpTrainer
-			// 
-			this->panelSignUpTrainer->Controls->Add(this->btnCreateTrainer);
-			this->panelSignUpTrainer->Controls->Add(this->txtTrainerPassword);
-			this->panelSignUpTrainer->Controls->Add(this->txtTrainerUsername);
-			this->panelSignUpTrainer->Controls->Add(this->txtTrainerName);
-			this->panelSignUpTrainer->Controls->Add(this->label11);
-			this->panelSignUpTrainer->Controls->Add(this->label12);
-			this->panelSignUpTrainer->Controls->Add(this->label13);
-			this->panelSignUpTrainer->Location = System::Drawing::Point(0, 50);
-			this->panelSignUpTrainer->Name = L"panelSignUpTrainer";
-			this->panelSignUpTrainer->Size = System::Drawing::Size(889, 296);
-			this->panelSignUpTrainer->TabIndex = 1;
-			// 
-			// btnCreateTrainer
-			// 
-			this->btnCreateTrainer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnCreateTrainer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnCreateTrainer->ForeColor = System::Drawing::Color::White;
-			this->btnCreateTrainer->Location = System::Drawing::Point(343, 162);
-			this->btnCreateTrainer->Name = L"btnCreateTrainer";
-			this->btnCreateTrainer->Size = System::Drawing::Size(166, 50);
-			this->btnCreateTrainer->TabIndex = 18;
-			this->btnCreateTrainer->Text = L"Register";
-			this->btnCreateTrainer->UseVisualStyleBackColor = true;
-			this->btnCreateTrainer->Click += gcnew System::EventHandler(this, &LoginForm::btnCreateTrainer_Click);
-			// 
-			// txtTrainerPassword
-			// 
-			this->txtTrainerPassword->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->txtTrainerPassword->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txtTrainerPassword->Location = System::Drawing::Point(429, 123);
-			this->txtTrainerPassword->Name = L"txtTrainerPassword";
-			this->txtTrainerPassword->Size = System::Drawing::Size(238, 27);
-			this->txtTrainerPassword->TabIndex = 17;
-			// 
-			// txtTrainerUsername
-			// 
-			this->txtTrainerUsername->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->txtTrainerUsername->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txtTrainerUsername->Location = System::Drawing::Point(429, 79);
-			this->txtTrainerUsername->Name = L"txtTrainerUsername";
-			this->txtTrainerUsername->Size = System::Drawing::Size(238, 27);
-			this->txtTrainerUsername->TabIndex = 16;
-			// 
-			// txtTrainerName
-			// 
-			this->txtTrainerName->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->txtTrainerName->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txtTrainerName->Location = System::Drawing::Point(429, 36);
-			this->txtTrainerName->Name = L"txtTrainerName";
-			this->txtTrainerName->Size = System::Drawing::Size(238, 27);
-			this->txtTrainerName->TabIndex = 15;
-			// 
-			// label11
-			// 
-			this->label11->AutoSize = true;
-			this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label11->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label11->Location = System::Drawing::Point(220, 116);
-			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(147, 32);
-			this->label11->TabIndex = 14;
-			this->label11->Text = L"PASSWORD";
-			// 
-			// label12
-			// 
-			this->label12->AutoSize = true;
-			this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label12->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label12->Location = System::Drawing::Point(220, 75);
-			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(145, 32);
-			this->label12->TabIndex = 13;
-			this->label12->Text = L"USERNAME";
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label13->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->label13->Location = System::Drawing::Point(220, 35);
-			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(81, 32);
-			this->label13->TabIndex = 12;
-			this->label13->Text = L"Name";
 			// 
 			// panelSignupClient
 			// 
@@ -539,6 +450,109 @@ namespace SPProject {
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"NAME";
 			// 
+			// panelSignUpTrainer
+			// 
+			this->panelSignUpTrainer->Controls->Add(this->btnCreateTrainer);
+			this->panelSignUpTrainer->Controls->Add(this->txtTrainerPassword);
+			this->panelSignUpTrainer->Controls->Add(this->txtTrainerUsername);
+			this->panelSignUpTrainer->Controls->Add(this->txtTrainerName);
+			this->panelSignUpTrainer->Controls->Add(this->label11);
+			this->panelSignUpTrainer->Controls->Add(this->label12);
+			this->panelSignUpTrainer->Controls->Add(this->label13);
+			this->panelSignUpTrainer->Location = System::Drawing::Point(0, 50);
+			this->panelSignUpTrainer->Name = L"panelSignUpTrainer";
+			this->panelSignUpTrainer->Size = System::Drawing::Size(889, 296);
+			this->panelSignUpTrainer->TabIndex = 1;
+			// 
+			// btnCreateTrainer
+			// 
+			this->btnCreateTrainer->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnCreateTrainer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnCreateTrainer->ForeColor = System::Drawing::Color::White;
+			this->btnCreateTrainer->Location = System::Drawing::Point(343, 162);
+			this->btnCreateTrainer->Name = L"btnCreateTrainer";
+			this->btnCreateTrainer->Size = System::Drawing::Size(166, 50);
+			this->btnCreateTrainer->TabIndex = 18;
+			this->btnCreateTrainer->Text = L"Register";
+			this->btnCreateTrainer->UseVisualStyleBackColor = true;
+			this->btnCreateTrainer->Click += gcnew System::EventHandler(this, &LoginForm::btnCreateTrainer_Click);
+			// 
+			// txtTrainerPassword
+			// 
+			this->txtTrainerPassword->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->txtTrainerPassword->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtTrainerPassword->Location = System::Drawing::Point(429, 123);
+			this->txtTrainerPassword->Name = L"txtTrainerPassword";
+			this->txtTrainerPassword->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerPassword->TabIndex = 17;
+			// 
+			// txtTrainerUsername
+			// 
+			this->txtTrainerUsername->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->txtTrainerUsername->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtTrainerUsername->Location = System::Drawing::Point(429, 79);
+			this->txtTrainerUsername->Name = L"txtTrainerUsername";
+			this->txtTrainerUsername->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerUsername->TabIndex = 16;
+			// 
+			// txtTrainerName
+			// 
+			this->txtTrainerName->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->txtTrainerName->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtTrainerName->Location = System::Drawing::Point(429, 36);
+			this->txtTrainerName->Name = L"txtTrainerName";
+			this->txtTrainerName->Size = System::Drawing::Size(238, 27);
+			this->txtTrainerName->TabIndex = 15;
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label11->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->label11->Location = System::Drawing::Point(220, 116);
+			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(147, 32);
+			this->label11->TabIndex = 14;
+			this->label11->Text = L"PASSWORD";
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label12->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->label12->Location = System::Drawing::Point(220, 75);
+			this->label12->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(145, 32);
+			this->label12->TabIndex = 13;
+			this->label12->Text = L"USERNAME";
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label13->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->label13->Location = System::Drawing::Point(220, 35);
+			this->label13->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(81, 32);
+			this->label13->TabIndex = 12;
+			this->label13->Text = L"Name";
+			// 
 			// panelLogin
 			// 
 			this->panelLogin->Controls->Add(this->linkLabel1);
@@ -681,6 +695,11 @@ namespace SPProject {
 			this->btnBackToLogin->Visible = false;
 			this->btnBackToLogin->Click += gcnew System::EventHandler(this, &LoginForm::btnBackToLogin_Click);
 			// 
+			// fadeTimer
+			// 
+			this->fadeTimer->Interval = 30;
+			this->fadeTimer->Tick += gcnew System::EventHandler(this, &LoginForm::fadeTimer_Tick);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -700,10 +719,10 @@ namespace SPProject {
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panelSignup->ResumeLayout(false);
-			this->panelSignUpTrainer->ResumeLayout(false);
-			this->panelSignUpTrainer->PerformLayout();
 			this->panelSignupClient->ResumeLayout(false);
 			this->panelSignupClient->PerformLayout();
+			this->panelSignUpTrainer->ResumeLayout(false);
+			this->panelSignUpTrainer->PerformLayout();
 			this->panelLogin->ResumeLayout(false);
 			this->panelLogin->PerformLayout();
 			this->ResumeLayout(false);
@@ -1012,7 +1031,6 @@ private: System::Void btnTrainerSignUp_Click(System::Object^ sender, System::Eve
 	btnClientSignUp->BackColor = Color::FromArgb(41, 128, 185);
 }
 private: System::Void btnCreateTrainer_Click(System::Object^ sender, System::EventArgs^ e) {
-	MessageBox::Show("Clicked");
 	System::String^ name = txtTrainerName->Text;
 	System::String^ username = txtTrainerUsername->Text;
 	System::String^ password = txtTrainerPassword->Text;
@@ -1056,5 +1074,38 @@ private: System::Void btnCreateTrainer_Click(System::Object^ sender, System::Eve
 	}
 
 }
+private: System::Void fadeTimer_Tick(System::Object^ sender, System::EventArgs^ e) {
+	if (fadeAlpha < 255) {
+		fadeAlpha += 5; // adjust speed of fade
+		if (fadeAlpha > 255) fadeAlpha = 255;
+
+		// Create a blank bitmap to draw the faded image into
+		Bitmap^ faded = gcnew Bitmap(originalImage->Width, originalImage->Height);
+		Graphics^ g = Graphics::FromImage(faded);
+
+		// Set transparency using ColorMatrix
+		System::Drawing::Imaging::ColorMatrix^ matrix = gcnew System::Drawing::Imaging::ColorMatrix();
+		matrix->Matrix33 = fadeAlpha / 255.0f;
+
+		System::Drawing::Imaging::ImageAttributes^ attr = gcnew System::Drawing::Imaging::ImageAttributes();
+		attr->SetColorMatrix(matrix, System::Drawing::Imaging::ColorMatrixFlag::Default, System::Drawing::Imaging::ColorAdjustType::Bitmap);
+
+		g->DrawImage(originalImage,
+			System::Drawing::Rectangle(0, 0, originalImage->Width, originalImage->Height),
+			0, 0, originalImage->Width, originalImage->Height,
+			GraphicsUnit::Pixel,
+			attr);
+
+		pictureBox1->Image = faded;
+
+		delete g;
+		delete attr;
+	}
+	else {
+		fadeTimer->Stop();
+	}
+}
+
+
 };
 }
