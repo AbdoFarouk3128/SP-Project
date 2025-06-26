@@ -27,14 +27,14 @@ const int MAX_USERNAME_ATTEMPTS = 5;
 // ================== STRUCTURES ==================
 #pragma region Structres
 struct Measurement {
-    float weight;
-    float height;
+    double weight;
+    double height;
     struct Date {
         int Day;
         int Month;
         int Year;
     } date;
-    float bmi;
+    double bmi;
     double bmr;
     double tdee;
     struct Macros {

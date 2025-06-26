@@ -76,17 +76,17 @@ namespace SPProject {
 			}
 
 			
-			float weight;
-			if (!float::TryParse(tB_weight->Text, weight) || weight <= 0) {
+			double weight;
+			if (!double::TryParse(tB_weight->Text, weight) || weight <= 0) {
 				MessageBox::Show("Please enter a valid weight!", "Error",
 					MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}
 
 			
-			float height;
+			double height;
 			if (client->numMeasurements == 0) {
-				if (!float::TryParse(tB_height->Text, height) || height <= 0) {
+				if (!double::TryParse(tB_height->Text, height) || height <= 0) {
 					MessageBox::Show("Please enter a valid height!", "Error",
 						MessageBoxButtons::OK, MessageBoxIcon::Error);
 					return;
@@ -276,18 +276,9 @@ private: System::Windows::Forms::Panel^ p_measurment;
 private: System::Windows::Forms::Panel^ p_workout;
 private: System::Windows::Forms::Panel^ p_logworkouts;
 
-
-
 private: System::Windows::Forms::Panel^ p_logmeasurments;
 
 private: System::Windows::Forms::Panel^ p_health;
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::Panel^ mainpage;
 private: System::Windows::Forms::Panel^ logoutp;
@@ -323,8 +314,6 @@ private: System::Windows::Forms::Label^ CLIENTM;
 
 
 
-
-
 	private: System::Windows::Forms::Label^ label7;
 private: System::Windows::Forms::Label^ lblProteinValue;
 
@@ -348,7 +337,6 @@ private: System::Windows::Forms::Panel^ LOGmeasurment;
 private: System::Windows::Forms::Label^ lbl_weight;
 
 
-
 private: System::Windows::Forms::Label^ PAGEtitle_logm;
 private: System::Windows::Forms::DateTimePicker^ Date;
 
@@ -361,11 +349,9 @@ private: System::Windows::Forms::Panel^ LOGcomworkout;
 private: System::Windows::Forms::Label^ lblStatus;
 private: System::Windows::Forms::TextBox^ txtWorkoutNumber;
 
-
 private: System::Windows::Forms::ListBox^ WOKOUTS;
 private: System::Windows::Forms::Label^ label2;
 private: System::Windows::Forms::Button^ bt_Logw;
-
 
 
 private: System::Windows::Forms::Panel^ VIEWworkouts;
@@ -373,11 +359,6 @@ private: System::Windows::Forms::ListBox^ listBoxWorkouts;
 
 private: System::Windows::Forms::Label^ PAGEtitle_viewworkouts;
 private: System::Windows::Forms::Panel^ LOGO;
-
-
-
-
-
 
 
 	protected:

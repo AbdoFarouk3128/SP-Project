@@ -397,7 +397,7 @@ Measurement::Macros calculateMacros(double tdee, Client& a) {
 }
 
 double calculateBMI(Client& a) {
-    float heightInMeters = a.measurements[a.numMeasurements - 1].height / 100.0;
+    double heightInMeters = a.measurements[a.numMeasurements - 1].height / 100.0;
     return a.measurements[a.numMeasurements - 1].weight / (heightInMeters * heightInMeters);
 }
 
