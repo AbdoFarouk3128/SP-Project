@@ -18,10 +18,10 @@ using namespace std;
 #pragma region Constants
 const int MAX_CLIENTS = 100;
 const int MAX_TRAINERS = 30;
-const int MAX_WORKOUTS = 10;
+const int MAX_WORKOUTS = 15;
 const int MAX_EXERCISES = 10;
-const int MAX_LOGS = 20;
-const int MAX_MEASUREMENTS = 20;
+const int MAX_LOGS = 15;
+const int MAX_MEASUREMENTS = 30;
 const int MAX_USERNAME_ATTEMPTS = 5;
 #pragma endregion
 // ================== STRUCTURES ==================
@@ -99,14 +99,12 @@ extern sqlite3* db;
 #pragma region Function Declarations
 void clearScreen();
 void pressEnter();
-void clearInputBuffer();
 string toLower(const string& str);
 string joinLogs(string logs[], int numLogs);
 bool isUsernameTaken(const string& username);
 int splitLogs(string logsString, string logs[], int maxLogs);
 string formatDate(Measurement::Date d);
 void loadTrainers(sqlite3* db);
-void loadClients(sqlite3* db);
 void loadClientsOfTrainers(sqlite3* db);
 void loadWorkouts(sqlite3* db);
 void loadMeasurements(sqlite3* db);
@@ -141,10 +139,8 @@ void registerTrainer();
 void registerClient();
 Trainer* trainerLogin(string &username, string &password);
 Client* clientLogin(string &username, string &password);
-void display_workouts();
 int displayClientsAndSelect(Trainer& trainer);
 void assign_workout(Client& client);
 void createPredefinedWorkout();
 Workout createCustomWorkout();
-void display_workouts_to_client();
 #pragma endregion
