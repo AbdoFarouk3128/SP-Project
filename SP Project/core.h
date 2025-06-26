@@ -16,8 +16,8 @@ using namespace std;
 
 // ================== CONSTANTS ==================
 #pragma region Constants
-const int MAX_CLIENTS = 50;
-const int MAX_TRAINERS = 20;
+const int MAX_CLIENTS = 100;
+const int MAX_TRAINERS = 30;
 const int MAX_WORKOUTS = 10;
 const int MAX_EXERCISES = 10;
 const int MAX_LOGS = 20;
@@ -81,13 +81,16 @@ struct Trainer {
     Client clients[MAX_CLIENTS];
     int numClients = 0;
 };
+
+
+
 #pragma endregion
 // ================== GLOBAL DATA ==================
 #pragma region Global Data
-extern int clientCount ;
-extern Trainer trainers[MAX_TRAINERS];
-extern int trainerCount ;
-extern Workout predefineWorkout[MAX_WORKOUTS];
+extern int clientCount;
+extern Trainer* trainers;
+extern int trainerCount;
+extern Workout *predefineWorkout;
 extern int numPredefinedWorkouts ;
 extern sqlite3* db;
 

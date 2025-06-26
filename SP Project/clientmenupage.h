@@ -76,17 +76,17 @@ namespace SPProject {
 			}
 
 			
-			double weight;
-			if (!Double::TryParse(tB_weight->Text, weight) || weight <= 0) {
+			float weight;
+			if (!float::TryParse(tB_weight->Text, weight) || weight <= 0) {
 				MessageBox::Show("Please enter a valid weight!", "Error",
 					MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}
 
 			
-			double height;
+			float height;
 			if (client->numMeasurements == 0) {
-				if (!Double::TryParse(tB_height->Text, height) || height <= 0) {
+				if (!float::TryParse(tB_height->Text, height) || height <= 0) {
 					MessageBox::Show("Please enter a valid height!", "Error",
 						MessageBoxButtons::OK, MessageBoxIcon::Error);
 					return;

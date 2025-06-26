@@ -12,8 +12,9 @@ sqlite3* db = nullptr;
 int clientCount = 0;
 int trainerCount = 0;
 int numPredefinedWorkouts = 0;
-Trainer trainers[MAX_TRAINERS];
-Workout predefineWorkout[MAX_WORKOUTS];
+Trainer* trainers = new Trainer[MAX_TRAINERS];
+Workout* predefineWorkout = new Workout[MAX_WORKOUTS];
+
 
 [STAThread]
 int main(cli::array<System::String^>^ args)  // Use cli::array instead of just array
