@@ -29,8 +29,15 @@ int main(cli::array<System::String^>^ args)  // Use cli::array instead of just a
 
     loadAllData(db);
 
-    Application::Run(gcnew WelcomeForm());
+    Application::Run(gcnew LoginForm());
 
     sqlite3_close(db);
+
+    delete[] trainers;
+    delete[] predefineWorkout;
+    trainers = 0;
+    predefineWorkout = 0;
+
+    
     return 0;
 }

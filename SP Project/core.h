@@ -75,12 +75,23 @@ struct Client {
 
 struct Trainer {
     int trainerID;
-    string name;
-    string username;
-    string password;
-    Client clients[MAX_CLIENTS];
-    int numClients = 0;
+    std::string name;
+    std::string username;
+    std::string password;
+
+    Client* clients;
+    int numClients;
+
+    Trainer() {
+        clients = new Client[100];
+        numClients = 0;
+    }
+
+    ~Trainer() {
+        delete[] clients;
+    }
 };
+
 
 
 
