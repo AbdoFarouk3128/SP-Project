@@ -240,15 +240,27 @@ void loadAllData(sqlite3* db) {
     loadPredefinedWorkouts(db);
 }
 
-void insertTrainer(sqlite3* db, Trainer  t) {
+void insertTrainer(sqlite3* db, Trainer t) {
+    if (!db) throw std::runtime_error("Database pointer is null.");
+
     const char* query = "INSERT INTO Trainers (name, username, password) VALUES (?, ?, ?);";
-    sqlite3_stmt* stmt;
-    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, t.name.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 2, t.username.c_str(), -1, SQLITE_STATIC);
-        sqlite3_bind_text(stmt, 3, t.password.c_str(), -1, SQLITE_STATIC);
-        sqlite3_step(stmt);
+    sqlite3_stmt* stmt = nullptr;
+
+    int rc = sqlite3_prepare_v2(db, query, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        throw std::runtime_error(sqlite3_errmsg(db));
     }
+
+    sqlite3_bind_text(stmt, 1, t.name.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, t.username.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, t.password.c_str(), -1, SQLITE_STATIC);
+
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        sqlite3_finalize(stmt);
+        throw std::runtime_error(sqlite3_errmsg(db));
+    }
+
     sqlite3_finalize(stmt);
 }
 
@@ -397,7 +409,7 @@ Measurement::Macros calculateMacros(double tdee, Client& a) {
 }
 
 double calculateBMI(Client& a) {
-    float heightInMeters = a.measurements[a.numMeasurements - 1].height / 100.0;
+    double heightInMeters = a.measurements[a.numMeasurements - 1].height / 100.0;
     return a.measurements[a.numMeasurements - 1].weight / (heightInMeters * heightInMeters);
 }
 

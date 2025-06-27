@@ -41,19 +41,10 @@
     <ClInclude Include="core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WelcomeForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="clientmenupage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LoginForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyForm1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
