@@ -968,7 +968,7 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 
 		else {
 
-			Trainer *newTrainer;
+			Trainer *newTrainer=new Trainer();
 			newTrainer->name = nameStd;
 			newTrainer->username = usernameStd;
 			newTrainer->password = passwordStd;
@@ -980,12 +980,14 @@ private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^
 			}
 			catch (const std::exception& ex) {
 				MessageBox::Show("DB Error: " + gcnew String(ex.what()));
+				delete newTrainer;
 				return;
 			}
 
 			trainerCount++;
 
 			MessageBox::Show("Trainer account created!");
+			delete newTrainer;
 		}
 
 		txtTrainerName->Text = "";

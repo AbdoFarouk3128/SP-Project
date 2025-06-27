@@ -1,7 +1,8 @@
 #pragma once
 #include "core.h"
 #include <msclr/marshal_cppstd.h>
-//#include "WelcomeForm.h"
+#include "LoginForm.h"
+
 namespace SPProject {
 
 	using namespace System;
@@ -392,14 +393,14 @@ private: System::Windows::Forms::Panel^ LOGO;
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(traiermenu::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle15 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
@@ -414,6 +415,55 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
+			this->manage = (gcnew System::Windows::Forms::Panel());
+			this->manpanel = (gcnew System::Windows::Forms::Panel());
+			this->newwork = (gcnew System::Windows::Forms::Panel());
+			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
+			this->btnSaveWorkout = (gcnew System::Windows::Forms::Button());
+			this->numExercises = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->numReps = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->numSets = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->numDuration = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->txtWorkoutName = (gcnew System::Windows::Forms::TextBox());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->panelExercises = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->assign = (gcnew System::Windows::Forms::Panel());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
+			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
+			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->customwork = (gcnew System::Windows::Forms::Panel());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
+			this->numExercises1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numSets1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numDuration1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->txtWorkoutName1 = (gcnew System::Windows::Forms::TextBox());
+			this->btnSaveWorkout1 = (gcnew System::Windows::Forms::Button());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->numReps1 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->panelExercises1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTextBoxColumn4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->btn = (gcnew System::Windows::Forms::Panel());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->progress = (gcnew System::Windows::Forms::Panel());
 			this->panel9 = (gcnew System::Windows::Forms::Panel());
 			this->tableLayoutPanel5 = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -423,13 +473,13 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->viewcompletedworkout = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->panel8 = (gcnew System::Windows::Forms::Panel());
 			this->panel7 = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
 			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dataGridViewTextBoxColumn3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->clientinfo = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->NAME = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -438,55 +488,6 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->gender = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->activitylevel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->workouts = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->manage = (gcnew System::Windows::Forms::Panel());
-			this->btn = (gcnew System::Windows::Forms::Panel());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->customwork = (gcnew System::Windows::Forms::Panel());
-			this->dataGridView4 = (gcnew System::Windows::Forms::DataGridView());
-			this->dataGridViewTextBoxColumn6 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridViewTextBoxColumn5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridViewTextBoxColumn4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
-			this->panelExercises1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			this->numReps1 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->label16 = (gcnew System::Windows::Forms::Label());
-			this->label17 = (gcnew System::Windows::Forms::Label());
-			this->btnSaveWorkout1 = (gcnew System::Windows::Forms::Button());
-			this->txtWorkoutName1 = (gcnew System::Windows::Forms::TextBox());
-			this->numDuration1 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->numSets1 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->numExercises1 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->assign = (gcnew System::Windows::Forms::Panel());
-			this->dataGridView3 = (gcnew System::Windows::Forms::DataGridView());
-			this->button9 = (gcnew System::Windows::Forms::Button());
-			this->checkedListBox1 = (gcnew System::Windows::Forms::CheckedListBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->newwork = (gcnew System::Windows::Forms::Panel());
-			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
-			this->panelExercises = (gcnew System::Windows::Forms::FlowLayoutPanel());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->txtWorkoutName = (gcnew System::Windows::Forms::TextBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->numDuration = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->numSets = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label10 = (gcnew System::Windows::Forms::Label());
-			this->numReps = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label11 = (gcnew System::Windows::Forms::Label());
-			this->numExercises = (gcnew System::Windows::Forms::NumericUpDown());
-			this->btnSaveWorkout = (gcnew System::Windows::Forms::Button());
-			this->manpanel = (gcnew System::Windows::Forms::Panel());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->LOGO = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			this->panel2->SuspendLayout();
@@ -497,6 +498,30 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel3->SuspendLayout();
+			this->manage->SuspendLayout();
+			this->manpanel->SuspendLayout();
+			this->newwork->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
+			this->splitContainer1->Panel1->SuspendLayout();
+			this->splitContainer1->Panel2->SuspendLayout();
+			this->splitContainer1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration))->BeginInit();
+			this->assign->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
+			this->customwork->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->BeginInit();
+			this->splitContainer2->Panel1->SuspendLayout();
+			this->splitContainer2->Panel2->SuspendLayout();
+			this->splitContainer2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
+			this->btn->SuspendLayout();
 			this->progress->SuspendLayout();
 			this->panel9->SuspendLayout();
 			this->tableLayoutPanel5->SuspendLayout();
@@ -506,30 +531,6 @@ private: System::Windows::Forms::Panel^ LOGO;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->clientinfo->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
-			this->manage->SuspendLayout();
-			this->btn->SuspendLayout();
-			this->customwork->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->BeginInit();
-			this->splitContainer2->Panel1->SuspendLayout();
-			this->splitContainer2->Panel2->SuspendLayout();
-			this->splitContainer2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises1))->BeginInit();
-			this->assign->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
-			this->newwork->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
-			this->splitContainer1->Panel1->SuspendLayout();
-			this->splitContainer1->Panel2->SuspendLayout();
-			this->splitContainer1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises))->BeginInit();
-			this->manpanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -551,7 +552,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(305, 18);
-			this->label1->Margin = System::Windows::Forms::Padding(200, 200, 200, 200);
+			this->label1->Margin = System::Windows::Forms::Padding(200);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(275, 42);
 			this->label1->TabIndex = 0;
@@ -589,7 +590,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel6->Controls->Add(this->pictureBox3);
 			this->panel6->Controls->Add(this->button3);
 			this->panel6->Location = System::Drawing::Point(0, 323);
-			this->panel6->Margin = System::Windows::Forms::Padding(10, 10, 10, 10);
+			this->panel6->Margin = System::Windows::Forms::Padding(10);
 			this->panel6->Name = L"panel6";
 			this->panel6->Size = System::Drawing::Size(200, 162);
 			this->panel6->TabIndex = 2;
@@ -624,7 +625,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel5->Controls->Add(this->pictureBox2);
 			this->panel5->Controls->Add(this->button2);
 			this->panel5->Location = System::Drawing::Point(0, 165);
-			this->panel5->Margin = System::Windows::Forms::Padding(10, 10, 10, 10);
+			this->panel5->Margin = System::Windows::Forms::Padding(10);
 			this->panel5->Name = L"panel5";
 			this->panel5->Size = System::Drawing::Size(200, 155);
 			this->panel5->TabIndex = 1;
@@ -659,7 +660,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel4->Controls->Add(this->pictureBox1);
 			this->panel4->Controls->Add(this->button1);
 			this->panel4->Location = System::Drawing::Point(3, 0);
-			this->panel4->Margin = System::Windows::Forms::Padding(10, 10, 10, 10);
+			this->panel4->Margin = System::Windows::Forms::Padding(10);
 			this->panel4->Name = L"panel4";
 			this->panel4->Size = System::Drawing::Size(191, 154);
 			this->panel4->TabIndex = 0;
@@ -696,15 +697,572 @@ private: System::Windows::Forms::Panel^ LOGO;
 			// 
 			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->panel3->Controls->Add(this->LOGO);
 			this->panel3->Controls->Add(this->manage);
 			this->panel3->Controls->Add(this->progress);
 			this->panel3->Controls->Add(this->clientinfo);
+			this->panel3->Controls->Add(this->LOGO);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel3->Location = System::Drawing::Point(185, 75);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(699, 534);
 			this->panel3->TabIndex = 2;
+			// 
+			// manage
+			// 
+			this->manage->BackColor = System::Drawing::Color::White;
+			this->manage->Controls->Add(this->manpanel);
+			this->manage->Controls->Add(this->btn);
+			this->manage->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->manage->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->manage->Location = System::Drawing::Point(0, 0);
+			this->manage->Name = L"manage";
+			this->manage->Size = System::Drawing::Size(699, 534);
+			this->manage->TabIndex = 11;
+			// 
+			// manpanel
+			// 
+			this->manpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->manpanel->Controls->Add(this->customwork);
+			this->manpanel->Controls->Add(this->newwork);
+			this->manpanel->Controls->Add(this->assign);
+			this->manpanel->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->manpanel->Location = System::Drawing::Point(0, 75);
+			this->manpanel->Name = L"manpanel";
+			this->manpanel->Size = System::Drawing::Size(699, 459);
+			this->manpanel->TabIndex = 1;
+			// 
+			// newwork
+			// 
+			this->newwork->BackColor = System::Drawing::Color::White;
+			this->newwork->Controls->Add(this->splitContainer1);
+			this->newwork->Location = System::Drawing::Point(6, 20);
+			this->newwork->Name = L"newwork";
+			this->newwork->Size = System::Drawing::Size(690, 409);
+			this->newwork->TabIndex = 10;
+			this->newwork->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::newwork_Paint);
+			// 
+			// splitContainer1
+			// 
+			this->splitContainer1->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->splitContainer1->Location = System::Drawing::Point(21, 22);
+			this->splitContainer1->Name = L"splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this->splitContainer1->Panel1->Controls->Add(this->btnSaveWorkout);
+			this->splitContainer1->Panel1->Controls->Add(this->numExercises);
+			this->splitContainer1->Panel1->Controls->Add(this->label11);
+			this->splitContainer1->Panel1->Controls->Add(this->numReps);
+			this->splitContainer1->Panel1->Controls->Add(this->label10);
+			this->splitContainer1->Panel1->Controls->Add(this->numSets);
+			this->splitContainer1->Panel1->Controls->Add(this->label9);
+			this->splitContainer1->Panel1->Controls->Add(this->numDuration);
+			this->splitContainer1->Panel1->Controls->Add(this->label8);
+			this->splitContainer1->Panel1->Controls->Add(this->txtWorkoutName);
+			this->splitContainer1->Panel1->Controls->Add(this->label7);
+			this->splitContainer1->Panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::splitContainer1_Panel1_Paint);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this->splitContainer1->Panel2->Controls->Add(this->panelExercises);
+			this->splitContainer1->Size = System::Drawing::Size(646, 368);
+			this->splitContainer1->SplitterDistance = 311;
+			this->splitContainer1->TabIndex = 1;
+			// 
+			// btnSaveWorkout
+			// 
+			this->btnSaveWorkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->btnSaveWorkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSaveWorkout->ForeColor = System::Drawing::SystemColors::Control;
+			this->btnSaveWorkout->Location = System::Drawing::Point(85, 279);
+			this->btnSaveWorkout->Name = L"btnSaveWorkout";
+			this->btnSaveWorkout->Size = System::Drawing::Size(176, 74);
+			this->btnSaveWorkout->TabIndex = 10;
+			this->btnSaveWorkout->Text = L"Save";
+			this->btnSaveWorkout->UseVisualStyleBackColor = false;
+			this->btnSaveWorkout->Click += gcnew System::EventHandler(this, &traiermenu::btnSaveWorkout_Click_1);
+			// 
+			// numExercises
+			// 
+			this->numExercises->Location = System::Drawing::Point(153, 216);
+			this->numExercises->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->numExercises->Name = L"numExercises";
+			this->numExercises->Size = System::Drawing::Size(135, 23);
+			this->numExercises->TabIndex = 9;
+			this->numExercises->ValueChanged += gcnew System::EventHandler(this, &traiermenu::numExercises_ValueChanged_1);
+			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(10, 221);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(137, 16);
+			this->label11->TabIndex = 8;
+			this->label11->Text = L"Number of Exercises";
+			// 
+			// numReps
+			// 
+			this->numReps->Location = System::Drawing::Point(153, 177);
+			this->numReps->Name = L"numReps";
+			this->numReps->Size = System::Drawing::Size(135, 23);
+			this->numReps->TabIndex = 7;
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(37, 180);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(39, 16);
+			this->label10->TabIndex = 6;
+			this->label10->Text = L"Reps";
+			// 
+			// numSets
+			// 
+			this->numSets->Location = System::Drawing::Point(153, 135);
+			this->numSets->Name = L"numSets";
+			this->numSets->Size = System::Drawing::Size(135, 23);
+			this->numSets->TabIndex = 5;
+			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(37, 142);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(36, 16);
+			this->label9->TabIndex = 4;
+			this->label9->Text = L"Sets";
+			// 
+			// numDuration
+			// 
+			this->numDuration->Location = System::Drawing::Point(153, 98);
+			this->numDuration->Name = L"numDuration";
+			this->numDuration->Size = System::Drawing::Size(135, 23);
+			this->numDuration->TabIndex = 3;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(19, 105);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(101, 16);
+			this->label8->TabIndex = 2;
+			this->label8->Text = L"Duration (min)";
+			// 
+			// txtWorkoutName
+			// 
+			this->txtWorkoutName->Location = System::Drawing::Point(153, 55);
+			this->txtWorkoutName->Name = L"txtWorkoutName";
+			this->txtWorkoutName->Size = System::Drawing::Size(136, 23);
+			this->txtWorkoutName->TabIndex = 1;
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(19, 58);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(102, 16);
+			this->label7->TabIndex = 0;
+			this->label7->Text = L"Workout Name";
+			// 
+			// panelExercises
+			// 
+			this->panelExercises->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->panelExercises->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panelExercises->Location = System::Drawing::Point(0, 0);
+			this->panelExercises->Name = L"panelExercises";
+			this->panelExercises->Size = System::Drawing::Size(331, 368);
+			this->panelExercises->TabIndex = 0;
+			// 
+			// assign
+			// 
+			this->assign->BackColor = System::Drawing::Color::White;
+			this->assign->Controls->Add(this->label4);
+			this->assign->Controls->Add(this->textBox2);
+			this->assign->Controls->Add(this->checkedListBox1);
+			this->assign->Controls->Add(this->button9);
+			this->assign->Controls->Add(this->dataGridView3);
+			this->assign->Location = System::Drawing::Point(6, 20);
+			this->assign->Margin = System::Windows::Forms::Padding(2);
+			this->assign->Name = L"assign";
+			this->assign->Size = System::Drawing::Size(690, 409);
+			this->assign->TabIndex = 0;
+			this->assign->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(189, 224);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(144, 19);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"Enter Client Id : ";
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(364, 221);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(126, 23);
+			this->textBox2->TabIndex = 7;
+			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// checkedListBox1
+			// 
+			this->checkedListBox1->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->checkedListBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->checkedListBox1->FormattingEnabled = true;
+			this->checkedListBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
+				L"Full Body Workout", L"Morning Cardio",
+					L"Strength Training", L"Strength Training 1"
+			});
+			this->checkedListBox1->Location = System::Drawing::Point(5, 269);
+			this->checkedListBox1->Name = L"checkedListBox1";
+			this->checkedListBox1->Size = System::Drawing::Size(640, 76);
+			this->checkedListBox1->Sorted = true;
+			this->checkedListBox1->TabIndex = 6;
+			// 
+			// button9
+			// 
+			this->button9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->button9->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)));
+			this->button9->Location = System::Drawing::Point(559, 351);
+			this->button9->Name = L"button9";
+			this->button9->Size = System::Drawing::Size(113, 50);
+			this->button9->TabIndex = 5;
+			this->button9->Text = L"Submit";
+			this->button9->UseVisualStyleBackColor = false;
+			this->button9->Click += gcnew System::EventHandler(this, &traiermenu::button9_Click_1);
+			// 
+			// dataGridView3
+			// 
+			dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->dataGridView3->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+			this->dataGridView3->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle4->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView3->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->Column1,
+					this->Column2, this->Column3
+			});
+			this->dataGridView3->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->dataGridView3->Location = System::Drawing::Point(148, 3);
+			this->dataGridView3->Name = L"dataGridView3";
+			this->dataGridView3->RowHeadersWidth = 51;
+			this->dataGridView3->Size = System::Drawing::Size(380, 203);
+			this->dataGridView3->TabIndex = 1;
+			// 
+			// Column1
+			// 
+			this->Column1->HeaderText = L"Id";
+			this->Column1->MinimumWidth = 6;
+			this->Column1->Name = L"Column1";
+			this->Column1->Width = 80;
+			// 
+			// Column2
+			// 
+			this->Column2->HeaderText = L"Name";
+			this->Column2->MinimumWidth = 6;
+			this->Column2->Name = L"Column2";
+			this->Column2->Width = 140;
+			// 
+			// Column3
+			// 
+			this->Column3->HeaderText = L"Workout";
+			this->Column3->MinimumWidth = 6;
+			this->Column3->Name = L"Column3";
+			this->Column3->Width = 90;
+			// 
+			// customwork
+			// 
+			this->customwork->BackColor = System::Drawing::Color::White;
+			this->customwork->Controls->Add(this->textBox3);
+			this->customwork->Controls->Add(this->label5);
+			this->customwork->Controls->Add(this->splitContainer2);
+			this->customwork->Controls->Add(this->dataGridView4);
+			this->customwork->Location = System::Drawing::Point(6, 20);
+			this->customwork->Name = L"customwork";
+			this->customwork->Size = System::Drawing::Size(690, 409);
+			this->customwork->TabIndex = 11;
+			this->customwork->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::customwork_Paint);
+			// 
+			// textBox3
+			// 
+			this->textBox3->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox3->Location = System::Drawing::Point(565, 47);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(123, 30);
+			this->textBox3->TabIndex = 9;
+			// 
+			// label5
+			// 
+			this->label5->Anchor = System::Windows::Forms::AnchorStyles::None;
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(392, 50);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(169, 23);
+			this->label5->TabIndex = 8;
+			this->label5->Text = L"Enter Client Id : ";
+			// 
+			// splitContainer2
+			// 
+			this->splitContainer2->Location = System::Drawing::Point(0, 207);
+			this->splitContainer2->Name = L"splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this->splitContainer2->Panel1->Controls->Add(this->numExercises1);
+			this->splitContainer2->Panel1->Controls->Add(this->numSets1);
+			this->splitContainer2->Panel1->Controls->Add(this->numDuration1);
+			this->splitContainer2->Panel1->Controls->Add(this->txtWorkoutName1);
+			this->splitContainer2->Panel1->Controls->Add(this->btnSaveWorkout1);
+			this->splitContainer2->Panel1->Controls->Add(this->label17);
+			this->splitContainer2->Panel1->Controls->Add(this->label16);
+			this->splitContainer2->Panel1->Controls->Add(this->label15);
+			this->splitContainer2->Panel1->Controls->Add(this->label14);
+			this->splitContainer2->Panel1->Controls->Add(this->label13);
+			this->splitContainer2->Panel1->Controls->Add(this->numReps1);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this->splitContainer2->Panel2->Controls->Add(this->panelExercises1);
+			this->splitContainer2->Size = System::Drawing::Size(688, 207);
+			this->splitContainer2->SplitterDistance = 335;
+			this->splitContainer2->TabIndex = 7;
+			// 
+			// numExercises1
+			// 
+			this->numExercises1->Location = System::Drawing::Point(170, 133);
+			this->numExercises1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->numExercises1->Name = L"numExercises1";
+			this->numExercises1->Size = System::Drawing::Size(133, 23);
+			this->numExercises1->TabIndex = 21;
+			this->numExercises1->ValueChanged += gcnew System::EventHandler(this, &traiermenu::numExercises1_ValueChanged_1);
+			// 
+			// numSets1
+			// 
+			this->numSets1->Location = System::Drawing::Point(171, 72);
+			this->numSets1->Name = L"numSets1";
+			this->numSets1->Size = System::Drawing::Size(133, 23);
+			this->numSets1->TabIndex = 20;
+			// 
+			// numDuration1
+			// 
+			this->numDuration1->Location = System::Drawing::Point(171, 39);
+			this->numDuration1->Name = L"numDuration1";
+			this->numDuration1->Size = System::Drawing::Size(133, 23);
+			this->numDuration1->TabIndex = 19;
+			// 
+			// txtWorkoutName1
+			// 
+			this->txtWorkoutName1->Location = System::Drawing::Point(171, 6);
+			this->txtWorkoutName1->Name = L"txtWorkoutName1";
+			this->txtWorkoutName1->Size = System::Drawing::Size(133, 23);
+			this->txtWorkoutName1->TabIndex = 18;
+			// 
+			// btnSaveWorkout1
+			// 
+			this->btnSaveWorkout1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->btnSaveWorkout1->Font = (gcnew System::Drawing::Font(L"Tahoma", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnSaveWorkout1->ForeColor = System::Drawing::SystemColors::Control;
+			this->btnSaveWorkout1->Location = System::Drawing::Point(62, 162);
+			this->btnSaveWorkout1->Name = L"btnSaveWorkout1";
+			this->btnSaveWorkout1->Size = System::Drawing::Size(176, 39);
+			this->btnSaveWorkout1->TabIndex = 11;
+			this->btnSaveWorkout1->Text = L"Save";
+			this->btnSaveWorkout1->UseVisualStyleBackColor = false;
+			this->btnSaveWorkout1->Click += gcnew System::EventHandler(this, &traiermenu::btnSaveWorkout1_Click_1);
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(59, 103);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(39, 16);
+			this->label17->TabIndex = 17;
+			this->label17->Text = L"Reps";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(56, 72);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(36, 16);
+			this->label16->TabIndex = 16;
+			this->label16->Text = L"Sets";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(23, 41);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(101, 16);
+			this->label15->TabIndex = 15;
+			this->label15->Text = L"Duration (min)";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(22, 10);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(102, 16);
+			this->label14->TabIndex = 14;
+			this->label14->Text = L"Workout Name";
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(13, 135);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(137, 16);
+			this->label13->TabIndex = 13;
+			this->label13->Text = L"Number of Exercises";
+			// 
+			// numReps1
+			// 
+			this->numReps1->Location = System::Drawing::Point(170, 101);
+			this->numReps1->Name = L"numReps1";
+			this->numReps1->Size = System::Drawing::Size(133, 23);
+			this->numReps1->TabIndex = 12;
+			// 
+			// panelExercises1
+			// 
+			this->panelExercises1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->panelExercises1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panelExercises1->Location = System::Drawing::Point(0, 0);
+			this->panelExercises1->Name = L"panelExercises1";
+			this->panelExercises1->Size = System::Drawing::Size(349, 207);
+			this->panelExercises1->TabIndex = 0;
+			// 
+			// dataGridView4
+			// 
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
+			this->dataGridView4->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+			this->dataGridView4->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView4->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+			this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView4->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->dataGridViewTextBoxColumn4,
+					this->dataGridViewTextBoxColumn5, this->dataGridViewTextBoxColumn6
+			});
+			this->dataGridView4->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->dataGridView4->Location = System::Drawing::Point(6, 6);
+			this->dataGridView4->Name = L"dataGridView4";
+			this->dataGridView4->RowHeadersWidth = 51;
+			this->dataGridView4->Size = System::Drawing::Size(363, 189);
+			this->dataGridView4->TabIndex = 1;
+			// 
+			// dataGridViewTextBoxColumn4
+			// 
+			this->dataGridViewTextBoxColumn4->HeaderText = L"Id";
+			this->dataGridViewTextBoxColumn4->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn4->Name = L"dataGridViewTextBoxColumn4";
+			this->dataGridViewTextBoxColumn4->Width = 80;
+			// 
+			// dataGridViewTextBoxColumn5
+			// 
+			this->dataGridViewTextBoxColumn5->HeaderText = L"Name";
+			this->dataGridViewTextBoxColumn5->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn5->Name = L"dataGridViewTextBoxColumn5";
+			this->dataGridViewTextBoxColumn5->Width = 130;
+			// 
+			// dataGridViewTextBoxColumn6
+			// 
+			this->dataGridViewTextBoxColumn6->HeaderText = L"Workout";
+			this->dataGridViewTextBoxColumn6->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn6->Name = L"dataGridViewTextBoxColumn6";
+			this->dataGridViewTextBoxColumn6->Width = 80;
+			// 
+			// btn
+			// 
+			this->btn->Controls->Add(this->button6);
+			this->btn->Controls->Add(this->button5);
+			this->btn->Controls->Add(this->button4);
+			this->btn->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn->Location = System::Drawing::Point(0, 0);
+			this->btn->Name = L"btn";
+			this->btn->Size = System::Drawing::Size(699, 75);
+			this->btn->TabIndex = 0;
+			// 
+			// button6
+			// 
+			this->button6->Location = System::Drawing::Point(434, 10);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(238, 65);
+			this->button6->TabIndex = 2;
+			this->button6->Text = L"Create Custom Workout for Client";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &traiermenu::button6_Click);
+			this->button6->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::customwork_Paint);
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(197, 10);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(231, 65);
+			this->button5->TabIndex = 1;
+			this->button5->Text = L"Create New Predefined Workout";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &traiermenu::button5_Click);
+			this->button5->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::newwork_Paint);
+			// 
+			// button4
+			// 
+			this->button4->Font = (gcnew System::Drawing::Font(L"Tahoma", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->Location = System::Drawing::Point(6, 10);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(185, 65);
+			this->button4->TabIndex = 0;
+			this->button4->Text = L"Assign Predefined Workout";
+			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &traiermenu::button4_Click);
+			this->button4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
 			// 
 			// progress
 			// 
@@ -768,7 +1326,7 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Verdana", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(75, 35);
-			this->label3->Margin = System::Windows::Forms::Padding(250, 250, 250, 250);
+			this->label3->Margin = System::Windows::Forms::Padding(250);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(132, 29);
 			this->label3->TabIndex = 1;
@@ -817,17 +1375,6 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->textBox1->Size = System::Drawing::Size(207, 23);
 			this->textBox1->TabIndex = 3;
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Verdana", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(9, 309);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(137, 18);
-			this->label2->TabIndex = 2;
-			this->label2->Text = L"Enter Client Id :";
-			// 
 			// panel8
 			// 
 			this->panel8->Location = System::Drawing::Point(0, 539);
@@ -847,25 +1394,25 @@ private: System::Windows::Forms::Panel^ LOGO;
 			// 
 			// dataGridView2
 			// 
-			dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+			dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle9->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+			dataGridViewCellStyle5->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::White;
-			this->dataGridView2->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
+			this->dataGridView2->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
 			this->dataGridView2->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle10->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle10->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle10->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle6->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+			dataGridViewCellStyle6->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle10->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView2->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView2->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
 			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->dataGridViewTextBoxColumn1,
@@ -899,6 +1446,17 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->dataGridViewTextBoxColumn3->Name = L"dataGridViewTextBoxColumn3";
 			this->dataGridViewTextBoxColumn3->Width = 125;
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Verdana", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(9, 309);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(137, 18);
+			this->label2->TabIndex = 2;
+			this->label2->Text = L"Enter Client Id :";
+			// 
 			// clientinfo
 			// 
 			this->clientinfo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
@@ -915,24 +1473,24 @@ private: System::Windows::Forms::Panel^ LOGO;
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle11->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+			dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle7->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->dataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+			this->dataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
 			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedHeaders;
 			this->dataGridView1->BackgroundColor = System::Drawing::Color::White;
-			dataGridViewCellStyle12->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle12->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle8->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle8->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle12->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle12->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+			dataGridViewCellStyle8->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
 				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle12->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle8->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->NAME, this->ID,
@@ -995,558 +1553,6 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->workouts->ReadOnly = true;
 			this->workouts->Width = 80;
 			// 
-			// manage
-			// 
-			this->manage->BackColor = System::Drawing::Color::White;
-			this->manage->Controls->Add(this->manpanel);
-			this->manage->Controls->Add(this->btn);
-			this->manage->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->manage->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->manage->Location = System::Drawing::Point(0, 0);
-			this->manage->Name = L"manage";
-			this->manage->Size = System::Drawing::Size(699, 534);
-			this->manage->TabIndex = 11;
-			// 
-			// btn
-			// 
-			this->btn->Controls->Add(this->button6);
-			this->btn->Controls->Add(this->button5);
-			this->btn->Controls->Add(this->button4);
-			this->btn->Dock = System::Windows::Forms::DockStyle::Top;
-			this->btn->Location = System::Drawing::Point(0, 0);
-			this->btn->Name = L"btn";
-			this->btn->Size = System::Drawing::Size(699, 75);
-			this->btn->TabIndex = 0;
-			// 
-			// button6
-			// 
-			this->button6->Location = System::Drawing::Point(434, 10);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(238, 65);
-			this->button6->TabIndex = 2;
-			this->button6->Text = L"Create Custom Workout for Client";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &traiermenu::button6_Click);
-			this->button6->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::customwork_Paint);
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(197, 10);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(231, 65);
-			this->button5->TabIndex = 1;
-			this->button5->Text = L"Create New Predefined Workout";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &traiermenu::button5_Click);
-			this->button5->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::newwork_Paint);
-			// 
-			// button4
-			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Tahoma", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(6, 10);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(185, 65);
-			this->button4->TabIndex = 0;
-			this->button4->Text = L"Assign Predefined Workout";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &traiermenu::button4_Click);
-			this->button4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
-			// 
-			// customwork
-			// 
-			this->customwork->BackColor = System::Drawing::Color::White;
-			this->customwork->Controls->Add(this->textBox3);
-			this->customwork->Controls->Add(this->label5);
-			this->customwork->Controls->Add(this->splitContainer2);
-			this->customwork->Controls->Add(this->dataGridView4);
-			this->customwork->Location = System::Drawing::Point(6, 20);
-			this->customwork->Name = L"customwork";
-			this->customwork->Size = System::Drawing::Size(690, 409);
-			this->customwork->TabIndex = 11;
-			this->customwork->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::customwork_Paint);
-			// 
-			// dataGridView4
-			// 
-			dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle13->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->dataGridView4->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-			this->dataGridView4->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle14->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle14->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle14->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle14->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle14->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView4->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
-			this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView4->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->dataGridViewTextBoxColumn4,
-					this->dataGridViewTextBoxColumn5, this->dataGridViewTextBoxColumn6
-			});
-			this->dataGridView4->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->dataGridView4->Location = System::Drawing::Point(6, 6);
-			this->dataGridView4->Name = L"dataGridView4";
-			this->dataGridView4->RowHeadersWidth = 51;
-			this->dataGridView4->Size = System::Drawing::Size(344, 189);
-			this->dataGridView4->TabIndex = 1;
-			// 
-			// dataGridViewTextBoxColumn6
-			// 
-			this->dataGridViewTextBoxColumn6->HeaderText = L"Workout";
-			this->dataGridViewTextBoxColumn6->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn6->Name = L"dataGridViewTextBoxColumn6";
-			this->dataGridViewTextBoxColumn6->Width = 80;
-			// 
-			// dataGridViewTextBoxColumn5
-			// 
-			this->dataGridViewTextBoxColumn5->HeaderText = L"Name";
-			this->dataGridViewTextBoxColumn5->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn5->Name = L"dataGridViewTextBoxColumn5";
-			this->dataGridViewTextBoxColumn5->Width = 130;
-			// 
-			// dataGridViewTextBoxColumn4
-			// 
-			this->dataGridViewTextBoxColumn4->HeaderText = L"Id";
-			this->dataGridViewTextBoxColumn4->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn4->Name = L"dataGridViewTextBoxColumn4";
-			this->dataGridViewTextBoxColumn4->Width = 80;
-			// 
-			// splitContainer2
-			// 
-			this->splitContainer2->Location = System::Drawing::Point(0, 207);
-			this->splitContainer2->Name = L"splitContainer2";
-			// 
-			// splitContainer2.Panel1
-			// 
-			this->splitContainer2->Panel1->Controls->Add(this->numExercises1);
-			this->splitContainer2->Panel1->Controls->Add(this->numSets1);
-			this->splitContainer2->Panel1->Controls->Add(this->numDuration1);
-			this->splitContainer2->Panel1->Controls->Add(this->txtWorkoutName1);
-			this->splitContainer2->Panel1->Controls->Add(this->btnSaveWorkout1);
-			this->splitContainer2->Panel1->Controls->Add(this->label17);
-			this->splitContainer2->Panel1->Controls->Add(this->label16);
-			this->splitContainer2->Panel1->Controls->Add(this->label15);
-			this->splitContainer2->Panel1->Controls->Add(this->label14);
-			this->splitContainer2->Panel1->Controls->Add(this->label13);
-			this->splitContainer2->Panel1->Controls->Add(this->numReps1);
-			// 
-			// splitContainer2.Panel2
-			// 
-			this->splitContainer2->Panel2->Controls->Add(this->panelExercises1);
-			this->splitContainer2->Size = System::Drawing::Size(688, 207);
-			this->splitContainer2->SplitterDistance = 335;
-			this->splitContainer2->TabIndex = 7;
-			// 
-			// panelExercises1
-			// 
-			this->panelExercises1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panelExercises1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panelExercises1->Location = System::Drawing::Point(0, 0);
-			this->panelExercises1->Name = L"panelExercises1";
-			this->panelExercises1->Size = System::Drawing::Size(349, 207);
-			this->panelExercises1->TabIndex = 0;
-			// 
-			// numReps1
-			// 
-			this->numReps1->Location = System::Drawing::Point(170, 101);
-			this->numReps1->Name = L"numReps1";
-			this->numReps1->Size = System::Drawing::Size(133, 23);
-			this->numReps1->TabIndex = 12;
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(13, 135);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(137, 16);
-			this->label13->TabIndex = 13;
-			this->label13->Text = L"Number of Exercises";
-			// 
-			// label14
-			// 
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(22, 10);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(102, 16);
-			this->label14->TabIndex = 14;
-			this->label14->Text = L"Workout Name";
-			// 
-			// label15
-			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(23, 41);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(101, 16);
-			this->label15->TabIndex = 15;
-			this->label15->Text = L"Duration (min)";
-			// 
-			// label16
-			// 
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(56, 72);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(36, 16);
-			this->label16->TabIndex = 16;
-			this->label16->Text = L"Sets";
-			// 
-			// label17
-			// 
-			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(59, 103);
-			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(39, 16);
-			this->label17->TabIndex = 17;
-			this->label17->Text = L"Reps";
-			// 
-			// btnSaveWorkout1
-			// 
-			this->btnSaveWorkout1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->btnSaveWorkout1->Font = (gcnew System::Drawing::Font(L"Tahoma", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnSaveWorkout1->ForeColor = System::Drawing::SystemColors::Control;
-			this->btnSaveWorkout1->Location = System::Drawing::Point(62, 162);
-			this->btnSaveWorkout1->Name = L"btnSaveWorkout1";
-			this->btnSaveWorkout1->Size = System::Drawing::Size(176, 39);
-			this->btnSaveWorkout1->TabIndex = 11;
-			this->btnSaveWorkout1->Text = L"Save";
-			this->btnSaveWorkout1->UseVisualStyleBackColor = false;
-			// 
-			// txtWorkoutName1
-			// 
-			this->txtWorkoutName1->Location = System::Drawing::Point(171, 6);
-			this->txtWorkoutName1->Name = L"txtWorkoutName1";
-			this->txtWorkoutName1->Size = System::Drawing::Size(133, 23);
-			this->txtWorkoutName1->TabIndex = 18;
-			// 
-			// numDuration1
-			// 
-			this->numDuration1->Location = System::Drawing::Point(171, 39);
-			this->numDuration1->Name = L"numDuration1";
-			this->numDuration1->Size = System::Drawing::Size(133, 23);
-			this->numDuration1->TabIndex = 19;
-			// 
-			// numSets1
-			// 
-			this->numSets1->Location = System::Drawing::Point(171, 72);
-			this->numSets1->Name = L"numSets1";
-			this->numSets1->Size = System::Drawing::Size(133, 23);
-			this->numSets1->TabIndex = 20;
-			// 
-			// numExercises1
-			// 
-			this->numExercises1->Location = System::Drawing::Point(170, 133);
-			this->numExercises1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
-			this->numExercises1->Name = L"numExercises1";
-			this->numExercises1->Size = System::Drawing::Size(133, 23);
-			this->numExercises1->TabIndex = 21;
-			// 
-			// label5
-			// 
-			this->label5->Anchor = System::Windows::Forms::AnchorStyles::None;
-			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(382, 50);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(169, 23);
-			this->label5->TabIndex = 8;
-			this->label5->Text = L"Enter Client Id : ";
-			// 
-			// textBox3
-			// 
-			this->textBox3->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->textBox3->Location = System::Drawing::Point(565, 47);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(123, 30);
-			this->textBox3->TabIndex = 9;
-			// 
-			// assign
-			// 
-			this->assign->BackColor = System::Drawing::Color::White;
-			this->assign->Controls->Add(this->label4);
-			this->assign->Controls->Add(this->textBox2);
-			this->assign->Controls->Add(this->checkedListBox1);
-			this->assign->Controls->Add(this->button9);
-			this->assign->Controls->Add(this->dataGridView3);
-			this->assign->Location = System::Drawing::Point(6, 20);
-			this->assign->Margin = System::Windows::Forms::Padding(2);
-			this->assign->Name = L"assign";
-			this->assign->Size = System::Drawing::Size(690, 409);
-			this->assign->TabIndex = 0;
-			this->assign->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
-			// 
-			// dataGridView3
-			// 
-			dataGridViewCellStyle15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle15->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle15->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle15->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-				static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->dataGridView3->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
-			this->dataGridView3->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle16->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle16->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle16->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle16->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
-				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle16->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView3->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
-			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->Column1,
-					this->Column2, this->Column3
-			});
-			this->dataGridView3->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->dataGridView3->Location = System::Drawing::Point(148, 3);
-			this->dataGridView3->Name = L"dataGridView3";
-			this->dataGridView3->RowHeadersWidth = 51;
-			this->dataGridView3->Size = System::Drawing::Size(366, 203);
-			this->dataGridView3->TabIndex = 1;
-			// 
-			// button9
-			// 
-			this->button9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->button9->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-				static_cast<System::Int32>(static_cast<System::Byte>(241)));
-			this->button9->Location = System::Drawing::Point(559, 351);
-			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(113, 50);
-			this->button9->TabIndex = 5;
-			this->button9->Text = L"Submit";
-			this->button9->UseVisualStyleBackColor = false;
-			// 
-			// checkedListBox1
-			// 
-			this->checkedListBox1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->checkedListBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->checkedListBox1->FormattingEnabled = true;
-			this->checkedListBox1->Items->AddRange(gcnew cli::array< System::Object^  >(4) {
-				L"Full Body Workout", L"Morning Cardio",
-					L"Strength Training", L"Strength Training 1"
-			});
-			this->checkedListBox1->Location = System::Drawing::Point(5, 269);
-			this->checkedListBox1->Name = L"checkedListBox1";
-			this->checkedListBox1->Size = System::Drawing::Size(640, 76);
-			this->checkedListBox1->Sorted = true;
-			this->checkedListBox1->TabIndex = 6;
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(364, 221);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(126, 23);
-			this->textBox2->TabIndex = 7;
-			this->textBox2->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->BackColor = System::Drawing::Color::Transparent;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Tahoma", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(189, 224);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(144, 19);
-			this->label4->TabIndex = 8;
-			this->label4->Text = L"Enter Client Id : ";
-			// 
-			// newwork
-			// 
-			this->newwork->BackColor = System::Drawing::Color::White;
-			this->newwork->Controls->Add(this->splitContainer1);
-			this->newwork->Location = System::Drawing::Point(6, 20);
-			this->newwork->Name = L"newwork";
-			this->newwork->Size = System::Drawing::Size(690, 409);
-			this->newwork->TabIndex = 10;
-			this->newwork->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::newwork_Paint);
-			// 
-			// splitContainer1
-			// 
-			this->splitContainer1->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->splitContainer1->Location = System::Drawing::Point(21, 22);
-			this->splitContainer1->Name = L"splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			this->splitContainer1->Panel1->Controls->Add(this->btnSaveWorkout);
-			this->splitContainer1->Panel1->Controls->Add(this->numExercises);
-			this->splitContainer1->Panel1->Controls->Add(this->label11);
-			this->splitContainer1->Panel1->Controls->Add(this->numReps);
-			this->splitContainer1->Panel1->Controls->Add(this->label10);
-			this->splitContainer1->Panel1->Controls->Add(this->numSets);
-			this->splitContainer1->Panel1->Controls->Add(this->label9);
-			this->splitContainer1->Panel1->Controls->Add(this->numDuration);
-			this->splitContainer1->Panel1->Controls->Add(this->label8);
-			this->splitContainer1->Panel1->Controls->Add(this->txtWorkoutName);
-			this->splitContainer1->Panel1->Controls->Add(this->label7);
-			this->splitContainer1->Panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::splitContainer1_Panel1_Paint);
-			// 
-			// splitContainer1.Panel2
-			// 
-			this->splitContainer1->Panel2->Controls->Add(this->panelExercises);
-			this->splitContainer1->Size = System::Drawing::Size(646, 368);
-			this->splitContainer1->SplitterDistance = 311;
-			this->splitContainer1->TabIndex = 1;
-			// 
-			// panelExercises
-			// 
-			this->panelExercises->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panelExercises->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panelExercises->Location = System::Drawing::Point(0, 0);
-			this->panelExercises->Name = L"panelExercises";
-			this->panelExercises->Size = System::Drawing::Size(331, 368);
-			this->panelExercises->TabIndex = 0;
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(19, 58);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(102, 16);
-			this->label7->TabIndex = 0;
-			this->label7->Text = L"Workout Name";
-			// 
-			// txtWorkoutName
-			// 
-			this->txtWorkoutName->Location = System::Drawing::Point(153, 55);
-			this->txtWorkoutName->Name = L"txtWorkoutName";
-			this->txtWorkoutName->Size = System::Drawing::Size(136, 23);
-			this->txtWorkoutName->TabIndex = 1;
-			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(19, 105);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(101, 16);
-			this->label8->TabIndex = 2;
-			this->label8->Text = L"Duration (min)";
-			// 
-			// numDuration
-			// 
-			this->numDuration->Location = System::Drawing::Point(153, 98);
-			this->numDuration->Name = L"numDuration";
-			this->numDuration->Size = System::Drawing::Size(135, 23);
-			this->numDuration->TabIndex = 3;
-			// 
-			// label9
-			// 
-			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(37, 142);
-			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(36, 16);
-			this->label9->TabIndex = 4;
-			this->label9->Text = L"Sets";
-			// 
-			// numSets
-			// 
-			this->numSets->Location = System::Drawing::Point(153, 135);
-			this->numSets->Name = L"numSets";
-			this->numSets->Size = System::Drawing::Size(135, 23);
-			this->numSets->TabIndex = 5;
-			// 
-			// label10
-			// 
-			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(37, 180);
-			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(39, 16);
-			this->label10->TabIndex = 6;
-			this->label10->Text = L"Reps";
-			// 
-			// numReps
-			// 
-			this->numReps->Location = System::Drawing::Point(153, 177);
-			this->numReps->Name = L"numReps";
-			this->numReps->Size = System::Drawing::Size(135, 23);
-			this->numReps->TabIndex = 7;
-			// 
-			// label11
-			// 
-			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(10, 221);
-			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(137, 16);
-			this->label11->TabIndex = 8;
-			this->label11->Text = L"Number of Exercises";
-			// 
-			// numExercises
-			// 
-			this->numExercises->Location = System::Drawing::Point(153, 216);
-			this->numExercises->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
-			this->numExercises->Name = L"numExercises";
-			this->numExercises->Size = System::Drawing::Size(135, 23);
-			this->numExercises->TabIndex = 9;
-			// 
-			// btnSaveWorkout
-			// 
-			this->btnSaveWorkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->btnSaveWorkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->btnSaveWorkout->ForeColor = System::Drawing::SystemColors::Control;
-			this->btnSaveWorkout->Location = System::Drawing::Point(85, 279);
-			this->btnSaveWorkout->Name = L"btnSaveWorkout";
-			this->btnSaveWorkout->Size = System::Drawing::Size(176, 74);
-			this->btnSaveWorkout->TabIndex = 10;
-			this->btnSaveWorkout->Text = L"Save";
-			this->btnSaveWorkout->UseVisualStyleBackColor = false;
-			// 
-			// manpanel
-			// 
-			this->manpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->manpanel->Controls->Add(this->assign);
-			this->manpanel->Controls->Add(this->customwork);
-			this->manpanel->Controls->Add(this->newwork);
-			this->manpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->manpanel->Location = System::Drawing::Point(0, 75);
-			this->manpanel->Name = L"manpanel";
-			this->manpanel->Size = System::Drawing::Size(699, 459);
-			this->manpanel->TabIndex = 1;
-			// 
-			// Column1
-			// 
-			this->Column1->HeaderText = L"Id";
-			this->Column1->MinimumWidth = 6;
-			this->Column1->Name = L"Column1";
-			this->Column1->Width = 80;
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Name";
-			this->Column2->MinimumWidth = 6;
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 140;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Workout";
-			this->Column3->MinimumWidth = 6;
-			this->Column3->Name = L"Column3";
-			this->Column3->Width = 90;
-			// 
 			// LOGO
 			// 
 			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
@@ -1584,6 +1590,34 @@ private: System::Windows::Forms::Panel^ LOGO;
 			this->panel4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panel3->ResumeLayout(false);
+			this->manage->ResumeLayout(false);
+			this->manpanel->ResumeLayout(false);
+			this->newwork->ResumeLayout(false);
+			this->splitContainer1->Panel1->ResumeLayout(false);
+			this->splitContainer1->Panel1->PerformLayout();
+			this->splitContainer1->Panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->EndInit();
+			this->splitContainer1->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration))->EndInit();
+			this->assign->ResumeLayout(false);
+			this->assign->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
+			this->customwork->ResumeLayout(false);
+			this->customwork->PerformLayout();
+			this->splitContainer2->Panel1->ResumeLayout(false);
+			this->splitContainer2->Panel1->PerformLayout();
+			this->splitContainer2->Panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->EndInit();
+			this->splitContainer2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
+			this->btn->ResumeLayout(false);
 			this->progress->ResumeLayout(false);
 			this->progress->PerformLayout();
 			this->panel9->ResumeLayout(false);
@@ -1596,34 +1630,6 @@ private: System::Windows::Forms::Panel^ LOGO;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->clientinfo->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
-			this->manage->ResumeLayout(false);
-			this->btn->ResumeLayout(false);
-			this->customwork->ResumeLayout(false);
-			this->customwork->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
-			this->splitContainer2->Panel1->ResumeLayout(false);
-			this->splitContainer2->Panel1->PerformLayout();
-			this->splitContainer2->Panel2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer2))->EndInit();
-			this->splitContainer2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises1))->EndInit();
-			this->assign->ResumeLayout(false);
-			this->assign->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
-			this->newwork->ResumeLayout(false);
-			this->splitContainer1->Panel1->ResumeLayout(false);
-			this->splitContainer1->Panel1->PerformLayout();
-			this->splitContainer1->Panel2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->EndInit();
-			this->splitContainer1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numDuration))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numSets))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numExercises))->EndInit();
-			this->manpanel->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -1850,10 +1856,11 @@ private: System::Void viewcompletedworkout_Click_1(System::Object^ sender, Syste
 	outputLabel->Text = output->ToString();
 
 }
+
 private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 
-	private: System::Void numExercises_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void numExercises_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 		   panelExercises->Controls->Clear();
 
 		   int count = (int)numExercises->Value;
@@ -1872,13 +1879,13 @@ private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, Syste
 		   }
 	   }
 
-	private: System::Void btnSaveWorkout_Click(System::Object ^ sender, System::EventArgs ^ e) {
+private: System::Void btnSaveWorkout_Click(System::Object ^ sender, System::EventArgs ^ e) {
 		if (numPredefinedWorkouts >= MAX_WORKOUTS) {
 			MessageBox::Show("Maximum predefined workouts reached.");
 			return;
 		}
 
-		Workout newWorkout;
+		Workout* newWorkout = new Workout();
 
 		// Workout name
 		String^ name = txtWorkoutName->Text;
@@ -1886,9 +1893,9 @@ private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, Syste
 			MessageBox::Show("Workout name is empty.");
 			return;
 		}
-		newWorkout.workoutName = msclr::interop::marshal_as<std::string>(name);
+		newWorkout->workoutName = msclr::interop::marshal_as<std::string>(name);
 
-		newWorkout.numExercises = (int)numExercises->Value;
+		newWorkout->numExercises = (int)numExercises->Value;
 
 		// Read exercise names from panelExercises
 		int i = 0;
@@ -1898,17 +1905,17 @@ private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, Syste
 					MessageBox::Show("Exercise " + (i + 1) + " is empty.");
 					return;
 				}
-				newWorkout.exercises[i++] = msclr::interop::marshal_as<std::string>(txt->Text);
+				newWorkout->exercises[i++] = msclr::interop::marshal_as<std::string>(txt->Text);
 			}
 		}
 
 		// Read duration, sets, reps
-		newWorkout.duration = (int)numDuration->Value;
-		newWorkout.sets = (int)numSets->Value;
-		newWorkout.reps = (int)numReps->Value;
+		newWorkout->duration = (int)numDuration->Value;
+		newWorkout->sets = (int)numSets->Value;
+		newWorkout->reps = (int)numReps->Value;
 
-		predefineWorkout[numPredefinedWorkouts] = newWorkout;
-		insertPredefinedWorkout(db, newWorkout);
+		predefineWorkout[numPredefinedWorkouts] = *newWorkout;
+		insertPredefinedWorkout(db, *newWorkout);
 		numPredefinedWorkouts++;
 
 		MessageBox::Show("Workout saved successfully!");
@@ -1968,7 +1975,7 @@ private: System::Void btnSaveWorkout1_Click(System::Object^ sender, System::Even
 	}
 
 	// Create new workout
-	Workout newWorkout;
+	Workout* newWorkout = new Workout();
 
 	// Get workout name
 	String^ name = txtWorkoutName1->Text;
@@ -1976,11 +1983,11 @@ private: System::Void btnSaveWorkout1_Click(System::Object^ sender, System::Even
 		MessageBox::Show("Workout name is required", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
 	}
-	newWorkout.workoutName = msclr::interop::marshal_as<std::string>(name);
+	newWorkout->workoutName = msclr::interop::marshal_as<std::string>(name);
 
 	// Get number of exercises
-	newWorkout.numExercises = (int)numExercises1->Value;
-	if (newWorkout.numExercises <= 0) {
+	newWorkout->numExercises = (int)numExercises1->Value;
+	if (newWorkout->numExercises <= 0) {
 		MessageBox::Show("Number of exercises must be at least 1", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
 	}
@@ -1993,23 +2000,23 @@ private: System::Void btnSaveWorkout1_Click(System::Object^ sender, System::Even
 				MessageBox::Show("Exercise " + (exerciseCount + 1) + " is empty", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}
-			newWorkout.exercises[exerciseCount++] = msclr::interop::marshal_as<std::string>(txt->Text);
+			newWorkout->exercises[exerciseCount++] = msclr::interop::marshal_as<std::string>(txt->Text);
 
-			if (exerciseCount >= newWorkout.numExercises) break;
+			if (exerciseCount >= newWorkout->numExercises) break;
 		}
 	}
 
 	// Get workout parameters
-	newWorkout.duration = (int)numDuration1->Value;
-	newWorkout.sets = (int)numSets1->Value;
-	newWorkout.reps = (int)numReps1->Value;
+	newWorkout->duration = (int)numDuration1->Value;
+	newWorkout->sets = (int)numSets1->Value;
+	newWorkout->reps = (int)numReps1->Value;
 
 	// Add workout to client
-	newWorkout.istrue = "Pending";
-	client->workoutPlans[client->numWorkouts] = newWorkout;
+	newWorkout->istrue = "Pending";
+	client->workoutPlans[client->numWorkouts] = *newWorkout;
 	client->numWorkouts++;
 	// Insert workout into database
-	insertWorkout(db, newWorkout, client->clientID);
+	insertWorkout(db, *newWorkout, client->clientID);
 
 	MessageBox::Show("Custom workout created and assigned to client successfully!",
 		"Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -2026,14 +2033,323 @@ private: System::Void btnSaveWorkout1_Click(System::Object^ sender, System::Even
 	// Refresh data grid
 	FillClientsDataGrid(trainer, dataGridView4);
 }
-//private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-//	WelcomeForm^ wf = gcnew WelcomeForm();
-//	wf->Show();
-//	this->Hide(); // keeps app running
-//}
+
 
 private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-	Application::ExitThread();
+	this->Hide(); // keeps app running
+}
+
+private: System::Void btnSaveWorkout1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	// Get client ID
+	String^ clientIdText = textBox3->Text;
+	if (String::IsNullOrEmpty(clientIdText)) {
+		MessageBox::Show("Please enter a client ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	int clientId;
+	if (!Int32::TryParse(clientIdText, clientId)) {
+		MessageBox::Show("Please enter a valid numeric client ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	// Find the client
+	Client* client = nullptr;
+	for (int i = 0; i < trainer->numClients; i++) {
+		if (trainer->clients[i].clientID == clientId) {
+			client = &trainer->clients[i];
+			break;
+		}
+	}
+
+	if (client == nullptr) {
+		MessageBox::Show("Client not found with ID: " + clientId, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	// Check if client can take more workouts
+	if (client->numWorkouts >= MAX_WORKOUTS) {
+		MessageBox::Show("Client has reached maximum number of workouts", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	// Create new workout
+	Workout *newWorkout=new Workout();
+
+	// Get workout name
+	String^ name = txtWorkoutName1->Text;
+	if (String::IsNullOrWhiteSpace(name)) {
+		MessageBox::Show("Workout name is required", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		delete newWorkout;
+		return;
+	}
+	newWorkout->workoutName = msclr::interop::marshal_as<std::string>(name);
+
+	// Get number of exercises
+	newWorkout->numExercises = (int)numExercises1->Value;
+	if (newWorkout->numExercises <= 0) {
+		MessageBox::Show("Number of exercises must be at least 1", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		delete newWorkout;
+		return;
+	}
+
+	// Get exercise names from panelExercises1
+	int exerciseCount = 0;
+	for each(Control ^ ctrl in panelExercises1->Controls) {
+		if (TextBox^ txt = dynamic_cast<TextBox^>(ctrl)) {
+			if (String::IsNullOrWhiteSpace(txt->Text)) {
+				MessageBox::Show("Exercise " + (exerciseCount + 1) + " is empty", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				delete newWorkout;
+				return;
+			}
+			newWorkout->exercises[exerciseCount++] = msclr::interop::marshal_as<std::string>(txt->Text);
+
+			if (exerciseCount >= newWorkout->numExercises) break;
+		}
+	}
+
+	// Check if duration, sets, reps are greater than 0
+	if (numDuration1->Value == 0) {
+		MessageBox::Show("Duration cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+	if (numSets1->Value == 0) {
+		MessageBox::Show("Sets cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+	if (numReps1->Value == 0) {
+		MessageBox::Show("Reps cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+
+	// Get workout parameters
+	newWorkout->duration = (int)numDuration1->Value;
+	newWorkout->sets = (int)numSets1->Value;
+	newWorkout->reps = (int)numReps1->Value;
+
+	// Add workout to client
+	newWorkout->istrue = "Pending";
+	client->workoutPlans[client->numWorkouts] = *newWorkout;
+	client->numWorkouts++;
+	// Insert workout into database
+	insertWorkout(db, *newWorkout, client->clientID);
+
+	MessageBox::Show("Custom workout created and assigned to client successfully!",
+		"Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+	// Clear form
+	txtWorkoutName1->Text = "";
+	numExercises1->Value = 0;
+	numDuration1->Value = 0;
+	numSets1->Value = 0;
+	numReps1->Value = 0;
+	panelExercises1->Controls->Clear();
+	textBox3->Text = "";
+
+	// Refresh data grid
+	FillClientsDataGrid(trainer, dataGridView4);
+	delete newWorkout;
+
+}
+
+private: System::Void numExercises_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
+	panelExercises->Controls->Clear();
+
+	int count = (int)numExercises->Value;
+
+	for (int i = 0; i < count; i++) {
+		Label^ label = gcnew Label();
+		label->Text = "Exercise " + (i + 1) + ":";
+		label->AutoSize = true;
+
+		TextBox^ txt = gcnew TextBox();
+		txt->Name = "txtExercise" + i;
+		txt->Width = 200;
+
+		panelExercises->Controls->Add(label);
+		panelExercises->Controls->Add(txt);
+	}
+}
+
+private: System::Void btnSaveWorkout_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	if (numPredefinedWorkouts >= MAX_WORKOUTS) {
+		MessageBox::Show("Maximum predefined workouts reached.");
+		return;
+	}
+
+	Workout* newWorkout = new Workout();
+
+	// Workout name
+	String^ name = txtWorkoutName->Text;
+	if (String::IsNullOrWhiteSpace(name)) {
+		MessageBox::Show("Workout name is empty.");
+		delete newWorkout;
+		return;
+	}
+	newWorkout->workoutName = msclr::interop::marshal_as<std::string>(name);
+
+	newWorkout->numExercises = (int)numExercises->Value;
+
+	// Read exercise names from panelExercises
+	int i = 0;
+	for each (Control ^ ctrl in panelExercises->Controls) {
+		if (TextBox^ txt = dynamic_cast<TextBox^>(ctrl)) {
+			if (String::IsNullOrWhiteSpace(txt->Text)) {
+				MessageBox::Show("Exercise " + (i + 1) + " is empty.");
+				delete newWorkout;
+				return;
+			}
+			newWorkout->exercises[i++] = msclr::interop::marshal_as<std::string>(txt->Text);
+		}
+	}
+
+	// Check if duration, sets, reps are greater than 0
+	if (numDuration->Value == 0) {
+		MessageBox::Show("Duration cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+	if (numSets->Value == 0) {
+		MessageBox::Show("Sets cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+	if (numReps->Value == 0) {
+		MessageBox::Show("Reps cannot be 0.");
+		delete newWorkout;
+		return;
+	}
+
+	// Read duration, sets, reps
+	newWorkout->duration = (int)numDuration->Value;
+	newWorkout->sets = (int)numSets->Value;
+	newWorkout->reps = (int)numReps->Value;
+
+	// Save the workout
+	predefineWorkout[numPredefinedWorkouts] = *newWorkout;
+	insertPredefinedWorkout(db, *newWorkout);
+	numPredefinedWorkouts++;
+
+	MessageBox::Show("Workout saved successfully!");
+
+	txtWorkoutName->Text = "";
+	numExercises->Value = 0;
+	numDuration->Value = 0;
+	numSets->Value = 0;
+	numReps->Value = 0;
+	panelExercises->Controls->Clear();
+	
+
+	delete newWorkout;
+}
+
+private: System::Void numExercises1_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
+	panelExercises1->Controls->Clear();
+
+	int count = (int)numExercises1->Value;
+
+	for (int i = 0; i < count; i++) {
+		Label^ label = gcnew Label();
+		label->Text = "Exercise " + (i + 1) + ":";
+		label->AutoSize = true;
+
+		TextBox^ txt = gcnew TextBox();
+		txt->Name = "txtExercise" + i;
+		txt->Width = 200;
+
+		panelExercises1->Controls->Add(label);
+		panelExercises1->Controls->Add(txt);
+	}
+}
+
+private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	String^ clientIdText = textBox2->Text;
+	if (String::IsNullOrEmpty(clientIdText)) {
+		MessageBox::Show("Please enter a client ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	int clientId;
+	if (!Int32::TryParse(clientIdText, clientId)) {
+		MessageBox::Show("Please enter a valid numeric client ID", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	Client* client = nullptr;
+	for (int i = 0; i < trainer->numClients; i++) {
+		if (trainer->clients[i].clientID == clientId) {
+			client = &trainer->clients[i];
+			break;
+		}
+	}
+
+	if (client == nullptr) {
+		MessageBox::Show("Client not found with ID: " + clientId, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	if (checkedListBox1->CheckedItems->Count == 0) {
+		MessageBox::Show("Please select at least one workout", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	std::vector<Workout> selectedWorkouts;
+	for each(System::Object ^ item in checkedListBox1->CheckedItems) {
+		System::String^ workoutName = item->ToString();
+
+		for (int i = 0; i < numPredefinedWorkouts; i++) {
+			if (gcnew System::String(predefineWorkout[i].workoutName.c_str()) == workoutName) {
+				selectedWorkouts.push_back(predefineWorkout[i]);
+				break;
+			}
+		}
+	}
+
+	if (selectedWorkouts.empty()) {
+		MessageBox::Show("No valid workouts were selected", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	for (Workout& workout : selectedWorkouts) {
+		if (client->numWorkouts < MAX_WORKOUTS) {
+			workout.istrue = "Pending";
+			client->workoutPlans[client->numWorkouts] = workout;
+			client->numWorkouts++;
+			insertWorkout(db, workout, client->clientID);
+		}
+		else {
+			MessageBox::Show("Client has reached maximum number of workouts", "Warning",
+				MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			break;
+		}
+	}
+
+
+	if (selectedWorkouts.size() == 1) {
+		MessageBox::Show(String::Format("Successfully assigned workout '{0}' to client {1}",
+			gcnew String(selectedWorkouts[0].workoutName.c_str()), clientId),
+			"Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+	else {
+		MessageBox::Show(String::Format("Successfully assigned {0} workouts to client {1}",
+			selectedWorkouts.size(), clientId),
+			"Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+	}
+
+	textBox2->Text = "";
+	for (int i = 0; i < checkedListBox1->Items->Count; i++) {
+		checkedListBox1->SetItemChecked(i, false);
+	}
+
+	FillClientsDataGrid(trainer, dataGridView3);
 }
 };
 }
