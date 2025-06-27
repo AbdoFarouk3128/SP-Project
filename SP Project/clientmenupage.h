@@ -1682,7 +1682,7 @@ private:
 		ViewMeasurements(client, dgv_ViewMeasurment);
 	}
 	private: System::Void Logout_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::ExitThread();
+		this->Close();
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
