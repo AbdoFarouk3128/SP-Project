@@ -29,7 +29,55 @@ namespace SPProject {
 			//
 			//TODO: Add the constructor code here
 			//
+			this->button1->Click += gcnew System::EventHandler(this, &traiermenu::OnButtonClick);
+			this->button2->Click += gcnew System::EventHandler(this, &traiermenu::OnButtonClick);
+			this->button3->Click += gcnew System::EventHandler(this, &traiermenu::OnButtonClick);
+
 		}
+
+	private:
+		Button^ lastClickedButton = nullptr;
+
+		void OnButtonClick(System::Object^ sender, System::EventArgs^ e) {
+			Button^ clickedButton = dynamic_cast<Button^>(sender);
+
+			if (clickedButton == nullptr)
+				return;
+
+			// ???? ???? ?????? ????? ??????
+			if (lastClickedButton != nullptr && lastClickedButton != clickedButton) {
+				lastClickedButton->ForeColor = System::Drawing::Color::Black;
+				lastClickedButton->BackColor = normalColor;
+			}
+
+			// ???? ???? ??????
+			clickedButton->ForeColor = System::Drawing::Color::White;
+			clickedButton->BackColor = hoverColor;
+
+			// ????? ???? ??
+			lastClickedButton = clickedButton;
+		}
+		private:
+		System::Drawing::Color normalColor = System::Drawing::Color::White;
+	private: System::Windows::Forms::Timer^ hoverTimer;
+
+		   System::Drawing::Color hoverColor = System::Drawing::Color::LightSkyBlue;
+
+		void OnButtonHover(System::Object^ sender, System::EventArgs^ e) {
+			Button^ btn = dynamic_cast<Button^>(sender);
+			if (btn != nullptr) {
+				btn->BackColor = hoverColor;
+			}
+		}
+
+		void OnButtonLeave(System::Object^ sender, System::EventArgs^ e) {
+			Button^ btn = dynamic_cast<Button^>(sender);
+			if (btn != nullptr) {
+				btn->BackColor = normalColor;
+			}
+		}
+	
+
 	public:
 		void DisplayClients(Trainer* trainer, DataGridView^ dgvClients) {
 			dgvClients->Rows->Clear();

@@ -34,9 +34,16 @@ namespace SPProject {
 			// 
 			
 
-			
+			this->bViewWorkouts->Click += gcnew System::EventHandler(this, &clientmenupage::OnButtonClick);
+			this->bLogCompletedWorkout->Click += gcnew System::EventHandler(this, &clientmenupage::OnButtonClick);
+			this->bLog_Measurments->Click += gcnew System::EventHandler(this, &clientmenupage::OnButtonClick);
+			this->bHealth_Summary->Click += gcnew System::EventHandler(this, &clientmenupage::OnButtonClick);
+			this->bView_Measurments->Click += gcnew System::EventHandler(this, &clientmenupage::OnButtonClick);
+
 			  
-			this->bViewWorkouts->MouseEnter += gcnew System::EventHandler(this, &clientmenupage::OnButtonHover);
+
+
+		/*	this->bViewWorkouts->MouseEnter += gcnew System::EventHandler(this, &clientmenupage::OnButtonHover);
 			this->bViewWorkouts->MouseLeave += gcnew System::EventHandler(this, &clientmenupage::OnButtonLeave);
 
 			
@@ -53,11 +60,31 @@ namespace SPProject {
 			
 			this->bView_Measurments->MouseEnter += gcnew System::EventHandler(this, &clientmenupage::OnButtonHover);
 			this->bView_Measurments->MouseLeave += gcnew System::EventHandler(this, &clientmenupage::OnButtonLeave);
-
+*/
 
 		}
-	
+	private:
+		Button^ lastClickedButton = nullptr;
 
+		void OnButtonClick(System::Object^ sender, System::EventArgs^ e) {
+			Button^ clickedButton = dynamic_cast<Button^>(sender);
+
+			if (clickedButton == nullptr)
+				return;
+
+			// رجّع الزر السابق للونه العادي
+			if (lastClickedButton != nullptr && lastClickedButton != clickedButton) {
+				lastClickedButton->ForeColor = System::Drawing::Color::Black;
+				lastClickedButton->BackColor = normalColor;
+			}
+
+			// حدّث الزر الحالي
+			clickedButton->ForeColor = System::Drawing::Color::White;
+			clickedButton->BackColor = hoverColor;
+
+			// خزّنه كآخر زر
+			lastClickedButton = clickedButton;
+		}
 	private:
 		System::Drawing::Color normalColor = System::Drawing::Color::White;
 	private: System::Windows::Forms::Timer^ hoverTimer;
@@ -77,6 +104,8 @@ namespace SPProject {
 				btn->BackColor = normalColor;
 			}
 		}
+	
+
 		
 
 
@@ -668,13 +697,13 @@ private:
 		{   
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(clientmenupage::typeid));
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->Title = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->CLIENTM = (gcnew System::Windows::Forms::Label());
@@ -1085,13 +1114,13 @@ private:
 			this->bt_Logw->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->bt_Logw->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->bt_Logw->Font = (gcnew System::Drawing::Font(L"Leelawadee UI", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->bt_Logw->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Text Semibold", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->bt_Logw->ForeColor = System::Drawing::Color::White;
-			this->bt_Logw->Location = System::Drawing::Point(315, 480);
+			this->bt_Logw->Location = System::Drawing::Point(652, 480);
 			this->bt_Logw->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->bt_Logw->Name = L"bt_Logw";
-			this->bt_Logw->Size = System::Drawing::Size(151, 47);
+			this->bt_Logw->Size = System::Drawing::Size(109, 60);
 			this->bt_Logw->TabIndex = 6;
 			this->bt_Logw->Text = L"Log";
 			this->bt_Logw->UseVisualStyleBackColor = false;
@@ -1278,16 +1307,16 @@ private:
 			// 
 			// chartMacros
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chartMacros->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chartMacros->Legends->Add(legend2);
+			chartArea3->Name = L"ChartArea1";
+			this->chartMacros->ChartAreas->Add(chartArea3);
+			legend3->Name = L"Legend1";
+			this->chartMacros->Legends->Add(legend3);
 			this->chartMacros->Location = System::Drawing::Point(402, 259);
 			this->chartMacros->Name = L"chartMacros";
-			series2->ChartArea = L"ChartArea1";
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->chartMacros->Series->Add(series2);
+			series3->ChartArea = L"ChartArea1";
+			series3->Legend = L"Legend1";
+			series3->Name = L"Series1";
+			this->chartMacros->Series->Add(series3);
 			this->chartMacros->Size = System::Drawing::Size(376, 306);
 			this->chartMacros->TabIndex = 18;
 			this->chartMacros->Text = L"chart1";
@@ -1536,48 +1565,48 @@ private:
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->dgv_ViewMeasurment->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dgv_ViewMeasurment->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Raised;
-			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle5->BackColor = System::Drawing::Color::LightGray;
-			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle9->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle9->BackColor = System::Drawing::Color::LightGray;
+			dataGridViewCellStyle9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle5->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			this->dgv_ViewMeasurment->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle9->ForeColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle9->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			this->dgv_ViewMeasurment->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
 			this->dgv_ViewMeasurment->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle6->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle10->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle10->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle6->ForeColor = System::Drawing::SystemColors::ControlText;
-			dataGridViewCellStyle6->Padding = System::Windows::Forms::Padding(3);
-			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::LightBlue;
-			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::SystemColors::Desktop;
-			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dgv_ViewMeasurment->DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle10->ForeColor = System::Drawing::SystemColors::ControlText;
+			dataGridViewCellStyle10->Padding = System::Windows::Forms::Padding(3);
+			dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::LightBlue;
+			dataGridViewCellStyle10->SelectionForeColor = System::Drawing::SystemColors::Desktop;
+			dataGridViewCellStyle10->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgv_ViewMeasurment->DefaultCellStyle = dataGridViewCellStyle10;
 			this->dgv_ViewMeasurment->GridColor = System::Drawing::SystemColors::Control;
 			this->dgv_ViewMeasurment->Location = System::Drawing::Point(74, 101);
 			this->dgv_ViewMeasurment->Name = L"dgv_ViewMeasurment";
-			dataGridViewCellStyle7->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle7->BackColor = System::Drawing::SystemColors::Control;
-			dataGridViewCellStyle7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle11->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle11->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle7->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle7->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle7->SelectionBackColor = System::Drawing::SystemColors::ButtonShadow;
-			dataGridViewCellStyle7->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			this->dgv_ViewMeasurment->RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle11->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle11->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle11->SelectionBackColor = System::Drawing::SystemColors::ButtonShadow;
+			dataGridViewCellStyle11->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			this->dgv_ViewMeasurment->RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
 			this->dgv_ViewMeasurment->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::AutoSizeToAllHeaders;
-			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
-				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			dataGridViewCellStyle8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle12->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)),
+				static_cast<System::Int32>(static_cast<System::Byte>(73)), static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle8->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle8->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle8->SelectionBackColor = System::Drawing::SystemColors::ControlDark;
-			this->dgv_ViewMeasurment->RowsDefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle12->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle12->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle12->SelectionBackColor = System::Drawing::SystemColors::ControlDark;
+			this->dgv_ViewMeasurment->RowsDefaultCellStyle = dataGridViewCellStyle12;
 			this->dgv_ViewMeasurment->RowTemplate->Height = 30;
 			this->dgv_ViewMeasurment->Size = System::Drawing::Size(718, 410);
 			this->dgv_ViewMeasurment->TabIndex = 0;
@@ -1601,7 +1630,7 @@ private:
 			this->Logout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(73)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
 			this->Logout->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->Logout->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->Logout->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 19.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Logout->ForeColor = System::Drawing::Color::White;
 			this->Logout->Location = System::Drawing::Point(695, 25);
