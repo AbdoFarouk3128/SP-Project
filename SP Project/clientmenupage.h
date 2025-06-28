@@ -188,6 +188,11 @@ namespace SPProject {
 					MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}
+			if (!Double::TryParse(tB_weight->Text, weight) || weight < 30) {
+				MessageBox::Show("Please enter a realistic weight (minimum is 30 kg)", "Invalid Weight",
+					MessageBoxButtons::OK, MessageBoxIcon::Error);
+				return;
+			}
 
 			
 			double height;
@@ -202,6 +207,21 @@ namespace SPProject {
 				height = client->measurements[client->numMeasurements - 1].height;
 			}
 
+			if (client->numMeasurements > 0) {
+				DateTime lastDate = DateTime(
+					client->measurements[client->numMeasurements - 1].date.Year,
+					client->measurements[client->numMeasurements - 1].date.Month,
+					client->measurements[client->numMeasurements - 1].date.Day
+				).Date;
+
+				DateTime newDate = Date->Value.Date;
+
+				if (newDate <= lastDate) {
+					MessageBox::Show("The date must not be earlier than the last recorded date!", "Invalid Date",
+						MessageBoxButtons::OK, MessageBoxIcon::Warning);
+					return;
+				}
+			}
 			
 			Measurement newMeasure;
 			newMeasure.weight = weight;
