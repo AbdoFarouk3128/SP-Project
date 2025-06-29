@@ -156,6 +156,7 @@ namespace SPProject {
 
 			if (client->numMeasurements == 0) {
 				panelLastMeasurement->Visible = false;
+				panel1->Visible = false;
 				return;
 			}
 			
@@ -430,6 +431,7 @@ namespace SPProject {
 				if (client->numMeasurements == 0) {
 					MessageBox::Show("No measurements recorded yet.", "Information",
 						MessageBoxButtons::OK, MessageBoxIcon::Information);
+
 					return;
 				}
 
@@ -721,14 +723,14 @@ private:
 		{   
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(clientmenupage::typeid));
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle17 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle18 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle19 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle20 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->Title = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
 			this->CLIENTM = (gcnew System::Windows::Forms::Label());
@@ -749,24 +751,6 @@ private:
 			this->bViewWorkouts = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->mainpage = (gcnew System::Windows::Forms::Panel());
-			this->VIEWworkouts = (gcnew System::Windows::Forms::Panel());
-			this->listViewWorkouts = (gcnew System::Windows::Forms::ListView());
-			this->LOGcomworkout = (gcnew System::Windows::Forms::Panel());
-			this->WORKOUTS = (gcnew System::Windows::Forms::ListView());
-			this->bt_Logw = (gcnew System::Windows::Forms::Button());
-			this->lblStatus = (gcnew System::Windows::Forms::Label());
-			this->txtWorkoutNumber = (gcnew System::Windows::Forms::TextBox());
-			this->LOGmeasurment = (gcnew System::Windows::Forms::Panel());
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->panelLastMeasurement = (gcnew System::Windows::Forms::Panel());
-			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->lbl_weight = (gcnew System::Windows::Forms::Label());
-			this->lbl_height = (gcnew System::Windows::Forms::Label());
-			this->Date = (gcnew System::Windows::Forms::DateTimePicker());
-			this->tB_height = (gcnew System::Windows::Forms::TextBox());
-			this->lbl_date = (gcnew System::Windows::Forms::Label());
-			this->tB_weight = (gcnew System::Windows::Forms::TextBox());
-			this->LOGm = (gcnew System::Windows::Forms::Button());
 			this->HEALTHsummary = (gcnew System::Windows::Forms::Panel());
 			this->chartMacros = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->lbFatsValue = (gcnew System::Windows::Forms::Label());
@@ -787,6 +771,24 @@ private:
 			this->dgv_ViewMeasurment = (gcnew System::Windows::Forms::DataGridView());
 			this->logo = (gcnew System::Windows::Forms::Panel());
 			this->clientlogo = (gcnew System::Windows::Forms::PictureBox());
+			this->VIEWworkouts = (gcnew System::Windows::Forms::Panel());
+			this->listViewWorkouts = (gcnew System::Windows::Forms::ListView());
+			this->LOGcomworkout = (gcnew System::Windows::Forms::Panel());
+			this->WORKOUTS = (gcnew System::Windows::Forms::ListView());
+			this->bt_Logw = (gcnew System::Windows::Forms::Button());
+			this->lblStatus = (gcnew System::Windows::Forms::Label());
+			this->txtWorkoutNumber = (gcnew System::Windows::Forms::TextBox());
+			this->LOGmeasurment = (gcnew System::Windows::Forms::Panel());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->panelLastMeasurement = (gcnew System::Windows::Forms::Panel());
+			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->lbl_weight = (gcnew System::Windows::Forms::Label());
+			this->lbl_height = (gcnew System::Windows::Forms::Label());
+			this->Date = (gcnew System::Windows::Forms::DateTimePicker());
+			this->tB_height = (gcnew System::Windows::Forms::TextBox());
+			this->lbl_date = (gcnew System::Windows::Forms::Label());
+			this->tB_weight = (gcnew System::Windows::Forms::TextBox());
+			this->LOGm = (gcnew System::Windows::Forms::Button());
 			this->logoutp = (gcnew System::Windows::Forms::Panel());
 			this->Logout = (gcnew System::Windows::Forms::Button());
 			this->hoverTimer = (gcnew System::Windows::Forms::Timer(this->components));
@@ -804,17 +806,17 @@ private:
 			this->p_workout->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->mainpage->SuspendLayout();
-			this->VIEWworkouts->SuspendLayout();
-			this->LOGcomworkout->SuspendLayout();
-			this->LOGmeasurment->SuspendLayout();
-			this->panel1->SuspendLayout();
-			this->tableLayoutPanel1->SuspendLayout();
 			this->HEALTHsummary->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartMacros))->BeginInit();
 			this->VIEWmeasurment->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->BeginInit();
 			this->logo->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->clientlogo))->BeginInit();
+			this->VIEWworkouts->SuspendLayout();
+			this->LOGcomworkout->SuspendLayout();
+			this->LOGmeasurment->SuspendLayout();
+			this->panel1->SuspendLayout();
+			this->tableLayoutPanel1->SuspendLayout();
 			this->logoutp->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -1009,7 +1011,7 @@ private:
 			this->p_measurment->Location = System::Drawing::Point(3, 566);
 			this->p_measurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->p_measurment->Name = L"p_measurment";
-			this->p_measurment->Size = System::Drawing::Size(327, 127);
+			this->p_measurment->Size = System::Drawing::Size(327, 125);
 			this->p_measurment->TabIndex = 1;
 			// 
 			// bView_Measurments
@@ -1021,7 +1023,7 @@ private:
 				static_cast<System::Byte>(0)));
 			this->bView_Measurments->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)),
 				static_cast<System::Int32>(static_cast<System::Byte>(29)), static_cast<System::Int32>(static_cast<System::Byte>(44)));
-			this->bView_Measurments->Location = System::Drawing::Point(125, 20);
+			this->bView_Measurments->Location = System::Drawing::Point(125, 14);
 			this->bView_Measurments->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->bView_Measurments->Name = L"bView_Measurments";
 			this->bView_Measurments->Size = System::Drawing::Size(187, 92);
@@ -1033,7 +1035,7 @@ private:
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(11, 14);
+			this->pictureBox5->Location = System::Drawing::Point(11, 10);
 			this->pictureBox5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox5->Name = L"pictureBox5";
 			this->pictureBox5->Size = System::Drawing::Size(100, 98);
@@ -1051,7 +1053,7 @@ private:
 			this->p_workout->Location = System::Drawing::Point(3, 4);
 			this->p_workout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->p_workout->Name = L"p_workout";
-			this->p_workout->Size = System::Drawing::Size(327, 139);
+			this->p_workout->Size = System::Drawing::Size(327, 140);
 			this->p_workout->TabIndex = 0;
 			// 
 			// bViewWorkouts
@@ -1100,246 +1102,6 @@ private:
 			this->mainpage->Size = System::Drawing::Size(843, 691);
 			this->mainpage->TabIndex = 2;
 			// 
-			// VIEWworkouts
-			// 
-			this->VIEWworkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->VIEWworkouts->Controls->Add(this->listViewWorkouts);
-			this->VIEWworkouts->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->VIEWworkouts->Location = System::Drawing::Point(0, 0);
-			this->VIEWworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->VIEWworkouts->Name = L"VIEWworkouts";
-			this->VIEWworkouts->Size = System::Drawing::Size(843, 691);
-			this->VIEWworkouts->TabIndex = 7;
-			// 
-			// listViewWorkouts
-			// 
-			this->listViewWorkouts->Font = (gcnew System::Drawing::Font(L"Microsoft JhengHei UI", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->listViewWorkouts->GridLines = true;
-			this->listViewWorkouts->HideSelection = false;
-			this->listViewWorkouts->ImeMode = System::Windows::Forms::ImeMode::On;
-			this->listViewWorkouts->Location = System::Drawing::Point(28, 15);
-			this->listViewWorkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->listViewWorkouts->Name = L"listViewWorkouts";
-			this->listViewWorkouts->Size = System::Drawing::Size(787, 547);
-			this->listViewWorkouts->TabIndex = 3;
-			this->listViewWorkouts->UseCompatibleStateImageBehavior = false;
-			this->listViewWorkouts->SelectedIndexChanged += gcnew System::EventHandler(this, &clientmenupage::listViewWorkouts_SelectedIndexChanged);
-			// 
-			// LOGcomworkout
-			// 
-			this->LOGcomworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->LOGcomworkout->Controls->Add(this->WORKOUTS);
-			this->LOGcomworkout->Controls->Add(this->bt_Logw);
-			this->LOGcomworkout->Controls->Add(this->lblStatus);
-			this->LOGcomworkout->Controls->Add(this->txtWorkoutNumber);
-			this->LOGcomworkout->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGcomworkout->Location = System::Drawing::Point(0, 0);
-			this->LOGcomworkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->LOGcomworkout->Name = L"LOGcomworkout";
-			this->LOGcomworkout->Padding = System::Windows::Forms::Padding(13, 12, 13, 12);
-			this->LOGcomworkout->Size = System::Drawing::Size(843, 691);
-			this->LOGcomworkout->TabIndex = 6;
-			// 
-			// WORKOUTS
-			// 
-			this->WORKOUTS->Font = (gcnew System::Drawing::Font(L"Microsoft JhengHei UI", 13.8F, System::Drawing::FontStyle::Bold));
-			this->WORKOUTS->HideSelection = false;
-			this->WORKOUTS->Location = System::Drawing::Point(47, 15);
-			this->WORKOUTS->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->WORKOUTS->Name = L"WORKOUTS";
-			this->WORKOUTS->Size = System::Drawing::Size(745, 372);
-			this->WORKOUTS->TabIndex = 7;
-			this->WORKOUTS->UseCompatibleStateImageBehavior = false;
-			// 
-			// bt_Logw
-			// 
-			this->bt_Logw->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->bt_Logw->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->bt_Logw->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->bt_Logw->ForeColor = System::Drawing::Color::White;
-			this->bt_Logw->Location = System::Drawing::Point(652, 480);
-			this->bt_Logw->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->bt_Logw->Name = L"bt_Logw";
-			this->bt_Logw->Size = System::Drawing::Size(109, 60);
-			this->bt_Logw->TabIndex = 6;
-			this->bt_Logw->Text = L"Log";
-			this->bt_Logw->UseVisualStyleBackColor = false;
-			this->bt_Logw->Click += gcnew System::EventHandler(this, &clientmenupage::bt_Logw_Click);
-			// 
-			// lblStatus
-			// 
-			this->lblStatus->AutoSize = true;
-			this->lblStatus->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lblStatus->Location = System::Drawing::Point(20, 417);
-			this->lblStatus->Name = L"lblStatus";
-			this->lblStatus->Size = System::Drawing::Size(387, 37);
-			this->lblStatus->TabIndex = 4;
-			this->lblStatus->Text = L"Enter number of workout you completed :";
-			// 
-			// txtWorkoutNumber
-			// 
-			this->txtWorkoutNumber->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txtWorkoutNumber->Location = System::Drawing::Point(453, 423);
-			this->txtWorkoutNumber->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->txtWorkoutNumber->Name = L"txtWorkoutNumber";
-			this->txtWorkoutNumber->Size = System::Drawing::Size(87, 27);
-			this->txtWorkoutNumber->TabIndex = 3;
-			this->txtWorkoutNumber->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
-			// 
-			// LOGmeasurment
-			// 
-			this->LOGmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->LOGmeasurment->Controls->Add(this->panel1);
-			this->LOGmeasurment->Controls->Add(this->tableLayoutPanel1);
-			this->LOGmeasurment->Controls->Add(this->LOGm);
-			this->LOGmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGmeasurment->Location = System::Drawing::Point(0, 0);
-			this->LOGmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->LOGmeasurment->Name = L"LOGmeasurment";
-			this->LOGmeasurment->Size = System::Drawing::Size(843, 691);
-			this->LOGmeasurment->TabIndex = 5;
-			// 
-			// panel1
-			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->panel1->Controls->Add(this->panelLastMeasurement);
-			this->panel1->Location = System::Drawing::Point(509, 138);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(322, 220);
-			this->panel1->TabIndex = 11;
-			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel1_Paint);
-			// 
-			// panelLastMeasurement
-			// 
-			this->panelLastMeasurement->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
-				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->panelLastMeasurement->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->panelLastMeasurement->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->panelLastMeasurement->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
-				static_cast<System::Int32>(static_cast<System::Byte>(225)), static_cast<System::Int32>(static_cast<System::Byte>(209)));
-			this->panelLastMeasurement->Location = System::Drawing::Point(16, 10);
-			this->panelLastMeasurement->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->panelLastMeasurement->Name = L"panelLastMeasurement";
-			this->panelLastMeasurement->Size = System::Drawing::Size(289, 201);
-			this->panelLastMeasurement->TabIndex = 10;
-			// 
-			// tableLayoutPanel1
-			// 
-			this->tableLayoutPanel1->ColumnCount = 1;
-			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				50)));
-			this->tableLayoutPanel1->Controls->Add(this->lbl_weight, 0, 2);
-			this->tableLayoutPanel1->Controls->Add(this->lbl_height, 0, 0);
-			this->tableLayoutPanel1->Controls->Add(this->Date, 0, 5);
-			this->tableLayoutPanel1->Controls->Add(this->tB_height, 0, 1);
-			this->tableLayoutPanel1->Controls->Add(this->lbl_date, 0, 4);
-			this->tableLayoutPanel1->Controls->Add(this->tB_weight, 0, 3);
-			this->tableLayoutPanel1->Location = System::Drawing::Point(16, 15);
-			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-			this->tableLayoutPanel1->RowCount = 6;
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 55.10204F)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 44.89796F)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 91)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 73)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 89)));
-			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 85)));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(461, 486);
-			this->tableLayoutPanel1->TabIndex = 9;
-			// 
-			// lbl_weight
-			// 
-			this->lbl_weight->AutoSize = true;
-			this->lbl_weight->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->lbl_weight->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbl_weight->Location = System::Drawing::Point(3, 147);
-			this->lbl_weight->Name = L"lbl_weight";
-			this->lbl_weight->Size = System::Drawing::Size(284, 53);
-			this->lbl_weight->TabIndex = 2;
-			this->lbl_weight->Text = L"Enter Your Weight :";
-			// 
-			// lbl_height
-			// 
-			this->lbl_height->AutoSize = true;
-			this->lbl_height->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->lbl_height->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbl_height->Location = System::Drawing::Point(3, 0);
-			this->lbl_height->Name = L"lbl_height";
-			this->lbl_height->Size = System::Drawing::Size(278, 53);
-			this->lbl_height->TabIndex = 4;
-			this->lbl_height->Text = L"Enter Your Height :";
-			// 
-			// Date
-			// 
-			this->Date->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->Date->Location = System::Drawing::Point(3, 402);
-			this->Date->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->Date->Name = L"Date";
-			this->Date->Size = System::Drawing::Size(421, 34);
-			this->Date->TabIndex = 7;
-			// 
-			// tB_height
-			// 
-			this->tB_height->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tB_height->Location = System::Drawing::Point(3, 83);
-			this->tB_height->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tB_height->Name = L"tB_height";
-			this->tB_height->Size = System::Drawing::Size(435, 28);
-			this->tB_height->TabIndex = 6;
-			// 
-			// lbl_date
-			// 
-			this->lbl_date->AutoSize = true;
-			this->lbl_date->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->lbl_date->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->lbl_date->Location = System::Drawing::Point(3, 311);
-			this->lbl_date->Name = L"lbl_date";
-			this->lbl_date->Size = System::Drawing::Size(176, 53);
-			this->lbl_date->TabIndex = 3;
-			this->lbl_date->Text = L"Enter Date :";
-			// 
-			// tB_weight
-			// 
-			this->tB_weight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->tB_weight->Location = System::Drawing::Point(3, 240);
-			this->tB_weight->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->tB_weight->Name = L"tB_weight";
-			this->tB_weight->Size = System::Drawing::Size(435, 28);
-			this->tB_weight->TabIndex = 5;
-			// 
-			// LOGm
-			// 
-			this->LOGm->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->LOGm->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->LOGm->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->LOGm->ForeColor = System::Drawing::Color::White;
-			this->LOGm->Location = System::Drawing::Point(652, 441);
-			this->LOGm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->LOGm->Name = L"LOGm";
-			this->LOGm->Size = System::Drawing::Size(100, 50);
-			this->LOGm->TabIndex = 8;
-			this->LOGm->Text = L"Log";
-			this->LOGm->UseVisualStyleBackColor = false;
-			this->LOGm->Click += gcnew System::EventHandler(this, &clientmenupage::button2_Click);
-			// 
 			// HEALTHsummary
 			// 
 			this->HEALTHsummary->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
@@ -1370,17 +1132,17 @@ private:
 			// 
 			this->chartMacros->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
 				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			chartArea4->Name = L"ChartArea1";
-			this->chartMacros->ChartAreas->Add(chartArea4);
-			legend4->Name = L"Legend1";
-			this->chartMacros->Legends->Add(legend4);
+			chartArea1->Name = L"ChartArea1";
+			this->chartMacros->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chartMacros->Legends->Add(legend1);
 			this->chartMacros->Location = System::Drawing::Point(403, 258);
 			this->chartMacros->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->chartMacros->Name = L"chartMacros";
-			series4->ChartArea = L"ChartArea1";
-			series4->Legend = L"Legend1";
-			series4->Name = L"Series1";
-			this->chartMacros->Series->Add(series4);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Series1";
+			this->chartMacros->Series->Add(series1);
 			this->chartMacros->Size = System::Drawing::Size(376, 306);
 			this->chartMacros->TabIndex = 18;
 			this->chartMacros->Text = L"chart1";
@@ -1627,68 +1389,68 @@ private:
 			// 
 			this->dgv_ViewMeasurment->AllowUserToResizeColumns = false;
 			this->dgv_ViewMeasurment->AllowUserToResizeRows = false;
-			dataGridViewCellStyle16->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle16->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::Black;
-			this->dgv_ViewMeasurment->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+			this->dgv_ViewMeasurment->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->dgv_ViewMeasurment->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::AllCells;
 			this->dgv_ViewMeasurment->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::AllCells;
 			this->dgv_ViewMeasurment->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
 			this->dgv_ViewMeasurment->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dgv_ViewMeasurment->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Raised;
-			dataGridViewCellStyle17->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle17->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle17->ForeColor = System::Drawing::SystemColors::ControlLightLight;
-			dataGridViewCellStyle17->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle17->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::ControlLightLight;
+			dataGridViewCellStyle2->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			dataGridViewCellStyle17->SelectionForeColor = System::Drawing::SystemColors::ControlText;
-			this->dgv_ViewMeasurment->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::ControlText;
+			this->dgv_ViewMeasurment->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->dgv_ViewMeasurment->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			dataGridViewCellStyle18->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle18->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle18->Padding = System::Windows::Forms::Padding(3);
-			dataGridViewCellStyle18->SelectionBackColor = System::Drawing::Color::LightBlue;
-			dataGridViewCellStyle18->SelectionForeColor = System::Drawing::SystemColors::Desktop;
-			dataGridViewCellStyle18->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dgv_ViewMeasurment->DefaultCellStyle = dataGridViewCellStyle18;
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle3->Padding = System::Windows::Forms::Padding(3);
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::LightBlue;
+			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::Desktop;
+			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dgv_ViewMeasurment->DefaultCellStyle = dataGridViewCellStyle3;
 			this->dgv_ViewMeasurment->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
 			this->dgv_ViewMeasurment->Location = System::Drawing::Point(62, 98);
 			this->dgv_ViewMeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->dgv_ViewMeasurment->Name = L"dgv_ViewMeasurment";
-			dataGridViewCellStyle19->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
+			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-			dataGridViewCellStyle19->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle19->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle19->SelectionBackColor = System::Drawing::SystemColors::ButtonShadow;
-			dataGridViewCellStyle19->SelectionForeColor = System::Drawing::SystemColors::Desktop;
-			this->dgv_ViewMeasurment->RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+			dataGridViewCellStyle4->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle4->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::SystemColors::ButtonShadow;
+			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::SystemColors::Desktop;
+			this->dgv_ViewMeasurment->RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this->dgv_ViewMeasurment->RowHeadersWidthSizeMode = System::Windows::Forms::DataGridViewRowHeadersWidthSizeMode::AutoSizeToAllHeaders;
-			dataGridViewCellStyle20->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-			dataGridViewCellStyle20->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle20->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+			dataGridViewCellStyle5->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle20->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle20->Padding = System::Windows::Forms::Padding(5);
-			dataGridViewCellStyle20->SelectionBackColor = System::Drawing::Color::SkyBlue;
-			dataGridViewCellStyle20->SelectionForeColor = System::Drawing::Color::White;
-			this->dgv_ViewMeasurment->RowsDefaultCellStyle = dataGridViewCellStyle20;
+			dataGridViewCellStyle5->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle5->Padding = System::Windows::Forms::Padding(5);
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::SkyBlue;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
+			this->dgv_ViewMeasurment->RowsDefaultCellStyle = dataGridViewCellStyle5;
 			this->dgv_ViewMeasurment->RowTemplate->Height = 30;
 			this->dgv_ViewMeasurment->Size = System::Drawing::Size(717, 410);
 			this->dgv_ViewMeasurment->TabIndex = 0;
@@ -1715,6 +1477,246 @@ private:
 			this->clientlogo->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->clientlogo->TabIndex = 0;
 			this->clientlogo->TabStop = false;
+			// 
+			// VIEWworkouts
+			// 
+			this->VIEWworkouts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->VIEWworkouts->Controls->Add(this->listViewWorkouts);
+			this->VIEWworkouts->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->VIEWworkouts->Location = System::Drawing::Point(0, 0);
+			this->VIEWworkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->VIEWworkouts->Name = L"VIEWworkouts";
+			this->VIEWworkouts->Size = System::Drawing::Size(843, 691);
+			this->VIEWworkouts->TabIndex = 7;
+			// 
+			// listViewWorkouts
+			// 
+			this->listViewWorkouts->Font = (gcnew System::Drawing::Font(L"Microsoft JhengHei UI", 13.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->listViewWorkouts->GridLines = true;
+			this->listViewWorkouts->HideSelection = false;
+			this->listViewWorkouts->ImeMode = System::Windows::Forms::ImeMode::On;
+			this->listViewWorkouts->Location = System::Drawing::Point(28, 15);
+			this->listViewWorkouts->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->listViewWorkouts->Name = L"listViewWorkouts";
+			this->listViewWorkouts->Size = System::Drawing::Size(787, 547);
+			this->listViewWorkouts->TabIndex = 3;
+			this->listViewWorkouts->UseCompatibleStateImageBehavior = false;
+			this->listViewWorkouts->SelectedIndexChanged += gcnew System::EventHandler(this, &clientmenupage::listViewWorkouts_SelectedIndexChanged);
+			// 
+			// LOGcomworkout
+			// 
+			this->LOGcomworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->LOGcomworkout->Controls->Add(this->WORKOUTS);
+			this->LOGcomworkout->Controls->Add(this->bt_Logw);
+			this->LOGcomworkout->Controls->Add(this->lblStatus);
+			this->LOGcomworkout->Controls->Add(this->txtWorkoutNumber);
+			this->LOGcomworkout->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGcomworkout->Location = System::Drawing::Point(0, 0);
+			this->LOGcomworkout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGcomworkout->Name = L"LOGcomworkout";
+			this->LOGcomworkout->Padding = System::Windows::Forms::Padding(13, 12, 13, 12);
+			this->LOGcomworkout->Size = System::Drawing::Size(843, 691);
+			this->LOGcomworkout->TabIndex = 6;
+			// 
+			// WORKOUTS
+			// 
+			this->WORKOUTS->Font = (gcnew System::Drawing::Font(L"Microsoft JhengHei UI", 13.8F, System::Drawing::FontStyle::Bold));
+			this->WORKOUTS->HideSelection = false;
+			this->WORKOUTS->Location = System::Drawing::Point(47, 15);
+			this->WORKOUTS->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->WORKOUTS->Name = L"WORKOUTS";
+			this->WORKOUTS->Size = System::Drawing::Size(745, 372);
+			this->WORKOUTS->TabIndex = 7;
+			this->WORKOUTS->UseCompatibleStateImageBehavior = false;
+			// 
+			// bt_Logw
+			// 
+			this->bt_Logw->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->bt_Logw->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->bt_Logw->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->bt_Logw->ForeColor = System::Drawing::Color::White;
+			this->bt_Logw->Location = System::Drawing::Point(652, 480);
+			this->bt_Logw->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->bt_Logw->Name = L"bt_Logw";
+			this->bt_Logw->Size = System::Drawing::Size(109, 60);
+			this->bt_Logw->TabIndex = 6;
+			this->bt_Logw->Text = L"Log";
+			this->bt_Logw->UseVisualStyleBackColor = false;
+			this->bt_Logw->Click += gcnew System::EventHandler(this, &clientmenupage::bt_Logw_Click);
+			// 
+			// lblStatus
+			// 
+			this->lblStatus->AutoSize = true;
+			this->lblStatus->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblStatus->Location = System::Drawing::Point(20, 417);
+			this->lblStatus->Name = L"lblStatus";
+			this->lblStatus->Size = System::Drawing::Size(387, 37);
+			this->lblStatus->TabIndex = 4;
+			this->lblStatus->Text = L"Enter number of workout you completed :";
+			// 
+			// txtWorkoutNumber
+			// 
+			this->txtWorkoutNumber->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtWorkoutNumber->Location = System::Drawing::Point(453, 423);
+			this->txtWorkoutNumber->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtWorkoutNumber->Name = L"txtWorkoutNumber";
+			this->txtWorkoutNumber->Size = System::Drawing::Size(87, 27);
+			this->txtWorkoutNumber->TabIndex = 3;
+			this->txtWorkoutNumber->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			// 
+			// LOGmeasurment
+			// 
+			this->LOGmeasurment->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(241)),
+				static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->LOGmeasurment->Controls->Add(this->panel1);
+			this->LOGmeasurment->Controls->Add(this->tableLayoutPanel1);
+			this->LOGmeasurment->Controls->Add(this->LOGm);
+			this->LOGmeasurment->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGmeasurment->Location = System::Drawing::Point(0, 0);
+			this->LOGmeasurment->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGmeasurment->Name = L"LOGmeasurment";
+			this->LOGmeasurment->Size = System::Drawing::Size(843, 691);
+			this->LOGmeasurment->TabIndex = 5;
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->panel1->Controls->Add(this->panelLastMeasurement);
+			this->panel1->Location = System::Drawing::Point(509, 138);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(322, 220);
+			this->panel1->TabIndex = 11;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &clientmenupage::panel1_Paint);
+			// 
+			// panelLastMeasurement
+			// 
+			this->panelLastMeasurement->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)),
+				static_cast<System::Int32>(static_cast<System::Byte>(241)), static_cast<System::Int32>(static_cast<System::Byte>(240)));
+			this->panelLastMeasurement->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->panelLastMeasurement->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->panelLastMeasurement->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(239)),
+				static_cast<System::Int32>(static_cast<System::Byte>(225)), static_cast<System::Int32>(static_cast<System::Byte>(209)));
+			this->panelLastMeasurement->Location = System::Drawing::Point(16, 10);
+			this->panelLastMeasurement->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->panelLastMeasurement->Name = L"panelLastMeasurement";
+			this->panelLastMeasurement->Size = System::Drawing::Size(289, 201);
+			this->panelLastMeasurement->TabIndex = 10;
+			// 
+			// tableLayoutPanel1
+			// 
+			this->tableLayoutPanel1->ColumnCount = 1;
+			this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				50)));
+			this->tableLayoutPanel1->Controls->Add(this->lbl_weight, 0, 2);
+			this->tableLayoutPanel1->Controls->Add(this->lbl_height, 0, 0);
+			this->tableLayoutPanel1->Controls->Add(this->Date, 0, 5);
+			this->tableLayoutPanel1->Controls->Add(this->tB_height, 0, 1);
+			this->tableLayoutPanel1->Controls->Add(this->lbl_date, 0, 4);
+			this->tableLayoutPanel1->Controls->Add(this->tB_weight, 0, 3);
+			this->tableLayoutPanel1->Location = System::Drawing::Point(16, 15);
+			this->tableLayoutPanel1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+			this->tableLayoutPanel1->RowCount = 6;
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 55.10204F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 44.89796F)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 91)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 73)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 89)));
+			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Absolute, 85)));
+			this->tableLayoutPanel1->Size = System::Drawing::Size(461, 486);
+			this->tableLayoutPanel1->TabIndex = 9;
+			// 
+			// lbl_weight
+			// 
+			this->lbl_weight->AutoSize = true;
+			this->lbl_weight->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_weight->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_weight->Location = System::Drawing::Point(3, 147);
+			this->lbl_weight->Name = L"lbl_weight";
+			this->lbl_weight->Size = System::Drawing::Size(284, 53);
+			this->lbl_weight->TabIndex = 2;
+			this->lbl_weight->Text = L"Enter Your Weight :";
+			// 
+			// lbl_height
+			// 
+			this->lbl_height->AutoSize = true;
+			this->lbl_height->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_height->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_height->Location = System::Drawing::Point(3, 0);
+			this->lbl_height->Name = L"lbl_height";
+			this->lbl_height->Size = System::Drawing::Size(278, 53);
+			this->lbl_height->TabIndex = 4;
+			this->lbl_height->Text = L"Enter Your Height :";
+			// 
+			// Date
+			// 
+			this->Date->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Date->Location = System::Drawing::Point(3, 402);
+			this->Date->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Date->Name = L"Date";
+			this->Date->Size = System::Drawing::Size(421, 34);
+			this->Date->TabIndex = 7;
+			// 
+			// tB_height
+			// 
+			this->tB_height->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tB_height->Location = System::Drawing::Point(3, 83);
+			this->tB_height->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->tB_height->Name = L"tB_height";
+			this->tB_height->Size = System::Drawing::Size(435, 28);
+			this->tB_height->TabIndex = 6;
+			// 
+			// lbl_date
+			// 
+			this->lbl_date->AutoSize = true;
+			this->lbl_date->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->lbl_date->Font = (gcnew System::Drawing::Font(L"Microsoft Uighur", 25.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_date->Location = System::Drawing::Point(3, 311);
+			this->lbl_date->Name = L"lbl_date";
+			this->lbl_date->Size = System::Drawing::Size(176, 53);
+			this->lbl_date->TabIndex = 3;
+			this->lbl_date->Text = L"Enter Date :";
+			// 
+			// tB_weight
+			// 
+			this->tB_weight->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tB_weight->Location = System::Drawing::Point(3, 240);
+			this->tB_weight->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->tB_weight->Name = L"tB_weight";
+			this->tB_weight->Size = System::Drawing::Size(435, 28);
+			this->tB_weight->TabIndex = 5;
+			// 
+			// LOGm
+			// 
+			this->LOGm->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->LOGm->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->LOGm->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->LOGm->ForeColor = System::Drawing::Color::White;
+			this->LOGm->Location = System::Drawing::Point(652, 441);
+			this->LOGm->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->LOGm->Name = L"LOGm";
+			this->LOGm->Size = System::Drawing::Size(100, 50);
+			this->LOGm->TabIndex = 8;
+			this->LOGm->Text = L"Log";
+			this->LOGm->UseVisualStyleBackColor = false;
+			this->LOGm->Click += gcnew System::EventHandler(this, &clientmenupage::button2_Click);
 			// 
 			// logoutp
 			// 
@@ -1780,13 +1782,6 @@ private:
 			this->p_workout->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->mainpage->ResumeLayout(false);
-			this->VIEWworkouts->ResumeLayout(false);
-			this->LOGcomworkout->ResumeLayout(false);
-			this->LOGcomworkout->PerformLayout();
-			this->LOGmeasurment->ResumeLayout(false);
-			this->panel1->ResumeLayout(false);
-			this->tableLayoutPanel1->ResumeLayout(false);
-			this->tableLayoutPanel1->PerformLayout();
 			this->HEALTHsummary->ResumeLayout(false);
 			this->HEALTHsummary->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chartMacros))->EndInit();
@@ -1794,6 +1789,13 @@ private:
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_ViewMeasurment))->EndInit();
 			this->logo->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->clientlogo))->EndInit();
+			this->VIEWworkouts->ResumeLayout(false);
+			this->LOGcomworkout->ResumeLayout(false);
+			this->LOGcomworkout->PerformLayout();
+			this->LOGmeasurment->ResumeLayout(false);
+			this->panel1->ResumeLayout(false);
+			this->tableLayoutPanel1->ResumeLayout(false);
+			this->tableLayoutPanel1->PerformLayout();
 			this->logoutp->ResumeLayout(false);
 			this->ResumeLayout(false);
 
