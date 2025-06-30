@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "core.h"
 #include <msclr/marshal_cppstd.h>
 #include "LoginForm.h"
@@ -121,7 +121,7 @@ namespace SPProject {
 				String^ name = gcnew String(trainer->clients[i].name.c_str());
 				String^ workouts = trainer->clients[i].numWorkouts.ToString();
 
-				// ÅÖÇÝÉ ÕÝ ÌÏíÏ Ýí DataGrid
+				// Ø¥Ø¶Ø§ÙØ© ØµÙ Ø¬Ø¯ÙŠØ¯ ÙÙŠ DataGrid
 				data->Rows->Add(clientID, name, workouts);
 			}
 		}
@@ -445,14 +445,14 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(traiermenu::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle15 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -468,23 +468,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
-			this->LOGO = (gcnew System::Windows::Forms::Panel());
-			this->progress = (gcnew System::Windows::Forms::Panel());
-			this->panel9 = (gcnew System::Windows::Forms::Panel());
-			this->tableLayoutPanel5 = (gcnew System::Windows::Forms::TableLayoutPanel());
-			this->panel10 = (gcnew System::Windows::Forms::Panel());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->pnlcompletedworkout = (gcnew System::Windows::Forms::Panel());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->viewcompletedworkout = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->panel8 = (gcnew System::Windows::Forms::Panel());
-			this->panel7 = (gcnew System::Windows::Forms::Panel());
-			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
-			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridViewTextBoxColumn3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->manage = (gcnew System::Windows::Forms::Panel());
 			this->manpanel = (gcnew System::Windows::Forms::Panel());
 			this->newwork = (gcnew System::Windows::Forms::Panel());
@@ -534,6 +517,23 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->LOGO = (gcnew System::Windows::Forms::Panel());
+			this->progress = (gcnew System::Windows::Forms::Panel());
+			this->panel9 = (gcnew System::Windows::Forms::Panel());
+			this->tableLayoutPanel5 = (gcnew System::Windows::Forms::TableLayoutPanel());
+			this->panel10 = (gcnew System::Windows::Forms::Panel());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->pnlcompletedworkout = (gcnew System::Windows::Forms::Panel());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->viewcompletedworkout = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->panel8 = (gcnew System::Windows::Forms::Panel());
+			this->panel7 = (gcnew System::Windows::Forms::Panel());
+			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->clientinfo = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->NAME = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -552,13 +552,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->panel4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel3->SuspendLayout();
-			this->progress->SuspendLayout();
-			this->panel9->SuspendLayout();
-			this->tableLayoutPanel5->SuspendLayout();
-			this->panel10->SuspendLayout();
-			this->pnlcompletedworkout->SuspendLayout();
-			this->panel7->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->manage->SuspendLayout();
 			this->manpanel->SuspendLayout();
 			this->newwork->SuspendLayout();
@@ -583,6 +576,13 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->BeginInit();
 			this->btn->SuspendLayout();
+			this->progress->SuspendLayout();
+			this->panel9->SuspendLayout();
+			this->tableLayoutPanel5->SuspendLayout();
+			this->panel10->SuspendLayout();
+			this->pnlcompletedworkout->SuspendLayout();
+			this->panel7->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->clientinfo->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -763,221 +763,14 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->panel3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(236)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(241)));
 			this->panel3->Controls->Add(this->LOGO);
-			this->panel3->Controls->Add(this->progress);
 			this->panel3->Controls->Add(this->manage);
+			this->panel3->Controls->Add(this->progress);
 			this->panel3->Controls->Add(this->clientinfo);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel3->Location = System::Drawing::Point(185, 75);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(699, 534);
 			this->panel3->TabIndex = 2;
-			// 
-			// LOGO
-			// 
-			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->LOGO->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LOGO.BackgroundImage")));
-			this->LOGO->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGO->Location = System::Drawing::Point(0, 0);
-			this->LOGO->Margin = System::Windows::Forms::Padding(2);
-			this->LOGO->Name = L"LOGO";
-			this->LOGO->Size = System::Drawing::Size(699, 534);
-			this->LOGO->TabIndex = 19;
-			// 
-			// progress
-			// 
-			this->progress->BackColor = System::Drawing::Color::White;
-			this->progress->Controls->Add(this->panel9);
-			this->progress->Controls->Add(this->viewcompletedworkout);
-			this->progress->Controls->Add(this->textBox1);
-			this->progress->Controls->Add(this->panel8);
-			this->progress->Controls->Add(this->panel7);
-			this->progress->Controls->Add(this->label2);
-			this->progress->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->progress->Location = System::Drawing::Point(0, 0);
-			this->progress->Name = L"progress";
-			this->progress->Size = System::Drawing::Size(699, 534);
-			this->progress->TabIndex = 3;
-			// 
-			// panel9
-			// 
-			this->panel9->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->panel9->Controls->Add(this->tableLayoutPanel5);
-			this->panel9->Location = System::Drawing::Point(3, 347);
-			this->panel9->Name = L"panel9";
-			this->panel9->Size = System::Drawing::Size(678, 180);
-			this->panel9->TabIndex = 4;
-			// 
-			// tableLayoutPanel5
-			// 
-			this->tableLayoutPanel5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->tableLayoutPanel5->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
-			this->tableLayoutPanel5->ColumnCount = 2;
-			this->tableLayoutPanel5->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				43.32344F)));
-			this->tableLayoutPanel5->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-				56.67656F)));
-			this->tableLayoutPanel5->Controls->Add(this->panel10, 0, 0);
-			this->tableLayoutPanel5->Controls->Add(this->pnlcompletedworkout, 1, 0);
-			this->tableLayoutPanel5->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->tableLayoutPanel5->Location = System::Drawing::Point(0, 3);
-			this->tableLayoutPanel5->Name = L"tableLayoutPanel5";
-			this->tableLayoutPanel5->RowCount = 1;
-			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-			this->tableLayoutPanel5->Size = System::Drawing::Size(678, 177);
-			this->tableLayoutPanel5->TabIndex = 0;
-			// 
-			// panel10
-			// 
-			this->panel10->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->panel10->Controls->Add(this->label3);
-			this->panel10->Location = System::Drawing::Point(6, 6);
-			this->panel10->Name = L"panel10";
-			this->panel10->Size = System::Drawing::Size(282, 165);
-			this->panel10->TabIndex = 0;
-			// 
-			// label3
-			// 
-			this->label3->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->label3->AutoSize = true;
-			this->label3->BackColor = System::Drawing::Color::Gainsboro;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Verdana", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(75, 77);
-			this->label3->Margin = System::Windows::Forms::Padding(250);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(132, 29);
-			this->label3->TabIndex = 1;
-			this->label3->Text = L"Progress";
-			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			// 
-			// pnlcompletedworkout
-			// 
-			this->pnlcompletedworkout->AutoScroll = true;
-			this->pnlcompletedworkout->BackColor = System::Drawing::Color::WhiteSmoke;
-			this->pnlcompletedworkout->Controls->Add(this->label6);
-			this->pnlcompletedworkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->pnlcompletedworkout->Location = System::Drawing::Point(298, 6);
-			this->pnlcompletedworkout->Name = L"pnlcompletedworkout";
-			this->pnlcompletedworkout->Size = System::Drawing::Size(371, 165);
-			this->pnlcompletedworkout->TabIndex = 1;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(15, 9);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(0, 29);
-			this->label6->TabIndex = 0;
-			// 
-			// viewcompletedworkout
-			// 
-			this->viewcompletedworkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->viewcompletedworkout->Location = System::Drawing::Point(407, 295);
-			this->viewcompletedworkout->Name = L"viewcompletedworkout";
-			this->viewcompletedworkout->Size = System::Drawing::Size(89, 36);
-			this->viewcompletedworkout->TabIndex = 2;
-			this->viewcompletedworkout->Text = L"View";
-			this->viewcompletedworkout->UseVisualStyleBackColor = true;
-			this->viewcompletedworkout->Click += gcnew System::EventHandler(this, &traiermenu::viewcompletedworkout_Click_1);
-			// 
-			// textBox1
-			// 
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(172, 301);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(207, 23);
-			this->textBox1->TabIndex = 3;
-			// 
-			// panel8
-			// 
-			this->panel8->Location = System::Drawing::Point(0, 539);
-			this->panel8->Name = L"panel8";
-			this->panel8->Size = System::Drawing::Size(684, 22);
-			this->panel8->TabIndex = 1;
-			// 
-			// panel7
-			// 
-			this->panel7->Controls->Add(this->dataGridView2);
-			this->panel7->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->panel7->Location = System::Drawing::Point(22, 0);
-			this->panel7->Name = L"panel7";
-			this->panel7->Size = System::Drawing::Size(538, 288);
-			this->panel7->TabIndex = 0;
-			// 
-			// dataGridView2
-			// 
-			dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle9->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::SkyBlue;
-			dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::White;
-			this->dataGridView2->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-			this->dataGridView2->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
-				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle10->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle10->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle10->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
-				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle10->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView2->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->dataGridViewTextBoxColumn1,
-					this->dataGridViewTextBoxColumn2, this->dataGridViewTextBoxColumn3
-			});
-			this->dataGridView2->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->dataGridView2->Location = System::Drawing::Point(62, 3);
-			this->dataGridView2->Name = L"dataGridView2";
-			this->dataGridView2->RowHeadersWidth = 51;
-			this->dataGridView2->Size = System::Drawing::Size(454, 279);
-			this->dataGridView2->TabIndex = 0;
-			// 
-			// dataGridViewTextBoxColumn1
-			// 
-			this->dataGridViewTextBoxColumn1->HeaderText = L"Id";
-			this->dataGridViewTextBoxColumn1->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
-			this->dataGridViewTextBoxColumn1->Width = 125;
-			// 
-			// dataGridViewTextBoxColumn2
-			// 
-			this->dataGridViewTextBoxColumn2->HeaderText = L"Name";
-			this->dataGridViewTextBoxColumn2->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
-			this->dataGridViewTextBoxColumn2->Width = 150;
-			// 
-			// dataGridViewTextBoxColumn3
-			// 
-			this->dataGridViewTextBoxColumn3->HeaderText = L"Workouts";
-			this->dataGridViewTextBoxColumn3->MinimumWidth = 6;
-			this->dataGridViewTextBoxColumn3->Name = L"dataGridViewTextBoxColumn3";
-			this->dataGridViewTextBoxColumn3->Width = 125;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Verdana", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(29, 302);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(139, 20);
-			this->label2->TabIndex = 2;
-			this->label2->Text = L"Enter Client Id :";
 			// 
 			// manage
 			// 
@@ -1218,25 +1011,25 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			// 
 			// dataGridView3
 			// 
-			dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle11->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle11->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::SkyBlue;
-			this->dataGridView3->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::SkyBlue;
+			this->dataGridView3->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->dataGridView3->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle12->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle12->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle12->ForeColor = System::Drawing::Color::Black;
-			dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle12->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle12->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView3->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView3->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->dataGridView3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView3->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->Column1,
@@ -1440,23 +1233,23 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			// 
 			// dataGridView4
 			// 
-			dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle13->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::SkyBlue;
-			this->dataGridView4->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::SkyBlue;
+			this->dataGridView4->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
 			this->dataGridView4->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle14->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle14->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle14->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle14->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			dataGridViewCellStyle4->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle14->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView4->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView4->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this->dataGridView4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView4->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
 				this->dataGridViewTextBoxColumn4,
@@ -1536,6 +1329,213 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->button4->Click += gcnew System::EventHandler(this, &traiermenu::button4_Click);
 			this->button4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
 			// 
+			// LOGO
+			// 
+			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->LOGO->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LOGO.BackgroundImage")));
+			this->LOGO->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGO->Location = System::Drawing::Point(0, 0);
+			this->LOGO->Margin = System::Windows::Forms::Padding(2);
+			this->LOGO->Name = L"LOGO";
+			this->LOGO->Size = System::Drawing::Size(699, 534);
+			this->LOGO->TabIndex = 19;
+			// 
+			// progress
+			// 
+			this->progress->BackColor = System::Drawing::Color::White;
+			this->progress->Controls->Add(this->panel9);
+			this->progress->Controls->Add(this->viewcompletedworkout);
+			this->progress->Controls->Add(this->textBox1);
+			this->progress->Controls->Add(this->panel8);
+			this->progress->Controls->Add(this->panel7);
+			this->progress->Controls->Add(this->label2);
+			this->progress->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->progress->Location = System::Drawing::Point(0, 0);
+			this->progress->Name = L"progress";
+			this->progress->Size = System::Drawing::Size(699, 534);
+			this->progress->TabIndex = 3;
+			// 
+			// panel9
+			// 
+			this->panel9->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->panel9->Controls->Add(this->tableLayoutPanel5);
+			this->panel9->Location = System::Drawing::Point(3, 347);
+			this->panel9->Name = L"panel9";
+			this->panel9->Size = System::Drawing::Size(678, 180);
+			this->panel9->TabIndex = 4;
+			// 
+			// tableLayoutPanel5
+			// 
+			this->tableLayoutPanel5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->tableLayoutPanel5->CellBorderStyle = System::Windows::Forms::TableLayoutPanelCellBorderStyle::OutsetDouble;
+			this->tableLayoutPanel5->ColumnCount = 2;
+			this->tableLayoutPanel5->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				43.32344F)));
+			this->tableLayoutPanel5->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+				56.67656F)));
+			this->tableLayoutPanel5->Controls->Add(this->panel10, 0, 0);
+			this->tableLayoutPanel5->Controls->Add(this->pnlcompletedworkout, 1, 0);
+			this->tableLayoutPanel5->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->tableLayoutPanel5->Location = System::Drawing::Point(0, 3);
+			this->tableLayoutPanel5->Name = L"tableLayoutPanel5";
+			this->tableLayoutPanel5->RowCount = 1;
+			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tableLayoutPanel5->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+			this->tableLayoutPanel5->Size = System::Drawing::Size(678, 177);
+			this->tableLayoutPanel5->TabIndex = 0;
+			// 
+			// panel10
+			// 
+			this->panel10->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->panel10->Controls->Add(this->label3);
+			this->panel10->Location = System::Drawing::Point(6, 6);
+			this->panel10->Name = L"panel10";
+			this->panel10->Size = System::Drawing::Size(282, 165);
+			this->panel10->TabIndex = 0;
+			// 
+			// label3
+			// 
+			this->label3->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::Gainsboro;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Verdana", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(75, 77);
+			this->label3->Margin = System::Windows::Forms::Padding(250);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(132, 29);
+			this->label3->TabIndex = 1;
+			this->label3->Text = L"Progress";
+			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// pnlcompletedworkout
+			// 
+			this->pnlcompletedworkout->AutoScroll = true;
+			this->pnlcompletedworkout->BackColor = System::Drawing::Color::WhiteSmoke;
+			this->pnlcompletedworkout->Controls->Add(this->label6);
+			this->pnlcompletedworkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->pnlcompletedworkout->Location = System::Drawing::Point(298, 6);
+			this->pnlcompletedworkout->Name = L"pnlcompletedworkout";
+			this->pnlcompletedworkout->Size = System::Drawing::Size(371, 165);
+			this->pnlcompletedworkout->TabIndex = 1;
+			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Tahoma", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label6->Location = System::Drawing::Point(15, 9);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(0, 29);
+			this->label6->TabIndex = 0;
+			// 
+			// viewcompletedworkout
+			// 
+			this->viewcompletedworkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->viewcompletedworkout->Location = System::Drawing::Point(407, 295);
+			this->viewcompletedworkout->Name = L"viewcompletedworkout";
+			this->viewcompletedworkout->Size = System::Drawing::Size(89, 36);
+			this->viewcompletedworkout->TabIndex = 2;
+			this->viewcompletedworkout->Text = L"View";
+			this->viewcompletedworkout->UseVisualStyleBackColor = true;
+			this->viewcompletedworkout->Click += gcnew System::EventHandler(this, &traiermenu::viewcompletedworkout_Click_1);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->textBox1->Location = System::Drawing::Point(172, 301);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(207, 23);
+			this->textBox1->TabIndex = 3;
+			// 
+			// panel8
+			// 
+			this->panel8->Location = System::Drawing::Point(0, 539);
+			this->panel8->Name = L"panel8";
+			this->panel8->Size = System::Drawing::Size(684, 22);
+			this->panel8->TabIndex = 1;
+			// 
+			// panel7
+			// 
+			this->panel7->Controls->Add(this->dataGridView2);
+			this->panel7->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->panel7->Location = System::Drawing::Point(22, 0);
+			this->panel7->Name = L"panel7";
+			this->panel7->Size = System::Drawing::Size(538, 288);
+			this->panel7->TabIndex = 0;
+			// 
+			// dataGridView2
+			// 
+			dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			dataGridViewCellStyle5->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::SkyBlue;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
+			this->dataGridView2->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+			this->dataGridView2->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle6->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle6->ForeColor = System::Drawing::Color::Black;
+			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView2->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
+				this->dataGridViewTextBoxColumn1,
+					this->dataGridViewTextBoxColumn2, this->dataGridViewTextBoxColumn3
+			});
+			this->dataGridView2->GridColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->dataGridView2->Location = System::Drawing::Point(62, 3);
+			this->dataGridView2->Name = L"dataGridView2";
+			this->dataGridView2->RowHeadersWidth = 51;
+			this->dataGridView2->Size = System::Drawing::Size(454, 279);
+			this->dataGridView2->TabIndex = 0;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this->dataGridViewTextBoxColumn1->HeaderText = L"Id";
+			this->dataGridViewTextBoxColumn1->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
+			this->dataGridViewTextBoxColumn1->Width = 125;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this->dataGridViewTextBoxColumn2->HeaderText = L"Name";
+			this->dataGridViewTextBoxColumn2->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+			this->dataGridViewTextBoxColumn2->Width = 150;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this->dataGridViewTextBoxColumn3->HeaderText = L"Workouts";
+			this->dataGridViewTextBoxColumn3->MinimumWidth = 6;
+			this->dataGridViewTextBoxColumn3->Name = L"dataGridViewTextBoxColumn3";
+			this->dataGridViewTextBoxColumn3->Width = 125;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Verdana", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(29, 302);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(139, 20);
+			this->label2->TabIndex = 2;
+			this->label2->Text = L"Enter Client Id :";
+			// 
 			// clientinfo
 			// 
 			this->clientinfo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
@@ -1552,23 +1552,23 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			// 
 			// dataGridView1
 			// 
-			dataGridViewCellStyle15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+			dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle15->ForeColor = System::Drawing::Color::White;
-			dataGridViewCellStyle15->SelectionBackColor = System::Drawing::Color::SkyBlue;
-			this->dataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+			dataGridViewCellStyle7->ForeColor = System::Drawing::Color::White;
+			dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::SkyBlue;
+			this->dataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
 			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedHeaders;
 			this->dataGridView1->BackgroundColor = System::Drawing::Color::White;
-			dataGridViewCellStyle16->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle16->BackColor = System::Drawing::Color::White;
-			dataGridViewCellStyle16->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle8->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle8->BackColor = System::Drawing::Color::White;
+			dataGridViewCellStyle8->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle16->ForeColor = System::Drawing::SystemColors::WindowText;
-			dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::Gainsboro;
-			dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+			dataGridViewCellStyle8->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::Gainsboro;
+			dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
 				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			dataGridViewCellStyle16->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+			dataGridViewCellStyle8->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView1->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->NAME, this->ID,
@@ -1658,16 +1658,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->panel4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->panel3->ResumeLayout(false);
-			this->progress->ResumeLayout(false);
-			this->progress->PerformLayout();
-			this->panel9->ResumeLayout(false);
-			this->tableLayoutPanel5->ResumeLayout(false);
-			this->panel10->ResumeLayout(false);
-			this->panel10->PerformLayout();
-			this->pnlcompletedworkout->ResumeLayout(false);
-			this->pnlcompletedworkout->PerformLayout();
-			this->panel7->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->manage->ResumeLayout(false);
 			this->manpanel->ResumeLayout(false);
 			this->newwork->ResumeLayout(false);
@@ -1696,6 +1686,16 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numReps1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView4))->EndInit();
 			this->btn->ResumeLayout(false);
+			this->progress->ResumeLayout(false);
+			this->progress->PerformLayout();
+			this->panel9->ResumeLayout(false);
+			this->tableLayoutPanel5->ResumeLayout(false);
+			this->panel10->ResumeLayout(false);
+			this->panel10->PerformLayout();
+			this->pnlcompletedworkout->ResumeLayout(false);
+			this->pnlcompletedworkout->PerformLayout();
+			this->panel7->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->clientinfo->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -2226,12 +2226,12 @@ private: System::Void btnSaveWorkout1_Click_1(System::Object^ sender, System::Ev
 
 }
 
-private: System::Void numExercises_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
-	panelExercises->Controls->Clear();
+private: System::Void numExercises1_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
+	int count = (int)numExercises1->Value;
+	int currentCount = panelExercises1->Controls->Count / 2;
 
-	int count = (int)numExercises->Value;
-
-	for (int i = 0; i < count; i++) {
+	// Add more exercises if needed
+	for (int i = currentCount; i < count; i++) {
 		Label^ label = gcnew Label();
 		label->Text = "Exercise " + (i + 1) + ":";
 		label->AutoSize = true;
@@ -2240,10 +2240,23 @@ private: System::Void numExercises_ValueChanged_1(System::Object^ sender, System
 		txt->Name = "txtExercise" + i;
 		txt->Width = 200;
 
-		panelExercises->Controls->Add(label);
-		panelExercises->Controls->Add(txt);
+		panelExercises1->Controls->Add(label);
+		panelExercises1->Controls->Add(txt);
+	}
+
+	// Remove extra exercises
+	for (int i = currentCount - 1; i >= count; i--) {
+		Control^ txt = panelExercises1->Controls["txtExercise" + i];
+		if (txt != nullptr) {
+			int index = panelExercises1->Controls->IndexOf(txt);
+			if (index > 0) {
+				panelExercises1->Controls->RemoveAt(index);       // Remove TextBox
+				panelExercises1->Controls->RemoveAt(index - 1);   // Remove Label
+			}
+		}
 	}
 }
+
 
 private: System::Void btnSaveWorkout_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	if (numPredefinedWorkouts >= MAX_WORKOUTS) {
@@ -2319,22 +2332,48 @@ private: System::Void btnSaveWorkout_Click_1(System::Object^ sender, System::Eve
 	delete newWorkout;
 }
 
-private: System::Void numExercises1_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
-	panelExercises1->Controls->Clear();
+private: System::Void numExercises_ValueChanged_1(System::Object^ sender, System::EventArgs^ e) {
+	int count = (int)numExercises->Value;
+	int currentCount = panelExercises->Controls->Count / 2; // each exercise has Label + TextBox
 
-	int count = (int)numExercises1->Value;
-
-	for (int i = 0; i < count; i++) {
+	// ðŸŸ¢ Add new exercises
+	for (int i = currentCount; i < count; i++) {
 		Label^ label = gcnew Label();
 		label->Text = "Exercise " + (i + 1) + ":";
 		label->AutoSize = true;
+		label->Location = System::Drawing::Point(10, i * 40);  // Adjust spacing
 
 		TextBox^ txt = gcnew TextBox();
 		txt->Name = "txtExercise" + i;
 		txt->Width = 200;
+		txt->Location = System::Drawing::Point(100, i * 40);
 
-		panelExercises1->Controls->Add(label);
-		panelExercises1->Controls->Add(txt);
+		// Optional Fade-In animation (manual)
+		txt->Visible = false;
+		label->Visible = false;
+
+		panelExercises->Controls->Add(label);
+		panelExercises->Controls->Add(txt);
+
+		// Use Timer or just show instantly for now
+		label->Visible = true;
+		txt->Visible = true;
+	}
+
+	// ðŸ”´ Remove extra exercises
+	if (currentCount > count) {
+		for (int i = currentCount - 1; i >= count; i--) {
+			// Remove TextBox
+			Control^ txt = panelExercises->Controls["txtExercise" + i];
+			if (txt != nullptr) {
+				int index = panelExercises->Controls->IndexOf(txt);
+				if (index > 0) {
+					panelExercises->Controls->RemoveAt(index);       // Remove TextBox
+					panelExercises->Controls->RemoveAt(index - 1);   // Remove its Label
+				}
+			}
+		}
+
 	}
 }
 
