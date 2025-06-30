@@ -42,6 +42,7 @@ namespace SPProject {
 	private:
 		Bitmap^ originalImage = nullptr;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+
 		   int fadeAlpha = 0; // 0 = transparent, 255 = fully visible
 
 	protected:
@@ -199,8 +200,7 @@ namespace SPProject {
 			// 
 			// btnTrainerSignUp
 			// 
-			this->btnTrainerSignUp->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(41)), static_cast<System::Int32>(static_cast<System::Byte>(128)),
-				static_cast<System::Int32>(static_cast<System::Byte>(185)));
+			this->btnTrainerSignUp->BackColor = System::Drawing::Color::White;
 			this->btnTrainerSignUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnTrainerSignUp->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -215,8 +215,7 @@ namespace SPProject {
 			// 
 			// btnClientSignUp
 			// 
-			this->btnClientSignUp->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(52)), static_cast<System::Int32>(static_cast<System::Byte>(152)),
-				static_cast<System::Int32>(static_cast<System::Byte>(219)));
+			this->btnClientSignUp->BackColor = System::Drawing::Color::Linen;
 			this->btnClientSignUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClientSignUp->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -258,9 +257,12 @@ namespace SPProject {
 			this->numericUpDown1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->numericUpDown1->Location = System::Drawing::Point(625, 43);
+			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 70, 0, 0, 0 });
+			this->numericUpDown1->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 15, 0, 0, 0 });
 			this->numericUpDown1->Name = L"numericUpDown1";
 			this->numericUpDown1->Size = System::Drawing::Size(190, 25);
 			this->numericUpDown1->TabIndex = 29;
+			this->numericUpDown1->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 15, 0, 0, 0 });
 			// 
 			// btnRegisterClient
 			// 

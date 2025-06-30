@@ -37,6 +37,11 @@ namespace SPProject {
 	private: System::Windows::Forms::Panel^ LOGO;
 	public:
 
+
+	public:
+
+	public:
+
 	private:
 		Button^ lastClickedButton = nullptr;
 
@@ -517,7 +522,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->LOGO = (gcnew System::Windows::Forms::Panel());
 			this->progress = (gcnew System::Windows::Forms::Panel());
 			this->panel9 = (gcnew System::Windows::Forms::Panel());
 			this->tableLayoutPanel5 = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -542,6 +546,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->gender = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->activitylevel = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->workouts = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->LOGO = (gcnew System::Windows::Forms::Panel());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			this->panel2->SuspendLayout();
@@ -1018,8 +1023,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			dataGridViewCellStyle1->ForeColor = System::Drawing::Color::White;
 			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::SkyBlue;
 			this->dataGridView3->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-			this->dataGridView3->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
-				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->dataGridView3->BackgroundColor = System::Drawing::Color::White;
+			this->dataGridView3->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle2->BackColor = System::Drawing::Color::White;
 			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -1238,8 +1243,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			dataGridViewCellStyle3->ForeColor = System::Drawing::Color::White;
 			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::SkyBlue;
 			this->dataGridView4->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-			this->dataGridView4->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
-				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->dataGridView4->BackgroundColor = System::Drawing::Color::White;
 			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle4->BackColor = System::Drawing::Color::White;
 			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Tahoma", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -1259,7 +1263,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->dataGridView4->Location = System::Drawing::Point(5, 3);
 			this->dataGridView4->Name = L"dataGridView4";
 			this->dataGridView4->RowHeadersWidth = 51;
-			this->dataGridView4->Size = System::Drawing::Size(363, 189);
+			this->dataGridView4->Size = System::Drawing::Size(348, 189);
 			this->dataGridView4->TabIndex = 1;
 			// 
 			// dataGridViewTextBoxColumn4
@@ -1328,19 +1332,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &traiermenu::button4_Click);
 			this->button4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &traiermenu::assign_Paint);
-			// 
-			// LOGO
-			// 
-			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
-				static_cast<System::Int32>(static_cast<System::Byte>(67)));
-			this->LOGO->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LOGO.BackgroundImage")));
-			this->LOGO->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->LOGO->Location = System::Drawing::Point(0, 0);
-			this->LOGO->Margin = System::Windows::Forms::Padding(2);
-			this->LOGO->Name = L"LOGO";
-			this->LOGO->Size = System::Drawing::Size(699, 534);
-			this->LOGO->TabIndex = 19;
 			// 
 			// progress
 			// 
@@ -1435,14 +1426,17 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			// 
 			// viewcompletedworkout
 			// 
+			this->viewcompletedworkout->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
+				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
 			this->viewcompletedworkout->Font = (gcnew System::Drawing::Font(L"Tahoma", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->viewcompletedworkout->ForeColor = System::Drawing::Color::White;
 			this->viewcompletedworkout->Location = System::Drawing::Point(407, 295);
 			this->viewcompletedworkout->Name = L"viewcompletedworkout";
 			this->viewcompletedworkout->Size = System::Drawing::Size(89, 36);
 			this->viewcompletedworkout->TabIndex = 2;
 			this->viewcompletedworkout->Text = L"View";
-			this->viewcompletedworkout->UseVisualStyleBackColor = true;
+			this->viewcompletedworkout->UseVisualStyleBackColor = false;
 			this->viewcompletedworkout->Click += gcnew System::EventHandler(this, &traiermenu::viewcompletedworkout_Click_1);
 			// 
 			// textBox1
@@ -1479,8 +1473,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::SkyBlue;
 			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::White;
 			this->dataGridView2->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-			this->dataGridView2->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)),
-				static_cast<System::Int32>(static_cast<System::Byte>(36)), static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->dataGridView2->BackgroundColor = System::Drawing::Color::White;
+			this->dataGridView2->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle6->BackColor = System::Drawing::Color::White;
 			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Tahoma", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
@@ -1630,6 +1624,19 @@ private: System::Windows::Forms::PictureBox^ pictureBox4;
 			this->workouts->Name = L"workouts";
 			this->workouts->ReadOnly = true;
 			this->workouts->Width = 80;
+			// 
+			// LOGO
+			// 
+			this->LOGO->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(1)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
+				static_cast<System::Int32>(static_cast<System::Byte>(67)));
+			this->LOGO->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"LOGO.BackgroundImage")));
+			this->LOGO->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->LOGO->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->LOGO->Location = System::Drawing::Point(0, 0);
+			this->LOGO->Margin = System::Windows::Forms::Padding(2);
+			this->LOGO->Name = L"LOGO";
+			this->LOGO->Size = System::Drawing::Size(699, 534);
+			this->LOGO->TabIndex = 21;
 			// 
 			// traiermenu
 			// 
