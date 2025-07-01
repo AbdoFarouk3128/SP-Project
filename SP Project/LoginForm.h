@@ -865,6 +865,9 @@ namespace SPProject {
 			clientmenupage^ cf = gcnew clientmenupage(c);
 			cf->ShowDialog();
 			this->Show();
+
+			txtUsername1->Text = "";
+			txtPassword1->Text = "";
 			return;
 		}
 
@@ -875,6 +878,9 @@ namespace SPProject {
 			traiermenu^ tf = gcnew traiermenu(t);
 			tf->ShowDialog();
 			this->Show();
+
+			txtUsername1->Text = "";
+			txtPassword1->Text = "";
 			return;
 		}
 
@@ -889,6 +895,9 @@ private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Win
 	btnBackToLogin->Visible = true;
 	btnClientSignUp->BackColor = Color::Linen;
 	btnTrainerSignUp->BackColor = Color::White;
+
+	txtUsername1->Text = "";
+	txtPassword1->Text = "";
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
