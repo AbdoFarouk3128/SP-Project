@@ -41,6 +41,25 @@ namespace SPProject {
 
 		}
 	private:
+		void ClearTextBoxes(Control^ container)
+		{
+			for each (Control ^ ctrl in container->Controls)
+			{
+				if (ctrl->GetType() == TextBox::typeid)
+				{
+					(dynamic_cast<TextBox^>(ctrl))->Clear();
+				}
+				else if (ctrl->HasChildren)
+				{
+					ClearTextBoxes(ctrl); // لو فيه حاويات داخلية
+				}
+			}
+		}
+
+		
+
+
+	private:
 		Bitmap^ originalImage = nullptr;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 
@@ -274,6 +293,7 @@ namespace SPProject {
 			this->numericUpDown1->Size = System::Drawing::Size(253, 29);
 			this->numericUpDown1->TabIndex = 29;
 			this->numericUpDown1->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 15, 0, 0, 0 });
+			this->numericUpDown1->ValueChanged += gcnew System::EventHandler(this, &LoginForm::numericUpDown1_ValueChanged);
 			// 
 			// btnRegisterClient
 			// 
@@ -967,13 +987,14 @@ private: System::Void btnRegisterClient_Click(System::Object^ sender, System::Ev
 		txtClientName->Text = "";
 		txtUsername->Text = "";
 		txtPassword->Text = "";
-		numericUpDown1->Value = 0;
+		numericUpDown1->Value = Math::Max(numericUpDown1->Minimum, 1);
 		cmbGender->SelectedIndex = -1;
 		cmbActivityLevel->SelectedIndex = -1;
 		cmbTrainer->SelectedIndex = -1;
 
 		MessageBox::Show("Client registered successfully!", "Success",
 			MessageBoxButtons::OK, MessageBoxIcon::Information);
+		
 	}
 }
 
@@ -1128,7 +1149,10 @@ private: System::Void btnCreateTrainer_Click(System::Object^ sender, System::Eve
 
 		trainerCount++;
 
+
 		MessageBox::Show("Trainer account created!");
+
+		ClearTextBoxes(panelSignUpTrainer);
 	}
 
 }
@@ -1171,6 +1195,8 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 private: System::Void txtPassword1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void panelLogin_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void numericUpDown1_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
