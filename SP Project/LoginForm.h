@@ -949,7 +949,9 @@ private: System::Void btnRegisterClient_Click(System::Object^ sender, System::Ev
 		newClient.age = age;
 		newClient.trainerId = selectedTrainer->trainerID;
 		newClient.clientID = clientCount + 1;
-
+		newClient.numMeasurements = 0;
+		newClient.numWorkouts = 0;
+		newClient.numLogs = 0;
 		// Add to database
 		insertClient(db, newClient);
 
@@ -973,87 +975,6 @@ private: System::Void btnRegisterClient_Click(System::Object^ sender, System::Ev
 		
 	}
 }
-
-private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	MessageBox::Show("Button clicked");
-	if (txtTrainerName == nullptr) {
-		MessageBox::Show("txtTrainerName is NULL");
-		return;
-	}
-	if (txtTrainerUsername == nullptr) {
-		MessageBox::Show("txtTrainerUsername is NULL");
-		return;
-	}
-	if (txtTrainerPassword == nullptr) {
-		MessageBox::Show("txtTrainerPassword is NULL");
-		return;
-	}
-	if (db == nullptr) {
-			MessageBox::Show("Database not initialized.");
-			return;
-	}
-	try {
-		System::String^ name = txtTrainerName->Text;
-		System::String^ username = txtTrainerUsername->Text;
-		System::String^ password = txtTrainerPassword->Text;
-
-
-
-		std::string nameStd = msclr::interop::marshal_as<std::string>(name);
-		std::string usernameStd = msclr::interop::marshal_as<std::string>(username);
-		std::string passwordStd = msclr::interop::marshal_as<std::string>(password);
-
-		if (nameStd.empty() || usernameStd.empty() || passwordStd.empty()) {
-			MessageBox::Show("Please fill all fields.");
-			return;
-		}
-
-		if (trainerCount >= MAX_TRAINERS) {
-			MessageBox::Show("Maximum number of trainers reached.");
-
-		}
-
-		if (isUsernameTaken(usernameStd)) {
-			MessageBox::Show("Username is already taken. Please choose another.");
-		}
-
-		else {
-
-			Trainer *newTrainer=new Trainer();
-			newTrainer->name = nameStd;
-			newTrainer->username = usernameStd;
-			newTrainer->password = passwordStd;
-			newTrainer->trainerID = trainerCount + 1;
-
-			trainers[trainerCount] = *newTrainer;
-			try {
-				insertTrainer(db, *newTrainer);
-			}
-			catch (const std::exception& ex) {
-				MessageBox::Show("DB Error: " + gcnew String(ex.what()));
-				delete newTrainer;
-				return;
-			}
-
-			trainerCount++;
-
-			MessageBox::Show("Trainer account created!");
-			delete newTrainer;
-		}
-
-		txtTrainerName->Text = "";
-		txtTrainerUsername->Text = "";
-		txtTrainerPassword->Text = "";
-		txtTrainerName->Focus();
-	}
-	catch (const std::exception& ex) {
-		MessageBox::Show("Exception: " + gcnew String(ex.what()));
-	}
-	catch (...) {
-		MessageBox::Show("Unknown crash occurred.");
-	}
-}
-
 private: System::Void btnBackToLogin_Click(System::Object^ sender, System::EventArgs^ e) {
 	panelLogin->BringToFront();
 
@@ -1113,7 +1034,6 @@ private: System::Void btnCreateTrainer_Click(System::Object^ sender, System::Eve
 		newTrainer->username = usernameStd;
 		newTrainer->password = passwordStd;
 		newTrainer->trainerID = trainerCount + 1;
-
 		trainers[trainerCount] = *newTrainer;
 
 		try {

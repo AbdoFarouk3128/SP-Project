@@ -16,7 +16,7 @@ using namespace std;
 
 // ================== CONSTANTS ==================
 #pragma region Constants
-const int MAX_CLIENTS = 100;
+const int MAX_CLIENTS = 50;
 const int MAX_TRAINERS = 30;
 const int MAX_WORKOUTS = 15;
 const int MAX_EXERCISES = 10;
@@ -79,17 +79,10 @@ struct Trainer {
     std::string username;
     std::string password;
 
-    Client* clients;
-    int numClients;
+    Client clients[MAX_CLIENTS];
+    int numClients=0;
 
-    Trainer() {
-        clients = new Client[100];
-        numClients = 0;
-    }
-
-    ~Trainer() {
-        delete[] clients;
-    }
+    
 };
 
 
