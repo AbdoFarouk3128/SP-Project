@@ -160,6 +160,11 @@ namespace SPProject {
 				return;
 			}
 			
+			panel1->Visible = true;
+			panelLastMeasurement->Visible = true;
+			panel1->Visible = true;
+			panelLastMeasurement->BringToFront(); // ⬅️ مهم لو فيه حاجة مغطيه عليه
+
 			Measurement last = client->measurements[client->numMeasurements - 1];
 			Label^ lastLabel = gcnew Label();
 			lastLabel->Text =
